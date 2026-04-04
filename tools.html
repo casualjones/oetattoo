@@ -12,19 +12,32 @@
         <h1>OE Tattoo</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="gallery.html">Gallery</a>
+            <a href="flash.html">Flash</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="https://wanderoeste.blogspot.com/">Blog</a>
             <a href="tools.html">Tools</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
     <main>
         <h2>Image Tools</h2>
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <ul>
+                <li>Upload images under 5MB for best performance</li>
+                <li>Supported formats: JPG, PNG (HEIC not supported - please convert to JPG/PNG first)</li>
+                <li>Image Scaler: Resize your tattoo designs to desired dimensions</li>
+                <li>Grider: Add a reference grid with alphanumeric coordinates for precise tracing</li>
+                <li>Stencil Maker: Choose edge detection method and threshold to create contour outlines for stencils</li>
+            </ul>
+        </div>
         <div class="tool">
             <h3>Image Scaler</h3>
-            <input type="file" id="scalerInput" accept="image/*">
+            <input type="file" id="scalerInput" accept=".jpg,.jpeg,.png,image/*">
             <label for="scale">Scale (%):</label>
             <input type="number" id="scale" value="100" min="10" max="200">
             <button onclick="scaleImage()">Scale</button>
+            <button onclick="downloadCanvas('scalerCanvas', 'scaledimage.png')">Download</button>
             <canvas id="scalerCanvas"></canvas>
         </div>
         <div class="tool">
@@ -32,15 +45,26 @@
             <input type="file" id="gridInput" accept="image/*">
             <label for="gridSize">Grid Size (px):</label>
             <input type="number" id="gridSize" value="50" min="10" max="100">
+            <p>Size: <span id="gridSizeDisplay">50px</span> | <span id="gridInches">0.52in</span> | <span id="gridCm">1.32cm</span></p>
             <button onclick="addGrid()">Add Grid</button>
+            <button onclick="downloadCanvas('gridCanvas', 'gridedimage.png')">Download</button>
             <canvas id="gridCanvas"></canvas>
         </div>
         <div class="tool">
             <h3>Stencil Maker</h3>
             <input type="file" id="stencilInput" accept="image/*">
-            <label for="threshold">Threshold:</label>
-            <input type="number" id="threshold" value="128" min="0" max="255">
-            <button onclick="makeStencil()">Make Stencil</button>
+            <label for="edgeMethod">Edge Detection Method:</label>
+            <select id="edgeMethod">
+                <option value="sobel">Sobel</option>
+                <option value="prewitt">Prewitt</option>
+                <option value="roberts">Roberts</option>
+                <option value="laplacian">Laplacian</option>
+            </select>
+            <label for="edgeThreshold">Edge Threshold (0-255):</label>
+            <input type="number" id="edgeThreshold" value="50" min="0" max="255">
+            <p>Choose edge detection method and adjust threshold. Lower threshold shows more edges.</p>
+            <button onclick="makeStencil()">Detect Edges</button>
+            <button onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download</button>
             <canvas id="stencilCanvas"></canvas>
         </div>
     </main>
