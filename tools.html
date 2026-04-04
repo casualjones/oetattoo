@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - OE Tattoo</title>
+    <meta name="description" content="Use our image tools for tattoo design preparation.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>OE Tattoo</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="tools.html">Tools</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Image Tools</h2>
+        <div class="tool">
+            <h3>Image Scaler</h3>
+            <input type="file" id="scalerInput" accept="image/*">
+            <label for="scale">Scale (%):</label>
+            <input type="number" id="scale" value="100" min="10" max="200">
+            <button onclick="scaleImage()">Scale</button>
+            <canvas id="scalerCanvas"></canvas>
+        </div>
+        <div class="tool">
+            <h3>Grider</h3>
+            <input type="file" id="gridInput" accept="image/*">
+            <label for="gridSize">Grid Size (px):</label>
+            <input type="number" id="gridSize" value="50" min="10" max="100">
+            <button onclick="addGrid()">Add Grid</button>
+            <canvas id="gridCanvas"></canvas>
+        </div>
+        <div class="tool">
+            <h3>Stencil Maker</h3>
+            <input type="file" id="stencilInput" accept="image/*">
+            <label for="threshold">Threshold:</label>
+            <input type="number" id="threshold" value="128" min="0" max="255">
+            <button onclick="makeStencil()">Make Stencil</button>
+            <canvas id="stencilCanvas"></canvas>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 OE Tattoo</p>
+    </footer>
+    <script src="script.js"></script>
+    <script src="tools.js"></script>
+</body>
+</html>
