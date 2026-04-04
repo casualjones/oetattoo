@@ -10,7 +10,7 @@ body {
 header {
     position: relative;
     background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url("banners/oetattoobanner.png") center/cover no-repeat;
+        url("banners/oetattooobanner.png") center/cover no-repeat;
     padding: 3rem 1rem;
     text-align: center;
     min-height: 320px;
