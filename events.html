@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humboldt Events Calendar</title>
+    <meta name="description" content="Weekly Humboldt event calendar scraped from Eventbrite and North Coast Journal.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>OE Tattoo</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="flash.html">Flash</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="events.html">Events</a>
+            <a href="https://wanderoeste.blogspot.com/">Blog</a>
+            <a href="tools.html">Tools</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="events-hero">
+            <h2>Humboldt Weekly Events Calendar</h2>
+            <p>Live event listings for Humboldt County from Eventbrite and the North Coast Journal.</p>
+            <p class="event-note">This calendar loads from a pre-generated Eventbrite feed for Eureka events. Because GitHub Pages is static, the page reads the local JSON file rather than scraping live pages in the browser.</p>
+        </section>
+
+        <section class="event-controls">
+            <div>
+                <button id="prevWeek">Previous Week</button>
+                <button id="nextWeek">Next Week</button>
+            </div>
+            <div>
+                <button id="refreshButton">Refresh Events</button>
+            </div>
+        </section>
+
+        <section class="week-label">
+            <p id="weekLabel">Loading week...</p>
+            <p class="event-status" id="statusText">Loading weekly events...</p>
+        </section>
+
+        <section class="event-calendar" id="calendarGrid">
+            <!-- Weekday event cards inserted here -->
+        </section>
+
+        <section class="event-list" id="eventList">
+            <!-- Event list inserted here -->
+        </section>
+
+        <section class="event-sources">
+            <h3>Source Links</h3>
+            <p>Eventbrite and NCJ listings are pulled from the public source pages. If scraping is blocked, use the links below to open the original event pages.</p>
+            <ul>
+                <li><a href="https://www.eventbrite.com/d/ca--humboldt-county/events/" target="_blank" rel="noopener">Humboldt County events on Eventbrite</a></li>
+                <li><a href="https://www.northcoastjournal.com/events" target="_blank" rel="noopener">North Coast Journal events</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 OE Tattoo</p>
+    </footer>
+    <script src="script.js"></script>
+    <script src="events.js"></script>
+</body>
+</html>
