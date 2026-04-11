@@ -9,6 +9,8 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 SEARCH_URL = 'https://www.northcoastjournal.com/community/'
 OUTPUT_FILE = 'events-data.json'
 MAX_EVENTS = 40
+EVENTBRITE_URL = 'https://www.eventbrite.com/d/ca--eureka/music--events/'
+EVENTBRITE_PAGES = 2
 SLEEP_SECONDS = 1.0
 
 
@@ -47,6 +49,73 @@ def parse_community_cards(html_text):
         })
         if len(events) >= MAX_EVENTS:
             break
+    return events
+
+
+def parse_eventbrite_location(loc):
+    if not isinstance(loc, dict):
+        return ''
+    name = loc.get('name', '')
+    address = loc.get('address', {})
+    if isinstance(address, dict):
+        locality = address.get('addressLocality', '')
+        region = address.get('addressRegion', '')
+        street = address.get('streetAddress', '')
+        parts = [part for part in (name, street, locality, region) if part]
+        return ', '.join(parts)
+    return name or ''
+
+
+def parse_eventbrite_datetime(value):
+    if not value:
+        return None, ''
+    dt = parse_date(value)
+    if not dt:
+        return None, ''
+    time_part = dt.strftime('%-I:%M %p') if dt.hour or dt.minute else ''
+    return dt, time_part
+
+
+def parse_eventbrite_events(html_text):
+    events = []
+    matches = re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', html_text, flags=re.S)
+    for raw in matches:
+        try:
+            data = json.loads(raw.strip())
+        except json.JSONDecodeError:
+            continue
+        if isinstance(data, list):
+            items = data
+        else:
+            items = [data]
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            elements = item.get('itemListElement') if item.get('@type') == 'ItemList' else None
+            if not elements and item.get('@type') == 'ListItem':
+                elements = [item]
+            if not elements:
+                continue
+            for element in elements:
+                event_obj = element.get('item') if isinstance(element, dict) else None
+                if not event_obj or event_obj.get('@type') != 'Event':
+                    continue
+                url = event_obj.get('url', '').strip()
+                if not url:
+                    continue
+                title = event_obj.get('name', '').strip() or 'Eventbrite Event'
+                start_date = event_obj.get('startDate', '').strip()
+                dt, time_str = parse_eventbrite_datetime(start_date)
+                location = parse_eventbrite_location(event_obj.get('location', {}))
+                events.append({
+                    'title': html.unescape(title),
+                    'url': html.unescape(url),
+                    'location': html.unescape(location),
+                    'source': 'Eventbrite',
+                    'startDate': start_date,
+                    'detail_time': time_str,
+                    'startDateIso': dt.isoformat() if dt else None,
+                })
     return events
 
 
@@ -147,27 +216,55 @@ def main():
     print('Fetching NCJ community page...')
     html_text = fetch(SEARCH_URL)
     print('Parsing NCJ event cards...')
-    events = parse_community_cards(html_text)
-    print(f'Found {len(events)} NCJ event cards.')
+    ncj_events = parse_community_cards(html_text)
+    print(f'Found {len(ncj_events)} NCJ event cards.')
     enriched = []
-    for idx, evt in enumerate(events, start=1):
-        print(f'[{idx}/{len(events)}] Enriching:', evt['title'])
+    for idx, evt in enumerate(ncj_events, start=1):
+        print(f'[{idx}/{len(ncj_events)}] Enriching NCJ event:', evt['title'])
         enriched_event = enrich_event(evt)
         enriched.append(enriched_event)
         time.sleep(SLEEP_SECONDS)
 
+    eventbrite_events = []
+    for page in range(1, EVENTBRITE_PAGES + 1):
+        page_url = EVENTBRITE_URL if page == 1 else f'{EVENTBRITE_URL}?page={page}'
+        print('Fetching Eventbrite page:', page_url)
+        try:
+            page_html = fetch(page_url)
+            page_events = parse_eventbrite_events(page_html)
+            print(f'Found {len(page_events)} Eventbrite events on page {page}.')
+            eventbrite_events.extend(page_events)
+        except Exception as exc:
+            print('Failed to fetch Eventbrite page:', page_url, exc)
+        time.sleep(SLEEP_SECONDS)
+
+    print('Combining NCJ and Eventbrite events...')
     now = datetime.now().astimezone()
-    enriched = [
-        e for e in enriched
-        if 'startDateIso' in e
-        and parse_date(e['startDateIso'])
-        and parse_date(e['startDateIso']).date() >= now.date()
-    ]
-    enriched.sort(key=lambda e: e.get('startDateIso', ''))
+    combined = []
+    seen_urls = set()
+    for event in enriched + eventbrite_events:
+        url = event.get('url', '').strip()
+        if not url or url in seen_urls:
+            continue
+        start_iso = event.get('startDateIso') or event.get('startDate')
+        if not start_iso:
+            continue
+        dt = parse_date(start_iso)
+        if not dt or dt.date() < now.date():
+            continue
+        event['startDateIso'] = dt.isoformat()
+        if 'detail_time' not in event:
+            event['detail_time'] = ''
+        combined.append(event)
+        seen_urls.add(url)
+        if len(combined) >= MAX_EVENTS:
+            break
+
+    combined.sort(key=lambda e: e.get('startDateIso', ''))
 
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(enriched, f, ensure_ascii=False, indent=2)
-    print(f'Wrote {OUTPUT_FILE} with {len(enriched)} upcoming NCJ events.')
+        json.dump(combined, f, ensure_ascii=False, indent=2)
+    print(f'Wrote {OUTPUT_FILE} with {len(combined)} upcoming combined events.')
 
 
 if __name__ == '__main__':
