@@ -123,16 +123,13 @@ footer {
 .tool:nth-child(3) { border-color: #4757ff; background: rgba(71, 87, 255, 0.1); }
 .tool:nth-child(4) { border-color: #ffb347; background: rgba(255, 179, 71, 0.12); }
 
-.hidden-blog-link {
+.hidden-blog-img-link {
     display: inline-block;
-    width: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    text-indent: -9999px;
-    color: transparent;
-    pointer-events: auto;
+    cursor: default;
+}
+
+.hidden-blog-img-link img {
+    cursor: default;
 }
 
 .button-link {
