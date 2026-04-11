@@ -123,36 +123,37 @@ footer {
 .tool:nth-child(3) { border-color: #4757ff; background: rgba(71, 87, 255, 0.1); }
 .tool:nth-child(4) { border-color: #ffb347; background: rgba(255, 179, 71, 0.12); }
 
-.photopea-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 0.75rem 0;
-}
-
-.photopea-frame-wrapper {
-    margin-top: 1rem;
-    border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 10px;
+.hidden-blog-link {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
     overflow: hidden;
+    text-indent: -9999px;
+    color: transparent;
+    pointer-events: auto;
 }
 
-#photopeaFrame {
-    width: 100%;
-    min-height: 550px;
-    border: none;
+.button-link {
+    display: inline-block;
+    padding: 0.85rem 1.2rem;
+    color: #fff;
+    background: #ff4757;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
-#photopeaStatus {
-    color: #d2d2d2;
+.button-link:hover {
+    background: #ff6b6b;
+    transform: translateY(-1px);
+}
+
+.photopea-note {
+    color: #c9c9c9;
     font-size: 0.95rem;
     margin-top: 0.5rem;
-}
-
-.photopea-warning {
-    color: #c9c9c9;
-    font-size: 0.9rem;
-    margin: 0.25rem 0 0.75rem;
 }
 
 .contact-info {
