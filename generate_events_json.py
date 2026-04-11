@@ -66,6 +66,31 @@ def parse_eventbrite_location(loc):
     return name or ''
 
 
+def is_humboldt_event(event_obj):
+    local_names = {
+        'eureka', 'arcata', 'mckinleyville', 'fortuna', 'trinidad',
+        'garberville', 'blue lake', 'redway', 'felton', 'humboldt',
+        'cove', 'ferndale', 'manila', 'loleta', 'nevada', 'alisa'
+    }
+    if not isinstance(event_obj, dict):
+        return False
+    loc = event_obj.get('location')
+    if not isinstance(loc, dict):
+        return False
+    address = loc.get('address', {})
+    if not isinstance(address, dict):
+        return False
+    locality = address.get('addressLocality', '')
+    region = address.get('addressRegion', '')
+    street = address.get('streetAddress', '')
+    text = ' '.join([locality, region, street, str(loc.get('name', ''))]).lower()
+    if any(name in text for name in local_names):
+        return True
+    description = str(event_obj.get('description', '')).lower()
+    title = str(event_obj.get('name', '')).lower()
+    return any(name in description or name in title for name in local_names)
+
+
 def parse_eventbrite_datetime(value):
     if not value:
         return None, ''
@@ -106,6 +131,8 @@ def parse_eventbrite_events(html_text):
                 title = event_obj.get('name', '').strip() or 'Eventbrite Event'
                 start_date = event_obj.get('startDate', '').strip()
                 dt, time_str = parse_eventbrite_datetime(start_date)
+                if not is_humboldt_event(event_obj):
+                    continue
                 location = parse_eventbrite_location(event_obj.get('location', {}))
                 events.append({
                     'title': html.unescape(title),
