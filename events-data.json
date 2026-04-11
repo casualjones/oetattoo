@@ -1,164 +1,29 @@
 [
   {
-    "title": "Special Screening: One Battle After Another",
-    "url": "https://www.eventbrite.com/e/special-screening-one-battle-after-another-tickets-1982048718071?aff=ebdssbcitybrowse",
-    "location": "The Eureka Theater, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "Tomorrow • 7:00 PM",
-    "startDate": "2026-04-11T19:00:00-07:00",
-    "startDateIso": "2026-04-11T19:00:00-07:00"
+    "title": "Spring Book Sale",
+    "url": "https://community.northcoastjournal.com/event/spring-book-sale-34361728",
+    "location": "Friends of the Redwood Libraries",
+    "source": "North Coast Journal",
+    "detail_time": "Sat., April 11, 10 a.m.-3:30 p.m.",
+    "startDate": "2026-04-10T10:00:00-07:00",
+    "startDateIso": "2026-04-10T10:00:00-07:00"
   },
   {
-    "title": "Stand Up Comedy Legend Josh Barnes Headlines the Club!",
-    "url": "https://www.eventbrite.com/e/stand-up-comedy-legend-josh-barnes-headlines-the-club-tickets-1986777518039?aff=ebdssbcitybrowse",
-    "location": "Savage Henry Comedy Club, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "Tomorrow • 8:00 PM",
-    "startDate": "2026-04-11T20:00:00-07:00",
-    "startDateIso": "2026-04-11T20:00:00-07:00"
+    "title": "PlaySpace at Eureka Library StoryTime",
+    "url": "https://community.northcoastjournal.com/event/playspace-at-eureka-library-storytime-34379670",
+    "location": "Eureka Library",
+    "source": "North Coast Journal",
+    "detail_time": "",
+    "startDate": "2026-04-10T10:00:00-07:00",
+    "startDateIso": "2026-04-10T10:00:00-07:00"
   },
   {
-    "title": "Sensation of Elements",
-    "url": "https://www.eventbrite.com/e/sensation-of-elements-tickets-1984934815466?aff=ebdssbcitybrowse",
-    "location": "The Basement, Arcata, CA",
-    "source": "Eventbrite",
-    "detail_time": "Sunday • 4:30 PM",
-    "startDate": "2026-04-12T16:30:00-07:00",
-    "startDateIso": "2026-04-12T16:30:00-07:00"
-  },
-  {
-    "title": "SVPG Product Masterclass - April 13-15, 2026",
-    "url": "https://www.eventbrite.com/e/svpg-product-masterclass-april-13-15-2026-tickets-1980200962384?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Monday • 9:00 AM EDT",
-    "startDate": "2026-04-13T09:00:00-04:00",
-    "startDateIso": "2026-04-13T09:00:00-04:00"
-  },
-  {
-    "title": "Seminar on Big Data, Data Science and Machine Learning",
-    "url": "https://www.eventbrite.com/e/seminar-on-big-data-data-science-and-machine-learning-tickets-787580734177?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Tuesday • 7:00 PM GMT+4",
-    "startDate": "2026-04-14T19:00:00+04:00",
-    "startDateIso": "2026-04-14T19:00:00+04:00"
-  },
-  {
-    "title": "Researching your 20th century ancestors",
-    "url": "https://www.eventbrite.co.uk/e/researching-your-20th-century-ancestors-tickets-1982962227402?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Tuesday • 7:30 PM GMT+1",
-    "startDate": "2026-04-14T19:30:00+01:00",
-    "startDateIso": "2026-04-14T19:30:00+01:00"
-  },
-  {
-    "title": "Attorneys, deputies and decision-making",
-    "url": "https://www.eventbrite.co.uk/e/attorneys-deputies-and-decision-making-tickets-1978156011882?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Wednesday • 12:30 PM GMT+1",
-    "startDate": "2026-04-15T12:30:00+01:00",
-    "startDateIso": "2026-04-15T12:30:00+01:00"
-  },
-  {
-    "title": "Brain, Behavior, & Mind 2026 Spring Conference",
-    "url": "https://www.eventbrite.com/e/brain-behavior-mind-2026-spring-conference-tickets-1976738810996?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Tue, Apr 21 •  9:00 AM  EDT",
-    "startDate": "2026-04-21T09:00:00-04:00",
-    "startDateIso": "2026-04-21T09:00:00-04:00"
-  },
-  {
-    "title": "StartUp Humboldt Final Pitch Competition: A Celebration of Innovation",
-    "url": "https://www.eventbrite.com/e/startup-humboldt-final-pitch-competition-a-celebration-of-innovation-tickets-1982989091754?aff=ebdssbcitybrowse",
-    "location": "The Eureka Theater, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "The Eureka Theater",
-    "startDate": "2026-04-23T17:30:00-07:00",
-    "startDateIso": "2026-04-23T17:30:00-07:00"
-  },
-  {
-    "title": "Children's Memorial Day & Flag Raising",
-    "url": "https://www.eventbrite.com/e/childrens-memorial-day-flag-raising-tickets-1980423958371?aff=ebdssbcitybrowse",
-    "location": "3015 J St, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "3015 J St",
-    "startDate": "2026-04-24T09:00:00-07:00",
-    "startDateIso": "2026-04-24T09:00:00-07:00"
-  },
-  {
-    "title": "Black Girl Book Fair!",
-    "url": "https://www.eventbrite.com/e/black-girl-book-fair-tickets-1979838497241?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Sat, Apr 25 •  12:00 AM  CDT",
-    "startDate": "2026-04-25T00:00:00-05:00",
-    "startDateIso": "2026-04-25T00:00:00-05:00"
-  },
-  {
-    "title": "Prevent in Education - Early Years Foundation Stage Training",
-    "url": "https://www.eventbrite.co.uk/e/prevent-in-education-early-years-foundation-stage-training-tickets-1535605771199?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Wed, Apr 29 •  4:00 PM  GMT+1",
-    "startDate": "2026-04-29T16:00:00+01:00",
-    "startDateIso": "2026-04-29T16:00:00+01:00"
-  },
-  {
-    "title": "Fundraising 101 for Nonprofits with Beth Bray",
-    "url": "https://www.eventbrite.com/e/fundraising-101-for-nonprofits-with-beth-bray-tickets-1985874490058?aff=ebdssbcitybrowse",
-    "location": "Humboldt Area Foundation, Indianola, CA",
-    "source": "Eventbrite",
-    "detail_time": "Humboldt Area Foundation",
-    "startDate": "2026-04-30T09:00:00-07:00",
-    "startDateIso": "2026-04-30T09:00:00-07:00"
-  },
-  {
-    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 38-55ish]",
-    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-38-55ish-tickets-1985532332656?aff=ebdssbcitybrowse",
-    "location": "Humboldt Bay Provisions, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "Humboldt Bay Provisions",
-    "startDate": "2026-04-30T18:00:00-07:00",
-    "startDateIso": "2026-04-30T18:00:00-07:00"
-  },
-  {
-    "title": "How to Do a  Venture Capital Financing",
-    "url": "https://www.eventbrite.ca/e/how-to-do-a-venture-capital-financing-tickets-812165377507?aff=ebdssbcitybrowse",
-    "location": "online",
-    "source": "Eventbrite",
-    "detail_time": "Thu, May 14 •  9:00 AM  PDT",
-    "startDate": "2026-05-14T09:00:00-07:00",
-    "startDateIso": "2026-05-14T09:00:00-07:00"
-  },
-  {
-    "title": "You Should Be Dancing - A Tribute to the Bee Gees - LIVE in Eureka",
-    "url": "https://www.eventbrite.com/e/you-should-be-dancing-a-tribute-to-the-bee-gees-live-in-eureka-tickets-1983928855613?aff=ebdssbcitybrowse",
-    "location": "The Eureka Theater, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "The Eureka Theater",
-    "startDate": "2026-06-13T20:00:00-07:00",
-    "startDateIso": "2026-06-13T20:00:00-07:00"
-  },
-  {
-    "title": "LIVIDITY, BURT BACHARACH, GOREFETISH, ALCHEMIC TRANSMUTATION, & SADISTIC HA",
-    "url": "https://www.eventbrite.com/e/lividity-burt-bacharach-gorefetish-alchemic-transmutation-sadistic-ha-tickets-1983597792394?aff=ebdssbcitybrowse",
-    "location": "Savage Henry Comedy Club, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "Savage Henry Comedy Club",
-    "startDate": "2026-06-17T18:30:00-07:00",
-    "startDateIso": "2026-06-17T18:30:00-07:00"
-  },
-  {
-    "title": "Juneteenth Punk Show",
-    "url": "https://www.eventbrite.com/e/juneteenth-punk-show-tickets-1986395561597?aff=ebdssbcitybrowse",
-    "location": "Savage Henry Comedy Club, Eureka, CA",
-    "source": "Eventbrite",
-    "detail_time": "Savage Henry Comedy Club",
-    "startDate": "2026-06-19T19:00:00-07:00",
-    "startDateIso": "2026-06-19T19:00:00-07:00"
+    "title": "<i>Quixote</i>",
+    "url": "https://community.northcoastjournal.com/event/quixote-34367065",
+    "location": "Arcata Playhouse",
+    "source": "North Coast Journal",
+    "detail_time": "Through April 12, 8 p.m.",
+    "startDate": "2026-04-10T20:00:00-07:00",
+    "startDateIso": "2026-04-10T20:00:00-07:00"
   }
 ]

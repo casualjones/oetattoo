@@ -1,15 +1,14 @@
 import html
 import json
 import re
-import sys
 import time
 import urllib.request
 from datetime import datetime
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36'
-SEARCH_URL = 'https://www.eventbrite.com/d/ca--eureka/events/'
+SEARCH_URL = 'https://www.northcoastjournal.com/community/'
 OUTPUT_FILE = 'events-data.json'
-MAX_EVENTS = 30
+MAX_EVENTS = 40
 SLEEP_SECONDS = 1.0
 
 
@@ -19,43 +18,40 @@ def fetch(url):
         return resp.read().decode('utf-8', errors='replace')
 
 
-def parse_event_card(html_text):
-    sections = re.findall(r'<section class="discover-vertical-event-card">(.*?)</section>', html_text, flags=re.S)
+def parse_community_cards(html_text):
+    blocks = re.split(r'(?=<div class="wp-block-group community-card--stacked)', html_text)
     events = []
     seen = set()
-    for section in sections:
-        link_match = re.search(r'<a\b[^>]*class="[^"]*event-card-link[^"]*"[^>]*href="([^"]+)"', section)
-        if not link_match:
-            link_match = re.search(r'<a\b[^>]*href="([^"]+)"[^>]*class="[^"]*event-card-link[^"]*"', section)
-        if not link_match:
+    for block in blocks:
+        if 'rdb-heading' not in block or 'wp-block-button__link rdb-button' not in block:
             continue
-        url = html.unescape(link_match.group(1))
-        location_match = re.search(r'data-event-location="([^"]+)"', section)
-        location = html.unescape(location_match.group(1)) if location_match else ''
+        title_match = re.search(r'<h3[^>]*class="[^"]*rdb-heading[^"]*"[^>]*>(.*?)</h3>', block, flags=re.S)
+        time_match = re.search(r'<p[^>]*class="[^"]*rdb-block-data-time[^"]*"[^>]*>(.*?)</p>', block, flags=re.S)
+        loc_match = re.search(r'<p[^>]*class="[^"]*has-dark-gray-color[^"]*"[^>]*>(.*?)</p>', block, flags=re.S)
+        href_match = re.search(r'<a[^>]+class="[^"]*wp-block-button__link rdb-button[^"]*"[^>]*href="([^"]+)"', block)
+        if not title_match or not href_match:
+            continue
+        title = html.unescape(re.sub(r'<[^>]+>', '', title_match.group(1)).strip())
+        url = html.unescape(href_match.group(1).strip())
         if url in seen:
             continue
         seen.add(url)
-
-        title_match = re.search(r'<h3[^>]*>(.*?)</h3>', section, flags=re.S)
-        title = html.unescape(title_match.group(1).strip()) if title_match else 'Eventbrite Event'
-        pvals = [html.unescape(re.sub(r'<[^>]+>', '', p).strip()) for p in re.findall(r'<p[^>]*>(.*?)</p>', section, flags=re.S)]
-        time_text = ''
-        if len(pvals) >= 2:
-            time_text = pvals[1]
+        detail_time = html.unescape(re.sub(r'<[^>]+>', '', time_match.group(1)).strip()) if time_match else ''
+        location = html.unescape(re.sub(r'<[^>]+>', '', loc_match.group(1)).strip()) if loc_match else ''
         events.append({
             'title': title,
             'url': url,
-            'location': location or (pvals[2] if len(pvals) >= 3 else ''),
-            'source': 'Eventbrite',
-            'detail_time': time_text,
+            'location': location,
+            'source': 'North Coast Journal',
+            'detail_time': detail_time,
         })
         if len(events) >= MAX_EVENTS:
             break
     return events
 
 
-def parse_json_ld(event_html):
-    matches = re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', event_html, flags=re.S)
+def parse_json_ld(html_text):
+    matches = re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', html_text, flags=re.S)
     for raw in matches:
         try:
             data = json.loads(raw.strip())
@@ -68,7 +64,7 @@ def parse_json_ld(event_html):
         for item in items:
             if not item:
                 continue
-            type_val = item.get('@type') or item.get('@type', '')
+            type_val = item.get('@type') or ''
             if isinstance(type_val, list):
                 types = type_val
             else:
@@ -81,14 +77,29 @@ def parse_json_ld(event_html):
 def parse_date(value):
     if not value:
         return None
+    if isinstance(value, datetime):
+        return value
+    value = value.strip()
+    if value.endswith('Z'):
+        value = value[:-1] + '+00:00'
     try:
-        if value.endswith('Z'):
-            value = value[:-1] + '+00:00'
         return datetime.fromisoformat(value)
     except ValueError:
-        for fmt in ('%B %d, %Y %I:%M %p', '%a, %b %d • %I:%M %p', '%a • %I:%M %p'):
+        for fmt in (
+            '%B %d, %Y %I:%M %p',
+            '%b %d, %Y %I:%M %p',
+            '%a, %b %d • %I:%M %p',
+            '%a, %b %d, %Y %I:%M %p',
+            '%a, %b %d, %Y',
+            '%B %d, %Y',
+            '%B %d',
+            '%b %d',
+        ):
             try:
-                return datetime.strptime(value, fmt)
+                dt = datetime.strptime(value, fmt)
+                if dt.year == 1900:
+                    dt = dt.replace(year=datetime.now().year)
+                return dt
             except ValueError:
                 continue
     return None
@@ -98,7 +109,7 @@ def enrich_event(event):
     try:
         detail_html = fetch(event['url'])
     except Exception as exc:
-        print('Failed to fetch event page:', event['url'], exc)
+        print('Failed to fetch detail page:', event['url'], exc)
         return event
 
     data = parse_json_ld(detail_html)
@@ -117,13 +128,14 @@ def enrich_event(event):
         if isinstance(loc, dict):
             name = loc.get('name')
             address = loc.get('address')
-            if address and isinstance(address, dict):
+            if isinstance(address, dict):
                 locality = address.get('addressLocality', '')
                 region = address.get('addressRegion', '')
+                street = address.get('streetAddress', '')
                 if locality and region:
-                    location = f"{name}, {locality}, {region}" if name else f"{locality}, {region}"
+                    location = f"{name}, {street}, {locality}, {region}" if name else f"{street}, {locality}, {region}"
                 else:
-                    location = name or ''
+                    location = name or street or ''
             else:
                 location = name or ''
             if location:
@@ -132,11 +144,11 @@ def enrich_event(event):
 
 
 def main():
-    print('Fetching search page...')
+    print('Fetching NCJ community page...')
     html_text = fetch(SEARCH_URL)
-    print('Parsing Eventbrite cards...')
-    events = parse_event_card(html_text)
-    print(f'Found {len(events)} Eventbrite events.')
+    print('Parsing NCJ event cards...')
+    events = parse_community_cards(html_text)
+    print(f'Found {len(events)} NCJ event cards.')
     enriched = []
     for idx, evt in enumerate(events, start=1):
         print(f'[{idx}/{len(events)}] Enriching:', evt['title'])
@@ -145,12 +157,17 @@ def main():
         time.sleep(SLEEP_SECONDS)
 
     now = datetime.now().astimezone()
-    enriched = [e for e in enriched if 'startDateIso' in e and parse_date(e['startDateIso']) and parse_date(e['startDateIso']) >= now]
+    enriched = [
+        e for e in enriched
+        if 'startDateIso' in e
+        and parse_date(e['startDateIso'])
+        and parse_date(e['startDateIso']).date() >= now.date()
+    ]
     enriched.sort(key=lambda e: e.get('startDateIso', ''))
 
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(enriched, f, ensure_ascii=False, indent=2)
-    print(f'Wrote {OUTPUT_FILE} with {len(enriched)} upcoming events.')
+    print(f'Wrote {OUTPUT_FILE} with {len(enriched)} upcoming NCJ events.')
 
 
 if __name__ == '__main__':
