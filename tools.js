@@ -163,6 +163,177 @@ function downloadCanvas(canvasId, filename) {
     link.click();
 }
 
+const photopeaOrigin = 'https://www.photopea.com';
+let photopeaReady = false;
+let photopeaFileDataUrl = '';
+let photopeaFileName = '';
+let photopeaLoadTimeoutId = null;
+
+function setPhotopeaStatus(message, isError = false) {
+    const status = document.getElementById('photopeaStatus');
+    if (!status) return;
+    status.textContent = message;
+    status.style.color = isError ? '#ff6b6b' : '#d2d2d2';
+}
+
+function startPhotopeaLoadTimer() {
+    clearPhotopeaLoadTimer();
+    photopeaReady = false;
+    setPhotopeaStatus('Loading Photopea editor... please wait.', false);
+    photopeaLoadTimeoutId = window.setTimeout(() => {
+        if (!photopeaReady) {
+            setPhotopeaStatus('Photopea did not respond. Refresh the page or try another browser.', true);
+        }
+    }, 20000);
+}
+
+function clearPhotopeaLoadTimer() {
+    if (photopeaLoadTimeoutId !== null) {
+        window.clearTimeout(photopeaLoadTimeoutId);
+        photopeaLoadTimeoutId = null;
+    }
+}
+
+function handlePhotopeaFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) {
+        setPhotopeaStatus('No file selected.', true);
+        document.getElementById('launchPhotopeaButton').disabled = true;
+        return;
+    }
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+        setPhotopeaStatus('Unsupported file type. Use JPG or PNG.', true);
+        document.getElementById('launchPhotopeaButton').disabled = true;
+        return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+        setPhotopeaStatus('File too large. Limit 10MB.', true);
+        document.getElementById('launchPhotopeaButton').disabled = true;
+        return;
+    }
+    photopeaFileName = file.name || 'sketch.png';
+    const reader = new FileReader();
+    reader.onload = function() {
+        photopeaFileDataUrl = reader.result;
+        setPhotopeaStatus('Ready to send image to Photopea. Click Open in Photopea.');
+        document.getElementById('launchPhotopeaButton').disabled = false;
+    };
+    reader.onerror = function() {
+        setPhotopeaStatus('Unable to read file.', true);
+        document.getElementById('launchPhotopeaButton').disabled = true;
+    };
+    reader.readAsDataURL(file);
+}
+
+function startPhotopea() {
+    if (!photopeaFileDataUrl) {
+        setPhotopeaStatus('Choose an image first.', true);
+        return;
+    }
+    const frame = document.getElementById('photopeaFrame');
+    if (!frame || !frame.contentWindow) {
+        setPhotopeaStatus('Photopea iframe not available.', true);
+        return;
+    }
+    if (!photopeaReady) {
+        setPhotopeaStatus('Waiting for Photopea to load. Please try again in a moment.');
+    }
+    const openMessage = {
+        type: 'open',
+        files: [{ name: photopeaFileName, data: photopeaFileDataUrl }]
+    };
+    frame.contentWindow.postMessage(openMessage, photopeaOrigin);
+    setPhotopeaStatus('Image sent to Photopea. Applying automation script shortly...');
+    document.getElementById('downloadPhotopeaButton').disabled = false;
+    setTimeout(applyPhotopeaAutomation, 1500);
+}
+
+function applyPhotopeaAutomation() {
+    const frame = document.getElementById('photopeaFrame');
+    if (!frame || !frame.contentWindow) {
+        setPhotopeaStatus('Photopea iframe not available.', true);
+        return;
+    }
+    if (!photopeaReady) {
+        setPhotopeaStatus('Photopea still loading. Waiting to apply automation...');
+        setTimeout(applyPhotopeaAutomation, 1000);
+        return;
+    }
+    const mode = document.getElementById('photopeaMode')?.value || 'stencil';
+    const script = getPhotopeaScript(mode);
+    const scriptMessage = {
+        type: 'script',
+        script: script
+    };
+    frame.contentWindow.postMessage(scriptMessage, photopeaOrigin);
+    setPhotopeaStatus('Automation script sent to Photopea. You can download the result when ready.');
+}
+
+function getPhotopeaScript(mode) {
+    return `
+var doc = app.activeDocument;
+doc.activeLayer = doc.layers[0];
+try {
+    doc.activeLayer.desaturate();
+} catch (e) {}
+try {
+    doc.activeLayer.applyGaussianBlur(1.5);
+} catch (e) {}
+if ("${mode}" === "stencil") {
+    try {
+        doc.activeLayer.applyThreshold(140);
+    } catch (e) {}
+} else {
+    try {
+        doc.activeLayer.applyFindEdges();
+    } catch (e) {}
+    try {
+        doc.activeLayer.applyThreshold(120);
+    } catch (e) {}
+}
+try {
+    doc.flatten();
+} catch (e) {}
+`;
+}
+
+function downloadPhotopeaResult() {
+    const frame = document.getElementById('photopeaFrame');
+    if (!frame || !frame.contentWindow) {
+        setPhotopeaStatus('Photopea iframe not available.', true);
+        return;
+    }
+    const exportMessage = {
+        type: 'export',
+        format: 'png',
+        quality: 1.0
+    };
+    frame.contentWindow.postMessage(exportMessage, photopeaOrigin);
+    setPhotopeaStatus('Requested export from Photopea. Wait for the download prompt.');
+}
+
+window.addEventListener('message', function(event) {
+    if (event.origin !== photopeaOrigin) return;
+    if (event.data === 'ready' || (event.data && event.data.type === 'ready')) {
+        photopeaReady = true;
+        clearPhotopeaLoadTimer();
+        setPhotopeaStatus('Photopea loaded. Choose an image and click Open in Photopea.');
+        return;
+    }
+    if (event.data && event.data.type === 'export' && typeof event.data.data === 'string') {
+        const link = document.createElement('a');
+        link.href = event.data.data;
+        link.download = 'photopea-stencil.png';
+        link.click();
+        setPhotopeaStatus('Download started. Check your browser downloads.');
+        return;
+    }
+    if (event.data && event.data.error) {
+        setPhotopeaStatus('Photopea error: ' + event.data.error, true);
+    }
+});
+
 // Update grid size conversions
 function updateGridConversions() {
     const pixels = parseInt(document.getElementById('gridSize').value);
@@ -177,4 +348,12 @@ function updateGridConversions() {
 document.addEventListener('DOMContentLoaded', function() {
     updateGridConversions();
     document.getElementById('gridSize').addEventListener('input', updateGridConversions);
+    const photopeaInput = document.getElementById('photopeaInput');
+    if (photopeaInput) {
+        photopeaInput.addEventListener('change', handlePhotopeaFileSelect);
+    }
+    const photopeaFrame = document.getElementById('photopeaFrame');
+    if (photopeaFrame) {
+        photopeaFrame.addEventListener('load', startPhotopeaLoadTimer);
+    }
 });

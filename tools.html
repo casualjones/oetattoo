@@ -69,6 +69,24 @@
             <button onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download</button>
             <canvas id="stencilCanvas"></canvas>
         </div>
+        <div class="tool">
+            <h3>Photopea Stencil Tool</h3>
+            <input type="file" id="photopeaInput" accept=".jpg,.jpeg,.png,image/*">
+            <label for="photopeaMode">Mode:</label>
+            <select id="photopeaMode">
+                <option value="stencil">Stencil</option>
+                <option value="vector">Vector Trace</option>
+            </select>
+            <div class="photopea-controls">
+                <button id="launchPhotopeaButton" onclick="startPhotopea()" disabled>Open in Photopea</button>
+                <button id="downloadPhotopeaButton" onclick="downloadPhotopeaResult()" disabled>Download Result</button>
+            </div>
+            <p id="photopeaStatus">Choose an image to load into Photopea.</p>
+            <p class="photopea-warning">Note: Photopea may take a few seconds to appear. If it does not load, refresh the page or try a browser with cross-origin iframe support.</p>
+            <div class="photopea-frame-wrapper">
+                <iframe id="photopeaFrame" src="https://www.photopea.com" title="Photopea Editor"></iframe>
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2026 OE Tattoo</p>
