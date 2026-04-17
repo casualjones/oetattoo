@@ -22,6 +22,10 @@
     <main>
         <h2>Studio Tools</h2>
         <p>Tools to prepare designs and stencils for tattoo work. Resize, grid, or trace ideas.</p>
+        <div class="auth-banner">
+            <p>This page requires login before the tools and the Numerology app can be used.</p>
+            <button class="logout-button" onclick="logoutTools()">Logout</button>
+        </div>
         <div class="instructions">
             <h3>Instructions</h3>
             <ul>
@@ -30,6 +34,7 @@
                 <li>Image Scaler: Resize your tattoo designs to desired dimensions</li>
                 <li>Grider: Add a reference grid with alphanumeric coordinates for precise tracing</li>
                 <li>Stencil Maker: Choose edge detection method and threshold to create contour outlines for stencils</li>
+                <li>Numerology App: Enter your birth date and full name to reveal a creative life path number</li>
             </ul>
         </div>
         <div class="tool">
@@ -67,6 +72,17 @@
             <button onclick="makeStencil()">Detect Edges</button>
             <button onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download</button>
             <canvas id="stencilCanvas"></canvas>
+        </div>
+        <div class="tool">
+            <h3>Numerology App</h3>
+            <p>Discover your core numerology traits and creative life path for your design inspiration.</p>
+            <label for="birthDate">Birth Date</label>
+            <input type="date" id="birthDate">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="First Last" autocomplete="name">
+            <button onclick="calculateNumerology()">Calculate</button>
+            <button onclick="resetNumerology()">Reset</button>
+            <div id="numerologyOutput" class="numerology-results"></div>
         </div>
         <div class="tool">
             <h3>External Editing App</h3>
