@@ -1,15 +1,3 @@
-function ensureToolsAuth() {
-    const allowed = localStorage.getItem('toolsAccess') === 'true';
-    if (!allowed) {
-        window.location.href = 'login.html';
-    }
-}
-
-function logoutTools() {
-    localStorage.removeItem('toolsAccess');
-    window.location.href = 'login.html';
-}
-
 // Image Scaler
 function scaleImage() {
     const input = document.getElementById('scalerInput');
@@ -32,54 +20,77 @@ function scaleImage() {
 function addGrid() {
     const input = document.getElementById('gridInput');
     const gridSize = parseInt(document.getElementById('gridSize').value);
+    const transferWidth = parseFloat(document.getElementById('transferWidth').value);
+    const transferHeight = parseFloat(document.getElementById('transferHeight').value);
+    const transferUnit = document.getElementById('transferUnit').value;
     const canvas = document.getElementById('gridCanvas');
     const ctx = canvas.getContext('2d');
+    const scaleInfo = document.getElementById('gridScaleInfo');
     const file = input.files[0];
     if (file) {
         const img = new Image();
         img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-            
-            // Draw grid with 60% opacity
+            const squareSize = Math.max(img.width, img.height);
+            canvas.width = squareSize;
+            canvas.height = squareSize;
+            ctx.clearRect(0, 0, squareSize, squareSize);
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, squareSize, squareSize);
+
+            const offsetX = (squareSize - img.width) / 2;
+            const offsetY = (squareSize - img.height) / 2;
+            ctx.drawImage(img, offsetX, offsetY);
+
             ctx.globalAlpha = 0.6;
             ctx.strokeStyle = '#000000';
             ctx.lineWidth = 2;
-            for (let x = 0; x <= canvas.width; x += gridSize) {
+            for (let x = 0; x <= squareSize; x += gridSize) {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
-                ctx.lineTo(x, canvas.height);
+                ctx.lineTo(x, squareSize);
                 ctx.stroke();
             }
-            for (let y = 0; y <= canvas.height; y += gridSize) {
+            for (let y = 0; y <= squareSize; y += gridSize) {
                 ctx.beginPath();
                 ctx.moveTo(0, y);
-                ctx.lineTo(canvas.width, y);
+                ctx.lineTo(squareSize, y);
                 ctx.stroke();
             }
-            
-            // Add alphanumeric labels
-            ctx.globalAlpha = 1.0; // Reset alpha for text
+
+            ctx.globalAlpha = 1.0;
             ctx.fillStyle = '#000000';
-            ctx.font = '16px Arial';
+            ctx.font = '14px Arial';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            
-            // X-axis labels (A, B, C...)
+
             let col = 0;
-            for (let x = gridSize; x < canvas.width; x += gridSize) {
-                const label = String.fromCharCode(65 + col); // A, B, C...
+            for (let x = gridSize; x < squareSize; x += gridSize) {
+                const label = String.fromCharCode(65 + col);
                 ctx.fillText(label, x, 15);
                 col++;
             }
-            
-            // Y-axis labels (1, 2, 3...)
+
             let row = 0;
-            for (let y = gridSize; y < canvas.height; y += gridSize) {
+            for (let y = gridSize; y < squareSize; y += gridSize) {
                 const label = (row + 1).toString();
                 ctx.fillText(label, 15, y);
                 row++;
+            }
+
+            if (transferWidth > 0 && transferHeight > 0) {
+                const unitLabel = transferUnit === 'cm' ? 'cm' : 'in';
+                const unitsPerPixelX = transferWidth / img.width;
+                const unitsPerPixelY = transferHeight / img.height;
+                const gridUnitsX = (gridSize * unitsPerPixelX).toFixed(2);
+                const gridUnitsY = (gridSize * unitsPerPixelY).toFixed(2);
+                let message = `Transfer medium: ${transferWidth}${unitLabel} × ${transferHeight}${unitLabel}. `;
+                message += `Scale: ${gridSize}px grid = ${gridUnitsX}${unitLabel} × ${gridUnitsY}${unitLabel}. `;
+                if (Math.abs(unitsPerPixelX - unitsPerPixelY) / Math.max(unitsPerPixelX, unitsPerPixelY) > 0.05) {
+                    message += 'Aspect ratio differs from medium; use the smaller dimension to preserve proportions.';
+                }
+                scaleInfo.textContent = message;
+            } else {
+                scaleInfo.textContent = '';
             }
         };
         img.src = URL.createObjectURL(file);
@@ -255,7 +266,6 @@ function updateGridConversions() {
 
 // Initialize conversions on load
 document.addEventListener('DOMContentLoaded', function() {
-    ensureToolsAuth();
     updateGridConversions();
     document.getElementById('gridSize').addEventListener('input', updateGridConversions);
 });

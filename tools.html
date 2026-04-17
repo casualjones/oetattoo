@@ -22,10 +22,6 @@
     <main>
         <h2>Studio Tools</h2>
         <p>Tools to prepare designs and stencils for tattoo work. Resize, grid, or trace ideas.</p>
-        <div class="auth-banner">
-            <p>This page requires login before the tools and the Numerology app can be used.</p>
-            <button class="logout-button" onclick="logoutTools()">Logout</button>
-        </div>
         <div class="instructions">
             <h3>Instructions</h3>
             <ul>
@@ -52,8 +48,21 @@
             <label for="gridSize">Grid Size (px):</label>
             <input type="number" id="gridSize" value="50" min="10" max="100">
             <p>Size: <span id="gridSizeDisplay">50px</span> | <span id="gridInches">0.52in</span> | <span id="gridCm">1.32cm</span></p>
+            <div class="transfer-dimensions">
+                <label for="transferWidth">Transfer Width</label>
+                <input type="number" id="transferWidth" value="8" min="1" step="0.1">
+                <label for="transferHeight">Transfer Height</label>
+                <input type="number" id="transferHeight" value="10" min="1" step="0.1">
+                <label for="transferUnit">Units</label>
+                <select id="transferUnit">
+                    <option value="in">in</option>
+                    <option value="cm">cm</option>
+                </select>
+                <p class="transfer-note">Enter the medium dimensions you plan to transfer to for more accurate scale reference.</p>
+            </div>
             <button onclick="addGrid()">Add Grid</button>
             <button onclick="downloadCanvas('gridCanvas', 'gridedimage.png')">Download</button>
+            <p id="gridScaleInfo" class="grid-scale-info"></p>
             <canvas id="gridCanvas"></canvas>
         </div>
         <div class="tool">
