@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OE Tattoo Website - Complete Development Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h1 { font-size: 2.5em; text-align: center; margin-bottom: 40px; }
+        h2 { font-size: 2em; margin-top: 40px; }
+        h3 { font-size: 1.5em; margin-top: 30px; }
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .command-block {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .highlight {
+            background: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OE Tattoo Website - Complete Development Guide</h1>
+
+        <div class="highlight">
+            <strong>Overview:</strong> This document provides a comprehensive guide to the OE Tattoo website development process, including all commands used, code explanations, and instructions for maintaining and extending the website.
+        </div>
+
+        <h2>Git Commands Used</h2>
+
+        <h3>Basic Git Workflow</h3>
+        <pre><code># Check repository status
+git status
+
+# Add files to staging area
+git add &lt;filename&gt;
+git add .  # Add all files
+
+# Commit changes
+git commit -m "Descriptive commit message"
+
+# Push to remote repository
+git push
+
+# Pull latest changes
+git pull
+
+# View commit history
+git log --oneline
+
+# Create and switch to new branch
+git checkout -b &lt;branch-name&gt;
+
+# Switch between branches
+git checkout &lt;branch-name&gt;
+
+# Merge branches
+git merge &lt;branch-name&gt;</code></pre>
+
+        <h3>Specific Commands Used in This Project</h3>
+        <div class="command-block">
+# Check status before committing media converter changes
+git status
+
+# Add modified files for media converter tool
+git add style.css tools.html tools.js
+
+# Commit the media converter changes
+git commit -m "Add Media to Audio Converter tool
+
+- Added FFmpeg.wasm integration for client-side video to audio conversion
+- Supports MKV, AVI, MP4, MOV, FLV, WMV, WebM input formats
+- Outputs MP3 (with adjustable bitrate) or WAV formats
+- Added progress bar and status indicators
+- Updated instructions and styling for the new tool"
+
+# Push changes to remote repository
+git push
+        </div>
+
+        <h2>Website Structure</h2>
+
+        <h3>File Organization</h3>
+        <div class="file-structure">
+tattoo_website/<br>
+├── index.html          # Main homepage<br>
+├── portfolio.html      # Portfolio/gallery page<br>
+├── flash.html          # Flash tattoo designs<br>
+├── events.html         # Events calendar<br>
+├── events.js           # Events functionality<br>
+├── tools.html          # Tools page (main development focus)<br>
+├── tools.js            # Tools JavaScript functionality<br>
+├── script.js           # General site JavaScript<br>
+├── style.css           # Main stylesheet<br>
+├── contact.html        # Contact information<br>
+├── contact_prices_nfo  # Contact pricing info<br>
+├── CNAME               # GitHub Pages custom domain<br>
+├── agentlm.md          # AI agent configuration<br>
+├── generate_events_json.py  # Python script for events data<br>
+├── events-data.json    # Events data<br>
+├── banners/            # Banner images<br>
+├── flash/              # Flash design images<br>
+└── coasters/           # Business card designs
+        </div>
+
+        <h2>Tools Page Development</h2>
+
+        <h3>Overview</h3>
+        <p>The tools page (<code>tools.html</code>) contains multiple web-based utilities for tattoo artists, including image processing tools and a media converter.</p>
+
+        <h3>Tools Implemented</h3>
+
+        <h4>1. Image Scaler</h4>
+        <p><strong>Purpose:</strong> Resize tattoo designs to desired dimensions<br>
+        <strong>Technology:</strong> HTML5 Canvas API<br>
+        <strong>Code Location:</strong> <code>tools.js</code> - <code>scaleImage()</code> function</p>
+
+        <pre><code>function scaleImage() {
+    const input = document.getElementById('scalerInput');
+    const scale = document.getElementById('scale').value / 100;
+    const canvas = document.getElementById('scalerCanvas');
+    const ctx = canvas.getContext('2d');
+    const file = input.files[0];
+    if (file) {
+        const img = new Image();
+        img.onload = function() {
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+        img.src = URL.createObjectURL(file);
+    }
+}</code></pre>
+
+        <h4>2. Grider Tool</h4>
+        <p><strong>Purpose:</strong> Add reference grids with alphanumeric coordinates for precise tracing<br>
+        <strong>Features:</strong></p>
+        <ul>
+            <li>Customizable grid size</li>
+            <li>Transfer medium dimensions for scale reference</li>
+            <li>Alphanumeric coordinate system</li>
+        </ul>
+        <p><strong>Code Location:</strong> <code>tools.js</code> - <code>addGrid()</code> function</p>
+
+        <h4>3. Stencil Maker</h4>
+        <p><strong>Purpose:</strong> Create contour outlines for stencils using edge detection<br>
+        <strong>Algorithms:</strong> Sobel, Prewitt, Roberts, Laplacian edge detection<br>
+        <strong>Code Location:</strong> <code>tools.js</code> - <code>makeStencil()</code> function</p>
+
+        <h4>4. Numerology App</h4>
+        <p><strong>Purpose:</strong> Generate creative inspiration based on numerology<br>
+        <strong>Features:</strong></p>
+        <ul>
+            <li>Life Path Number calculation</li>
+            <li>Destiny Number calculation</li>
+            <li>Personalized meanings for tattoo design inspiration</li>
+        </ul>
+        <p><strong>Code Location:</strong> <code>tools.js</code> - <code>calculateNumerology()</code> function</p>
+
+        <h4>5. Media to Audio Converter (Latest Addition)</h4>
+        <p><strong>Purpose:</strong> Convert video files to audio formats<br>
+        <strong>Technology:</strong> FFmpeg.wasm (client-side video processing)<br>
+        <strong>Supported Formats:</strong></p>
+        <ul>
+            <li><strong>Input:</strong> MKV, AVI, MP4, MOV, FLV, WMV, WebM</li>
+            <li><strong>Output:</strong> MP3 (128-320 kbps), WAV (lossless)</li>
+        </ul>
+        <p><strong>Code Location:</strong> <code>tools.js</code> - <code>convertMediaToAudio()</code>, <code>initFFmpeg()</code> functions</p>
+
+        <h2>Technical Implementation Details</h2>
+
+        <h3>FFmpeg.wasm Integration</h3>
+        <p>The media converter uses FFmpeg compiled to WebAssembly for client-side video processing:</p>
+
+        <pre><code>// FFmpeg initialization
+async function initFFmpeg() {
+    try {
+        const { FFmpeg } = FFmpeg;
+        ffmpeg = new FFmpeg.FFmpeg();
+
+        ffmpeg.on("log", ({ type, message }) => {
+            if (type === "error" && !message.includes("deprecated")) {
+                console.error("FFmpeg:", message);
+            }
+        });
+
+        await ffmpeg.load({
+            coreURL: "https://unpkg.com/@ffmpeg/core@0.12.4/dist/esm"
+        });
+
+        ffmpegReady = true;
+    } catch (error) {
+        updateConverterStatus('Error: Failed to load FFmpeg library.', 'error');
+    }
+}</code></pre>
+
+        <h3>Canvas-Based Image Processing</h3>
+        <p>All image tools use HTML5 Canvas API for client-side processing:</p>
+
+        <pre><code>// Canvas setup and image drawing
+const canvas = document.getElementById('canvasId');
+const ctx = canvas.getContext('2d');
+
+// Load and process image
+const img = new Image();
+img.onload = function() {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+    // Apply processing...
+};
+img.src = URL.createObjectURL(file);</code></pre>
+
+        <h3>CSS Styling Architecture</h3>
+        <p>The website uses a dark theme with gradient backgrounds and tool-specific color coding:</p>
+
+        <pre><code>/* Tool-specific styling */
+.tool:nth-child(1) { border-color: #ff4757; background: rgba(255, 71, 87, 0.1); }
+.tool:nth-child(2) { border-color: #47ff57; background: rgba(71, 255, 87, 0.1); }
+.tool:nth-child(3) { border-color: #4757ff; background: rgba(71, 87, 255, 0.1); }
+.tool:nth-child(4) { border-color: #ffb347; background: rgba(255, 179, 71, 0.12); }
+.tool:nth-child(5) { border-color: #7f39fb; background: rgba(127, 57, 251, 0.1); }</code></pre>
+
+        <h2>Development Workflow</h2>
+
+        <h3>Adding New Tools</h3>
+        <ol>
+            <li>Add HTML structure in <code>tools.html</code></li>
+            <li>Implement JavaScript functionality in <code>tools.js</code></li>
+            <li>Add CSS styling in <code>style.css</code></li>
+            <li>Update instructions section</li>
+            <li>Test functionality</li>
+            <li>Commit and push changes</li>
+        </ol>
+
+        <h3>File Size Considerations</h3>
+        <ul>
+            <li>Images should be under 5MB for best performance</li>
+            <li>FFmpeg.wasm library loads ~20MB initially</li>
+            <li>Use progressive loading for large assets</li>
+        </ul>
+
+        <h2>Deployment</h2>
+
+        <h3>GitHub Pages</h3>
+        <p>The website is deployed using GitHub Pages with a custom domain:</p>
+        <ul>
+            <li><strong>Repository:</strong> <code>https://github.com/casualjones/oetattoo.git</code></li>
+            <li>Custom domain configured via <code>CNAME</code> file</li>
+            <li>Automatic deployment on push to master branch</li>
+        </ul>
+
+        <h3>Local Development</h3>
+        <div class="command-block">
+# Clone repository
+git clone https://github.com/casualjones/oetattoo.git
+
+# Navigate to directory
+cd tattoo_website
+
+# Open in browser (or use local server)
+# For live reload during development, consider:
+# python -m http.server 8000
+# Then visit http://localhost:8000
+        </div>
+
+        <h2>Maintenance Commands</h2>
+
+        <h3>Regular Maintenance</h3>
+        <div class="command-block">
+# Check for updates
+git pull
+
+# View recent changes
+git log --oneline -10
+
+# Check repository health
+git fsck
+
+# Clean untracked files
+git clean -fd
+        </div>
+
+        <h3>Backup and Recovery</h3>
+        <div class="command-block">
+# Create backup branch
+git checkout -b backup-$(date +%Y%m%d)
+
+# List all branches
+git branch -a
+
+# Restore from backup
+git checkout backup-20260419
+        </div>
+
+        <h2>Code Quality Guidelines</h2>
+
+        <h3>JavaScript Best Practices</h3>
+        <ul>
+            <li>Use <code>const</code> and <code>let</code> instead of <code>var</code></li>
+            <li>Implement proper error handling</li>
+            <li>Use async/await for asynchronous operations</li>
+            <li>Add comments for complex algorithms</li>
+            <li>Test functionality across different browsers</li>
+        </ul>
+
+        <h3>CSS Organization</h3>
+        <ul>
+            <li>Use semantic class names</li>
+            <li>Implement responsive design with media queries</li>
+            <li>Maintain consistent color scheme</li>
+            <li>Use CSS custom properties for theme variables</li>
+        </ul>
+
+        <h3>HTML Structure</h3>
+        <ul>
+            <li>Use semantic HTML5 elements</li>
+            <li>Maintain accessibility standards</li>
+            <li>Include proper meta tags</li>
+            <li>Ensure mobile responsiveness</li>
+        </ul>
+
+        <h2>Troubleshooting</h2>
+
+        <h3>Common Issues</h3>
+
+        <h4>FFmpeg Loading Issues</h4>
+        <ul>
+            <li>Check internet connection for CDN resources</li>
+            <li>Verify FFmpeg.wasm version compatibility</li>
+            <li>Clear browser cache if loading fails</li>
+        </ul>
+
+        <h4>Canvas Processing Errors</h4>
+        <ul>
+            <li>Ensure images are under 5MB</li>
+            <li>Check browser support for Canvas API</li>
+            <li>Verify file format compatibility</li>
+        </ul>
+
+        <h4>Git Issues</h4>
+        <div class="command-block">
+# If push fails due to conflicts
+git pull --rebase
+git push
+
+# Reset to last commit if needed
+git reset --hard HEAD~1
+
+# Force push (use carefully)
+git push --force
+        </div>
+
+        <h2>Future Enhancements</h2>
+
+        <h3>Potential Additions</h3>
+        <ol>
+            <li><strong>Advanced Image Filters:</strong> Blur, sharpen, color adjustments</li>
+            <li><strong>Batch Processing:</strong> Process multiple files simultaneously</li>
+            <li><strong>Cloud Storage Integration:</strong> Save/load designs from cloud</li>
+            <li><strong>Collaborative Tools:</strong> Share designs with clients</li>
+            <li><strong>Mobile App:</strong> Native mobile version of tools</li>
+        </ol>
+
+        <h3>Performance Optimizations</h3>
+        <ol>
+            <li><strong>Web Workers:</strong> Move heavy processing to background threads</li>
+            <li><strong>Service Workers:</strong> Enable offline functionality</li>
+            <li><strong>Progressive Web App:</strong> Installable web application</li>
+            <li><strong>Lazy Loading:</strong> Load tools on demand</li>
+        </ol>
+
+        <h2>Contact and Support</h2>
+        <p>For questions about this website or development process:</p>
+        <ul>
+            <li><strong>Repository:</strong> <a href="https://github.com/casualjones/oetattoo">https://github.com/casualjones/oetattoo</a></li>
+            <li><strong>Issues:</strong> Create GitHub issues for bugs/features</li>
+            <li><strong>Documentation:</strong> This document serves as the primary reference</li>
+        </ul>
+
+        <div class="footer">
+            <p><em>Document generated on April 19, 2026</em></p>
+            <p><strong>OE Tattoo Website Development Guide v1.0</strong></p>
+        </div>
+    </div>
+</body>
+</html>
