@@ -276,26 +276,63 @@ let ffmpegReady = false;
 let ffmpeg = null;
 
 async function initFFmpeg() {
+    const statusText = document.getElementById('ffmpegStatusText');
+    const loader = document.getElementById('ffmpegLoader');
+
     try {
+        statusText.textContent = 'Loading FFmpeg library...';
+        loader.style.display = 'inline-block';
+
+        // Check if FFmpeg is available
+        if (typeof FFmpeg === 'undefined') {
+            throw new Error('FFmpeg library not found. Please check your internet connection.');
+        }
+
         const { FFmpeg, fetchFile } = FFmpeg;
-        ffmpeg = new FFmpeg.FFmpeg();
-        
+        ffmpeg = new FFmpeg();
+
         ffmpeg.on("log", ({ type, message }) => {
             if (type === "error" && !message.includes("deprecated")) {
                 console.error("FFmpeg:", message);
             }
         });
-        
-        // Set CoreURL for worker and wasm files
-        await ffmpeg.load({
-            coreURL: "https://unpkg.com/@ffmpeg/core@0.12.4/dist/esm"
-        });
-        
+
+        statusText.textContent = 'Initializing FFmpeg core...';
+
+        // Try loading with different core URLs if the first fails
+        const coreUrls = [
+            "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.js",
+            "https://unpkg.com/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.js"
+        ];
+
+        let loaded = false;
+        for (const coreUrl of coreUrls) {
+            try {
+                await ffmpeg.load({
+                    coreURL: coreUrl
+                });
+                loaded = true;
+                break;
+            } catch (e) {
+                console.warn(`Failed to load from ${coreUrl}:`, e);
+                continue;
+            }
+        }
+
+        if (!loaded) {
+            throw new Error('All FFmpeg core URLs failed to load');
+        }
+
         ffmpegReady = true;
+        statusText.textContent = '✓ FFmpeg ready for conversion';
+        loader.style.display = 'none';
         console.log('FFmpeg loaded successfully');
+
     } catch (error) {
         console.error('Failed to load FFmpeg:', error);
-        updateConverterStatus('Error: Failed to load FFmpeg library. Please refresh the page.', 'error');
+        statusText.textContent = '❌ FFmpeg failed to load';
+        loader.style.display = 'none';
+        updateConverterStatus('Error: Failed to load FFmpeg library. Please refresh the page or check your internet connection.', 'error');
     }
 }
 
@@ -306,31 +343,31 @@ async function convertMediaToAudio() {
     const statusDiv = document.getElementById('converterStatus');
     const progressDiv = document.getElementById('converterProgress');
     const progressBar = document.getElementById('converterProgressBar');
-    
+
     if (!fileInput.files.length) {
         updateConverterStatus('Please select a media file first.', 'error');
         return;
     }
-    
+
     if (!ffmpegReady) {
-        updateConverterStatus('FFmpeg is loading. Please wait...', 'info');
+        updateConverterStatus('FFmpeg is still loading. Please wait...', 'info');
         return;
     }
-    
+
     const file = fileInput.files[0];
     const outputFileName = `audio_${Date.now()}.${outputFormat}`;
-    
+
     try {
         updateConverterStatus(`Processing: ${file.name}...`, 'info');
         progressDiv.style.display = 'block';
         progressBar.style.width = '0%';
-        
+
         // Write file to FFmpeg filesystem
         const { fetchFile } = FFmpeg;
         await ffmpeg.writeFile(file.name, await fetchFile(file));
         updateConverterStatus(`Loaded file. Converting to ${outputFormat.toUpperCase()}...`, 'info');
         progressBar.style.width = '25%';
-        
+
         // Prepare FFmpeg command
         let command;
         if (outputFormat === 'mp3') {
@@ -338,21 +375,21 @@ async function convertMediaToAudio() {
         } else { // wav
             command = ['-i', file.name, '-y', outputFileName];
         }
-        
+
         // Run FFmpeg
-        await ffmpeg.exec(...command);
+        await ffmpeg.exec(command);
         progressBar.style.width = '75%';
-        
+
         // Read the output file
         const data = await ffmpeg.readFile(outputFileName);
         progressBar.style.width = '90%';
-        
+
         // Clean up
         await ffmpeg.deleteFile(file.name);
         await ffmpeg.deleteFile(outputFileName);
-        
+
         // Create blob and download
-        const blob = new Blob([data.buffer], { type: `audio/${outputFormat}` });
+        const blob = new Blob([data], { type: `audio/${outputFormat}` });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -361,18 +398,18 @@ async function convertMediaToAudio() {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        
+
         progressBar.style.width = '100%';
         updateConverterStatus(`✓ Conversion complete! Downloaded: ${outputFileName}`, 'success');
         setTimeout(() => {
             progressDiv.style.display = 'none';
         }, 2000);
-        
+
     } catch (error) {
         console.error('Conversion error:', error);
         updateConverterStatus(`Error during conversion: ${error.message}`, 'error');
         progressDiv.style.display = 'none';
-        
+
         // Clean up on error
         try {
             await ffmpeg.deleteFile(file.name);

@@ -6,7 +6,7 @@
     <title>Tools - OE Tattoo</title>
     <meta name="description" content="Use our image tools for tattoo design preparation.">
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.4/dist/ffmpeg.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.4/dist/umd/ffmpeg.min.js"></script>
 </head>
 <body>
     <header>
@@ -103,6 +103,10 @@
         </div>        <div class="tool">
             <h3>Media to Audio Converter</h3>
             <p>Convert video files (MKV, AVI, MP4, MOV, etc.) to audio formats (MP3 or WAV).</p>
+            <div id="ffmpegStatus" class="ffmpeg-status">
+                <span id="ffmpegStatusText">Loading FFmpeg library...</span>
+                <div id="ffmpegLoader" class="loader"></div>
+            </div>
             <input type="file" id="mediaInput" accept="video/*,.mkv,.avi,.mp4,.mov,.flv,.wmv,.webm">
             <label for="outputFormat">Output Format:</label>
             <select id="outputFormat">
