@@ -44,13 +44,6 @@ function loadDemoSongs() {
     }));
 
     displaySongs();
-
-    // Update status to show demo mode
-    const authStatus = document.getElementById('authStatus');
-    const authText = document.getElementById('authText');
-    authText.textContent = 'Demo collection loaded - no login required';
-    authStatus.style.background = 'rgba(127, 57, 251, 0.1)';
-    authStatus.style.borderColor = '#7f39fb';
 }
 
 function displaySongs() {
@@ -75,7 +68,7 @@ function displaySongs() {
                         <span class="song-duration">${duration}</span>
                     </div>
                 </div>
-                <button class="play-song-btn" onclick="playSong(${index})">▶</button>
+                <button class="play-song-btn">▶</button>
             </div>
         `;
     });
@@ -86,10 +79,8 @@ function displaySongs() {
     // Add click listeners to song items
     document.querySelectorAll('.song-item').forEach(item => {
         item.addEventListener('click', function(e) {
-            if (!e.target.classList.contains('play-song-btn')) {
-                const index = parseInt(this.dataset.index);
-                playSong(index);
-            }
+            const index = parseInt(this.dataset.index);
+            playSong(index);
         });
     });
 }
@@ -161,11 +152,4 @@ function formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
-
-// Global function for onclick handlers
-function playSong(index) {
-    if (typeof index === 'number') {
-        playSong(index);
-    }
 }
