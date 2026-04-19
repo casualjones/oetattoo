@@ -300,7 +300,7 @@ async function initFFmpeg() {
         // For version 0.11.6, create FFmpeg instance directly
         ffmpeg = FFmpegLib.createFFmpeg({
             log: true,
-            corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.6/dist/ffmpeg-core.js'
+            corePath: 'https://unpkg.com/@ffmpeg/core@0.10.1/dist/ffmpeg-core.js'
         });
 
         ffmpeg.setLogger(({ type, message }) => {
