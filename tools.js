@@ -284,54 +284,35 @@ async function initFFmpeg() {
         statusText.textContent = 'Loading FFmpeg library...';
         loader.style.display = 'inline-block';
 
-        // Wait a bit for the script to load if it's not ready yet
+        // Wait for FFmpeg to be available
         let attempts = 0;
-        while (typeof FFmpeg === 'undefined' && attempts < 50) {
+        while ((typeof FFmpeg === 'undefined' && typeof window.FFmpeg === 'undefined') && attempts < 100) {
             await new Promise(resolve => setTimeout(resolve, 100));
             attempts++;
         }
 
-        // Check if FFmpeg is available
-        if (typeof FFmpeg === 'undefined') {
+        // Check if FFmpeg is available in global scope
+        let FFmpegLib = FFmpeg || window.FFmpeg;
+        if (typeof FFmpegLib === 'undefined') {
             throw new Error('FFmpeg library not found. Please check your internet connection.');
         }
 
-        // Access FFmpeg constructor correctly
-        const { FFmpeg: FFmpegConstructor, fetchFile: fetchFileFunc } = FFmpeg;
-        fetchFile = fetchFileFunc;
-        ffmpeg = new FFmpegConstructor();
+        // For version 0.11.6, create FFmpeg instance directly
+        ffmpeg = FFmpegLib.createFFmpeg({
+            log: true,
+            corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.6/dist/ffmpeg-core.js'
+        });
 
-        ffmpeg.on("log", ({ type, message }) => {
-            if (type === "error" && !message.includes("deprecated")) {
+        ffmpeg.setLogger(({ type, message }) => {
+            if (type === 'error' && !message.includes('deprecated')) {
                 console.error("FFmpeg:", message);
             }
         });
 
         statusText.textContent = 'Initializing FFmpeg core...';
 
-        // Try loading with different core URLs if the first fails
-        const coreUrls = [
-            "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.js",
-            "https://unpkg.com/@ffmpeg/core@0.12.4/dist/umd/ffmpeg-core.js"
-        ];
-
-        let loaded = false;
-        for (const coreUrl of coreUrls) {
-            try {
-                await ffmpeg.load({
-                    coreURL: coreUrl
-                });
-                loaded = true;
-                break;
-            } catch (e) {
-                console.warn(`Failed to load from ${coreUrl}:`, e);
-                continue;
-            }
-        }
-
-        if (!loaded) {
-            throw new Error('All FFmpeg core URLs failed to load');
-        }
+        // Load FFmpeg
+        await ffmpeg.load();
 
         ffmpegReady = true;
         statusText.textContent = '✓ FFmpeg ready for conversion';
@@ -373,7 +354,7 @@ async function convertMediaToAudio() {
         progressBar.style.width = '0%';
 
         // Write file to FFmpeg filesystem
-        await ffmpeg.writeFile(file.name, await fetchFile(file));
+        ffmpeg.FS('writeFile', file.name, await FFmpegLib.fetchFile(file));
         updateConverterStatus(`Loaded file. Converting to ${outputFormat.toUpperCase()}...`, 'info');
         progressBar.style.width = '25%';
 
@@ -386,16 +367,16 @@ async function convertMediaToAudio() {
         }
 
         // Run FFmpeg
-        await ffmpeg.exec(command);
+        await ffmpeg.run(...command);
         progressBar.style.width = '75%';
 
         // Read the output file
-        const data = await ffmpeg.readFile(outputFileName);
+        const data = ffmpeg.FS('readFile', outputFileName);
         progressBar.style.width = '90%';
 
         // Clean up
-        await ffmpeg.deleteFile(file.name);
-        await ffmpeg.deleteFile(outputFileName);
+        ffmpeg.FS('unlink', file.name);
+        ffmpeg.FS('unlink', outputFileName);
 
         // Create blob and download
         const blob = new Blob([data], { type: `audio/${outputFormat}` });
@@ -421,7 +402,7 @@ async function convertMediaToAudio() {
 
         // Clean up on error
         try {
-            await ffmpeg.deleteFile(file.name);
+            ffmpeg.FS('unlink', file.name);
         } catch (e) {}
     }
 }
