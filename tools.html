@@ -6,7 +6,6 @@
     <title>Tools - OE Tattoo</title>
     <meta name="description" content="Use our image tools for tattoo design preparation.">
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js"></script>
 </head>
 <body>
     <header>
@@ -102,23 +101,22 @@
             <p class="photopea-note">Photopea opens in a new tab. Use it for detailed tracing or vector conversion, then return here for simple downloads and stencil preparation.</p>
         </div>        <div class="tool">
             <h3>Media to Audio Converter</h3>
-            <p>Convert video files (MKV, AVI, MP4, MOV, etc.) to audio formats (MP3 or WAV).</p>
+            <p>Convert video files to audio using Web Audio API (WAV support, MP3 limited).</p>
             <div id="ffmpegStatus" class="ffmpeg-status">
-                <span id="ffmpegStatusText">Loading FFmpeg library...</span>
-                <div id="ffmpegLoader" class="loader"></div>
+                <span id="ffmpegStatusText">Web Audio API ready for conversion</span>
             </div>
-            <input type="file" id="mediaInput" accept="video/*,.mkv,.avi,.mp4,.mov,.flv,.wmv,.webm">
+            <input type="file" id="mediaInput" accept="video/*,.mkv,.avi,.mp4,.mov,.flv,.wmv,.webm,audio/*">
             <label for="outputFormat">Output Format:</label>
             <select id="outputFormat">
-                <option value="mp3">MP3 (Compressed Audio)</option>
-                <option value="wav">WAV (Lossless Audio)</option>
+                <option value="wav" selected>WAV (Uncompressed)</option>
+                <option value="mp3">MP3 (Requires external tool)</option>
             </select>
-            <label for="audioBitrate">Audio Bitrate (for MP3):</label>
-            <select id="audioBitrate">
-                <option value="128k">128 kbps (Low Quality)</option>
-                <option value="192k" selected>192 kbps (Standard)</option>
-                <option value="256k">256 kbps (High Quality)</option>
-                <option value="320k">320 kbps (Maximum Quality)</option>
+            <label for="audioBitrate" style="display:none;">Audio Quality (for MP3):</label>
+            <select id="audioBitrate" style="display:none;">
+                <option value="128">128 kbps (Good)</option>
+                <option value="192" selected>192 kbps (Better)</option>
+                <option value="256">256 kbps (High)</option>
+                <option value="320">320 kbps (Maximum)</option>
             </select>
             <button onclick="convertMediaToAudio()">Convert</button>
             <button onclick="resetMediaConverter()">Reset</button>

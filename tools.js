@@ -83,8 +83,8 @@ function addGrid() {
                 const unitsPerPixelY = transferHeight / img.height;
                 const gridUnitsX = (gridSize * unitsPerPixelX).toFixed(2);
                 const gridUnitsY = (gridSize * unitsPerPixelY).toFixed(2);
-                let message = `Transfer medium: ${transferWidth}${unitLabel} × ${transferHeight}${unitLabel}. `;
-                message += `Scale: ${gridSize}px grid = ${gridUnitsX}${unitLabel} × ${gridUnitsY}${unitLabel}. `;
+                let message = `Transfer medium: ${transferWidth}${unitLabel} x ${transferHeight}${unitLabel}. `;
+                message += `Scale: ${gridSize}px grid = ${gridUnitsX}${unitLabel} x ${gridUnitsY}${unitLabel}. `;
                 if (Math.abs(unitsPerPixelX - unitsPerPixelY) / Math.max(unitsPerPixelX, unitsPerPixelY) > 0.05) {
                     message += 'Aspect ratio differs from medium; use the smaller dimension to preserve proportions.';
                 }
@@ -272,59 +272,81 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Media to Audio Converter - FFmpeg Integration
-let ffmpegReady = false;
-let ffmpeg = null;
-let fetchFile = null;
+// Initialize format selector behavior
+document.addEventListener('DOMContentLoaded', function() {
+    const outputFormat = document.getElementById('outputFormat');
+    const bitrateLabel = document.getElementById('audioBitrate').previousElementSibling;
+    const bitrateSelect = document.getElementById('audioBitrate');
 
-async function initFFmpeg() {
-    const statusText = document.getElementById('ffmpegStatusText');
-    const loader = document.getElementById('ffmpegLoader');
-
-    try {
-        statusText.textContent = 'Loading FFmpeg library...';
-        loader.style.display = 'inline-block';
-
-        // Wait for FFmpeg to be available
-        let attempts = 0;
-        while ((typeof FFmpeg === 'undefined' && typeof window.FFmpeg === 'undefined') && attempts < 100) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
+    function updateFormatUI() {
+        if (outputFormat.value === 'mp3') {
+            bitrateLabel.style.display = 'inline';
+            bitrateSelect.style.display = 'inline';
+        } else {
+            bitrateLabel.style.display = 'none';
+            bitrateSelect.style.display = 'none';
         }
-
-        // Check if FFmpeg is available in global scope
-        let FFmpegLib = FFmpeg || window.FFmpeg;
-        if (typeof FFmpegLib === 'undefined') {
-            throw new Error('FFmpeg library not found. Please check your internet connection.');
-        }
-
-        // For version 0.11.6, create FFmpeg instance directly
-        ffmpeg = FFmpegLib.createFFmpeg({
-            log: true,
-            corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js'
-        });
-
-        ffmpeg.setLogger(({ type, message }) => {
-            if (type === 'error' && !message.includes('deprecated')) {
-                console.error("FFmpeg:", message);
-            }
-        });
-
-        statusText.textContent = 'Initializing FFmpeg core...';
-
-        // Load FFmpeg
-        await ffmpeg.load();
-
-        ffmpegReady = true;
-        statusText.textContent = '✓ FFmpeg ready for conversion';
-        loader.style.display = 'none';
-        console.log('FFmpeg loaded successfully');
-
-    } catch (error) {
-        console.error('Failed to load FFmpeg:', error);
-        statusText.textContent = '❌ FFmpeg failed to load';
-        loader.style.display = 'none';
-        updateConverterStatus('Error: Failed to load FFmpeg library. Please refresh the page or check your internet connection.', 'error');
     }
+
+    outputFormat.addEventListener('change', updateFormatUI);
+    updateFormatUI(); // Initial state
+});
+
+async function initAudioContext() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return audioContext;
+}
+
+// Convert AudioBuffer to WAV blob
+function audioBufferToWav(buffer, opt) {
+    opt = opt || {};
+
+    const length = buffer.length;
+    const numberOfChannels = buffer.numberOfChannels;
+    const sampleRate = buffer.sampleRate;
+    const bytesPerSample = opt.float32 ? 4 : 2;
+    const blockAlign = numberOfChannels * bytesPerSample;
+    const byteRate = sampleRate * blockAlign;
+    const dataSize = length * blockAlign;
+    const bufferSize = 44 + dataSize;
+
+    const arrayBuffer = new ArrayBuffer(bufferSize);
+    const view = new DataView(arrayBuffer);
+
+    // WAV header
+    const writeString = (offset, string) => {
+        for (let i = 0; i < string.length; i++) {
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    };
+
+    writeString(0, 'RIFF');
+    view.setUint32(4, bufferSize - 8, true);
+    writeString(8, 'WAVE');
+    writeString(12, 'fmt ');
+    view.setUint32(16, 16, true);
+    view.setUint16(20, 1, true); // PCM
+    view.setUint16(22, numberOfChannels, true);
+    view.setUint32(24, sampleRate, true);
+    view.setUint32(28, byteRate, true);
+    view.setUint16(32, blockAlign, true);
+    view.setUint16(34, bytesPerSample * 8, true);
+    writeString(36, 'data');
+    view.setUint32(40, dataSize, true);
+
+    // Convert float samples to 16-bit PCM
+    let offset = 44;
+    for (let i = 0; i < length; i++) {
+        for (let channel = 0; channel < numberOfChannels; channel++) {
+            const sample = Math.max(-1, Math.min(1, buffer.getChannelData(channel)[i]));
+            view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+            offset += 2;
+        }
+    }
+
+    return new Blob([arrayBuffer], { type: 'audio/wav' });
 }
 
 async function convertMediaToAudio() {
@@ -340,11 +362,6 @@ async function convertMediaToAudio() {
         return;
     }
 
-    if (!ffmpegReady) {
-        updateConverterStatus('FFmpeg is still loading. Please wait...', 'info');
-        return;
-    }
-
     const file = fileInput.files[0];
     const outputFileName = `audio_${Date.now()}.${outputFormat}`;
 
@@ -353,44 +370,42 @@ async function convertMediaToAudio() {
         progressDiv.style.display = 'block';
         progressBar.style.width = '0%';
 
-        // Write file to FFmpeg filesystem
-        ffmpeg.FS('writeFile', file.name, await FFmpegLib.fetchFile(file));
-        updateConverterStatus(`Loaded file. Converting to ${outputFormat.toUpperCase()}...`, 'info');
-        progressBar.style.width = '25%';
+        // Initialize AudioContext if needed
+        const context = await initAudioContext();
+        progressBar.style.width = '10%';
 
-        // Prepare FFmpeg command
-        let command;
-        if (outputFormat === 'mp3') {
-            command = ['-i', file.name, '-q:a', '0', '-b:a', audioBitrate, '-y', outputFileName];
-        } else { // wav
-            command = ['-i', file.name, '-y', outputFileName];
+        // Decode audio data
+        updateConverterStatus('Decoding audio data...', 'info');
+        const arrayBuffer = await file.arrayBuffer();
+        const audioBuffer = await context.decodeAudioData(arrayBuffer.slice(0));
+        progressBar.style.width = '50%';
+
+        if (outputFormat === 'wav') {
+            // Convert to WAV
+            updateConverterStatus('Converting to WAV...', 'info');
+            const wavBlob = audioBufferToWav(audioBuffer);
+            progressBar.style.width = '80%';
+
+            // Download
+            const url = URL.createObjectURL(wavBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = outputFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            progressBar.style.width = '100%';
+            updateConverterStatus(`Conversion complete! Downloaded: ${outputFileName}`, 'success');
+
+        } else if (outputFormat === 'mp3') {
+            // MP3 conversion requires additional library, show limitation
+            updateConverterStatus('MP3 conversion requires additional encoding library. Please use WAV format or external tools.', 'error');
+            progressDiv.style.display = 'none';
+            return;
         }
 
-        // Run FFmpeg
-        await ffmpeg.run(...command);
-        progressBar.style.width = '75%';
-
-        // Read the output file
-        const data = ffmpeg.FS('readFile', outputFileName);
-        progressBar.style.width = '90%';
-
-        // Clean up
-        ffmpeg.FS('unlink', file.name);
-        ffmpeg.FS('unlink', outputFileName);
-
-        // Create blob and download
-        const blob = new Blob([data], { type: `audio/${outputFormat}` });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = outputFileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        progressBar.style.width = '100%';
-        updateConverterStatus(`✓ Conversion complete! Downloaded: ${outputFileName}`, 'success');
         setTimeout(() => {
             progressDiv.style.display = 'none';
         }, 2000);
@@ -399,11 +414,6 @@ async function convertMediaToAudio() {
         console.error('Conversion error:', error);
         updateConverterStatus(`Error during conversion: ${error.message}`, 'error');
         progressDiv.style.display = 'none';
-
-        // Clean up on error
-        try {
-            ffmpeg.FS('unlink', file.name);
-        } catch (e) {}
     }
 }
 
