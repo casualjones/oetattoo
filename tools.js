@@ -268,29 +268,10 @@ function updateGridConversions() {
 document.addEventListener('DOMContentLoaded', function() {
     updateGridConversions();
     document.getElementById('gridSize').addEventListener('input', updateGridConversions);
-    initFFmpeg();
 });
 
-// Media to Audio Converter - FFmpeg Integration
-// Initialize format selector behavior
-document.addEventListener('DOMContentLoaded', function() {
-    const outputFormat = document.getElementById('outputFormat');
-    const bitrateLabel = document.getElementById('audioBitrate').previousElementSibling;
-    const bitrateSelect = document.getElementById('audioBitrate');
-
-    function updateFormatUI() {
-        if (outputFormat.value === 'mp3') {
-            bitrateLabel.style.display = 'inline';
-            bitrateSelect.style.display = 'inline';
-        } else {
-            bitrateLabel.style.display = 'none';
-            bitrateSelect.style.display = 'none';
-        }
-    }
-
-    outputFormat.addEventListener('change', updateFormatUI);
-    updateFormatUI(); // Initial state
-});
+// Web Audio API for media conversion
+let audioContext = null;
 
 async function initAudioContext() {
     if (!audioContext) {
@@ -430,3 +411,23 @@ function resetMediaConverter() {
     document.getElementById('converterProgress').style.display = 'none';
     document.getElementById('converterProgressBar').style.width = '0%';
 }
+
+// Initialize format selector behavior
+document.addEventListener('DOMContentLoaded', function() {
+    const outputFormat = document.getElementById('outputFormat');
+    const bitrateLabel = document.getElementById('audioBitrate').previousElementSibling;
+    const bitrateSelect = document.getElementById('audioBitrate');
+
+    function updateFormatUI() {
+        if (outputFormat.value === 'mp3') {
+            bitrateLabel.style.display = 'inline';
+            bitrateSelect.style.display = 'inline';
+        } else {
+            bitrateLabel.style.display = 'none';
+            bitrateSelect.style.display = 'none';
+        }
+    }
+
+    outputFormat.addEventListener('change', updateFormatUI);
+    updateFormatUI(); // Initial state
+});
