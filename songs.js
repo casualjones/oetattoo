@@ -1,44 +1,33 @@
-// OE Music - Personal Google Drive Collection
-let googleAuth;
+// OE Music - Public Demo Collection
 let currentSongIndex = -1;
 let songsList = [];
 let audioPlayer;
 
-// Google Drive API configuration
-const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'; // You'll need to set this up
-const API_KEY = 'YOUR_GOOGLE_API_KEY'; // You'll need to set this up
-const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
-const SCOPES = 'https://www.googleapis.com/auth/drive.readonly'; // Read-only access
-const ALLOWED_EMAIL = 'oetattoo888@gmail.com'; // Only allow OE's account
+// Demo song collection - replace with your actual Google Drive public links
+// To get public links: Right-click file in Google Drive > Get shareable link > Set to "Anyone with the link can view"
+const DEMO_SONGS = [
+    {
+        name: "Demo Song 1",
+        url: "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_1",
+        size: "3.2 MB",
+        duration: "3:45"
+    },
+    {
+        name: "Demo Song 2",
+        url: "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_2",
+        size: "4.1 MB",
+        duration: "4:12"
+    },
+    // Add more songs here
+];
 
 document.addEventListener('DOMContentLoaded', function() {
     audioPlayer = document.getElementById('audioPlayer');
-    initializeGoogleAuth();
     setupEventListeners();
-    updateAuthStatus();
+    loadDemoSongs();
 });
 
-function initializeGoogleAuth() {
-    // Initialize Google API client
-    gapi.load('client:auth2', function() {
-        gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES
-        }).then(function() {
-            googleAuth = gapi.auth2.getAuthInstance();
-            googleAuth.isSignedIn.listen(updateAuthStatus);
-            updateAuthStatus();
-        });
-    });
-}
-
 function setupEventListeners() {
-    // Button event listeners
-    document.getElementById('signinBtn').addEventListener('click', signIn);
-    document.getElementById('refreshBtn').addEventListener('click', loadSongs);
-
     // Player controls
     document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
     document.getElementById('prevBtn').addEventListener('click', playPrevious);
@@ -51,81 +40,37 @@ function setupEventListeners() {
     audioPlayer.addEventListener('loadedmetadata', updateTotalTime);
 }
 
-function signIn() {
-    googleAuth.signIn().then(function() {
-        console.log('Signed in successfully');
-        loadSongs();
-    });
-}
+function loadDemoSongs() {
+    // Load demo songs immediately - no authentication required
+    songsList = DEMO_SONGS.map(song => ({
+        name: song.name,
+        webContentLink: song.url,
+        size: song.size,
+        duration: song.duration
+    }));
 
-function signOut() {
-    googleAuth.signOut();
-}
+    displaySongs();
 
-function updateAuthStatus() {
+    // Update status to show demo mode
     const authStatus = document.getElementById('authStatus');
     const authText = document.getElementById('authText');
-    const signinBtn = document.getElementById('signinBtn');
-
-    if (googleAuth && googleAuth.isSignedIn.get()) {
-        const userEmail = googleAuth.currentUser.get().getBasicProfile().getEmail();
-
-        if (userEmail === ALLOWED_EMAIL) {
-            authText.textContent = `Welcome back, OE! Access granted.`;
-            signinBtn.style.display = 'none';
-            loadSongs();
-        } else {
-            authText.textContent = `Access denied. This collection is private to OE.`;
-            signinBtn.textContent = 'Sign In as OE';
-            signinBtn.style.display = 'inline-block';
-            document.getElementById('songsList').innerHTML = '<div class="error-message"><p>This music collection is private and only accessible to the owner.</p></div>';
-        }
-    } else {
-        authText.textContent = 'Sign in to access OE\'s music collection';
-        signinBtn.style.display = 'inline-block';
-        document.getElementById('songsList').innerHTML = '<div class="loading-message"><p>Sign in with Google to access OE\'s curated music collection</p></div>';
-    }
-}
-
-function loadSongs() {
-    if (!googleAuth || !googleAuth.isSignedIn.get()) {
-        return;
-    }
-
-    const userEmail = googleAuth.currentUser.get().getBasicProfile().getEmail();
-    if (userEmail !== ALLOWED_EMAIL) {
-        return; // Don't load songs for unauthorized users
-    }
-
-    const songsListElement = document.getElementById('songsList');
-    songsListElement.innerHTML = '<div class="loading-message"><p>Loading OE\'s music collection...</p></div>';
-
-    // Search for audio files in OE's Google Drive
-    gapi.client.drive.files.list({
-        'q': "mimeType contains 'audio/'",
-        'fields': 'files(id, name, size, modifiedTime, webContentLink)',
-        'orderBy': 'name asc' // Alphabetical order for curated collection
-    }).then(function(response) {
-        songsList = response.result.files;
-        displaySongs();
-    }).catch(function(error) {
-        console.error('Error loading songs:', error);
-        songsListElement.innerHTML = '<div class="error-message"><p>Unable to load music collection. Please try again later.</p></div>';
-    });
+    authText.textContent = 'Demo collection loaded - no login required';
+    authStatus.style.background = 'rgba(127, 57, 251, 0.1)';
+    authStatus.style.borderColor = '#7f39fb';
 }
 
 function displaySongs() {
     const songsListElement = document.getElementById('songsList');
 
     if (songsList.length === 0) {
-        songsListElement.innerHTML = '<div class="empty-message"><p>OE\'s music collection is being curated. Check back soon for new tracks!</p></div>';
+        songsListElement.innerHTML = '<div class="empty-message"><p>No demo songs available. Check back later!</p></div>';
         return;
     }
 
     let html = '<div class="songs-grid">';
     songsList.forEach((song, index) => {
-        const fileSize = formatFileSize(song.size);
-        const modifiedDate = new Date(song.modifiedTime).toLocaleDateString();
+        const fileSize = song.size || 'Unknown';
+        const duration = song.duration || 'Unknown';
 
         html += `
             <div class="song-item ${currentSongIndex === index ? 'playing' : ''}" data-index="${index}">
@@ -133,7 +78,7 @@ function displaySongs() {
                     <h3 class="song-title">${song.name}</h3>
                     <div class="song-meta">
                         <span class="song-size">${fileSize}</span>
-                        <span class="song-date">${modifiedDate}</span>
+                        <span class="song-duration">${duration}</span>
                     </div>
                 </div>
                 <button class="play-song-btn" onclick="playSong(${index})">▶</button>
@@ -222,13 +167,6 @@ function formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
-
-function formatFileSize(bytes) {
-    if (!bytes) return 'Unknown';
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i];
 }
 
 // Global function for onclick handlers
