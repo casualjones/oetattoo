@@ -7,17 +7,11 @@ let audioPlayer;
 // To get public links: Right-click file in Google Drive > Get shareable link > Set to "Anyone with the link can view"
 const DEMO_SONGS = [
     {
-        name: "Demo Song 1",
-        url: "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_1",
-        size: "3.2 MB",
-        duration: "3:45"
-    },
-    {
-        name: "Demo Song 2",
-        url: "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_2",
-        size: "4.1 MB",
-        duration: "4:12"
-    },
+        name: "Drum Track",
+        url: "https://drive.google.com/uc?export=download&id=1tS2sWy8QpzQv-9y3wJnuEuVT57DLL92z",
+        size: "2.3 MB",
+        duration: "2:15"
+    }
     // Add more songs here
 ];
 
