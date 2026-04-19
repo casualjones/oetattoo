@@ -344,7 +344,9 @@ async function convertMediaToAudio() {
     }
 
     const file = fileInput.files[0];
-    const outputFileName = `audio_${Date.now()}.${outputFormat}`;
+    // Generate output filename based on input filename
+    const inputNameWithoutExt = file.name.replace(/\.[^/.]+$/, ''); // Remove extension
+    const outputFileName = `${inputNameWithoutExt}_audio.${outputFormat}`;
 
     try {
         updateConverterStatus(`Processing: ${file.name}...`, 'info');
