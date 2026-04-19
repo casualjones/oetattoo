@@ -274,6 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Media to Audio Converter - FFmpeg Integration
 let ffmpegReady = false;
 let ffmpeg = null;
+let fetchFile = null;
 
 async function initFFmpeg() {
     const statusText = document.getElementById('ffmpegStatusText');
@@ -283,13 +284,22 @@ async function initFFmpeg() {
         statusText.textContent = 'Loading FFmpeg library...';
         loader.style.display = 'inline-block';
 
+        // Wait a bit for the script to load if it's not ready yet
+        let attempts = 0;
+        while (typeof FFmpeg === 'undefined' && attempts < 50) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+
         // Check if FFmpeg is available
         if (typeof FFmpeg === 'undefined') {
             throw new Error('FFmpeg library not found. Please check your internet connection.');
         }
 
-        const { FFmpeg, fetchFile } = FFmpeg;
-        ffmpeg = new FFmpeg();
+        // Access FFmpeg constructor correctly
+        const { FFmpeg: FFmpegConstructor, fetchFile: fetchFileFunc } = FFmpeg;
+        fetchFile = fetchFileFunc;
+        ffmpeg = new FFmpegConstructor();
 
         ffmpeg.on("log", ({ type, message }) => {
             if (type === "error" && !message.includes("deprecated")) {
@@ -363,7 +373,6 @@ async function convertMediaToAudio() {
         progressBar.style.width = '0%';
 
         // Write file to FFmpeg filesystem
-        const { fetchFile } = FFmpeg;
         await ffmpeg.writeFile(file.name, await fetchFile(file));
         updateConverterStatus(`Loaded file. Converting to ${outputFormat.toUpperCase()}...`, 'info');
         progressBar.style.width = '25%';
