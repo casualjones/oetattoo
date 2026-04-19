@@ -1,0 +1,52 @@
+Detailed Instructions for Chat Room Page Implementation
+
+Overview:
+This document provides detailed instructions for implementing and maintaining the chat room page on the OE Tattoo website. The page includes an IRC webchat interface for community interaction.
+
+Page Structure:
+- chat.html: Main HTML file for the chat room page
+- Integrated into site navigation across all pages
+- Uses iframe to embed KiwiIRC webchat client
+
+IRC Implementation:
+- Network: EFnet (irc.efnet.org)
+- Channel: #humboldt (main channel for Humboldt community discussions)
+- Additional Channels: #california, #westcoast, #pacific (west coast focused)
+- Webchat: KiwiIRC for browser-based IRC access
+
+Features:
+- Embedded webchat interface
+- Responsive design matching site theme
+- Navigation links to other site pages
+
+Setup Requirements:
+1. Ensure iframe source is accessible and allows embedding
+2. Test cross-origin policies for the webchat service
+3. Verify channel name and server availability
+
+Maintenance:
+- Monitor webchat service uptime
+- Update iframe URL if server changes
+- Moderate community discussions as needed
+- Ensure compliance with site terms and IRC network rules
+
+Customization:
+- Change channel name in iframe src if needed
+- Adjust iframe dimensions for better fit
+- Add additional chat features (e.g., user list, topic) if supported
+
+Security Considerations:
+- Webchat is client-side; no server-side data storage
+- Users connect directly to IRC server
+- Monitor for spam or inappropriate content
+
+Future Enhancements:
+- Implement custom IRC server for full control (see irc_server_setup.md)
+- Add user authentication for registered users
+- Integrate with site user system
+- Add chat logs or archives (if permitted by IRC network)
+
+Troubleshooting:
+- If iframe doesn't load, check CORS headers
+- Verify IRC server is online
+- Test in different browsers for compatibility
