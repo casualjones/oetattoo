@@ -268,4 +268,128 @@ function updateGridConversions() {
 document.addEventListener('DOMContentLoaded', function() {
     updateGridConversions();
     document.getElementById('gridSize').addEventListener('input', updateGridConversions);
+    initFFmpeg();
 });
+
+// Media to Audio Converter - FFmpeg Integration
+let ffmpegReady = false;
+let ffmpeg = null;
+
+async function initFFmpeg() {
+    try {
+        const { FFmpeg, fetchFile } = FFmpeg;
+        ffmpeg = new FFmpeg.FFmpeg();
+        
+        ffmpeg.on("log", ({ type, message }) => {
+            if (type === "error" && !message.includes("deprecated")) {
+                console.error("FFmpeg:", message);
+            }
+        });
+        
+        // Set CoreURL for worker and wasm files
+        await ffmpeg.load({
+            coreURL: "https://unpkg.com/@ffmpeg/core@0.12.4/dist/esm"
+        });
+        
+        ffmpegReady = true;
+        console.log('FFmpeg loaded successfully');
+    } catch (error) {
+        console.error('Failed to load FFmpeg:', error);
+        updateConverterStatus('Error: Failed to load FFmpeg library. Please refresh the page.', 'error');
+    }
+}
+
+async function convertMediaToAudio() {
+    const fileInput = document.getElementById('mediaInput');
+    const outputFormat = document.getElementById('outputFormat').value;
+    const audioBitrate = document.getElementById('audioBitrate').value;
+    const statusDiv = document.getElementById('converterStatus');
+    const progressDiv = document.getElementById('converterProgress');
+    const progressBar = document.getElementById('converterProgressBar');
+    
+    if (!fileInput.files.length) {
+        updateConverterStatus('Please select a media file first.', 'error');
+        return;
+    }
+    
+    if (!ffmpegReady) {
+        updateConverterStatus('FFmpeg is loading. Please wait...', 'info');
+        return;
+    }
+    
+    const file = fileInput.files[0];
+    const outputFileName = `audio_${Date.now()}.${outputFormat}`;
+    
+    try {
+        updateConverterStatus(`Processing: ${file.name}...`, 'info');
+        progressDiv.style.display = 'block';
+        progressBar.style.width = '0%';
+        
+        // Write file to FFmpeg filesystem
+        const { fetchFile } = FFmpeg;
+        await ffmpeg.writeFile(file.name, await fetchFile(file));
+        updateConverterStatus(`Loaded file. Converting to ${outputFormat.toUpperCase()}...`, 'info');
+        progressBar.style.width = '25%';
+        
+        // Prepare FFmpeg command
+        let command;
+        if (outputFormat === 'mp3') {
+            command = ['-i', file.name, '-q:a', '0', '-b:a', audioBitrate, '-y', outputFileName];
+        } else { // wav
+            command = ['-i', file.name, '-y', outputFileName];
+        }
+        
+        // Run FFmpeg
+        await ffmpeg.exec(...command);
+        progressBar.style.width = '75%';
+        
+        // Read the output file
+        const data = await ffmpeg.readFile(outputFileName);
+        progressBar.style.width = '90%';
+        
+        // Clean up
+        await ffmpeg.deleteFile(file.name);
+        await ffmpeg.deleteFile(outputFileName);
+        
+        // Create blob and download
+        const blob = new Blob([data.buffer], { type: `audio/${outputFormat}` });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = outputFileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        progressBar.style.width = '100%';
+        updateConverterStatus(`✓ Conversion complete! Downloaded: ${outputFileName}`, 'success');
+        setTimeout(() => {
+            progressDiv.style.display = 'none';
+        }, 2000);
+        
+    } catch (error) {
+        console.error('Conversion error:', error);
+        updateConverterStatus(`Error during conversion: ${error.message}`, 'error');
+        progressDiv.style.display = 'none';
+        
+        // Clean up on error
+        try {
+            await ffmpeg.deleteFile(file.name);
+        } catch (e) {}
+    }
+}
+
+function updateConverterStatus(message, type = 'info') {
+    const statusDiv = document.getElementById('converterStatus');
+    statusDiv.textContent = message;
+    statusDiv.className = `converter-status ${type}`;
+}
+
+function resetMediaConverter() {
+    document.getElementById('mediaInput').value = '';
+    document.getElementById('converterStatus').textContent = '';
+    document.getElementById('converterStatus').className = 'converter-status';
+    document.getElementById('converterProgress').style.display = 'none';
+    document.getElementById('converterProgressBar').style.width = '0%';
+}

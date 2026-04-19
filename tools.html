@@ -6,6 +6,7 @@
     <title>Tools - OE Tattoo</title>
     <meta name="description" content="Use our image tools for tattoo design preparation.">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.4/dist/ffmpeg.min.js"></script>
 </head>
 <body>
     <header>
@@ -31,6 +32,7 @@
                 <li>Grider: Add a reference grid with alphanumeric coordinates for precise tracing</li>
                 <li>Stencil Maker: Choose edge detection method and threshold to create contour outlines for stencils</li>
                 <li>Numerology App: Enter your birth date and full name to reveal a creative life path number</li>
+                <li>Media to Audio Converter: Convert any video file (MKV, AVI, MP4, MOV, etc.) to MP3 or WAV audio format. Choose your desired bitrate for MP3 compression.</li>
             </ul>
         </div>
         <div class="tool">
@@ -98,8 +100,29 @@
             <p>For advanced stencil preparation and tracing, use Photopea’s full online editor.</p>
             <a class="button-link" href="https://www.photopea.com" target="_blank" rel="noopener noreferrer">Open Photopea</a>
             <p class="photopea-note">Photopea opens in a new tab. Use it for detailed tracing or vector conversion, then return here for simple downloads and stencil preparation.</p>
-        </div>
-    </main>
+        </div>        <div class="tool">
+            <h3>Media to Audio Converter</h3>
+            <p>Convert video files (MKV, AVI, MP4, MOV, etc.) to audio formats (MP3 or WAV).</p>
+            <input type="file" id="mediaInput" accept="video/*,.mkv,.avi,.mp4,.mov,.flv,.wmv,.webm">
+            <label for="outputFormat">Output Format:</label>
+            <select id="outputFormat">
+                <option value="mp3">MP3 (Compressed Audio)</option>
+                <option value="wav">WAV (Lossless Audio)</option>
+            </select>
+            <label for="audioBitrate">Audio Bitrate (for MP3):</label>
+            <select id="audioBitrate">
+                <option value="128k">128 kbps (Low Quality)</option>
+                <option value="192k" selected>192 kbps (Standard)</option>
+                <option value="256k">256 kbps (High Quality)</option>
+                <option value="320k">320 kbps (Maximum Quality)</option>
+            </select>
+            <button onclick="convertMediaToAudio()">Convert</button>
+            <button onclick="resetMediaConverter()">Reset</button>
+            <div id="converterStatus" class="converter-status"></div>
+            <div id="converterProgress" class="progress-bar" style="display:none;">
+                <div id="converterProgressBar" class="progress-fill"></div>
+            </div>
+        </div>    </main>
     <footer>
         <p>&copy; 2026 OE Tattoo</p>
     </footer>
