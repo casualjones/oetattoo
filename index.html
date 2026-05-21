@@ -3,32 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OE Tattoo Studio - Custom Tattoos in Eureka</title>
-    <meta name="description" content="Custom tattoos and flash art from an Eureka studio. Book appointments or view studio work online.">
+    <meta name="description" content="OE Tattoo - 1.5 year apprentice offering unlimited free geometric tattoos to build portfolio. Humboldt County.">
+    <meta name="keywords" content="tattoo artist, geometric tattoos, free tattoos, humboldt county">
+    <meta name="author" content="OE Tattoo">
+    <title>OE Tattoo | Geometric Specialist | Free Tattoos</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>OE Tattoo</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="flash.html">Flash</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="events.html">Events</a>
-            <a href="tools.html">Tools</a>
-            <a href="songs.html">OE Music</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <section id="hero">
-            <h2>Welcome to the studio</h2>
-            <p>Custom tattoos and original flash from an Eureka studio. Browse work, view community events, and book appointments.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 OE Tattoo</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">OE</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#portfolio" class="nav-link">Work</a></li>
+                <li class="nav-item"><a href="#free-tattoos" class="nav-link">Free Tattoos</a></li>
+                <li class="nav-item"><a href="#tools" class="nav-link">Tools</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-storytelling" id="hero">
+        <div class="preloader-placeholder">
+            <span class="loading-text">01 // THE APPRENTICE</span>
+        </div>
+        <div class="hero-content">
+            <h1 class="main-title">The Art of the Apprentice</h1>
+            <p class="subtitle">Year One: A journey of discipline at Eureka's OE Tattoo.</p>
+            <div class="focus-points">
+                <div class="focus-item">
+                    <h3>Small & Precise</h3>
+                    <p>Mastering the technical constraints of fine-line and micro-tattoos.</p>
+                </div>
+                <div class="focus-item">
+                    <h3>The Transformation</h3>
+                    <p>Dedicated study in the creative problem-solving of cover-ups.</p>
+                </div>
+            </div>
+            <div class="cta-block">
+                <a href="#portfolio" class="cta-button">View the Progress</a>
+                <a href="#contact" class="cta-button secondary">Start a Session</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-apprentice" id="about">
+        <div class="container">
+            <div class="info-layout-wrapper">
+                <span class="section-label">02 // THE IDEOLOGY</span>
+                <div class="bio-content">
+                    <p class="lead-text">
+                        "I am currently in my first year of apprenticeship—a period defined by the relentless pursuit of becoming an amazing tattoo artist."
+                    </p>
+                    <p>
+                        At <strong>OE Tattoo</strong>, my focus is narrow and deep. I believe that mastery starts with the fundamental challenge of <strong>small, precise tattoos</strong> and the transformative logic required for <strong>effective cover-ups</strong>.
+                    </p>
+                    <p>
+                        Every mark is a lesson; every tattoo is a step toward mastery in the Hutsul-inspired contemporary spirit of local craft.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section portfolio-categories" id="portfolio">
+        <div class="container">
+            <div class="portfolio-categories">
+                <div class="portfolio-block cover-ups">
+                    <div class="block-header">
+                        <h2>The Cover-Up Gallery</h2>
+                        <p>Transforming old stories into new art.</p>
+                    </div>
+                    <div id="cover-up-grid" class="illustration-layout">
+                        <!-- Cover-up portfolio items will load here -->
+                    </div>
+                </div>
+                <div class="portfolio-block small-tattoos">
+                    <div class="block-header">
+                        <h2>Small & Fine Line</h2>
+                        <p>Precision at scale.</p>
+                    </div>
+                    <div id="small-tattoos-grid" class="illustration-layout">
+                        <!-- Small tattoo portfolio items will load here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Tattoos Section -->
+    <section class="section free-tattoos" id="free-tattoos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-overline">Collaboration</span>
+                <h2>Let's Create Together</h2>
+            </div>
+            <div class="free-tattoos-content">
+                <div class="free-tattoos-text">
+                    <p>I'm offering unlimited free geometric tattoos this year.</p>
+                    <p>This isn't a gimmick. It's real work, real skill, real commitment. You get a beautiful permanent tattoo. I get to build my portfolio and prove my craft.</p>
+                    
+                    <h3>What's Included</h3>
+                    <ul class="benefits-list">
+                        <li>✓ Free tattoo work (full piece, no hidden costs)</li>
+                        <li>✓ Custom geometric design consultation</li>
+                        <li>✓ Professional studio environment</li>
+                        <li>✓ High-quality materials</li>
+                        <li>✓ Portfolio photos for your use</li>
+                        <li>✓ Professional aftercare guidance</li>
+                    </ul>
+
+                    <h3>Requirements</h3>
+                    <ul class="requirements-list">
+                        <li><strong>Size:</strong> Small to medium (palm-sized to forearm)</li>
+                        <li><strong>Placement:</strong> Anywhere (no face, no hands)</li>
+                        <li><strong>Commitment:</strong> You're investing your skin; I'm investing my skill</li>
+                        <li><strong>Timeline:</strong> 2-4 weeks from consultation to appointment</li>
+                    </ul>
+
+                    <h3>How It Works</h3>
+                    <ol class="how-it-works">
+                        <li><strong>Reserve</strong> - Submit your interest & inspiration</li>
+                        <li><strong>Consult</strong> - We chat about your geometric vision</li>
+                        <li><strong>Design</strong> - I create your custom design</li>
+                        <li><strong>Appointment</strong> - We bring it to life</li>
+                        <li><strong>Forever</strong> - You carry our collaboration</li>
+                    </ol>
+                </div>
+
+                <div class="free-tattoos-form-container">
+                    <form id="tattoo-form" class="tattoo-form">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instagram">Instagram</label>
+                            <input type="text" id="instagram" name="instagram" placeholder="@handle (optional)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="placement">Where would you like it? *</label>
+                            <input type="text" id="placement" name="placement" placeholder="e.g., left forearm" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="size">Size preference *</label>
+                            <select id="size" name="size" required>
+                                <option value="">Select size</option>
+                                <option value="small">Small (thumbprint to 2")</option>
+                                <option value="medium">Medium (2-4" across)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inspiration">Tell me about your geometric vision *</label>
+                            <textarea id="inspiration" name="inspiration" rows="4" placeholder="Design ideas, references, style preferences..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="why">Why do you want this tattoo? *</label>
+                            <textarea id="why" name="why" rows="4" placeholder="What will it mean to you?" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Anything else? (optional)</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Questions or additional info"></textarea>
+                        </div>
+
+                        <div class="form-agreements">
+                            <label class="checkbox">
+                                <input type="checkbox" name="apprentice-agreement" required>
+                                <span>I understand this is with a 1.5 year apprentice</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="aftercare-agreement" required>
+                                <span>I commit to professional aftercare instructions</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="portfolio-agreement" required>
+                                <span>Portfolio photos can be used</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="cta-button">Let's Create Together</button>
+                    </form>
+                    <div id="form-message" class="form-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section tools" id="tools">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-overline">Tools</span>
+                <h2>My Toolkit</h2>
+                <p class="section-description">Everything I use to build this site, from GSAP animation to portfolio storytelling.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-item">
+                    <h3>GSAP Animations</h3>
+                    <p>Scroll-triggered reveal effects for a more polished storytelling experience.</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Portfolio Data</h3>
+                    <p>Dynamic gallery rendering with category filters for cover-ups and small tattoos.</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first layout adjustments and fluid sections across all screen sizes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-overline">Get In Touch</span>
+                <h2>Let's Connect</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <a href="mailto:oetattoo888@gmail.com">oetattoo888@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>📱 Instagram</h3>
+                    <a href="https://instagram.com/tattoo.oe" target="_blank">@tattoo.oe</a>
+                </div>
+                <div class="contact-item">
+                    <h3>📍 Location</h3>
+                    <p>Humboldt County, CA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>OE TATTOO | 1.5 Year Apprentice • Geometric Specialist</p>
+            <p>Building My Craft, One Needle At A Time</p>
+            <p style="margin-top: 20px; font-size: 12px; color: #888;">© 2025 OE Tattoo. All Rights Reserved.</p>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <!-- Scripts -->
+    <script src="portfolio-data.js"></script>
+    <script defer src="script.js"></script>
 </body>
 </html>
