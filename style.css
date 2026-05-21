@@ -731,6 +731,84 @@ form .cta-button {
     margin-top: var(--spacing-lg);
 }
 
+/* ==================== TOOLS PAGE STYLES ==================== */
+.tools main,
+.tools .tool,
+.tools .instructions,
+.tools .radio-player {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tools .tool {
+    background-color: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.tools .tool h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.tools .button-link {
+    display: inline-block;
+    padding: 0.85rem 1.4rem;
+    border: 2px solid var(--accent-red);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all var(--transition-smooth);
+    border-radius: 2px;
+}
+
+.tools .button-link:hover {
+    background-color: var(--accent-red);
+    color: var(--bg-primary);
+}
+
+.tools .instructions {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.tools .radio-player {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.tools input,
+.tools select,
+.tools textarea {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.tools label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.tools .converter-status,
+.tools .progress-bar,
+.tools .grid-scale-info {
+    margin-top: var(--spacing-sm);
+    color: var(--text-secondary);
+}
+
 /* ==================== CONTACT SECTION ==================== */
 .contact-content {
     display: grid;
