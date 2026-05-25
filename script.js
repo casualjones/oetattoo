@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroCanvas();
     initFormHandler();
     initNavigation();
-    initScrollAnimations();
+    initGsapAnimations();
     initPortfolio();
 });
 
