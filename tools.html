@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools - OE Tattoo</title>
-    <meta name="description" content="Use our image tools for tattoo design preparation.">
+    <title>Tools & Resources - OE Tattoo</title>
+    <meta name="description" content="Studio tools, resources, and learning materials.">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body class="tools">
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">OE</a>
+            <a href="index.html#hero" class="nav-logo">OE</a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="flash.html" class="nav-link">Flash</a></li>
+                <li class="nav-item"><a href="#studio-tools" class="nav-link">Tools</a></li>
+                <li class="nav-item"><a href="#learning-resources" class="nav-link">Resources</a></li>
                 <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-                <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-                <li class="nav-item"><a href="tools.html" class="nav-link">Tools</a></li>
-                <li class="nav-item"><a href="songs.html" class="nav-link">OE Music</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -27,27 +30,58 @@
             </div>
         </div>
     </nav>
-    <main>
-        <h2>Studio Tools</h2>
-        <section class="radio-player">
-            <h3>Listen to KHUM Radio</h3>
-            <p>Enjoy some tunes while you work on your designs.</p>
-            <p><a href="https://khum.com/listen-live.php" target="_blank" rel="noopener noreferrer" class="button-link">Open KHUM Radio Live</a></p>
-        </section>
-        <p>Tools to prepare designs and stencils for tattoo work. Resize, grid, or trace ideas.</p>
-        <div class="instructions">
-            <h3>Instructions</h3>
-            <ul>
-                <li>Upload images under 5MB for best performance</li>
-                <li>Supported formats: JPG, PNG (HEIC not supported - please convert to JPG/PNG first)</li>
-                <li>Image Scaler: Resize your tattoo designs to desired dimensions</li>
-                <li>Grider: Add a reference grid with alphanumeric coordinates for precise tracing</li>
-                <li>Stencil Maker: Choose edge detection method and threshold to create contour outlines for stencils</li>
-                <li>Numerology App: Enter your birth date and full name to reveal a creative life path number</li>
-                <li>Media to Audio Converter: Convert any video file (MKV, AVI, MP4, MOV, etc.) to MP3 or WAV audio format. Choose your desired bitrate for MP3 compression.</li>
-            </ul>
+
+    <!-- Hero Section -->
+    <section class="hero-storytelling" id="tools-hero">
+        <div class="preloader-placeholder">
+            <span class="loading-text">03 // THE STUDIO</span>
         </div>
-        <div class="tool">
+        <div class="hero-content">
+            <h1 class="main-title">Tools & Resources</h1>
+            <p class="subtitle">Prepare. Learn. Practice.</p>
+            <div class="focus-points">
+                <div class="focus-item">
+                    <h3>Process</h3>
+                    <p>Scale. Grid. Trace.</p>
+                </div>
+                <div class="focus-item">
+                    <h3>Study</h3>
+                    <p>Reference. Technique. Safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Studio Tools Section -->
+    <section class="section tools-section" id="studio-tools">
+        <div class="container">
+            <div class="info-layout-wrapper">
+                <span class="section-label">04 // DESIGN TOOLS</span>
+                <div class="section-intro">
+                    <h2>Prepare Your Work</h2>
+                    <p>Tools to prepare designs and stencils for tattoo work. Resize, grid, or trace ideas.</p>
+                </div>
+            </div>
+
+            <div class="radio-player">
+                <h3>Listen to KHUM Radio</h3>
+                <p>Enjoy some tunes while you work on your designs.</p>
+                <p><a href="https://khum.com/listen-live.php" target="_blank" rel="noopener noreferrer" class="button-link">Open KHUM Radio Live</a></p>
+            </div>
+
+            <div class="instructions">
+                <h3>How to Use These Tools</h3>
+                <ul>
+                    <li>Upload images under 5MB for best performance</li>
+                    <li>Supported formats: JPG, PNG (HEIC not supported - please convert to JPG/PNG first)</li>
+                    <li><strong>Image Scaler:</strong> Resize your tattoo designs to desired dimensions</li>
+                    <li><strong>Grider:</strong> Add a reference grid with alphanumeric coordinates for precise tracing</li>
+                    <li><strong>Stencil Maker:</strong> Choose edge detection method and threshold to create contour outlines for stencils</li>
+                    <li><strong>Numerology App:</strong> Enter your birth date and full name to reveal a creative life path number</li>
+                    <li><strong>Media to Audio Converter:</strong> Convert any video file (MKV, AVI, MP4, MOV, etc.) to MP3 or WAV audio format</li>
+                </ul>
+            </div>
+
+            <div class="tools-grid">
             <h3>Image Scaler</h3>
             <input type="file" id="scalerInput" accept=".jpg,.jpeg,.png,image/*">
             <label for="scale">Scale (%):</label>
@@ -143,36 +177,52 @@
         <section class="resources-section">
             <h2>Learning Resources</h2>
             <p>Professional references for study and practice.</p>
-            
-            <div class="resource-cards">
-                <div class="resource-card">
-                    <h3>Modern Professional Tattooing</h3>
-                    <p>Comprehensive technical manual covering professional ethics, safety, hardware fundamentals, needle technology, sterilization protocols, and execution techniques.</p>
-                    <div class="resource-meta">
-                        <span class="tag">Safety</span>
-                        <span class="tag">Technique</span>
-                        <span class="tag">Professional</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Resources Section -->
+    <section class="section" id="learning-resources">
+        <div class="container">
+            <div class="info-layout-wrapper">
+                <span class="section-label">05 // LEARNING RESOURCES</span>
+            </div>
+        </div>
+        <div class="resources-section">
+            <div class="container">
+                <h2>Professional References</h2>
+                <p>Study materials and technical guides for tattoo practice and professional development.</p>
+                
+                <div class="resource-cards">
+                    <div class="resource-card">
+                        <h3>Modern Professional Tattooing</h3>
+                        <p>Comprehensive technical manual covering professional ethics, safety, hardware fundamentals, needle technology, sterilization protocols, and execution techniques.</p>
+                        <div class="resource-meta">
+                            <span class="tag">Safety</span>
+                            <span class="tag">Technique</span>
+                            <span class="tag">Professional</span>
+                        </div>
+                        <a href="resources/modern-professional-tattooing.pdf" download class="button-link">Download PDF</a>
                     </div>
-                    <a href="resources/modern-professional-tattooing.pdf" download class="button-link">Download PDF</a>
+                    
+                    <div class="resource-card">
+                        <h3>Study Materials Archive</h3>
+                        <p>Reference collection for anatomy, drawing, design theory, and professional practices. Build your reference library for continuous learning.</p>
+                        <div class="resource-meta">
+                            <span class="tag">Study</span>
+                            <span class="tag">Reference</span>
+                            <span class="tag">Design</span>
+                        </div>
+                        <a href="resources/" class="button-link">Browse Resources</a>
+                    </div>
                 </div>
                 
-                <div class="resource-card">
-                    <h3>Study Materials Archive</h3>
-                    <p>Reference collection for anatomy, drawing, design theory, and professional practices. Build your reference library for continuous learning.</p>
-                    <div class="resource-meta">
-                        <span class="tag">Study</span>
-                        <span class="tag">Reference</span>
-                        <span class="tag">Design</span>
-                    </div>
-                    <a href="resources/" class="button-link">Browse Resources</a>
+                <div class="resource-note">
+                    <p><strong>Note:</strong> These materials are for personal study and professional development. Always prioritize hands-on mentorship and practical experience under qualified supervision.</p>
                 </div>
             </div>
-            
-            <div class="resource-note">
-                <p><strong>Note:</strong> These materials are for personal study and professional development. Always prioritize hands-on mentorship and practical experience under qualified supervision.</p>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
     <footer>
         <p>&copy; 2026 OE Tattoo</p>
     </footer>
