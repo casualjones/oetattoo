@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OE Tattoo - 1.5 year apprentice offering unlimited free geometric tattoos to build portfolio. Humboldt County.">
-    <meta name="keywords" content="tattoo artist, geometric tattoos, free tattoos, humboldt county">
+    <meta name="description" content="STUDY.TATTOO(); // Paint | Draw | Ink">
+    <meta name="keywords" content="study,tattoo,paint,draw,ink">
     <meta name="author" content="OE Tattoo">
-    <title>OE Tattoo | Geometric Specialist | Free Tattoos</title>
+    <title>TATTOO; // Paint | Draw | Ink</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,11 +18,11 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" class="nav-logo">OE</a>
+            <a href="#hero" class="nav-logo">OE</a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#portfolio" class="nav-link">Work</a></li>
-                <li class="nav-item"><a href="#free-tattoos" class="nav-link">Free Tattoos</a></li>
+                <li class="nav-item"><a href="#free-tattoos" class="nav-link">Collaborate</a></li>
                 <li class="nav-item"><a href="tools.html" class="nav-link">Tools</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -39,17 +39,17 @@
         <div class="preloader-placeholder">
             <span class="loading-text">01 // THE APPRENTICE</span>
         </div>
-        <div class="hero-content">
-            <h1 class="main-title">The Art of the Apprentice</h1>
-            <p class="subtitle">Year One: A journey of discipline at Eureka's OE Tattoo.</p>
+            <div class="hero-content">
+            <h1 class="main-title">STUDY.TATTOO(); // Paint | Draw | Ink</h1>
+            <p class="subtitle" aria-hidden="true"></p>
             <div class="focus-points">
                 <div class="focus-item">
-                    <h3>Small & Precise</h3>
-                    <p>Mastering the technical constraints of fine-line and micro-tattoos.</p>
+                    <h3>Small</h3>
+                    <p>Intent. Restraint.</p>
                 </div>
                 <div class="focus-item">
-                    <h3>The Transformation</h3>
-                    <p>Dedicated study in the creative problem-solving of cover-ups.</p>
+                    <h3>Practice</h3>
+                    <p>Sketch. Paint. Repeat.</p>
                 </div>
             </div>
             <div class="cta-block">
@@ -65,15 +65,7 @@
             <div class="info-layout-wrapper">
                 <span class="section-label">02 // THE IDEOLOGY</span>
                 <div class="bio-content">
-                    <p class="lead-text">
-                        "I am currently in my first year of apprenticeship—a period defined by the relentless pursuit of becoming an amazing tattoo artist."
-                    </p>
-                    <p>
-                        At <strong>OE Tattoo</strong>, my focus is narrow and deep. I believe that mastery starts with the fundamental challenge of <strong>small, precise tattoos</strong> and the transformative logic required for <strong>effective cover-ups</strong>.
-                    </p>
-                    <p>
-                        Every mark is a lesson; every tattoo is a step toward mastery in the Hutsul-inspired contemporary spirit of local craft.
-                    </p>
+                    <p class="lead-text">STUDY.TATTOO(); // Paint | Draw | Ink</p>
                 </div>
             </div>
         </div>
@@ -108,23 +100,17 @@
     <!-- Free Tattoos Section -->
     <section class="section free-tattoos" id="free-tattoos">
         <div class="container">
-            <div class="section-header">
-                <span class="section-overline">Collaboration</span>
-                <h2>Let's Create Together</h2>
+                <div class="section-header">
+                <span class="section-overline">Collaborate</span>
+                <h2>Let's Create</h2>
             </div>
             <div class="free-tattoos-content">
                 <div class="free-tattoos-text">
-                    <p>I'm offering unlimited free geometric tattoos this year.</p>
-                    <p>This isn't a gimmick. It's real work, real skill, real commitment. You get a beautiful permanent tattoo. I get to build my portfolio and prove my craft.</p>
-                    
-                    <h3>What's Included</h3>
+                    <p>I am learning. I offer collaborative work—low-cost, trade, or exchange.</p>
                     <ul class="benefits-list">
-                        <li>✓ Free tattoo work (full piece, no hidden costs)</li>
-                        <li>✓ Custom geometric design consultation</li>
-                        <li>✓ Professional studio environment</li>
-                        <li>✓ High-quality materials</li>
-                        <li>✓ Portfolio photos for your use</li>
-                        <li>✓ Professional aftercare guidance</li>
+                        <li>Design consult</li>
+                        <li>Aftercare guidance</li>
+                        <li>Photos (consent)</li>
                     </ul>
 
                     <h3>Requirements</h3>
@@ -215,6 +201,23 @@
                     </form>
                     <div id="form-message" class="form-message"></div>
                 </div>
+                
+                <!-- User portfolio uploader & preview -->
+                <div class="free-tattoos-form-container uploader-container">
+                    <div class="uploader-instructions">
+                        <h3>Upload Images (optional)</h3>
+                        <p>If you'd like to share reference art, paintings, or sketches, upload images here. The browser will resize them for best viewing and provide downloads you can save and share.</p>
+                    </div>
+                    <div class="uploader-controls">
+                        <input id="portfolio-input" type="file" accept="image/*" multiple>
+                        <label for="max-dim">Max dimension (px): </label>
+                        <input id="max-dim" type="number" value="1200" min="400" max="2400">
+                        <button id="process-images" class="cta-button">Process Images</button>
+                    </div>
+                    <div id="user-portfolio" class="user-portfolio">
+                        <!-- Processed thumbnails will appear here -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -244,10 +247,9 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>OE TATTOO | 1.5 Year Apprentice • Geometric Specialist</p>
-            <p>Building My Craft, One Needle At A Time</p>
-            <p style="margin-top: 20px; font-size: 12px; color: #888;">© 2025 OE Tattoo. All Rights Reserved.</p>
+            <div class="container">
+            <p>STUDY.TATTOO(); // Paint | Draw | Ink</p>
+            <p style="margin-top: 20px; font-size: 12px; color: #888;">© 2026 OE Tattoo. All Rights Reserved.</p>
         </div>
     </footer>
 
