@@ -1,0 +1,29 @@
+Positioning your **free cover-up initiative** as both a technical means of growth and a personal challenge aligns perfectly with the **"Storytelling" and "Information Layout"** elements of the Son Daven aesthetic. This approach transforms what could be seen as "practice" into a high-stakes, professional residency of redemption.
+
+### 1. The Ideology: "The Challenge of the Canvas Reclaimed"
+In your redesign, use the **About Information** layout to frame the "free" aspect not as a discount, but as a commitment to the most difficult technical challenges available to a first-year apprentice.
+
+**Draft Copy:**
+> "In my first year of apprenticeship, I have chosen to bypass the routine in favor of the complex. I offer **pro bono cover-up sessions** as a deliberate technical challenge. By removing the financial barrier, I invite the most difficult transformations—old scars, faded ink, and past mistakes—into my practice. This is where I learn the true physics of skin and the intricate logic of color theory and composition."
+
+### 2. Visual Presentation: "The Illustration Layout"
+The Son Daven site highlights an **"Illustration Layout"** which you can use to showcase the "Means and Challenge" of your cover-up work. Instead of a standard gallery, create a narrative for each piece:
+
+*   **The Problem:** High-contrast images of the original tattoo, emphasizing why it presented a technical hurdle (e.g., heavy scarring or dark saturation).
+*   **The Solution:** Wireframes or sketches of the **geometric designs** you planned to mask the original work.
+*   **The Result:** The final transformation, emphasizing your **Humboldt nomad** approach of bringing professional-grade redemption directly to the client's home.
+
+### 3. Professional Narrative: "The Humboldt Residency"
+To maintain the **"astute" and "professional"** tone, frame your nomad/house-call model as a curated, private service that supports this high-focus apprenticeship style.
+
+**Proposed Service Section:**
+> **The Redemption Residency**
+> "Operating as a **Humboldt nomad**, I bring a private studio environment to your space for multi-session transformations. My current focus is a residency in **Advanced Cover-Up Techniques**. These sessions are offered at no cost to the client, serving as my primary vehicle for mastering the architecture of skin reclamation. I am currently seeking candidates with challenging existing work who are ready for a collaborative path toward redemption."
+
+### 4. Technical implementation on GitHub
+You can use your existing **`script.js`** and **`style.css`** to build these specific "Challenge" modules:
+
+*   **Interactive Overlays:** Use **GSAP** to create a "swipe" effect on your portfolio images, allowing visitors to manually drag a slider to see the "Before" (the challenge) and the "After" (the means of your apprenticeship).
+*   **Information Blocks:** Use the **"Information Layout"** structure to provide technical data for each cover-up, such as "Needle Grouping," "Ink Saturation Levels," and "Total Sessions"—underscoring your professional discipline as an apprentice.
+
+This strategy turns your apprenticeship into a **living laboratory**, showing that while you are learning, you are doing so through the most rigorous and respectable means possible.

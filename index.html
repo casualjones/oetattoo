@@ -13,8 +13,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
+    <!-- Login Modal -->
+    <div id="auth-modal" class="auth-modal" style="display:none;">
+        <div class="auth-modal-content">
+            <div class="auth-modal-header">
+                <h2>Patch Access</h2>
+                <p>Enter a passphrase to access the DAW patch interface.</p>
+            </div>
+            <div class="auth-modal-form">
+                <div class="auth-input-group">
+                    <label for="auth-passphrase">Passphrase</label>
+                    <input type="password" id="auth-passphrase" placeholder="Enter passphrase" autocomplete="off">
+                </div>
+                <button id="auth-submit" class="cta-button">Enter Patch Dock</button>
+                <div id="auth-message" class="auth-message"></div>
+            </div>
+        </div>
+    </div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -22,6 +40,7 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#portfolio" class="nav-link">Work</a></li>
+                <li class="nav-item"><a href="#patch-app" class="nav-link">DAW Patch</a></li>
                 <li class="nav-item"><a href="#free-tattoos" class="nav-link">Collaborate</a></li>
                 <li class="nav-item"><a href="tools.html" class="nav-link">Tools</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
@@ -40,21 +59,248 @@
             <span class="loading-text">01 // THE APPRENTICE</span>
         </div>
             <div class="hero-content">
-            <h1 class="main-title">STUDY.TATTOO(); // Paint | Draw | Ink</h1>
-            <p class="subtitle" aria-hidden="true"></p>
+            <h1 class="main-title">STUDY.DAW_PATCH(); // Patch | Sync | Play</h1>
+            <p class="subtitle">Dock a session, route MIDI from your DAW, and sync tempo with a remote collaborator.</p>
             <div class="focus-points">
                 <div class="focus-item">
-                    <h3>Small</h3>
-                    <p>Intent. Restraint.</p>
+                    <h3>Patch</h3>
+                    <p>Connect DAW ports to the browser and share a live session.</p>
                 </div>
                 <div class="focus-item">
-                    <h3>Practice</h3>
-                    <p>Sketch. Paint. Repeat.</p>
+                    <h3>Sync</h3>
+                    <p>Tempo updates and MIDI flow across the web in a lightweight dock.</p>
                 </div>
             </div>
             <div class="cta-block">
-                <a href="#portfolio" class="cta-button">View the Progress</a>
-                <a href="#contact" class="cta-button secondary">Start a Session</a>
+                <a href="#patch-app" class="cta-button">Open Patch Dock</a>
+                <a href="#contact" class="cta-button secondary">Connect a DAW</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section patch-app-section" id="patch-app" style="display:none;">
+        <div class="container">
+            <div class="patch-layout-wrapper">
+                <aside class="patch-onboarding">
+                    <div class="dock-panel">
+                        <div class="dock-panel-title">Setup Requirements</div>
+                        <div class="panel-group">
+                            <p class="panel-copy"><strong>Browser:</strong> Chrome, Edge, or Opera (Web MIDI + WebRTC Audio)</p>
+                            <p class="panel-copy"><strong>DAW:</strong> Any DAW with MIDI output capability (Ableton, FL Studio, Logic, etc.)</p>
+                            <p class="panel-copy"><strong>Virtual MIDI:</strong> Set up a virtual MIDI loopback on your OS</p>
+                            <p class="panel-copy"><strong>Microphone:</strong> Built-in or external mic for audio streaming (optional)</p>
+                            <p class="panel-copy"><strong>Network:</strong> Stable internet to exchange SDP handshake with collaborator</p>
+                        </div>
+                    </div>
+
+                    <div class="dock-panel">
+                        <div class="dock-panel-title">Getting Started</div>
+                        <ol class="how-it-works" style="padding-left:1.5rem;">
+                            <li>Connect your MIDI device or virtual port using "Connect MIDI" button</li>
+                            <li>Optionally enable "Audio Bridge" to stream live audio</li>
+                            <li>Click "Create Offer" to generate a session handshake</li>
+                            <li>Share your SDP using QR code or copy/paste</li>
+                            <li>Paste the remote collaborator's answer into the "Remote SDP" field</li>
+                            <li>Use "Patch Mode" to direct MIDI flow (DAW → Session or vice versa)</li>
+                            <li>Set tempo and monitor the activity log for connection status</li>
+                        </ol>
+                    </div>
+
+                    <div class="dock-panel">
+                        <div class="dock-panel-title">Quick Reference</div>
+                        <p class="panel-copy"><strong>SDP:</strong> Session Description Protocol—the handshake text for WebRTC connection</p>
+                        <p class="panel-copy"><strong>Patch Mode:</strong> Controls whether MIDI flows from DAW to session or vice versa</p>
+                        <p class="panel-copy"><strong>Tempo:</strong> Syncs across the peer connection in real time</p>
+                        <p class="panel-copy"><strong>Audio Bridge:</strong> Streams live audio and receives remote mix through WebRTC</p>
+                        <button class="cta-button dock-button secondary" id="onboarding-close-btn">Close Panel</button>
+                    </div>
+                </aside>
+
+                <div class="patch-dock" data-dock-side="right">
+                    <aside class="dock-sidebar">
+                    <div class="dock-panel">
+                        <div class="dock-panel-title">Session Control</div>
+                        <div class="panel-group">
+                            <label for="patch-session-name">Session Name</label>
+                            <input id="patch-session-name" type="text" value="OE DAW Patch Session">
+                        </div>
+                        <div class="panel-group">
+                            <label for="patch-tempo">Tempo</label>
+                            <div class="slider-row">
+                                <input id="patch-tempo" type="range" min="60" max="180" value="120">
+                                <span id="patch-tempo-display">120 BPM</span>
+                            </div>
+                        </div>
+                        <div class="panel-group">
+                            <div class="dock-status-line">
+                                <span class="status-dot offline" id="patch-connection-dot"></span>
+                                <span id="patch-connection-state">Not connected</span>
+                            </div>
+                            <div class="button-row">
+                                <button class="cta-button dock-button" id="patch-create-offer">Create Offer</button>
+                                <button class="cta-button dock-button secondary" id="patch-accept-offer">Accept Offer</button>
+                            </div>
+                            <button class="cta-button dock-button secondary" id="patch-apply-answer">Apply Answer</button>
+                        </div>
+                        <div class="panel-group">
+                            <label for="patch-local-sdp">Your Local SDP</label>
+                            <textarea id="patch-local-sdp" readonly></textarea>
+                            <div class="button-row">
+                                <button class="cta-button dock-button secondary" id="patch-copy-local-sdp">Copy SDP</button>
+                                <button class="cta-button dock-button secondary" id="patch-qr-local">Show QR</button>
+                            </div>
+                            <div id="patch-qr-container" style="display:none; margin-top:1rem; text-align:center;">
+                                <div id="patch-qr-code"></div>
+                                <p class="panel-copy" style="font-size:0.9rem; margin-top:0.75rem;">Scan to share SDP</p>
+                            </div>
+                        </div>
+                        <div class="panel-group">
+                            <label for="patch-remote-sdp">Remote SDP / Offer</label>
+                            <textarea id="patch-remote-sdp" placeholder="Paste remote answer or offer here"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="dock-panel">
+                        <div class="dock-panel-title">MIDI Patch</div>
+                        <div class="panel-group">
+                            <p class="panel-copy">Patch your DAW to the browser via Web MIDI. Select the input that receives MIDI from your DAW.</p>
+                            <button class="cta-button dock-button" id="patch-connect-midi">Connect MIDI</button>
+                            <label for="patch-midi-input">MIDI Input</label>
+                            <select id="patch-midi-input" disabled>
+                                <option value="">No input selected</option>
+                            </select>
+                            <label for="patch-midi-output">MIDI Output</label>
+                            <select id="patch-midi-output" disabled>
+                                <option value="">No output selected</option>
+                            </select>
+                            <label for="patch-patch-mode">Patch Mode</label>
+                            <select id="patch-patch-mode">
+                                <option value="daw-to-session">DAW → Session</option>
+                                <option value="session-to-daw">Session → DAW</option>
+                            </select>
+                            <button class="cta-button dock-button secondary" id="patch-send-test-note">Send Test Note</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="dock-main">
+                    <div class="dock-header">
+                        <div>
+                            <span class="section-label">01 // DAW PATCH</span>
+                            <h2>Dockable DAW Patch Interface</h2>
+                            <p class="subtitle">Route MIDI, create a session handshake, and sync tempo across the internet.</p>
+                        </div>
+                        <div class="dock-toolbar">
+                            <button class="cta-button dock-button secondary" id="patch-dock-side-toggle">Dock Left</button>
+                            <button class="cta-button dock-button secondary" id="patch-reset-session">Reset Session</button>
+                        </div>
+                    </div>
+
+                    <div class="patch-panel-grid">
+                        <div class="dock-panel">
+                            <div class="dock-panel-title">Patch Routing</div>
+                            <p class="panel-copy">Use the connection controls to exchange session SDP with a collaborator. Active MIDI messages can flow through your selected outputs.</p>
+                            <div class="panel-group">
+                                <div class="routing-row">
+                                    <div class="routing-card">
+                                        <strong>Local</strong>
+                                        <p>Browser app</p>
+                                    </div>
+                                    <div class="routing-card arrow">⇄</div>
+                                    <div class="routing-card">
+                                        <strong>Remote</strong>
+                                        <p>Collaborator session</p>
+                                    </div>
+                                </div>
+                                <p class="panel-copy">If your DAW is connected to a virtual MIDI port, incoming notes will be forwarded to the session and remote messages can return to your selected MIDI output.</p>
+                            </div>
+                        </div>
+
+                        <div class="dock-panel">
+                            <div class="dock-panel-title">Audio Bridge</div>
+                            <p class="panel-copy">Stream live audio to your collaborator's DAW and receive their mix.</p>
+                            <div class="panel-group">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="audio-bridge-toggle" class="toggle-checkbox">
+                                    <span class="toggle-switch"></span>
+                                    <span class="toggle-text">Enable Audio Stream</span>
+                                </label>
+
+                                <div id="audio-controls-wrapper" style="display:none; margin-top:1rem; gap:1rem; flex-direction:column;">
+                                    <div>
+                                        <label for="audio-input-source" style="font-size:0.85rem; text-transform:uppercase; color:var(--text-secondary);">Audio Input</label>
+                                        <select id="audio-input-source" class="audio-select">
+                                            <option value="microphone">Microphone</option>
+                                            <option value="system">System Audio (requires OS setup)</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label for="audio-output-monitor" style="font-size:0.85rem; text-transform:uppercase; color:var(--text-secondary);">Hear Remote Audio</label>
+                                        <div class="toggle-row">
+                                            <label class="toggle-label compact">
+                                                <input type="checkbox" id="audio-output-monitor" class="toggle-checkbox">
+                                                <span class="toggle-switch small"></span>
+                                                <span class="toggle-text">Monitor</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label style="font-size:0.85rem; text-transform:uppercase; color:var(--text-secondary);">Input Level</label>
+                                        <div class="audio-meter-wrapper">
+                                            <canvas id="audio-input-meter" class="audio-meter" width="280" height="20"></canvas>
+                                            <div class="meter-value"><span id="audio-input-db">-∞</span> dB</div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="audio-input-gain" style="font-size:0.85rem; text-transform:uppercase; color:var(--text-secondary);">Input Gain</label>
+                                        <input type="range" id="audio-input-gain" min="0" max="200" value="100" class="audio-slider">
+                                        <span class="slider-value" id="audio-input-gain-value">100%</span>
+                                    </div>
+
+                                    <div>
+                                        <label for="audio-output-gain" style="font-size:0.85rem; text-transform:uppercase; color:var(--text-secondary);">Output Volume</label>
+                                        <input type="range" id="audio-output-gain" min="0" max="200" value="100" class="audio-slider">
+                                        <span class="slider-value" id="audio-output-gain-value">100%</span>
+                                    </div>
+
+                                    <div class="audio-status" id="audio-status">
+                                        <span class="status-dot"></span>
+                                        <span id="audio-status-text">Ready to stream</span>
+                                    </div>
+
+                                    <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem; padding-top: 1rem;">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="multitrack-audio-toggle" class="toggle-checkbox">
+                                            <span class="toggle-switch"></span>
+                                            <span class="toggle-text">Multi-track Mode</span>
+                                        </label>
+
+                                        <div id="multitrack-controls" style="display:none; margin-top:1rem; gap:1rem; flex-direction:column;">
+                                            <p class="panel-copy" style="font-size:0.8rem; color:var(--text-secondary); margin:0;">Route separate virtual audio outputs to send individual stems (drums, synths, vocals, etc.)</p>
+                                            
+                                            <div id="multitrack-tracks-list" style="display:flex; flex-direction:column; gap:0.75rem;">
+                                                <!-- Track items will be dynamically added here -->
+                                            </div>
+
+                                            <button class="cta-button dock-button secondary" id="add-track-btn" style="font-size:0.9rem;">+ Add Track</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dock-panel">
+                            <div class="dock-panel-title">Activity Log</div>
+                            <div class="patch-log-wrap">
+                                <ol id="patch-log" class="patch-log"></ol>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                </div>
             </div>
         </div>
     </section>
@@ -102,32 +348,32 @@
         <div class="container">
                 <div class="section-header">
                 <span class="section-overline">Collaborate</span>
-                <h2>Let's Create</h2>
+                <h2>Remote Session Patch</h2>
             </div>
             <div class="free-tattoos-content">
                 <div class="free-tattoos-text">
-                    <p>I am learning. I offer collaborative work—low-cost, trade, or exchange.</p>
+                    <p>This site now hosts a dockable DAW patch interface. Route MIDI, exchange session SDP, and keep collaborators in time.</p>
                     <ul class="benefits-list">
-                        <li>Design consult</li>
-                        <li>Aftercare guidance</li>
-                        <li>Photos (consent)</li>
+                        <li>Live DAW patching</li>
+                        <li>Tempo sync over the web</li>
+                        <li>Remote MIDI routing</li>
                     </ul>
 
                     <h3>Requirements</h3>
                     <ul class="requirements-list">
-                        <li><strong>Size:</strong> Small to medium (palm-sized to forearm)</li>
-                        <li><strong>Placement:</strong> Anywhere (no face, no hands)</li>
-                        <li><strong>Commitment:</strong> You're investing your skin; I'm investing my skill</li>
-                        <li><strong>Timeline:</strong> 2-4 weeks from consultation to appointment</li>
+                        <li><strong>DAW:</strong> Able to send MIDI via a virtual port</li>
+                        <li><strong>Browser:</strong> Chromium-based or Safari with Web MIDI support</li>
+                        <li><strong>Network:</strong> Share SDP text with your collaborator</li>
+                        <li><strong>Timeline:</strong> Quick session setup, instant patching</li>
                     </ul>
 
                     <h3>How It Works</h3>
                     <ol class="how-it-works">
-                        <li><strong>Reserve</strong> - Submit your interest & inspiration</li>
-                        <li><strong>Consult</strong> - We chat about your geometric vision</li>
-                        <li><strong>Design</strong> - I create your custom design</li>
-                        <li><strong>Appointment</strong> - We bring it to life</li>
-                        <li><strong>Forever</strong> - You carry our collaboration</li>
+                        <li><strong>Open</strong> - Launch the patch dock and connect MIDI</li>
+                        <li><strong>Patch</strong> - Share or accept the SDP text handshake</li>
+                        <li><strong>Sync</strong> - Set tempo and forward MIDI in real time</li>
+                        <li><strong>Play</strong> - Collaborate online through the docked session</li>
+                        <li><strong>Reset</strong> - Start a fresh session anytime</li>
                     </ol>
                 </div>
 
