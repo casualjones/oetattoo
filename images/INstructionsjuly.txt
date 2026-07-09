@@ -1,0 +1,82 @@
+OE Tattoo / GitHub Pages Redesign Brief
+
+Goal
+Rebuild the site as a highly stylized, immersive portfolio experience that feels boutique, bohemian, and a little esoteric. The first impression should feel like entering a private studio or hidden doorway rather than landing on a generic homepage.
+
+Core concept
+Use the front_door image as the landing page hero. Treat it like a doorway into the site. The image should be visually divided into clickable zones or slices so the entrance itself becomes navigation. Clicking into the doorway should reveal the main landing page experience behind it.
+
+Visual direction
+- Elegant, artistic, and atmospheric.
+- Inspired by boutique studios, ceremonial objects, old paper, shadow, texture, and pinpoint mandala geometry.
+- Avoid standard corporate layouts and avoid flat default components.
+- Favor layered compositions, strong type, rich spacing, and intentional negative space.
+- Use subtle motion and transitions, but keep the site feeling refined rather than noisy.
+
+Primary pages / sections
+1. Landing / entry page
+	- Front door image as the first interaction.
+	- Sliced or mapped click zones leading into the site.
+	- Minimal initial text, strong mood, clear entry action.
+
+2. Gallery
+	- Main visual portfolio area.
+	- The gallery banner should include book consult information.
+	- Contact details should be visible and easy to find.
+
+3. Tools
+	- A page or section for tools, process, or working materials.
+	- Can feel more utilitarian but should still match the overall art direction.
+
+4. Social
+	- Links and social presence.
+	- Keep this page visually integrated with the rest of the site.
+
+5. Interesting
+	- A curated page for inspirations, references, notes, or offbeat content.
+	- This can be more editorial and experimental.
+
+6. Band
+	- Dedicated page for band-related material.
+	- Should feel like part of the same universe, not a separate template.
+
+7. Music by me / self release
+	- A page for original music and self-released work.
+	- Can include releases, links, embedded players, or simple promo blocks.
+
+Design details
+- Build each page with a distinct but related identity.
+- Use mandala-inspired accents, precise geometry, and artful framing.
+- Include tactile details such as borders, paper texture, grain, or soft gradients where appropriate.
+- Keep navigation obvious enough to use, but let the art direction lead.
+
+Contact and consult info
+- Phone: 707-440-9353
+- Add email contact and consult booking info prominently, especially on gallery and contact-related areas.
+- If a consult banner or callout is used, make it feel premium and direct.
+
+UX and implementation notes
+- Make the doorway / sliced image interaction work on desktop and mobile.
+- Keep navigation accessible with keyboard support and readable contrast.
+- Make image treatments responsive so they do not break on small screens.
+- Use semantic structure and keep loading performance reasonable.
+- Preserve a clean path for GitHub Pages deployment.
+
+Content tone
+- Confident, artistic, and concise.
+- Slightly mysterious, but still clear.
+- Avoid overexplaining. Let visuals and section names do some of the work.
+
+Extra ideas to include
+- A small signature mark or monogram for OE.
+- A featured works strip or rotating highlight section.
+- A consult CTA that repeats in the gallery and contact areas.
+- A subtle footer with location, contact, and social links.
+- Optional hidden details or easter-egg style interactions if they do not hurt usability.
+
+Suggested build priority
+1. Entry / front door experience.
+2. Main landing page navigation.
+3. Gallery and consult banner.
+4. Secondary pages: tools, social, interesting, band, music.
+5. Polish: motion, responsiveness, accessibility, and final styling.

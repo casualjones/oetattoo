@@ -6,12 +6,6 @@ let audioPlayer;
 // Demo song collection - replace with your actual Google Drive public links
 // To get public links: Right-click file in Google Drive > Get shareable link > Set to "Anyone with the link can view"
 const DEMO_SONGS = [
-    {
-        name: "Drum Track",
-        url: "https://drive.google.com/uc?export=download&id=1tS2sWy8QpzQv-9y3wJnuEuVT57DLL92z",
-        size: "2.3 MB",
-        duration: "2:15"
-    }
     // Add more songs here
 ];
 
@@ -50,7 +44,7 @@ function displaySongs() {
     const songsListElement = document.getElementById('songsList');
 
     if (songsList.length === 0) {
-        songsListElement.innerHTML = '<div class="empty-message"><p>No demo songs available. Check back later!</p></div>';
+        songsListElement.innerHTML = '';
         return;
     }
 

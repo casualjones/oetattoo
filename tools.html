@@ -3,100 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools & Resources - OE Tattoo</title>
-    <meta name="description" content="Studio tools, resources, and learning materials.">
+    <title>Tools - OE Tattoo</title>
+    <meta name="description" content="Studio tools and study utilities for tattoo design work.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
-<body class="tools">
+<body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html#hero" class="nav-logo">OE</a>
+            <a href="index.html" class="nav-logo">OE / Doorway</a>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#studio-tools" class="nav-link">Tools</a></li>
-                <li class="nav-item"><a href="#learning-resources" class="nav-link">Resources</a></li>
-                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="portfolio.html" class="nav-link">Gallery</a></li>
+                <li><a href="tools.html" class="nav-link" aria-current="page">Tools</a></li>
+                <li><a href="contact.html" class="nav-link">Social</a></li>
+                <li><a href="events.html" class="nav-link">Interesting</a></li>
+                <li><a href="songs.html" class="nav-link">Music</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-storytelling" id="tools-hero">
-        <div class="preloader-placeholder">
-            <span class="loading-text">03 // THE STUDIO</span>
-        </div>
-        <div class="hero-content">
-            <h1 class="main-title">Tools & Resources</h1>
-            <p class="subtitle">Prepare. Learn. Practice.</p>
-            <div class="focus-points">
-                <div class="focus-item">
-                    <h3>Process</h3>
-                    <p>Scale. Grid. Trace.</p>
-                </div>
-                <div class="focus-item">
-                    <h3>Study</h3>
-                    <p>Reference. Technique. Safety.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Studio Tools Section -->
-    <section class="section tools-section" id="studio-tools">
-        <div class="container">
-            <div class="info-layout-wrapper">
-                <span class="section-label">04 // DESIGN TOOLS</span>
-                <div class="section-intro">
-                    <h2>Prepare Your Work</h2>
-                    <p>Tools to prepare designs and stencils for tattoo work. Resize, grid, or trace ideas.</p>
-                </div>
-            </div>
+    <main class="page-shell">
+        <section class="page-hero">
+            <span class="eyebrow">03 // TOOLS</span>
+            <h1>Working surfaces.</h1>
+            <p>Simple utilities for scaling, tracing, stenciling, numerology, and media conversion.</p>
+        </section>
 
-            <div class="radio-player">
-                <h3>Listen to KHUM Radio</h3>
-                <p>Enjoy some tunes while you work on your designs.</p>
-                <p><a href="https://khum.com/listen-live.php" target="_blank" rel="noopener noreferrer" class="button-link">Open KHUM Radio Live</a></p>
-            </div>
+        <section class="tool-grid">
+            <article class="page-card tool-card">
+                <h3>Image Scaler</h3>
+                <input type="file" id="scalerInput" accept=".jpg,.jpeg,.png,image/*">
+                <label for="scale">Scale (%)</label>
+                <input type="number" id="scale" value="100" min="10" max="200">
+                <div class="page-actions">
+                    <button class="cta-button" onclick="scaleImage()">Scale</button>
+                    <button class="cta-button secondary" onclick="downloadCanvas('scalerCanvas', 'scaledimage.png')">Download</button>
+                </div>
+                <canvas id="scalerCanvas"></canvas>
+            </article>
 
-            <div class="instructions">
-                <h3>How to Use These Tools</h3>
-                <ul>
-                    <li>Upload images under 5MB for best performance</li>
-                    <li>Supported formats: JPG, PNG (HEIC not supported - please convert to JPG/PNG first)</li>
-                    <li><strong>Image Scaler:</strong> Resize your tattoo designs to desired dimensions</li>
-                    <li><strong>Grider:</strong> Add a reference grid with alphanumeric coordinates for precise tracing</li>
-                    <li><strong>Stencil Maker:</strong> Choose edge detection method and threshold to create contour outlines for stencils</li>
-                    <li><strong>Numerology App:</strong> Enter your birth date and full name to reveal a creative life path number</li>
-                    <li><strong>Media to Audio Converter:</strong> Convert any video file (MKV, AVI, MP4, MOV, etc.) to MP3 or WAV audio format</li>
-                </ul>
-            </div>
-
-            <div class="tools-grid">
-            <h3>Image Scaler</h3>
-            <input type="file" id="scalerInput" accept=".jpg,.jpeg,.png,image/*">
-            <label for="scale">Scale (%):</label>
-            <input type="number" id="scale" value="100" min="10" max="200">
-            <button onclick="scaleImage()">Scale</button>
-            <button onclick="downloadCanvas('scalerCanvas', 'scaledimage.png')">Download</button>
-            <canvas id="scalerCanvas"></canvas>
-        </div>
-        <div class="tool">
-            <h3>Grider</h3>
-            <input type="file" id="gridInput" accept="image/*">
-            <label for="gridSize">Grid Size (px):</label>
-            <input type="number" id="gridSize" value="50" min="10" max="100">
-            <p>Size: <span id="gridSizeDisplay">50px</span> | <span id="gridInches">0.52in</span> | <span id="gridCm">1.32cm</span></p>
-            <div class="transfer-dimensions">
+            <article class="page-card tool-card">
+                <h3>Grider</h3>
+                <input type="file" id="gridInput" accept="image/*">
+                <label for="gridSize">Grid Size (px)</label>
+                <input type="number" id="gridSize" value="50" min="10" max="100">
+                <p>Size: <span id="gridSizeDisplay">50px</span> | <span id="gridInches">0.52in</span> | <span id="gridCm">1.32cm</span></p>
                 <label for="transferWidth">Transfer Width</label>
                 <input type="number" id="transferWidth" value="8" min="1" step="0.1">
                 <label for="transferHeight">Transfer Height</label>
@@ -106,127 +63,105 @@
                     <option value="in">in</option>
                     <option value="cm">cm</option>
                 </select>
-                <p class="transfer-note">Enter the medium dimensions you plan to transfer to for more accurate scale reference.</p>
-            </div>
-            <button onclick="addGrid()">Add Grid</button>
-            <button onclick="downloadCanvas('gridCanvas', 'gridedimage.png')">Download</button>
-            <p id="gridScaleInfo" class="grid-scale-info"></p>
-            <canvas id="gridCanvas"></canvas>
-        </div>
-        <div class="tool">
-            <h3>Stencil Maker</h3>
-            <input type="file" id="stencilInput" accept="image/*">
-            <label for="edgeMethod">Edge Detection Method:</label>
-            <select id="edgeMethod">
-                <option value="sobel">Sobel</option>
-                <option value="prewitt">Prewitt</option>
-                <option value="roberts">Roberts</option>
-                <option value="laplacian">Laplacian</option>
-            </select>
-            <label for="edgeThreshold">Edge Threshold (0-255):</label>
-            <input type="number" id="edgeThreshold" value="50" min="0" max="255">
-            <p>Choose edge detection method and adjust threshold. Lower threshold shows more edges.</p>
-            <button onclick="makeStencil()">Detect Edges</button>
-            <button onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download</button>
-            <canvas id="stencilCanvas"></canvas>
-        </div>
-        <div class="tool">
-            <h3>Numerology App</h3>
-            <p>Discover your core numerology traits and creative life path for your design inspiration.</p>
-            <label for="birthDate">Birth Date</label>
-            <input type="date" id="birthDate">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" placeholder="First Last" autocomplete="name">
-            <button onclick="calculateNumerology()">Calculate</button>
-            <button onclick="resetNumerology()">Reset</button>
-            <div id="numerologyOutput" class="numerology-results"></div>
-        </div>
-        <div class="tool">
-            <h3>External Editing App</h3>
-            <p>For advanced stencil preparation and tracing, use Photopea’s full online editor.</p>
-            <a class="button-link" href="https://www.photopea.com" target="_blank" rel="noopener noreferrer">Open Photopea</a>
-            <p class="photopea-note">Photopea opens in a new tab. Use it for detailed tracing or vector conversion, then return here for simple downloads and stencil preparation.</p>
-        </div>        <div class="tool">
-            <h3>Media to Audio Converter</h3>
-            <p>Convert video files to audio using Web Audio API (WAV support, MP3 limited).</p>
-            <div id="ffmpegStatus" class="ffmpeg-status">
-                <span id="ffmpegStatusText">Web Audio API ready for conversion</span>
-            </div>
-            <input type="file" id="mediaInput" accept="video/*,.mkv,.avi,.mp4,.mov,.flv,.wmv,.webm,audio/*">
-            <label for="outputFormat">Output Format:</label>
-            <select id="outputFormat">
-                <option value="wav" selected>WAV (Uncompressed)</option>
-                <option value="mp3">MP3 (Requires external tool)</option>
-            </select>
-            <label for="audioBitrate" style="display:none;">Audio Quality (for MP3):</label>
-            <select id="audioBitrate" style="display:none;">
-                <option value="128">128 kbps (Good)</option>
-                <option value="192" selected>192 kbps (Better)</option>
-                <option value="256">256 kbps (High)</option>
-                <option value="320">320 kbps (Maximum)</option>
-            </select>
-            <button onclick="convertMediaToAudio()">Convert</button>
-            <button onclick="resetMediaConverter()">Reset</button>
-            <div id="converterStatus" class="converter-status"></div>
-            <div id="converterProgress" class="progress-bar" style="display:none;">
-                <div id="converterProgressBar" class="progress-fill"></div>
-            </div>
-        </div>
-        
-        <!-- Learning Resources Section -->
-        <section class="resources-section">
-            <h2>Learning Resources</h2>
-            <p>Professional references for study and practice.</p>
-            </div>
-        </div>
-    </section>
+                <p class="page-note">Use the planned stencil size for accurate reference scale.</p>
+                <div class="page-actions">
+                    <button class="cta-button" onclick="addGrid()">Add Grid</button>
+                    <button class="cta-button secondary" onclick="downloadCanvas('gridCanvas', 'gridedimage.png')">Download</button>
+                </div>
+                <p id="gridScaleInfo" class="page-note"></p>
+                <canvas id="gridCanvas"></canvas>
+            </article>
 
-    <!-- Learning Resources Section -->
-    <section class="section" id="learning-resources">
-        <div class="container">
-            <div class="info-layout-wrapper">
-                <span class="section-label">05 // LEARNING RESOURCES</span>
-            </div>
-        </div>
-        <div class="resources-section">
-            <div class="container">
-                <h2>Professional References</h2>
-                <p>Study materials and technical guides for tattoo practice and professional development.</p>
-                
+            <article class="page-card tool-card">
+                <h3>Stencil Maker</h3>
+                <input type="file" id="stencilInput" accept="image/*">
+                <label for="edgeMethod">Edge Detection Method</label>
+                <select id="edgeMethod">
+                    <option value="sobel">Sobel</option>
+                    <option value="prewitt">Prewitt</option>
+                    <option value="roberts">Roberts</option>
+                    <option value="laplacian">Laplacian</option>
+                </select>
+                <label for="edgeThreshold">Edge Threshold (0-255)</label>
+                <input type="number" id="edgeThreshold" value="50" min="0" max="255">
+                <div class="page-actions">
+                    <button class="cta-button" onclick="makeStencil()">Detect Edges</button>
+                    <button class="cta-button secondary" onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download</button>
+                </div>
+                <canvas id="stencilCanvas"></canvas>
+            </article>
+
+            <article class="page-card tool-card">
+                <h3>Numerology</h3>
+                <input type="date" id="birthDate">
+                <input type="text" id="fullName" placeholder="First Last" autocomplete="name">
+                <div class="page-actions">
+                    <button class="cta-button" onclick="calculateNumerology()">Calculate</button>
+                    <button class="cta-button secondary" onclick="resetNumerology()">Reset</button>
+                </div>
+                <div id="numerologyOutput" class="numerology-results"></div>
+            </article>
+
+            <article class="page-card tool-card">
+                <h3>Media to Audio</h3>
+                <input type="file" id="mediaInput" accept="video/*,.mkv,.avi,.mp4,.mov,.flv,.wmv,.webm,audio/*">
+                <label for="outputFormat">Output Format</label>
+                <select id="outputFormat">
+                    <option value="wav" selected>WAV</option>
+                    <option value="mp3">MP3</option>
+                </select>
+                <label for="audioBitrate" style="display:none;">Audio Quality</label>
+                <select id="audioBitrate" style="display:none;">
+                    <option value="128">128 kbps</option>
+                    <option value="192" selected>192 kbps</option>
+                    <option value="256">256 kbps</option>
+                    <option value="320">320 kbps</option>
+                </select>
+                <div class="page-actions">
+                    <button class="cta-button" onclick="convertMediaToAudio()">Convert</button>
+                    <button class="cta-button secondary" onclick="resetMediaConverter()">Reset</button>
+                </div>
+                <div id="ffmpegStatus" class="ffmpeg-status"><span id="ffmpegStatusText">Web Audio API ready for conversion</span></div>
+                <div id="converterStatus" class="converter-status"></div>
+                <div id="converterProgress" class="progress-bar" style="display:none;"><div id="converterProgressBar" class="progress-fill"></div></div>
+            </article>
+
+            <article class="page-card resource-card">
+                <h3>External Editing</h3>
+                <p>Use Photopea for advanced tracing and vector cleanup when needed.</p>
+                <a class="cta-button" href="https://www.photopea.com" target="_blank" rel="noopener">Open Photopea</a>
+            </article>
+
+            <article class="page-card resource-card">
+                <h3>Learning Resources</h3>
+                <p>Study materials for safety, technique, and professional development.</p>
                 <div class="resource-cards">
                     <div class="resource-card">
                         <h3>Modern Professional Tattooing</h3>
-                        <p>Comprehensive technical manual covering professional ethics, safety, hardware fundamentals, needle technology, sterilization protocols, and execution techniques.</p>
-                        <div class="resource-meta">
-                            <span class="tag">Safety</span>
-                            <span class="tag">Technique</span>
-                            <span class="tag">Professional</span>
-                        </div>
-                        <a href="resources/modern-professional-tattooing.pdf" download class="button-link">Download PDF</a>
+                        <p>Technical reference for safety, hardware, needles, sterilization, and execution.</p>
+                        <div class="resource-meta"><span class="tag">Safety</span><span class="tag">Technique</span><span class="tag">Professional</span></div>
+                        <a href="resources/modern-professional-tattooing.pdf" download class="cta-button">Download PDF</a>
                     </div>
-                    
                     <div class="resource-card">
                         <h3>Study Materials Archive</h3>
-                        <p>Reference collection for anatomy, drawing, design theory, and professional practices. Build your reference library for continuous learning.</p>
-                        <div class="resource-meta">
-                            <span class="tag">Study</span>
-                            <span class="tag">Reference</span>
-                            <span class="tag">Design</span>
-                        </div>
-                        <a href="resources/" class="button-link">Browse Resources</a>
+                        <p>Reference collection for anatomy, drawing, and design theory.</p>
+                        <div class="resource-meta"><span class="tag">Study</span><span class="tag">Reference</span><span class="tag">Design</span></div>
+                        <a href="resources/" class="cta-button secondary">Browse Resources</a>
                     </div>
                 </div>
-                
-                <div class="resource-note">
-                    <p><strong>Note:</strong> These materials are for personal study and professional development. Always prioritize hands-on mentorship and practical experience under qualified supervision.</p>
-                </div>
-            </div>
+                <p class="page-note">For study only. Keep mentorship and practice at the center.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer compact-footer">
+        <div class="container footer-row">
+            <p>OE Tattoo</p>
+            <p>Tools and study</p>
         </div>
-    </section>
-    <footer>
-        <p>&copy; 2026 OE Tattoo</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script defer src="script.js"></script>
     <script src="tools.js?v=5b1505c"></script>
 </body>
 </html>

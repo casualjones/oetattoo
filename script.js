@@ -182,8 +182,14 @@ function initNavigation() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetId = link.getAttribute('href');
+
+            if (!targetId || !targetId.startsWith('#')) {
+                navMenu.classList.remove('active');
+                return;
+            }
+
+            e.preventDefault();
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
@@ -604,11 +610,28 @@ function initGsapAnimations() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from('.hero-storytelling .hero-content', {
+    gsap.from('.hero-storytelling .hero-copy', {
         opacity: 0,
         y: 60,
         duration: 1.2,
         ease: 'power3.out',
+    });
+
+    gsap.from('.hero-storytelling .doorway-panel', {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        ease: 'power3.out',
+        delay: 0.15,
+    });
+
+    gsap.from('.hero-storytelling .door-slice', {
+        opacity: 0,
+        y: 24,
+        duration: 0.9,
+        stagger: 0.09,
+        ease: 'power3.out',
+        delay: 0.3,
     });
 
     gsap.from('.hero-storytelling .focus-item', {
@@ -638,6 +661,20 @@ function initGsapAnimations() {
             scrollTrigger: {
                 trigger: section,
                 start: 'top 85%',
+                toggleActions: 'play none none none',
+            },
+        });
+    });
+
+    gsap.utils.toArray('.page-shell .page-hero, .page-shell .page-card, .page-shell .portfolio-item').forEach((section) => {
+        gsap.from(section, {
+            opacity: 0,
+            y: 32,
+            duration: 0.85,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 88%',
                 toggleActions: 'play none none none',
             },
         });

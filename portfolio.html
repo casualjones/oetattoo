@@ -3,35 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - OE Tattoo</title>
-    <meta name="description" content="Browse my tattoo portfolio and local studio work from Eureka and the North Coast.">
+    <title>Gallery - OE Tattoo</title>
+    <meta name="description" content="Selected tattoo work and archive images from OE Tattoo.">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>OE Tattoo</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="flash.html">Flash</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="events.html">Events</a>
-            <a href="tools.html">Tools</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Portfolio</h2>
-        <p>Portfolio under construction. Updates are coming soon.</p>
-        <section class="under-construction" style="border: 2px dashed #ffb347; padding: 1rem; margin: 1rem 0; background: rgba(255, 179, 71, 0.08);">
-            <strong>Under Construction:</strong> Portfolio updates are coming soon. New work and studio pieces will be added as available.
-        </section>
-        <div class="gallery">
-            <!-- Portfolio images will be added Here -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">OE / Doorway</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="portfolio.html" class="nav-link" aria-current="page">Gallery</a></li>
+                <li><a href="tools.html" class="nav-link">Tools</a></li>
+                <li><a href="contact.html" class="nav-link">Social</a></li>
+                <li><a href="events.html" class="nav-link">Interesting</a></li>
+                <li><a href="songs.html" class="nav-link">Music</a></li>
+            </ul>
+            <button class="hamburger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
+    </nav>
+
+    <main class="page-shell">
+        <section class="page-hero">
+            <span class="eyebrow">02 // GALLERY</span>
+            <h1>Selected work.</h1>
+            <p>Clean pieces, cover-ups, and archived images. More work loads here as it is added.</p>
+        </section>
+
+        <section class="page-grid">
+            <article class="page-card">
+                <h2>Portfolio Grid</h2>
+                <div id="portfolio-grid" class="portfolio-grid"></div>
+            </article>
+
+            <article class="page-card">
+                <h2>Consult</h2>
+                <p>Phone 707 440 9353. Email oetattoo888@gmail.com.</p>
+                <div class="page-actions">
+                    <a class="cta-button" href="contact.html">Contact</a>
+                    <a class="cta-button secondary" href="index.html">Back to Door</a>
+                </div>
+            </article>
+        </section>
     </main>
-    <footer>
-        <p>&copy; 2026 OE Tattoo</p>
+
+    <footer class="footer compact-footer">
+        <div class="container footer-row">
+            <p>OE Tattoo</p>
+            <p>Selected work and archive</p>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script src="portfolio-data.js"></script>
+    <script defer src="script.js"></script>
 </body>
 </html>

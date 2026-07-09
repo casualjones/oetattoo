@@ -3,39 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - OE Tattoo</title>
-    <meta name="description" content="Contact OE Tattoo for appointments. Book by phone.">
+    <title>Social - OE Tattoo</title>
+    <meta name="description" content="Contact OE Tattoo and book a consult.">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>OE Tattoo</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="flash.html">Flash</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="events.html">Events</a>
-            <a href="tools.html">Tools</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Contact Me</h2>
-        <div class="contact-info">
-            <h3>Book a Session</h3>
-            <p>Oe is a tattoo artist based in Eureka.</p>
-            <p><strong>Phone:</strong> <a href="tel:7074409353">707-440-9353</a></p>
-            <p><strong>Email:</strong> <a href="mailto:oetattoo888@gmail.com">oetattoo888@gmail.com</a></p>
-            <p><strong>Website:</strong> <a href="http://www.oetattoo.com" target="_blank">www.oetattoo.com</a></p>
-            <h3>Hours & Pricing</h3>
-            <p><strong>Hours:</strong> Appointment only</p>
-            <p><strong>Pricing:</strong> $60 minimum, final price depends on the work.</p>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">OE / Doorway</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="portfolio.html" class="nav-link">Gallery</a></li>
+                <li><a href="tools.html" class="nav-link">Tools</a></li>
+                <li><a href="contact.html" class="nav-link" aria-current="page">Social</a></li>
+                <li><a href="events.html" class="nav-link">Interesting</a></li>
+                <li><a href="songs.html" class="nav-link">Music</a></li>
+            </ul>
+            <button class="hamburger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
-        <p>Visit: <a href="https://wanderoeste.blogspot.com/" target="_blank">Echos</a></p>
+    </nav>
+
+    <main class="page-shell">
+        <section class="page-hero">
+            <span class="eyebrow">03 // SOCIAL</span>
+            <h1>Reach out.</h1>
+            <p>Simple contact lines, consults, and social links.</p>
+        </section>
+
+        <section class="page-grid">
+            <article class="page-card contact-card">
+                <h2>Book a consult</h2>
+                <p>Phone: <a href="tel:7074409353">707-440-9353</a></p>
+                <p>Email: <a href="mailto:oetattoo888@gmail.com">oetattoo888@gmail.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/tattoo.oe" target="_blank" rel="noopener">@tattoo.oe</a></p>
+                <p>Website: <a href="http://www.oetattoo.com" target="_blank" rel="noopener">www.oetattoo.com</a></p>
+            </article>
+
+            <article class="page-card">
+                <h2>Notes</h2>
+                <p>Appointment only. Price depends on the work. Keep it short and direct when you reach out.</p>
+                <div class="page-actions">
+                    <a class="cta-button" href="tel:7074409353">Call</a>
+                    <a class="cta-button secondary" href="mailto:oetattoo888@gmail.com">Email</a>
+                </div>
+            </article>
+        </section>
     </main>
-    <footer>
-        <p>&copy; 2026 OE Tattoo</p>
+
+    <footer class="footer compact-footer">
+        <div class="container footer-row">
+            <p>OE Tattoo</p>
+            <p>Consults and social</p>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script defer src="script.js"></script>
 </body>
 </html>
