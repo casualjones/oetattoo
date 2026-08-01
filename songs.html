@@ -23,47 +23,74 @@
                 <li><a href="contact.html" class="nav-link">Social</a></li>
                 <li><a href="events.html" class="nav-link">Interesting</a></li>
                 <li><a href="songs.html" class="nav-link" aria-current="page">Music</a></li>
+                <li><a href="links.html" class="nav-link">Links</a></li>
             </ul>
             <button class="hamburger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <main class="page-shell">
-        <section class="page-hero">
+    <main class="page-shell bandcamp-shell">
+        <section class="page-hero music-hero">
             <span class="eyebrow">05 // MUSIC</span>
             <h1>Self release.</h1>
-            <p>Personal songs, demos, and releases.</p>
+            <p>Bandcamp-style listening room for songs, demos, and rough cuts.</p>
         </section>
 
-        <section class="page-grid song-library">
-            <article class="page-card song-card">
-                <h2>Library</h2>
-                <div id="songsList" class="songs-list">
+        <section class="bandcamp-layout">
+            <article class="page-card song-card album-panel">
+                <figure class="album-art-wrap">
+                    <img src="images/front_door.avif" alt="OE self-release cover" class="album-art">
+                </figure>
+                <div class="album-copy">
+                    <h2>OE Self Release</h2>
+                    <p>Independent uploads from the studio. Raw sketches and finished songs live here first.</p>
+                    <div class="release-actions" aria-label="Release actions">
+                        <div class="release-price">
+                            <span class="label">Price</span>
+                            <strong>Name your price</strong>
+                        </div>
+                        <a href="https://www.paypal.com/paypalme/oetattoo" class="release-btn support" target="_blank" rel="noopener">Support artist</a>
+                        <a href="https://instagram.com/tattoo.oe" class="release-btn follow" target="_blank" rel="noopener">Follow updates</a>
+                    </div>
+                    <div class="album-tags">
+                        <span class="tag">Self-released</span>
+                        <span class="tag">Work in progress</span>
+                    </div>
                 </div>
             </article>
 
-            <article class="page-card song-card">
-                <h2>Now playing</h2>
-                <div id="nowPlaying" class="now-playing-info">
-                    <span id="currentSong">No song selected</span>
-                    <div id="progressContainer" class="progress-container" style="display: none;">
-                        <div id="progressBar" class="progress-bar"></div>
-                        <div class="progress-times">
-                            <span id="currentTime">0:00</span>
-                            <span id="totalTime">0:00</span>
-                        </div>
-                    </div>
+            <article class="page-card song-card track-panel">
+                <div class="track-panel-head">
+                    <h2>Tracklist</h2>
+                    <span class="track-hint">Click any track to play</span>
                 </div>
-                <div class="player-controls">
-                    <button id="prevBtn" class="player-btn">⏮</button>
-                    <button id="playPauseBtn" class="player-btn">▶</button>
-                    <button id="nextBtn" class="player-btn">⏭</button>
-                    <div class="volume-control">
-                        <span>🔊</span>
-                        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
-                    </div>
-                </div>
+                <div id="songsList" class="songs-list"></div>
             </article>
+        </section>
+
+        <section class="page-card song-card player-panel">
+            <div id="nowPlaying" class="now-playing-info">
+                <span class="label">Now playing</span>
+                <span id="currentSong" class="current-song">No song selected</span>
+            </div>
+            <div id="progressContainer" class="progress-container" style="display: none;" aria-label="Song progress">
+                <button id="progressTrack" class="progress-track" type="button" aria-label="Seek in track">
+                    <span id="progressBar" class="progress-bar"></span>
+                </button>
+                <div class="progress-times">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button id="prevBtn" class="player-btn" aria-label="Previous song">⏮</button>
+                <button id="playPauseBtn" class="player-btn primary" aria-label="Play or pause">▶</button>
+                <button id="nextBtn" class="player-btn" aria-label="Next song">⏭</button>
+                <div class="volume-control">
+                    <span aria-hidden="true">🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.7" aria-label="Volume">
+                </div>
+            </div>
         </section>
     </main>
 

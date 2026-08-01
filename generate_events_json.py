@@ -3,7 +3,7 @@ import json
 import re
 import time
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36'
 SEARCH_URL = 'https://www.northcoastjournal.com/community/'
@@ -11,7 +11,12 @@ OUTPUT_FILE = 'events-data.json'
 MAX_EVENTS = 40
 EVENTBRITE_URL = 'https://www.eventbrite.com/d/ca--eureka/music--events/'
 EVENTBRITE_PAGES = 2
+LOCO_LOOKAHEAD_URL = 'https://lostcoastoutpost.com/lowdown/lookahead/'
 SLEEP_SECONDS = 1.0
+
+
+def clean_text(value):
+    return html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', value or '')).strip())
 
 
 def fetch(url):
@@ -146,6 +151,82 @@ def parse_eventbrite_events(html_text):
     return events
 
 
+def parse_loco_date_label(label, reference_date):
+    label = clean_text(label).upper()
+    if not label:
+        return None
+
+    simple_offsets = {
+        'TODAY': 0,
+        'TOMORROW': 1,
+        'MONDAY': (0 - reference_date.weekday()) % 7,
+        'TUESDAY': (1 - reference_date.weekday()) % 7,
+        'WEDNESDAY': (2 - reference_date.weekday()) % 7,
+        'THURSDAY': (3 - reference_date.weekday()) % 7,
+        'FRIDAY': (4 - reference_date.weekday()) % 7,
+        'SATURDAY': (5 - reference_date.weekday()) % 7,
+        'SUNDAY': (6 - reference_date.weekday()) % 7,
+    }
+    if label in simple_offsets:
+        return reference_date + timedelta(days=simple_offsets[label])
+
+    explicit = re.match(r'^(MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY),\s+([A-Z]{3,4})\.\s+(\d{1,2})$', label)
+    if not explicit:
+        return None
+
+    month_map = {
+        'JAN': 1, 'FEB': 2, 'MAR': 3, 'APR': 4, 'MAY': 5, 'JUN': 6,
+        'JUL': 7, 'AUG': 8, 'SEP': 9, 'SEPT': 9, 'OCT': 10, 'NOV': 11, 'DEC': 12,
+    }
+    month_num = month_map.get(explicit.group(2).replace('.', ''))
+    day_num = int(explicit.group(3))
+    if not month_num:
+        return None
+
+    year = reference_date.year
+    candidate = datetime(year, month_num, day_num)
+    if candidate.date() < reference_date.date() and month_num < reference_date.month:
+        candidate = datetime(year + 1, month_num, day_num)
+    return candidate
+
+
+def parse_loco_lookahead_events(html_text):
+    reference_date = datetime.now()
+    sections = re.split(r'<h3 style="font-size:2em; margin-top: 1em;">(.*?)</h3>', html_text)
+    if len(sections) < 3:
+        return []
+
+    events = []
+    seen = set()
+    for i in range(1, len(sections), 2):
+        date_label = sections[i]
+        body = sections[i + 1] if i + 1 < len(sections) else ''
+        date_obj = parse_loco_date_label(date_label, reference_date)
+        if not date_obj:
+            continue
+
+        for event_match in re.finditer(
+            r'<strong><a href="(?P<href>/lowdown/events/[^"]+)"[^>]*>(?P<title>.*?)</a></strong><br\s*/?>\s*<span[^>]*>\s*<a[^>]*>(?P<venue>.*?)</a>\s*/\s*(?P<time>[^<\n]+)',
+            body,
+            flags=re.S,
+        ):
+            href = event_match.group('href').strip()
+            url = f'https://lostcoastoutpost.com{href}'
+            if url in seen:
+                continue
+            seen.add(url)
+
+            events.append({
+                'title': clean_text(event_match.group('title')) or 'Lowdown Event',
+                'url': url,
+                'location': clean_text(event_match.group('venue')),
+                'source': 'Lost Coast Outpost Lowdown',
+                'detail_time': clean_text(event_match.group('time')),
+                'startDateIso': date_obj.isoformat(),
+            })
+    return events
+
+
 def parse_json_ld(html_text):
     matches = re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', html_text, flags=re.S)
     for raw in matches:
@@ -265,11 +346,21 @@ def main():
             print('Failed to fetch Eventbrite page:', page_url, exc)
         time.sleep(SLEEP_SECONDS)
 
-    print('Combining NCJ and Eventbrite events...')
+    loco_events = []
+    print('Fetching Lowdown lookahead page:', LOCO_LOOKAHEAD_URL)
+    try:
+        loco_html = fetch(LOCO_LOOKAHEAD_URL)
+        loco_events = parse_loco_lookahead_events(loco_html)
+        print(f'Found {len(loco_events)} Lowdown events.')
+    except Exception as exc:
+        print('Failed to fetch Lowdown lookahead page:', LOCO_LOOKAHEAD_URL, exc)
+    time.sleep(SLEEP_SECONDS)
+
+    print('Combining NCJ, Eventbrite, and Lowdown events...')
     now = datetime.now().astimezone()
     combined = []
     seen_urls = set()
-    for event in enriched + eventbrite_events:
+    for event in enriched + eventbrite_events + loco_events:
         url = event.get('url', '').strip()
         if not url or url in seen_urls:
             continue

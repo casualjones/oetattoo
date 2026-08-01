@@ -6,7 +6,7 @@ const eventList = document.getElementById('eventList');
 const refreshButton = document.getElementById('refreshButton');
 const prevWeekButton = document.getElementById('prevWeek');
 const nextWeekButton = document.getElementById('nextWeek');
-let currentWeekStart = getWeekStart(new Date());
+let currentMonthStart = getMonthStart(new Date());
 
 const fallbackEvents = [
   {
@@ -36,6 +36,13 @@ function getWeekStart(date) {
   return newDate;
 }
 
+function getMonthStart(date) {
+  const newDate = new Date(date);
+  newDate.setDate(1);
+  newDate.setHours(0, 0, 0, 0);
+  return newDate;
+}
+
 function addDays(date, amount) {
   const d = new Date(date);
   d.setDate(d.getDate() + amount);
@@ -46,13 +53,16 @@ function formatDateLong(date) {
   return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 }
 
+function formatMonthYear(date) {
+  return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+}
+
 function getDayKey(date) {
   return date.toISOString().slice(0, 10);
 }
 
 function updateWeekLabel() {
-  const endOfWeek = addDays(currentWeekStart, 6);
-  weekLabel.textContent = `Week of ${formatDateLong(currentWeekStart)} — ${formatDateLong(endOfWeek)}`;
+  weekLabel.textContent = `Month: ${formatMonthYear(currentMonthStart)}`;
 }
 
 function setStatus(message, success = true) {
@@ -63,29 +73,59 @@ function setStatus(message, success = true) {
 function renderCalendar(events) {
   calendarGrid.innerHTML = '';
   const dayHeaders = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  for (let i = 0; i < 7; i++) {
-    const date = addDays(currentWeekStart, i);
+  dayHeaders.forEach(label => {
+    const header = document.createElement('div');
+    header.className = 'event-day-header';
+    header.textContent = label;
+    calendarGrid.appendChild(header);
+  });
+
+  const monthStart = currentMonthStart;
+  const monthStartWeekday = (monthStart.getDay() + 6) % 7;
+  const gridStart = addDays(monthStart, -monthStartWeekday);
+  const todayKey = getDayKey(new Date());
+
+  for (let i = 0; i < 42; i++) {
+    const date = addDays(gridStart, i);
     const dayCard = document.createElement('div');
     dayCard.className = 'event-day-card';
-    const dayTitle = document.createElement('h3');
-    dayTitle.textContent = `${dayHeaders[i]} ${date.getDate()}`;
+    const dayKey = getDayKey(date);
+    if (date.getMonth() !== currentMonthStart.getMonth()) {
+      dayCard.classList.add('outside-month');
+    }
+    if (dayKey === todayKey) {
+      dayCard.classList.add('is-today');
+    }
+
+    const dayTitle = document.createElement('span');
+    dayTitle.className = 'event-day-number';
+    dayTitle.textContent = String(date.getDate());
     dayCard.appendChild(dayTitle);
+
     const dayEvents = events.filter(item => getDayKey(item.date) === getDayKey(date));
     if (dayEvents.length === 0) {
       const empty = document.createElement('p');
       empty.className = 'empty-day';
-      empty.textContent = 'No events found.';
+      empty.textContent = 'No events';
       dayCard.appendChild(empty);
     } else {
-      dayEvents.forEach(event => {
+      dayCard.classList.add('has-events');
+      dayEvents.slice(0, 2).forEach(event => {
         const eventItem = document.createElement('a');
         eventItem.href = event.url;
         eventItem.target = '_blank';
         eventItem.rel = 'noopener';
         eventItem.className = 'event-day-link';
-        eventItem.innerHTML = `<strong>${event.title}</strong><span>${event.time || 'All day'}</span><span>${event.location || event.source}</span>`;
+        eventItem.innerHTML = `<strong>${event.title}</strong><span>${event.time || 'All day'}</span>`;
         dayCard.appendChild(eventItem);
       });
+
+      if (dayEvents.length > 2) {
+        const more = document.createElement('p');
+        more.className = 'event-more';
+        more.textContent = `+${dayEvents.length - 2} more`;
+        dayCard.appendChild(more);
+      }
     }
     calendarGrid.appendChild(dayCard);
   }
@@ -93,9 +133,9 @@ function renderCalendar(events) {
 
 function renderEventList(events) {
   const sorted = Array.from(events).sort((a, b) => a.date - b.date);
-  eventList.innerHTML = '<h3>Weekly Event Details</h3>';
+  eventList.innerHTML = '<h3>Monthly Event Details</h3>';
   if (sorted.length === 0) {
-    eventList.innerHTML += '<p>No events were available for this week.</p>';
+    eventList.innerHTML += '<p>No events were available for this month.</p>';
     return;
   }
   sorted.forEach(event => {
@@ -146,31 +186,64 @@ async function fetchEvents() {
   }
 }
 
-function filterWeek(events) {
+function filterMonth(events) {
   return events.filter(event => {
-    const dayKey = getDayKey(event.date);
-    const startKey = getDayKey(currentWeekStart);
-    const endKey = getDayKey(addDays(currentWeekStart, 6));
-    return dayKey >= startKey && dayKey <= endKey;
+    return (
+      event.date.getFullYear() === currentMonthStart.getFullYear() &&
+      event.date.getMonth() === currentMonthStart.getMonth()
+    );
   });
 }
 
+function getNearestMonthStart(events, referenceDate) {
+  if (!events.length) return null;
+
+  const sorted = Array.from(events).sort((a, b) => a.date - b.date);
+  const referenceTime = referenceDate.getTime();
+
+  // Prefer the next upcoming event month; if none remain, fall back to latest available month.
+  const upcoming = sorted.find(event => event.date.getTime() >= referenceTime);
+  if (upcoming) {
+    return getMonthStart(upcoming.date);
+  }
+
+  return getMonthStart(sorted[sorted.length - 1].date);
+}
+
+function addMonths(date, amount) {
+  const d = new Date(date);
+  d.setMonth(d.getMonth() + amount, 1);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 async function loadWeeklyEvents() {
-  updateWeekLabel();
-  setStatus('Loading events…');
+  setStatus('Loading monthly events…');
   const events = await fetchEvents();
-  const weekEvents = filterWeek(events);
-  renderCalendar(weekEvents);
-  renderEventList(weekEvents);
+
+  let monthEvents = filterMonth(events);
+
+  if (events.length > 0 && monthEvents.length === 0) {
+    const nearestMonth = getNearestMonthStart(events, new Date());
+    if (nearestMonth) {
+      currentMonthStart = nearestMonth;
+      monthEvents = filterMonth(events);
+      setStatus('Showing nearest available month from the event feed.', true);
+    }
+  }
+
+  updateWeekLabel();
+  renderCalendar(monthEvents);
+  renderEventList(monthEvents);
 }
 
 refreshButton?.addEventListener('click', loadWeeklyEvents);
 prevWeekButton?.addEventListener('click', () => {
-  currentWeekStart = addDays(currentWeekStart, -7);
+  currentMonthStart = addMonths(currentMonthStart, -1);
   loadWeeklyEvents();
 });
 nextWeekButton?.addEventListener('click', () => {
-  currentWeekStart = addDays(currentWeekStart, 7);
+  currentMonthStart = addMonths(currentMonthStart, 1);
   loadWeeklyEvents();
 });
 
