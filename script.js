@@ -185,7 +185,11 @@ function initNavigation() {
             const targetId = link.getAttribute('href');
 
             if (!targetId || !targetId.startsWith('#')) {
-                navMenu.classList.remove('active');
+                if (navMenu) {
+                    navMenu.classList.remove('active');
+                }
+                e.preventDefault();
+                window.location.assign(new URL(targetId, window.location.href).href);
                 return;
             }
 
@@ -193,16 +197,20 @@ function initNavigation() {
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
-                navMenu.classList.remove('active');
+                if (navMenu) {
+                    navMenu.classList.remove('active');
+                }
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
     // Hamburger menu
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
 }
 function initPatchDock() {
     const btnCreateOffer = document.getElementById('patch-create-offer');
@@ -634,23 +642,27 @@ function initGsapAnimations() {
         delay: 0.3,
     });
 
-    gsap.from('.hero-storytelling .focus-item', {
-        opacity: 0,
-        y: 30,
-        duration: 0.9,
-        stagger: 0.18,
-        ease: 'power3.out',
-        delay: 0.3,
-    });
+    if (document.querySelector('.hero-storytelling .focus-item')) {
+        gsap.from('.hero-storytelling .focus-item', {
+            opacity: 0,
+            y: 30,
+            duration: 0.9,
+            stagger: 0.18,
+            ease: 'power3.out',
+            delay: 0.3,
+        });
+    }
 
-    gsap.from('.hero-storytelling .cta-button', {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        delay: 0.55,
-    });
+    if (document.querySelector('.hero-storytelling .cta-button')) {
+        gsap.from('.hero-storytelling .cta-button', {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+            delay: 0.55,
+        });
+    }
 
     gsap.utils.toArray('.about-apprentice .bio-content, .portfolio-block, .contact-item').forEach((section) => {
         gsap.from(section, {
@@ -680,18 +692,20 @@ function initGsapAnimations() {
         });
     });
 
-    gsap.from('.work-sample', {
-        opacity: 0,
-        y: 30,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-            trigger: '.portfolio-categories',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-        },
-    });
+    if (document.querySelector('.work-sample')) {
+        gsap.from('.work-sample', {
+            opacity: 0,
+            y: 30,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.portfolio-categories',
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+            },
+        });
+    }
 }
 
 // ==================== PORTFOLIO LOADING ====================
