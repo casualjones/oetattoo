@@ -46,6 +46,26 @@
             </article>
 
             <article class="page-card">
+                <h2>Send a message</h2>
+                <form id="tattoo-form" method="POST" action="https://formspree.io/f/xrpzlnzo" novalidate>
+                    <label>
+                        Name
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="email" placeholder="you@example.com" required>
+                    </label>
+                    <label>
+                        Message
+                        <textarea name="message" rows="6" placeholder="Tell me about the project or idea..." required></textarea>
+                    </label>
+                    <button type="submit" class="cta-button">Send message</button>
+                    <p id="form-message" class="page-note" aria-live="polite"></p>
+                </form>
+            </article>
+
+            <article class="page-card">
                 <h2>Notes</h2>
                 <p>Appointment only. Price depends on the work. Keep it short and direct when you reach out.</p>
                 <div class="page-actions">
