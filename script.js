@@ -142,8 +142,8 @@ function initFormHandler() {
 
         // Send to email via FormSubmit (free service)
         try {
-            // Using FormSubmit.co for free form submission
-            const response = await fetch('https://formspree.io/f/xeojnqnl', {
+            // Submit to the configured Formspree endpoint
+            const response = await fetch('https://formspree.io/f/xrpzlnzo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
