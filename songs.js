@@ -1,33 +1,19 @@
-// OE Music - Public Demo Collection
+// OE Music - Local track listing
 let currentSongIndex = -1;
 let songsList = [];
 let audioPlayer;
 
-// Demo song collection - replace with your actual Google Drive public links
-// To get public links: Right-click file in Google Drive > Get shareable link > Set to "Anyone with the link can view"
-const DEMO_SONGS = [
+const TRACKS = [
     {
-        name: '411vol1.wav',
-        id: '1Xx7SeisHdwG_tMGoPAUuLFioGMm06cwl',
-        size: 491924,
+        name: 'FREE',
+        fileName: 'FREE.mp3',
+        size: 0,
         duration: 'Preview'
     },
     {
-        name: 'SIPHERHEAD 2026-07-28 1253 105.6bmp.wav',
-        id: '1Eq_lmRX3bDJhF4eyn5dCctAv5QyYlW_N',
-        size: 19243806,
-        duration: 'Preview'
-    },
-    {
-        name: 'SIPHERHEAD 2026-07-28 1255 1.wav',
-        id: '1Z1SvcQu6ArEz0X9PzVHBgmxzD45aU6X1',
-        size: 38487444,
-        duration: 'Preview'
-    },
-    {
-        name: 'SIPHERHEAD 2026-07-28 1255.wav',
-        id: '14nJvbwrVlcHFtrXb2ALjiU56Yjt5sWJ0',
-        size: 38487444,
+        name: 'SIPHERHEAD 2026-07-28 1253 105.6bmp',
+        fileName: 'SIPHERHEAD 2026-07-28 1253 105.6bmp.mp3',
+        size: 0,
         duration: 'Preview'
     }
 ];
@@ -53,10 +39,9 @@ function setupEventListeners() {
 }
 
 function loadDemoSongs() {
-    // Load demo songs immediately - no authentication required
-    songsList = DEMO_SONGS.map(song => ({
+    songsList = TRACKS.map(song => ({
         name: song.name,
-        webContentLink: buildDriveStreamUrl(song.id),
+        webContentLink: buildLocalAudioUrl(song.fileName),
         size: song.size,
         duration: song.duration
     }));
@@ -199,8 +184,8 @@ function formatFileSize(sizeInBytes) {
     return `${Math.round(sizeInBytes / 1024)} KB`;
 }
 
-function buildDriveStreamUrl(fileId) {
-    return `https://drive.google.com/uc?export=download&id=${fileId}`;
+function buildLocalAudioUrl(fileName) {
+    return `resources/${encodeURI(fileName)}`;
 }
 
 if (window.gsap) {
