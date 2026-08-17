@@ -39,7 +39,7 @@ const portfolioData = [
     },
     {
         title: "Mountain Study",
-        image: "images/portfolio/mountain1.png",
+        image: "images/mountain1.jpg",
         size: "Small",
         placement: "Concept Work",
         date: "2026",
@@ -62,13 +62,21 @@ const portfolioData = [
         category: "cover-up"
     },
     {
-        title: "IMG 3517",
-        image: "images/portfolio/IMG_3517 2.png",
+        title: "board concept",
+        image: "images/Skatedeftonesmusic.jpg",
         size: "Medium",
-        placement: "Original Drawing",
+        placement: "Deftones",
         date: "2026",
         category: "small"
-    }
+    },
+    {
+  title: "Pizza",
+  image: "images/pizza.jpg",
+  size: "Medium",
+  placement: "Body placement",
+  date: "Month Year",
+  category: "small"
+}
 ];
 
 // ==================== PORTFOLIO NOTES ====================
