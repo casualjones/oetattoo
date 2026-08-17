@@ -1,97 +1,88 @@
 /**
  * OETATTOO Portfolio Data
- * 
- * Add your tattoo images here. Replace image URLs with your own.
- * 
- * Format:
- * {
- *   title: "Design Name",
- *   image: "path/to/image.jpg",
- *   size: "Size description",
- *   placement: "Body placement",
- *   date: "Month Year"
- * }
+ *
+ * Real portfolio artwork for the gallery.
  */
 
 const portfolioData = [
     {
-        title: "Geometric Triangle Set",
-        image: "images/portfolio/tattoo-01.jpg",
-        size: "Small",
-        placement: "Left Forearm",
-        date: "December 2024",
-        category: "small"
+        title: "Front Door",
+        image: "images/portfolio/tattoo-01.png",
+        size: "Large",
+        placement: "Studio Entry",
+        date: "2026",
+        category: "cover-up"
     },
     {
-        title: "Sacred Geometry",
-        image: "images/portfolio/tattoo-02.jpg",
+        title: "SDFOOK",
+        image: "images/portfolio/tattoo-02.png",
         size: "Medium",
-        placement: "Upper Arm",
-        date: "November 2024",
+        placement: "Studio Archive",
+        date: "2026",
         category: "small"
     },
     {
-        title: "Minimalist Circles",
+        title: "Th3",
         image: "images/portfolio/tattoo-03.jpg",
-        size: "Small",
-        placement: "Wrist",
-        date: "October 2024",
+        size: "Medium",
+        placement: "Artwork Study",
+        date: "2026",
         category: "small"
     },
     {
-        title: "Geometric Mandala",
-        image: "images/portfolio/tattoo-04.jpg",
+        title: "IMG 3350",
+        image: "images/portfolio/IMG_3350.png",
         size: "Medium",
-        placement: "Shoulder",
-        date: "September 2024",
+        placement: "Archive Piece",
+        date: "2026",
         category: "cover-up"
     },
     {
-        title: "Line Work Composition",
-        image: "images/portfolio/tattoo-05.jpg",
-        size: "Medium",
-        placement: "Calf",
-        date: "August 2024",
-        category: "cover-up"
-    },
-    {
-        title: "Abstract Geometry",
-        image: "images/portfolio/tattoo-06.jpg",
+        title: "Mountain Study",
+        image: "images/portfolio/mountain1.png",
         size: "Small",
-        placement: "Ankle",
-        date: "July 2024",
+        placement: "Concept Work",
+        date: "2026",
         category: "small"
     },
-    // Add more entries as needed - copy the format above
-    // You can have up to 20+ pieces in your portfolio
+    {
+        title: "Quanah",
+        image: "images/portfolio/Quanah.png",
+        size: "Medium",
+        placement: "Studio Collection",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "IMG 3142",
+        image: "images/portfolio/IMG_3142.png",
+        size: "Medium",
+        placement: "Original Study",
+        date: "2026",
+        category: "cover-up"
+    },
+    {
+        title: "IMG 3517",
+        image: "images/portfolio/IMG_3517 2.png",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    }
 ];
 
-// ==================== INSTRUCTIONS ====================
+// ==================== PORTFOLIO NOTES ====================
 /*
 
-STEP 1: Create an images folder structure
-- In your project root, create: images/portfolio/
+Add future pieces here by following the same pattern:
+{
+  title: "Piece Name",
+  image: "images/portfolio/tattoo-07.jpg",
+  size: "Medium",
+  placement: "Body placement",
+  date: "Month Year",
+  category: "small"
+}
 
-STEP 2: Add your tattoo photos
-- Place your high-quality tattoo photos in images/portfolio/
-- Name them: tattoo-01.jpg, tattoo-02.jpg, etc.
-- Make sure images are at least 600x600px
-- Optimize file size (under 300KB each is ideal)
-
-STEP 3: Update this file
-- Replace the example entries above with your real tattoos
-- Fill in accurate title, placement, size, and date
-- Keep the image path as "images/portfolio/tattoo-XX.jpg"
-
-STEP 4: The portfolio grid will auto-populate
-- Your images will appear automatically on the Portfolio section
-- Hover to see details
-- Mobile responsive
-
-TIPS:
-- Use consistent, professional photos
-- Good lighting is key
-- Square 1:1 aspect ratio works best
-- Keep file names simple and numbered
-
+The gallery will render each object automatically.
 */
