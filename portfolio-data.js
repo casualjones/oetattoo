@@ -37,18 +37,12 @@ const portfolioData = [
         date: "2026",
         category: "cover-up"
     },
-    {
-        title: "Mountain Study",
-        image: "images/mountain1.jpg",
-        size: "Small",
-        placement: "Concept Work",
-        date: "2026",
-        category: "small"
-    },
+
+
     {
         title: "Quanah",
         image: "images/portfolio/Quanah.png",
-        size: "Medium",
+        size: "Large",
         placement: "Studio Collection",
         date: "2026",
         category: "small"
@@ -64,17 +58,17 @@ const portfolioData = [
     {
         title: "board concept",
         image: "images/Skatedeftonesmusic.jpg",
-        size: "Medium",
+        size: "Large",
         placement: "Deftones",
         date: "2026",
-        category: "small"
+        category: "large"
     },
     {
   title: "Pizza",
   image: "images/pizza.jpg",
   size: "Medium",
   placement: "Body placement",
-  date: "Month Year",
+  date: "2025",
   category: "small"
 }
 ];
