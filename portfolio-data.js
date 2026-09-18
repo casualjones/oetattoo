@@ -4,70 +4,166 @@
  * Real portfolio artwork for the gallery.
  */
 const portfolioData = [
-  {
-    title: "Front Door",
-    image: "images/front_door.png",
-    size: "Large",
-    placement: "Studio Entry",
-    date: "2026",
-    category: "cover-up"
-  },
-  {
-    title: "SDFOOK",
-    image: "images/sdfook.png",
-    size: "Medium",
-    placement: "Studio Archive",
-    date: "2026",
-    category: "small"
-  },
-  {
-    title: "Mountain Study",
-    image: "images/mountain1.jpg",
-    size: "Medium",
-    placement: "Artwork Study",
-    date: "2026",
-    category: "small"
-  },
-  {
-    title: "IMG 1950",
-    image: "images/IMG_1950.png",
-    size: "Medium",
-    placement: "Archive Piece",
-    date: "2026",
-    category: "cover-up"
-  },
-  {
-    title: "Skate Deftones Music",
-    image: "images/Skatedeftonesmusic.jpg",
-    size: "Large",
-    placement: "Studio Collection",
-    date: "2026",
-    category: "large"
-  },
-  {
-    title: "Creepy Doll",
-    image: "images/creepy doll.jpg",
-    size: "Medium",
-    placement: "Original Study",
-    date: "2026",
-    category: "cover-up"
-  },
-  {
-    title: "Front Door AVIF",
-    image: "images/front_door.avif",
-    size: "Large",
-    placement: "Deftones",
-    date: "2026",
-    category: "large"
-  },
-  {
-    title: "Pizza",
-    image: "images/pizza.png",
-    size: "Medium",
-    placement: "Body placement",
-    date: "2025",
-    category: "small"
-  }
+    {
+        title: "Front Door",
+        image: "images/portfolio/front_door.png",
+        size: "Large",
+        placement: "Studio Entry",
+        date: "2026",
+        category: "cover-up"
+    },
+    {
+        title: "3rdeye",
+        image: "images/portfolio/3rdeye.png",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Birds of a Feather",
+        image: "images/portfolio/Birds of a feather.png",
+        size: "Medium",
+        placement: "Studio Collection",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Creepy Doll",
+        image: "images/portfolio/creepy doll.jpg",
+        size: "Medium",
+        placement: "Artwork Study",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Tattoo 04",
+        image: "images/portfolio/tattoo-04.png",
+        size: "Medium",
+        placement: "Studio Collection",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Tattoo 06",
+        image: "images/portfolio/tattoo-06.png",
+        size: "Medium",
+        placement: "Studio Collection",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "SDFOOK",
+        image: "images/portfolio/sdfook.png",
+        size: "Medium",
+        placement: "Studio Archive",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Skatedeftonesmusic",
+        image: "images/portfolio/Skatedeftonesmusic.jpg",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "IMG 3350",
+        image: "images/portfolio/IMG_3350.PNG",
+        size: "Medium",
+        placement: "Archive Piece",
+        date: "2026",
+        category: "cover-up"
+    },
+    {
+        title: "Mountain Study",
+        image: "images/portfolio/mountain1.png",
+        size: "Small",
+        placement: "Concept Work",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Painting",
+        image: "images/portfolio/painting.png",
+        size: "Medium",
+        placement: "Artwork Study",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Painting Copy",
+        image: "images/portfolio/painting copy.png",
+        size: "Medium",
+        placement: "Artwork Study",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Quanah",
+        image: "images/portfolio/Quanah.png",
+        size: "Medium",
+        placement: "Studio Collection",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Bart Slapper",
+        image: "images/portfolio/slapperQR123_12.png",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Custom Skateboard",
+        image: "images/portfolio/Screenshot 2026-08-26 at 19-54-01 Custom Skateboard – Design your Own Graphic – CCS.png",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Pizza",
+        image: "images/portfolio/pizza.png",
+        size: "Medium",
+        placement: "Studio Archive",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "Stencil Image",
+        image: "images/portfolio/stencilimage(2).png",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "PXL 2026 04 28",
+        image: "images/portfolio/PXL_20260428_165552963.RAW-01.COVER.jpg",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "PXL 2026 06 14 A",
+        image: "images/portfolio/PXL_20260614_214004974.RAW-01.COVER.jpg",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    },
+    {
+        title: "PXL 2026 06 14 B",
+        image: "images/portfolio/PXL_20260614_220200081.RAW-01.COVER.jpg",
+        size: "Medium",
+        placement: "Original Drawing",
+        date: "2026",
+        category: "small"
+    }
 ];
 
 // ==================== PORTFOLIO NOTES ====================
@@ -75,93 +171,7 @@ const portfolioData = [
 Add future pieces here by following the same pattern:
 {
   title: "Piece Name",
-  image: "images/<filename>.jpg",
-  size: "Medium",
-  placement: "Body placement",
-  date: "Month Year",
-  category: "small"
-}
-
-The gallery will render each object automatically.
-*/
-/**
- * OETATTOO Portfolio Data
- *
- * Real portfolio artwork for the gallery.
- */
-const portfolioData = [
-  {
-    title: "Front Door",
-    image: "images/tattoo-01.png",
-    size: "Large",
-    placement: "Studio Entry",
-    date: "2026",
-    category: "cover-up"
-  },
-  {
-    title: "SDFOOK",
-    image: "images/tattoo-02.png",
-    size: "Medium",
-    placement: "Studio Archive",
-    date: "2026",
-    category: "small"
-  },
-  {
-    title: "Th3",
-    image: "images/tattoo-03.jpg",
-    size: "Medium",
-    placement: "Artwork Study",
-    date: "2026",
-    category: "small"
-  },
-  {
-    title: "IMG 3350",
-    image: "images/IMG_3350.png",
-    size: "Medium",
-    placement: "Archive Piece",
-    date: "2026",
-    category: "cover-up"
-  },
-  {
-    title: "Quanah",
-    image: "images/Quanah.png",
-    size: "Large",
-    placement: "Studio Collection",
-    date: "2026",
-    category: "small"
-  },
-  {
-    title: "IMG 3142",
-    image: "images/IMG_3142.png",
-    size: "Medium",
-    placement: "Original Study",
-    date: "2026",
-    category: "cover-up"
-  },
-  {
-    title: "board concept",
-    image: "images/Skatedeftonesmusic.jpg",
-    size: "Large",
-    placement: "Deftones",
-    date: "2026",
-    category: "large"
-  },
-  {
-    title: "Pizza",
-    image: "images/pizza.jpg",
-    size: "Medium",
-    placement: "Body placement",
-    date: "2025",
-    category: "small"
-  }
-];
-
-// ==================== PORTFOLIO NOTES ====================
-/*
-Add future pieces here by following the same pattern:
-{
-  title: "Piece Name",
-  image: "images/tattoo-07.jpg",
+  image: "images/portfolio/tattoo-07.jpg",
   size: "Medium",
   placement: "Body placement",
   date: "Month Year",

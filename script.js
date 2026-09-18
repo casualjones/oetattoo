@@ -695,75 +695,105 @@ function initGsapAnimations() {
 }
 
 // ==================== PORTFOLIO LOADING ====================
-function initPortfolio() {
-    const coverUpGrid = document.getElementById('cover-up-grid');
-    const smallTattoosGrid = document.getElementById('small-tattoos-grid');
+async function initPortfolio() {
     const portfolioGrid = document.getElementById('portfolio-grid');
 
-    if (typeof portfolioData === 'undefined' || portfolioData.length === 0) {
-        if (portfolioGrid) {
-            portfolioGrid.innerHTML = `
-                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-                    <p style="color: #a8a8a0; font-size: 1.1rem;">Portfolio coming soon! Add your images to portfolio-data.js</p>
-                </div>
-            `;
-        }
-        return;
-    }
+    if (!portfolioGrid) return;
 
-    const createWorkSample = (item) => {
-        const sample = document.createElement('div');
-        sample.className = 'work-sample';
-        sample.innerHTML = `
-            <img src="${item.image}" alt="${item.title}">
-            <div class="work-sample-title">${item.title}</div>
-            <div class="work-sample-details">${item.size} • ${item.placement}</div>
-        `;
-        return sample;
+    const normalizeItem = (item, fallbackTitle = 'Portfolio piece') => {
+        if (!item || !item.image) return null;
+
+        const image = String(item.image).replace(/\\/g, '/');
+        const title = item.title || fallbackTitle;
+
+        if (!image.startsWith('images/portfolio/')) {
+            return null;
+        }
+
+        return {
+            ...item,
+            image,
+            title,
+            size: item.size || 'Medium',
+            placement: item.placement || 'Portfolio',
+            date: item.date || '2026'
+        };
     };
 
-    if (coverUpGrid && smallTattoosGrid) {
-        const coverUps = portfolioData.filter(item => item.category === 'cover-up');
-        const smallItems = portfolioData.filter(item => item.category === 'small');
+    const renderGallery = (items) => {
+        portfolioGrid.innerHTML = '';
 
-        if (coverUps.length) {
-            coverUps.forEach(item => coverUpGrid.appendChild(createWorkSample(item)));
-        } else {
-            coverUpGrid.innerHTML = `
-                <div class="work-sample">
-                    <p class="work-sample-details">Add cover-up entries to portfolio-data.js to populate this gallery.</p>
-                </div>
-            `;
-        }
+        items.forEach(item => {
+            const portfolioItem = document.createElement('article');
+            portfolioItem.className = 'portfolio-item';
 
-        if (smallItems.length) {
-            smallItems.forEach(item => smallTattoosGrid.appendChild(createWorkSample(item)));
-        } else {
-            smallTattoosGrid.innerHTML = `
-                <div class="work-sample">
-                    <p class="work-sample-details">Add small tattoo entries to portfolio-data.js to populate this gallery.</p>
-                </div>
+            const image = document.createElement('img');
+            image.className = 'portfolio-item-image';
+            image.src = item.image;
+            image.alt = item.title;
+            image.loading = 'lazy';
+            image.addEventListener('error', () => {
+                portfolioItem.classList.add('portfolio-item-missing');
+                image.remove();
+                portfolioItem.insertAdjacentHTML('afterbegin', '<div class="portfolio-item-fallback">Image unavailable</div>');
+            });
+
+            const overlay = document.createElement('div');
+            overlay.className = 'portfolio-item-overlay';
+            overlay.innerHTML = `
+                <div class="portfolio-item-title"></div>
+                <div class="portfolio-item-details"></div>
             `;
+            overlay.querySelector('.portfolio-item-title').textContent = item.title;
+            overlay.querySelector('.portfolio-item-details').textContent = [item.size, item.placement, item.date]
+                .filter(Boolean)
+                .join(' | ');
+
+            portfolioItem.append(image, overlay);
+            portfolioGrid.appendChild(portfolioItem);
+        });
+    };
+
+    let items = [];
+
+    if (Array.isArray(portfolioData)) {
+        items = portfolioData
+            .map((item) => normalizeItem(item, 'Portfolio piece'))
+            .filter(Boolean);
+    }
+
+    try {
+        const response = await fetch('images/portfolio/manifest.json', { cache: 'no-store' });
+        if (response.ok) {
+            const files = await response.json();
+            const manifestItems = files
+                .filter(file => /\.(jpe?g|png|gif|webp|bmp|avif)$/i.test(file))
+                .map((file) => ({
+                    title: file.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim() || 'Portfolio piece',
+                    image: `images/portfolio/${encodeURI(file)}`,
+                    size: 'Medium',
+                    placement: 'Portfolio',
+                    date: '2026'
+                }));
+
+            const seen = new Set();
+            items = [...manifestItems, ...items].filter((item) => {
+                const key = item.image.toLowerCase();
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
         }
+    } catch (error) {
+        console.warn('Portfolio manifest unavailable, using fallback data.', error);
+    }
+
+    if (!items.length) {
+        portfolioGrid.innerHTML = '<p class="page-note">Add images to images/portfolio/ to populate the gallery.</p>';
         return;
     }
 
-    if (portfolioGrid) {
-        portfolioData.forEach(item => {
-            const portfolioItem = document.createElement('div');
-            portfolioItem.className = 'portfolio-item';
-            portfolioItem.innerHTML = `
-                <img src="${item.image}" alt="${item.title}" class="portfolio-item-image">
-                <div class="portfolio-item-overlay">
-                    <div class="portfolio-item-title">${item.title}</div>
-                    <div class="portfolio-item-details">
-                        ${item.size} | ${item.placement} | ${item.date}
-                    </div>
-                </div>
-            `;
-            portfolioGrid.appendChild(portfolioItem);
-        });
-    }
+    renderGallery(items);
 }
 
 // ==================== AUTH & PATCH ACCESS ====================

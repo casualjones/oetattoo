@@ -11,7 +11,8 @@ if (!fs.existsSync(dir)) {
 }
 
 const files = fs.readdirSync(dir)
-  .filter(f => /\.(jpe?g|png|gif|webp|bmp|heic)$/i.test(f))
+  .filter(f => !f.endsWith('manifest.json') && !/\.(pdf|map)$/i.test(f))
+  .filter(f => /\.(jpe?g|png|gif|webp|bmp|avif|heic|heif)$/i.test(f))
   .sort();
 
 fs.writeFileSync(out, JSON.stringify(files, null, 2), 'utf8');
