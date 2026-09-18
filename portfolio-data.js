@@ -21,22 +21,6 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Birds of a Feather",
-        image: "images/portfolio/Birds of a feather.png",
-        size: "Medium",
-        placement: "Studio Collection",
-        date: "2026",
-        category: "small"
-    },
-    {
-        title: "Creepy Doll",
-        image: "images/portfolio/creepy doll.jpg",
-        size: "Medium",
-        placement: "Artwork Study",
-        date: "2026",
-        category: "small"
-    },
-    {
         title: "IMG 3350",
         image: "images/portfolio/IMG_3350.PNG",
         size: "Medium",
@@ -87,14 +71,6 @@ const portfolioData = [
     {
         title: "Bart Slapper",
         image: "images/portfolio/slapperQR123_12.png",
-        size: "Medium",
-        placement: "Original Drawing",
-        date: "2026",
-        category: "small"
-    },
-    {
-        title: "Custom Skateboard",
-        image: "images/portfolio/Screenshot 2026-08-26 at 19-54-01 Custom Skateboard – Design your Own Graphic – CCS.png",
         size: "Medium",
         placement: "Original Drawing",
         date: "2026",
