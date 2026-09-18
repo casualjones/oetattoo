@@ -2,10 +2,11 @@
  * OETATTOO Portfolio Data
  *
  * Real portfolio artwork for the gallery.
+ * Titles use the study naming style (Sketch Study, Painting Study, Flash Study, etc.).
  */
 const portfolioData = [
     {
-        title: "Front Door",
+        title: "Front Door Study",
         image: "images/portfolio/front_door.png",
         size: "Large",
         placement: "Studio Entry",
@@ -13,7 +14,7 @@ const portfolioData = [
         category: "cover-up"
     },
     {
-        title: "3rdeye",
+        title: "Third Eye Study",
         image: "images/portfolio/3rdeye.png",
         size: "Medium",
         placement: "Original Drawing",
@@ -21,7 +22,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "IMG 3350",
+        title: "Flash Study",
         image: "images/portfolio/IMG_3350.PNG",
         size: "Medium",
         placement: "Archive Piece",
@@ -29,7 +30,7 @@ const portfolioData = [
         category: "cover-up"
     },
     {
-        title: "SDFOOK",
+        title: "Line Study",
         image: "images/portfolio/sdfook.png",
         size: "Medium",
         placement: "Studio Archive",
@@ -37,7 +38,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Skatedeftonesmusic",
+        title: "Board Study",
         image: "images/portfolio/Skatedeftonesmusic.jpg",
         size: "Medium",
         placement: "Original Drawing",
@@ -53,7 +54,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Painting",
+        title: "Painting Study",
         image: "images/portfolio/painting.png",
         size: "Medium",
         placement: "Artwork Study",
@@ -61,7 +62,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Quanah",
+        title: "Portrait Study",
         image: "images/portfolio/Quanah.png",
         size: "Medium",
         placement: "Studio Collection",
@@ -69,7 +70,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Bart Slapper",
+        title: "Sketch Study",
         image: "images/portfolio/slapperQR123_12.png",
         size: "Medium",
         placement: "Original Drawing",
@@ -77,7 +78,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Pizza",
+        title: "Flash Study II",
         image: "images/portfolio/pizza.png",
         size: "Medium",
         placement: "Studio Archive",
@@ -85,7 +86,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Stencil Image",
+        title: "Stencil Study",
         image: "images/portfolio/stencilimage(2).png",
         size: "Medium",
         placement: "Original Drawing",
@@ -93,7 +94,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "PXL 2026 04 28",
+        title: "Photo Study A",
         image: "images/portfolio/PXL_20260428_165552963.RAW-01.COVER.jpg",
         size: "Medium",
         placement: "Original Drawing",
@@ -101,7 +102,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "PXL 2026 06 14 A",
+        title: "Photo Study B",
         image: "images/portfolio/PXL_20260614_214004974.RAW-01.COVER.jpg",
         size: "Medium",
         placement: "Original Drawing",
@@ -109,7 +110,7 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "PXL 2026 06 14 B",
+        title: "Photo Study C",
         image: "images/portfolio/PXL_20260614_220200081.RAW-01.COVER.jpg",
         size: "Medium",
         placement: "Original Drawing",
@@ -122,13 +123,13 @@ const portfolioData = [
 /*
 Add future pieces here by following the same pattern:
 {
-  title: "Piece Name",
-  image: "images/portfolio/tattoo-07.jpg",
+  title: "Sketch Study",
+  image: "images/portfolio/your-file.jpg",
   size: "Medium",
   placement: "Body placement",
   date: "Month Year",
   category: "small"
 }
 
-The gallery will render each object automatically.
+The gallery prefers these curated titles over filename-based names from manifest.json.
 */
