@@ -1,0 +1,35 @@
+name: Refresh portfolio manifest
+
+on:
+  push:
+    paths:
+      - 'images/portfolio/**'
+  workflow_dispatch:
+
+jobs:
+  refresh-portfolio:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Refresh manifest
+        run: node scripts/generate_portfolio_manifest.js
+
+      - name: Commit updated manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add images/portfolio/manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh portfolio manifest"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          else
+            echo "No portfolio manifest changes detected."
+          fi
