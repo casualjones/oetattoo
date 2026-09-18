@@ -141,3 +141,18 @@ const portfolioData = [
         category: "small"
     }
 ];
+
+// ==================== PORTFOLIO NOTES ====================
+/*
+Add future pieces here by following the same pattern:
+{
+  title: "Piece Name",
+  image: "images/portfolio/tattoo-07.jpg",
+  size: "Medium",
+  placement: "Body placement",
+  date: "Month Year",
+  category: "small"
+}
+
+The gallery will render each object automatically.
+*/
