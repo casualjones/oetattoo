@@ -37,20 +37,12 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "Tattoo 04",
-        image: "images/portfolio/tattoo-04.png",
+        title: "IMG 3350",
+        image: "images/portfolio/IMG_3350.PNG",
         size: "Medium",
-        placement: "Studio Collection",
+        placement: "Archive Piece",
         date: "2026",
-        category: "small"
-    },
-    {
-        title: "Tattoo 06",
-        image: "images/portfolio/tattoo-06.png",
-        size: "Medium",
-        placement: "Studio Collection",
-        date: "2026",
-        category: "small"
+        category: "cover-up"
     },
     {
         title: "SDFOOK",
@@ -69,14 +61,6 @@ const portfolioData = [
         category: "small"
     },
     {
-        title: "IMG 3350",
-        image: "images/portfolio/IMG_3350.PNG",
-        size: "Medium",
-        placement: "Archive Piece",
-        date: "2026",
-        category: "cover-up"
-    },
-    {
         title: "Mountain Study",
         image: "images/portfolio/mountain1.png",
         size: "Small",
@@ -87,14 +71,6 @@ const portfolioData = [
     {
         title: "Painting",
         image: "images/portfolio/painting.png",
-        size: "Medium",
-        placement: "Artwork Study",
-        date: "2026",
-        category: "small"
-    },
-    {
-        title: "Painting Copy",
-        image: "images/portfolio/painting copy.png",
         size: "Medium",
         placement: "Artwork Study",
         date: "2026",
@@ -165,18 +141,3 @@ const portfolioData = [
         category: "small"
     }
 ];
-
-// ==================== PORTFOLIO NOTES ====================
-/*
-Add future pieces here by following the same pattern:
-{
-  title: "Piece Name",
-  image: "images/portfolio/tattoo-07.jpg",
-  size: "Medium",
-  placement: "Body placement",
-  date: "Month Year",
-  category: "small"
-}
-
-The gallery will render each object automatically.
-*/
