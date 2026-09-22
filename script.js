@@ -162,7 +162,6 @@ async function initPortfolio() {
                     date: '2026',
                 }));
 
-            // Prefer curated titles from portfolio-data.js over filename-based manifest titles
             const normalizeKey = (imagePath) => {
                 try {
                     return decodeURIComponent(String(imagePath)).replace(/\\/g, '/').toLowerCase();
@@ -217,7 +216,6 @@ const OE_GC_CODE = 'oetattoo';
 const OE_VISIT_OFFSET = 707; // display baseline
 
 function initGoatCounter() {
-    // Privacy-friendly pageview tracking
     if (!document.querySelector('script[data-goatcounter]')) {
         const s = document.createElement('script');
         s.async = true;
@@ -226,7 +224,6 @@ function initGoatCounter() {
         document.head.appendChild(s);
     }
 
-    // Unobtrusive corner counter (site total + offset)
     if (document.getElementById('oe-corner-stat')) return;
 
     const el = document.createElement('div');
@@ -234,6 +231,34 @@ function initGoatCounter() {
     el.className = 'oe-corner-stat';
     el.setAttribute('aria-hidden', 'true');
     el.textContent = 'Humboldt · …';
+
+    if (!document.getElementById('oe-corner-stat-style')) {
+        const style = document.createElement('style');
+        style.id = 'oe-corner-stat-style';
+        style.textContent = `
+.oe-corner-stat {
+  position: fixed;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  z-index: 40;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(156, 147, 112, 0.75);
+  pointer-events: none;
+  user-select: none;
+  font-family: Inter, system-ui, sans-serif;
+}
+@media (max-width: 640px) {
+  .oe-corner-stat {
+    bottom: 0.6rem;
+    left: 0.6rem;
+    font-size: 0.6rem;
+  }
+}`;
+        document.head.appendChild(style);
+    }
+
     document.body.appendChild(el);
 
     fetch(`https://${OE_GC_CODE}.goatcounter.com/counter/TOTAL.json`)
