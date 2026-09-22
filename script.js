@@ -212,7 +212,8 @@ function initScrollAnimations() {
 }
 
 // ==================== GOATCOUNTER ====================
-const OE_GC_CODE = 'oetattoo';
+// Custom domain (CNAME → oetattoo.goatcounter.com). Fallback code kept for reference.
+const OE_GC_HOST = 'stats.oetattoo.com';
 const OE_VISIT_OFFSET = 707; // display baseline
 
 function initGoatCounter() {
@@ -220,7 +221,7 @@ function initGoatCounter() {
         const s = document.createElement('script');
         s.async = true;
         s.src = '//gc.zgo.at/count.js';
-        s.dataset.goatcounter = `https://${OE_GC_CODE}.goatcounter.com/count`;
+        s.dataset.goatcounter = `https://${OE_GC_HOST}/count`;
         document.head.appendChild(s);
     }
 
@@ -261,7 +262,7 @@ function initGoatCounter() {
 
     document.body.appendChild(el);
 
-    fetch(`https://${OE_GC_CODE}.goatcounter.com/counter/TOTAL.json`)
+    fetch(`https://${OE_GC_HOST}/counter/TOTAL.json`)
         .then((r) => (r.ok ? r.json() : Promise.reject()))
         .then((data) => {
             const raw = String(data.count || '0').replace(/[^0-9]/g, '');
