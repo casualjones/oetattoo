@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#ₛ — OE Tattoo</title>
+    <meta name="description" content="Private numerology study: cycles, natal profile, colors, and crystals.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <style>
+        .gate-shell {
+            min-height: 70vh;
+            display: grid;
+            place-items: center;
+            padding: 2rem 1rem;
+        }
+        .gate-card {
+            width: min(420px, 100%);
+            display: grid;
+            gap: 0.9rem;
+        }
+        .gate-card input {
+            width: 100%;
+            padding: 0.85rem 0.95rem;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, 0.22);
+            color: var(--text);
+            font: inherit;
+        }
+        .gate-error {
+            color: var(--red);
+            font-size: 0.85rem;
+            min-height: 1.2em;
+        }
+        .nums-hidden { display: none !important; }
+        .nums-section { display: grid; gap: 1rem; }
+        .nums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+        .nums-card h3 { margin-top: 0; font-family: var(--serif); }
+        .nums-card p { color: var(--muted); line-height: 1.55; }
+        .nums-card strong { color: var(--text); }
+        .cycle-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 0.4rem;
+        }
+        .cycle-day-head {
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            padding: 0.25rem;
+        }
+        .cycle-day {
+            min-height: 64px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
+            padding: 0.35rem;
+            font-size: 0.72rem;
+            display: grid;
+            align-content: start;
+            gap: 0.15rem;
+        }
+        .cycle-day.outside { opacity: 0.35; }
+        .cycle-day.today {
+            border-color: rgba(209, 171, 91, 0.55);
+            background: linear-gradient(180deg, rgba(209,171,91,0.1), rgba(255,255,255,0.02));
+        }
+        .cycle-day .n { color: var(--muted); font-size: 0.68rem; }
+        .cycle-day .pn {
+            font-family: var(--serif);
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .swatch-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+        .swatch {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            position: relative;
+        }
+        .swatch span {
+            position: absolute;
+            bottom: -1.35rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .swatch-wrap { margin-bottom: 1.4rem; }
+        .crystal-list { display: grid; gap: 0.75rem; }
+        .crystal-item {
+            border-left: 2px solid rgba(209,171,91,0.4);
+            padding-left: 0.85rem;
+        }
+        .crystal-item h4 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+        .crystal-item p { margin: 0; font-size: 0.85rem; }
+        .nums-form {
+            display: grid;
+            gap: 0.65rem;
+            max-width: 420px;
+        }
+        .nums-form label {
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .nums-form input, .nums-form select {
+            width: 100%;
+            padding: 0.8rem 0.9rem;
+            border: 1px solid var(--line);
+            background: rgba(0,0,0,0.22);
+            color: var(--text);
+            font: inherit;
+        }
+        .result-block {
+            margin-top: 0.75rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.03);
+        }
+        .result-block h4 {
+            margin: 0 0 0.5rem;
+            font-family: var(--serif);
+            color: var(--gold);
+        }
+        .signup-soon {
+            opacity: 0.75;
+            font-size: 0.85rem;
+        }
+        .lock-note {
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">OE / Doorway</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="portfolio.html" class="nav-link">Gallery</a></li>
+                <li><a href="tools.html" class="nav-link">Tools</a></li>
+                <li><a href="contact.html" class="nav-link">Social</a></li>
+                <li><a href="events.html" class="nav-link">Interesting</a></li>
+                <li><a href="songs.html" class="nav-link">Music</a></li>
+                <li><a href="links.html" class="nav-link">Links</a></li>
+            </ul>
+            <button class="hamburger" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <main id="nums-gate" class="page-shell gate-shell">
+        <article class="page-card gate-card">
+            <span class="eyebrow">PRIVATE // #<sub>s</sub></span>
+            <h1 style="margin:0;font-family:var(--serif);font-size:2rem;">Enter keyword</h1>
+            <p style="margin:0;color:var(--muted);font-size:0.9rem;">This room is gated. Keyword required.</p>
+            <form id="gate-form">
+                <input type="password" id="gate-input" autocomplete="current-password" placeholder="keyword" aria-label="Keyword">
+                <div class="page-actions" style="margin-top:0.75rem;">
+                    <button type="submit" class="cta-button">Unlock</button>
+                    <a class="cta-button secondary" href="tools.html">Back to Tools</a>
+                </div>
+            </form>
+            <p id="gate-error" class="gate-error" role="alert"></p>
+            <p class="lock-note">Soft lock · browser session only</p>
+        </article>
+    </main>
+
+    <main id="nums-content" class="page-shell nums-hidden">
+        <section class="page-hero">
+            <span class="eyebrow">#<sub>s</sub> // STUDY ROOM</span>
+            <h1>Numbers, cycles, color, stone.</h1>
+            <p>Deeper numerology notes, a personal cycle calendar, natal profile, color chart, and crystal guide. Email reminders to be wired later.</p>
+            <div class="page-actions">
+                <a class="cta-button secondary" href="tools.html">← Tools</a>
+                <button type="button" class="cta-button secondary" id="nums-lock">Lock room</button>
+            </div>
+        </section>
+
+        <section class="page-card nums-section">
+            <h2>Your numbers</h2>
+            <div class="nums-form">
+                <label for="n-birth">Birth date</label>
+                <input type="date" id="n-birth">
+                <label for="n-name">Full name (birth name preferred)</label>
+                <input type="text" id="n-name" placeholder="First Middle Last" autocomplete="name">
+                <label for="n-time">Birth time (optional — natal)</label>
+                <input type="time" id="n-time">
+                <div class="page-actions">
+                    <button type="button" class="cta-button" id="n-calc">Calculate all</button>
+                </div>
+            </div>
+            <div id="n-core-results" class="result-block nums-hidden"></div>
+        </section>
+
+        <section class="page-card nums-section">
+            <h2>Number meanings</h2>
+            <p class="page-note">Master numbers 11, 22, 33 are kept when they appear in life path / destiny reductions.</p>
+            <div class="nums-grid" id="meaning-grid"></div>
+        </section>
+
+        <section class="page-card nums-section">
+            <h2>Personal cycle calendar</h2>
+            <p class="page-note">Personal day numbers for the selected month (needs birth date). Personal year = month + day of birth + current year, reduced.</p>
+            <div class="nums-form" style="margin-bottom:1rem;">
+                <label for="n-month">Month to view</label>
+                <input type="month" id="n-month">
+            </div>
+            <div id="n-year-line" class="result-block" style="margin-bottom:1rem;"></div>
+            <div class="cycle-calendar" id="cycle-cal" aria-label="Personal day calendar"></div>
+        </section>
+
+        <section class="page-card nums-section">
+            <h2>Natal profile</h2>
+            <p class="page-note">Sun sign from birth date, plus numerology core. Full ephemeris charts need dedicated software — this is a studio-side sketch for theme work.</p>
+            <div id="n-natal" class="result-block">Enter a birth date above, then Calculate all.</div>
+        </section>
+
+        <section class="page-card nums-section">
+            <h2>Color chart by number</h2>
+            <div id="color-chart"></div>
+        </section>
+
+        <section class="page-card nums-section">
+            <h2>Crystal guide by number</h2>
+            <div class="crystal-list" id="crystal-guide"></div>
+        </section>
+
+        <section class="page-card nums-section">
+            <h2>Reminders &amp; newsletter</h2>
+            <p class="signup-soon">Email delivery for personal-day reminders and a numbers newsletter will be added later. Placeholder only — nothing is sent yet.</p>
+            <div class="nums-form">
+                <label for="n-email">Email</label>
+                <input type="email" id="n-email" placeholder="you@example.com" disabled>
+                <div class="page-actions">
+                    <button type="button" class="cta-button" disabled title="Coming later">Sign up (soon)</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer compact-footer">
+        <div class="container footer-row">
+            <p>OE Tattoo</p>
+            <p>#<sub>s</sub> · study room</p>
+        </div>
+    </footer>
+
+    <script defer src="script.js"></script>
+    <script src="numbers.js"></script>
+</body>
+</html>
