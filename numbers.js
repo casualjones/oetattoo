@@ -148,11 +148,23 @@
         const T = (jd - 2451545.0) / 36525.0;
         return norm360(125.0445479 - 1934.136261 * T + 0.0020754 * T * T);
     }
+    // Geocentric tropical ecliptic longitude (degrees).
+    // Astronomy.EclipticLongitude is heliocentric and throws for the Sun.
+    function geoLon(bodyName, time) {
+        if (bodyName === 'Sun') {
+            return norm360(Astronomy.SunPosition(time).elon);
+        }
+        if (bodyName === 'Moon') {
+            return norm360(Astronomy.EclipticGeoMoon(time).lon);
+        }
+        const vec = Astronomy.GeoVector(bodyName, time, true);
+        return norm360(Astronomy.Ecliptic(vec).elon);
+    }
     function isRetrograde(bodyName, time) {
         if (bodyName === 'Sun' || bodyName === 'Moon') return false;
-        const lon1 = Astronomy.EclipticLongitude(bodyName, time);
+        const lon1 = geoLon(bodyName, time);
         const later = Astronomy.MakeTime(new Date(time.date.getTime() + 86400000));
-        const lon2 = Astronomy.EclipticLongitude(bodyName, later);
+        const lon2 = geoLon(bodyName, later);
         let d = lon2 - lon1;
         while (d > 180) d -= 360;
         while (d < -180) d += 360;
@@ -256,7 +268,7 @@
         const utcDate = zonedTimeToUtc(y, mo, d, hh, mm, tz);
         const time = Astronomy.MakeTime(utcDate);
         const planets = BODIES.map((b) => ({
-            key: b.key, glyph: b.glyph, lon: Astronomy.EclipticLongitude(b.body, time), rx: isRetrograde(b.body, time)
+            key: b.key, glyph: b.glyph, lon: geoLon(b.body, time), rx: isRetrograde(b.body, time)
         }));
         planets.push({ key: 'N. Node', glyph: '☊', lon: meanNorthNode(utcDate), rx: false });
         let asc = null, mc = null;
@@ -319,7 +331,7 @@
         if (sessionStorage.getItem(GATE_KEY) === '1') { unlock(); return; }
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const val = (document.getElementById('gate-input').value || '').replace(/\s+/g, '').toLowerCase();
+            const val = (document.getElementById('gate-input').value || '').trim().toLowerCase();
             if (val === PASSWORD) { err.textContent = ''; unlock(); }
             else err.textContent = 'Not that key.';
         });
@@ -348,11 +360,18 @@
         const monthInput = document.getElementById('n-month');
         const cal = document.getElementById('cycle-cal');
         const yearLine = document.getElementById('n-year-line');
-        if (!isoDate) { cal.innerHTML = '<p class="page-note">Set a birth date and calculate to build the cycle grid.</p>'; yearLine.innerHTML = ''; return; }
+        if (!isoDate) {
+            cal.innerHTML = '<p class="page-note">Set a birth date and calculate to build the cycle grid.</p>';
+            yearLine.innerHTML = '';
+            return;
+        }
         let y, m;
-        if (monthInput.value) [y, m] = monthInput.value.split('-').map(Number);
-        else {
-            const now = new Date(); y = now.getFullYear(); m = now.getMonth() + 1;
+        if (monthInput.value) {
+            [y, m] = monthInput.value.split('-').map(Number);
+        } else {
+            const now = new Date();
+            y = now.getFullYear();
+            m = now.getMonth() + 1;
             monthInput.value = y + '-' + String(m).padStart(2, '0');
         }
         const py = personalYear(isoDate, y);
@@ -378,7 +397,11 @@
         const time = document.getElementById('n-time').value;
         const core = document.getElementById('n-core-results');
         const natal = document.getElementById('n-natal');
-        if (!iso) { core.classList.remove('nums-hidden'); core.innerHTML = '<p class="error-text">Birth date is required.</p>'; return; }
+        if (!iso) {
+            core.classList.remove('nums-hidden');
+            core.innerHTML = '<p class="error-text">Birth date is required.</p>';
+            return;
+        }
         const lp = lifePathFromDate(iso);
         const bd = birthdayNumber(iso);
         const destiny = name ? nameNumber(name) : null;
