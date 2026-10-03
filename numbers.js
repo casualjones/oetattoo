@@ -111,6 +111,67 @@
     function personalDay(isoDate, year, month, day) {
         return reduceNumber(personalMonth(isoDate, year, month) + day, true);
     }
+    function universalYear(year) {
+        return reduceNumber(year, true);
+    }
+    function meaningTitle(n) {
+        return MEANINGS[n] ? MEANINGS[n].title : String(n);
+    }
+    function meaningBody(n) {
+        return MEANINGS[n] ? MEANINGS[n].body : '';
+    }
+    function stackBlend(uy, py, pm, pd) {
+        const bits = [];
+        if (uy === 1 && py === 9) bits.push('The world is in a start year while your personal year is closing. Finish well so the next 1 year has a clear floor.');
+        else if (uy === 9 && py === 1) bits.push('Collective endings, personal beginning — plant while others wrap. Don\'t wait for the crowd.');
+        else if (uy === py) bits.push('Universal and personal year match (' + uy + '). Your chapter and the culture are on the same beat.');
+        else bits.push('Universal ' + uy + ' is the weather. Personal year ' + py + ' is your chapter inside it.');
+
+        if (py === 9 && pm === 1) bits.push('A 1 month inside a 9 year often starts something that completes a larger loop.');
+        else if (py === 1 && pm === 9) bits.push('A finishing month inside a pioneer year: close a loop so the new cycle can actually begin.');
+        else if (pm === py) bits.push('This month restates the year\'s number — lean into ' + meaningTitle(pm) + '.');
+        else bits.push('Month ' + pm + ' is the weather inside year ' + py + '.');
+
+        const dayHint = {
+            1: 'Today favors a first move, a clean start, one decisive mark.',
+            2: 'Today favors pairing, listening, and fine adjustments.',
+            3: 'Today favors saying it, drawing it, showing it — voice and play.',
+            4: 'Today favors craft, structure, and showing up for the work.',
+            5: 'Today favors motion, a change of scene, or a flexible plan.',
+            6: 'Today favors care, beauty, and tending what you already hold.',
+            7: 'Today favors study, solitude, and following the quiet signal.',
+            8: 'Today favors material decisions, boundaries, and power used cleanly.',
+            9: 'Today favors release, completion, and a generous ending.',
+            11: 'Today is high-signal — write it down, then ground.',
+            22: 'Today is for laying a brick on a long plan, not a sprint.',
+            33: 'Today is service through presence. Rest after you give.'
+        };
+        bits.push(dayHint[pd] || ('Today carries ' + meaningTitle(pd) + '.'));
+        return bits.join(' ');
+    }
+    function renderStation(isoDate, y, m, d) {
+        const el = document.getElementById('n-station');
+        if (!el) return;
+        if (!isoDate || !d) {
+            el.innerHTML = '<h4>Explanation station</h4><p class="page-note">Tap a calendar day. Sequence is universal year · personal year · personal month · personal day.</p>';
+            return;
+        }
+        const uy = universalYear(y);
+        const py = personalYear(isoDate, y);
+        const pm = personalMonth(isoDate, y, m);
+        const pd = personalDay(isoDate, y, m, d);
+        const seq = uy + '–' + py + '–' + pm + '–' + pd;
+        const dateLabel = y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+        const layers = [
+            { lbl: 'Universal year ' + y, n: uy, note: 'Climate for everyone. Calendar year reduced.' },
+            { lbl: 'Personal year', n: py, note: 'Your chapter this year (birth month + day + year).' },
+            { lbl: 'Personal month', n: pm, note: 'This month\'s weather inside the year (personal year + month).' },
+            { lbl: 'Personal day ' + dateLabel, n: pd, note: 'Today\'s move (personal month + day).' }
+        ].map((L) => {
+            return '<div class="station-layer"><div class="lbl">' + L.lbl + ' · ' + L.n + '</div><h5>' + escapeHtml(meaningTitle(L.n)) + '</h5><p>' + escapeHtml(meaningBody(L.n)) + ' ' + escapeHtml(L.note) + '</p></div>';
+        }).join('');
+        el.innerHTML = '<h4>Explanation station</h4><p class="page-note">Read outside in: world → year → month → day.</p><div class="station-seq" aria-label="Number sequence">' + seq + '</div><div class="station-layers">' + layers + '</div><p class="station-blend">' + escapeHtml(stackBlend(uy, py, pm, pd)) + '</p>';
+    }
     function norm360(x) { x %= 360; return x < 0 ? x + 360 : x; }
     function lonToSign(lon) {
         lon = norm360(lon);
@@ -125,7 +186,7 @@
         return s.glyph + ' ' + s.sign + ' ' + d + '°' + String(m).padStart(2, '0') + "'";
     }
     function escapeHtml(str) {
-        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        return String(str).replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"');
     }
     function zonedTimeToUtc(y, mo, d, hh, mm, timeZone) {
         const utcGuess = Date.UTC(y, mo - 1, d, hh, mm, 0);
@@ -148,8 +209,6 @@
         const T = (jd - 2451545.0) / 36525.0;
         return norm360(125.0445479 - 1934.136261 * T + 0.0020754 * T * T);
     }
-    // Geocentric tropical ecliptic longitude (degrees).
-    // Astronomy.EclipticLongitude is heliocentric and throws for the Sun.
     function geoLon(bodyName, time) {
         if (bodyName === 'Sun') {
             return norm360(Astronomy.SunPosition(time).elon);
@@ -356,13 +415,14 @@
             return '<div class="crystal-item"><h4>' + title + '</h4><p><strong>' + c.stones + '</strong> — ' + c.note + '</p></div>';
         }).join('');
     }
-    function renderCalendar(isoDate) {
+    function renderCalendar(isoDate, selectDay) {
         const monthInput = document.getElementById('n-month');
         const cal = document.getElementById('cycle-cal');
         const yearLine = document.getElementById('n-year-line');
         if (!isoDate) {
             cal.innerHTML = '<p class="page-note">Set a birth date and calculate to build the cycle grid.</p>';
             yearLine.innerHTML = '';
+            renderStation(null);
             return;
         }
         let y, m;
@@ -374,22 +434,31 @@
             m = now.getMonth() + 1;
             monthInput.value = y + '-' + String(m).padStart(2, '0');
         }
+        const uy = universalYear(y);
         const py = personalYear(isoDate, y);
         const pm = personalMonth(isoDate, y, m);
-        yearLine.innerHTML = '<h4>Personal year ' + y + ': <span style="color:var(--gold)">' + py + '</span> · Personal month: <span style="color:var(--gold)">' + pm + '</span></h4><p style="margin:0.35rem 0 0;color:var(--muted);font-size:0.85rem">' + (MEANINGS[py] ? MEANINGS[py].body : '') + '</p>';
+        yearLine.innerHTML = '<h4>Universal year ' + y + ': <span style="color:var(--gold)">' + uy + '</span> · Personal year: <span style="color:var(--gold)">' + py + '</span> · Personal month: <span style="color:var(--gold)">' + pm + '</span></h4><p style="margin:0.35rem 0 0;color:var(--muted);font-size:0.85rem">' + (MEANINGS[py] ? MEANINGS[py].body : '') + '</p>';
         const first = new Date(y, m - 1, 1);
         const startPad = first.getDay();
         const daysInMonth = new Date(y, m, 0).getDate();
         const today = new Date();
+        const todayHere = today.getFullYear() === y && today.getMonth() + 1 === m;
+        let picked = selectDay || (todayHere ? today.getDate() : 1);
+        if (picked > daysInMonth) picked = daysInMonth;
         const heads = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => '<div class="cycle-day-head">' + d + '</div>').join('');
         let cells = '';
-        for (let i = 0; i < startPad; i++) cells += '<div class="cycle-day outside"></div>';
+        for (let i = 0; i < startPad; i++) cells += '<div class="cycle-day outside" aria-hidden="true"></div>';
         for (let d = 1; d <= daysInMonth; d++) {
             const pn = personalDay(isoDate, y, m, d);
-            const isToday = today.getFullYear() === y && today.getMonth() + 1 === m && today.getDate() === d;
-            cells += '<div class="cycle-day' + (isToday ? ' today' : '') + '" title="Personal day ' + pn + '"><span class="n">' + d + '</span><span class="pn">' + pn + '</span></div>';
+            const isToday = todayHere && today.getDate() === d;
+            const isSel = d === picked;
+            cells += '<button type="button" class="cycle-day' + (isToday ? ' today' : '') + (isSel ? ' selected' : '') + '" data-day="' + d + '" aria-pressed="' + (isSel ? 'true' : 'false') + '" title="Personal day ' + pn + '"><span class="n">' + d + '</span><span class="pn">' + pn + '</span></button>';
         }
         cal.innerHTML = heads + cells;
+        cal.querySelectorAll('button.cycle-day').forEach((btn) => {
+            btn.addEventListener('click', () => renderCalendar(isoDate, +btn.dataset.day));
+        });
+        renderStation(isoDate, y, m, picked);
     }
     function calculateAll() {
         const iso = document.getElementById('n-birth').value;
