@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <style>
         #nums-nebula {
             position: fixed;
@@ -44,11 +44,19 @@
         .nums-card p { color: var(--muted); line-height: 1.55; }
         .cycle-calendar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.4rem; }
         .cycle-day-head { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); text-align: center; padding: 0.25rem; }
-        .cycle-day { min-height: 64px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); padding: 0.35rem; font-size: 0.72rem; display: grid; align-content: start; gap: 0.15rem; }
+        .cycle-day { min-height: 64px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); padding: 0.35rem; font-size: 0.72rem; display: grid; align-content: start; gap: 0.15rem; cursor: pointer; width: 100%; color: inherit; font: inherit; text-align: left; }
         .cycle-day.outside { opacity: 0.35; }
         .cycle-day.today { border-color: rgba(209, 171, 91, 0.55); background: linear-gradient(180deg, rgba(209,171,91,0.1), rgba(255,255,255,0.02)); }
+        .cycle-day.selected { border-color: rgba(209,171,91,0.7); background: rgba(209,171,91,0.14); }
         .cycle-day .n { color: var(--muted); font-size: 0.68rem; }
         .cycle-day .pn { font-family: var(--serif); font-size: 0.95rem; color: var(--gold); }
+        .station-seq { font-family: var(--serif); font-size: 1.55rem; letter-spacing: 0.12em; color: var(--gold); margin: 0.15rem 0 0.75rem; }
+        .station-layers { display: grid; gap: 0.7rem; }
+        .station-layer { border-left: 2px solid rgba(209,171,91,0.4); padding-left: 0.75rem; }
+        .station-layer .lbl { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+        .station-layer h5 { margin: 0.15rem 0 0.2rem; font-size: 0.95rem; color: var(--text); }
+        .station-layer p { margin: 0; font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+        .station-blend { margin-top: 0.9rem; font-size: 0.9rem; color: var(--text); line-height: 1.55; }
         .swatch-row { display: flex; flex-wrap: wrap; gap: 0.55rem; }
         .swatch { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; position: relative; }
         .swatch span { position: absolute; bottom: -1.35rem; left: 50%; transform: translateX(-50%); font-size: 0.6rem; color: var(--muted); white-space: nowrap; }
@@ -122,7 +130,7 @@
             </div>
         </section>
         <section class="page-card nums-section">
-            <h2>Your numbers & natal</h2>
+            <h2>Your numbers &amp; natal</h2>
             <div class="nums-form">
                 <label for="n-birth">Birth date</label>
                 <input type="date" id="n-birth">
@@ -153,14 +161,18 @@
             <div class="nums-grid" id="meaning-grid"></div>
         </section>
         <section class="page-card nums-section">
-            <h2>Personal cycle calendar</h2>
-            <p class="page-note">Personal day numbers for the selected month (needs birth date).</p>
+            <h2>Personal rhythm calendar</h2>
+            <p class="page-note">Click a day. Sequence is universal year · personal year · personal month · personal day.</p>
             <div class="nums-form" style="margin-bottom:1rem;">
                 <label for="n-month">Month to view</label>
                 <input type="month" id="n-month">
             </div>
             <div id="n-year-line" class="result-block" style="margin-bottom:1rem;"></div>
             <div class="cycle-calendar" id="cycle-cal" aria-label="Personal day calendar"></div>
+            <div id="n-station" class="result-block" style="margin-top:1rem;">
+                <h4>Explanation station</h4>
+                <p class="page-note">Set a birth date, calculate, then tap a calendar day for the stacked reading.</p>
+            </div>
         </section>
         <section class="page-card nums-section">
             <h2>Color chart by number</h2>
