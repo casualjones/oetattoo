@@ -7,6 +7,45 @@
         <meta name="author" content="OE Tattoo">
         <title>OE Tattoo // Front Door</title>
         <link rel="stylesheet" href="style.css">
+        <style>
+        .eureka-wx {
+            margin-top: 1.25rem;
+            max-width: 28rem;
+            border: 1px solid rgba(209,171,91,0.22);
+            background: rgba(0,0,0,0.28);
+            padding: 0.75rem 0.9rem;
+        }
+        .eureka-wx .wx-kicker {
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold, #d1ab5b);
+            margin: 0 0 0.35rem;
+        }
+        .eureka-wx .wx-now {
+            font-family: var(--serif, "Playfair Display", serif);
+            font-size: 1.15rem;
+            margin: 0 0 0.25rem;
+            color: var(--text, #f4f0e8);
+        }
+        .eureka-wx .wx-sun {
+            font-size: 0.78rem;
+            color: var(--muted, #b2aba0);
+            margin: 0 0 0.55rem;
+        }
+        .eureka-wx .wx-days {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.4rem;
+        }
+        .eureka-wx .wx-day {
+            font-size: 0.72rem;
+            color: var(--muted, #b2aba0);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 0.4rem;
+        }
+        .eureka-wx .wx-day strong { display: block; color: var(--text, #f4f0e8); font-weight: 600; }
+        </style>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -54,6 +93,12 @@
                         <a class="cta-button" href="portfolio.html">Gallery</a>
                         <a class="cta-button secondary" href="contact.html">Consult</a>
                     </div>
+                    <aside class="eureka-wx" id="eureka-wx" aria-label="Eureka California weather">
+                        <p class="wx-kicker">Eureka · Humboldt</p>
+                        <p class="wx-now" id="wx-now">Loading coast…</p>
+                        <p class="wx-sun" id="wx-sun"></p>
+                        <div class="wx-days" id="wx-days"></div>
+                    </aside>
                 </div>
                 <div class="doorway-panel" aria-label="Front door navigation">
                     <img class="doorway-image" src="images/front_door.avif" alt="Front door artwork">
