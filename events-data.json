@@ -1,56 +1,11 @@
 [
   {
-    "title": "Karaoke Nights",
-    "url": "https://community.northcoastjournal.com/event/karaoke-nights-34877127",
-    "location": "Wave Lounge, Blue Lake Casino",
-    "source": "North Coast Journal",
-    "detail_time": "Mon., Oct. 5, 9 p.m., Mon., Oct. 12, 9 p.m., Mon., Oct. 19, 9 p.m. and Mon., Oct. 26, 9 p.m.",
-    "startDate": "2026-10-05T21:00:00-07:00",
-    "startDateIso": "2026-10-05T21:00:00-07:00"
-  },
-  {
-    "title": "Open Mic Comedy",
-    "url": "https://www.eventbrite.com/e/open-mic-comedy-tickets-1964608813848",
-    "location": "302 2nd St, 302 2nd Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-06",
-    "detail_time": "",
-    "startDateIso": "2026-10-06T00:00:00"
-  },
-  {
-    "title": "Steel Pulse: Reggae Against Racism  World Tour 2026",
-    "url": "https://www.eventbrite.com/e/steel-pulse-reggae-against-racism-world-tour-2026-tickets-1993951337125",
-    "location": "Mateel Community Center, 59 Rusk Lane, Redway, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-06",
-    "detail_time": "",
-    "startDateIso": "2026-10-06T00:00:00"
-  },
-  {
     "title": "Strange Meeting",
     "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-06T22:18:49.887031"
-  },
-  {
-    "title": "Quilted Witch Hat Class at Lavender Rose in Eureka",
-    "url": "https://www.eventbrite.com/e/quilted-witch-hat-class-at-lavender-rose-in-eureka-tickets-1999653525524",
-    "location": "Lavender Rose Fabrics Quilt Shop, 301 West Harris Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-07",
-    "detail_time": "",
-    "startDateIso": "2026-10-07T00:00:00"
-  },
-  {
-    "title": "Early Bird Savage Henry Comedy Fest Weekend Pass",
-    "url": "https://www.eventbrite.com/e/early-bird-savage-henry-comedy-fest-weekend-pass-tickets-1997804890206",
-    "location": "Savage Henry Comedy Club, 415 5th Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-08",
-    "detail_time": "",
-    "startDateIso": "2026-10-08T00:00:00"
+    "startDateIso": "2026-10-06T14:45:19.847267"
   },
   {
     "title": "‘A Reason to Listen’ October Poetry Show",
@@ -58,7 +13,7 @@
     "location": "The Historic Eagle House",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-8:30 p.m.",
-    "startDateIso": "2026-10-08T22:18:49.887031"
+    "startDateIso": "2026-10-08T14:45:19.847267"
   },
   {
     "title": "The Minutes",
@@ -66,7 +21,7 @@
     "location": "North Coast Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8 p.m.",
-    "startDateIso": "2026-10-08T22:18:49.887031"
+    "startDateIso": "2026-10-08T14:45:19.847267"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -74,7 +29,7 @@
     "location": "Old Town Eureka",
     "source": "Recurring local listing",
     "detail_time": "5:30-8:30 p.m.",
-    "startDateIso": "2026-10-09T00:00:00-07:00"
+    "startDateIso": "2026-10-09T00:00:00+00:00"
   },
   {
     "title": "SHCF: Ron Lynch",
@@ -82,7 +37,7 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 p.m.",
-    "startDateIso": "2026-10-09T22:18:49.887031"
+    "startDateIso": "2026-10-09T14:45:19.847267"
   },
   {
     "title": "OktoBEARfest",
@@ -90,7 +45,7 @@
     "location": "Sequoia Park Zoo",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "4-7 p.m.",
-    "startDateIso": "2026-10-10T22:18:49.887031"
+    "startDateIso": "2026-10-10T14:45:19.847267"
   },
   {
     "title": "David Ambrosio/Russ Meissner Sextet",
@@ -98,7 +53,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8-10:30 p.m.",
-    "startDateIso": "2026-10-10T22:18:49.887031"
+    "startDateIso": "2026-10-10T14:45:19.847267"
   },
   {
     "title": "SHCF: Eddie Pepitone",
@@ -106,16 +61,7 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 p.m.",
-    "startDateIso": "2026-10-10T22:18:49.887031"
-  },
-  {
-    "title": "Ron Lynch’s World Famous Crapshoot! Midnight Edition!",
-    "url": "https://www.eventbrite.com/e/ron-lynchs-world-famous-crapshoot-midnight-edition-tickets-2002983440389",
-    "location": "Savage Henry Comedy Club, 415 5th st, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-11",
-    "detail_time": "",
-    "startDateIso": "2026-10-11T00:00:00"
+    "startDateIso": "2026-10-10T14:45:19.847267"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -123,16 +69,7 @@
     "location": "Arcata Plaza",
     "source": "Recurring local listing",
     "detail_time": "Saturday mornings",
-    "startDateIso": "2026-10-11T00:00:00-07:00"
-  },
-  {
-    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 21-35ish]",
-    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-21-35ish-tickets-1998821290286",
-    "location": "Phatsy Kline's Parlor Lounge, 129 2nd Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-16",
-    "detail_time": "",
-    "startDateIso": "2026-10-16T00:00:00"
+    "startDateIso": "2026-10-11T00:00:00+00:00"
   },
   {
     "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
@@ -176,93 +113,12 @@
     "startDateIso": "2026-10-19T00:00:00"
   },
   {
-    "title": "Quilty Ghost Paint Night at Lost Coast Brewery",
-    "url": "https://www.eventbrite.com/e/quilty-ghost-paint-night-at-lost-coast-brewery-tickets-1999646546650",
-    "location": "Lost Coast Brewery & Cafe, 617 4th Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-22",
-    "detail_time": "",
-    "startDateIso": "2026-10-22T00:00:00"
-  },
-  {
-    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 38-55ish]",
-    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-38-55ish-tickets-2000644160540",
-    "location": "Humboldt Brews LLC *UNDER NEW OWNERSHIP*, 856 10th Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-22",
-    "detail_time": "",
-    "startDateIso": "2026-10-22T00:00:00"
-  },
-  {
     "title": "Festival of the Sea",
     "url": "https://lostcoastoutpost.com/lowdown/events/festival-of-the-sea/",
     "location": "Trinidad City Hall",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6 p.m.",
     "startDateIso": "2026-10-23T00:00:00"
-  },
-  {
-    "title": "Gothica- Halloween Pole Showcase",
-    "url": "https://www.eventbrite.com/e/gothica-halloween-pole-showcase-tickets-2002468713828",
-    "location": "445 I St, 445 I Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-24",
-    "detail_time": "",
-    "startDateIso": "2026-10-24T00:00:00"
-  },
-  {
-    "title": "SIDE STORIES LIVE in HUMBOLDT w/special guest Billy Wayne Davis",
-    "url": "https://www.eventbrite.com/e/side-stories-live-in-humboldt-wspecial-guest-billy-wayne-davis-tickets-1991714968085",
-    "location": "Mateel Community Center, 59 Rusk Lane, Redway, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-24",
-    "detail_time": "",
-    "startDateIso": "2026-10-24T00:00:00"
-  },
-  {
-    "title": "Halloween Covers Show at the Phoenix 2026",
-    "url": "https://www.eventbrite.com/e/halloween-covers-show-at-the-phoenix-2026-tickets-1998925249230",
-    "location": "The Phoenix Theater, 201 Washington St., Petaluma, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-24",
-    "detail_time": "",
-    "startDateIso": "2026-10-24T00:00:00"
-  },
-  {
-    "title": "Barn Quilt Workshop at Lavender Rose in Eureka",
-    "url": "https://www.eventbrite.com/e/barn-quilt-workshop-at-lavender-rose-in-eureka-tickets-2001742902908",
-    "location": "Lavender Rose Fabrics Quilt Shop, 301 West Harris Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-25",
-    "detail_time": "",
-    "startDateIso": "2026-10-25T00:00:00"
-  },
-  {
-    "title": "Comedian Claude Stuart",
-    "url": "https://www.eventbrite.com/e/comedian-claude-stuart-tickets-2002369538191",
-    "location": "Cali Planet Sports Bar, 109 5th Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-29",
-    "detail_time": "",
-    "startDateIso": "2026-10-29T00:00:00"
-  },
-  {
-    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 48-65ish]",
-    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-48-65ish-tickets-1998821442742",
-    "location": "Humboldt Bay Provisions, 205 G Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-29",
-    "detail_time": "",
-    "startDateIso": "2026-10-29T00:00:00"
-  },
-  {
-    "title": "HOW THE WEST WAS HAUNTED ~ Halloween at Historic Eagle House ~2 NIGHTS!",
-    "url": "https://www.eventbrite.com/e/how-the-west-was-haunted-halloween-at-historic-eagle-house-2-nights-tickets-1999615105609",
-    "location": "Eagle House, 139 2nd Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-10-30",
-    "detail_time": "",
-    "startDateIso": "2026-10-30T00:00:00"
   },
   {
     "title": "Poor Man’s Whiskey: Darkside of the Moonshine",
@@ -289,78 +145,6 @@
     "startDateIso": "2026-10-31T00:00:00"
   },
   {
-    "title": "Midnight 707",
-    "url": "https://www.eventbrite.com/e/midnight-707-tickets-1997208298785",
-    "location": "14th Street, 14th Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-01",
-    "detail_time": "",
-    "startDateIso": "2026-11-01T00:00:00"
-  },
-  {
-    "title": "LOGGER LADIES WHO LUNCH OR 7 KARENS HAVE A HIGHBALL",
-    "url": "https://www.eventbrite.com/e/logger-ladies-who-lunch-or-7-karens-have-a-highball-tickets-1998973382197",
-    "location": "Logger Bar, 510 Railroad Avenue, Blue Lake, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-03",
-    "detail_time": "",
-    "startDateIso": "2026-11-03T00:00:00"
-  },
-  {
-    "title": "How Daddy Is Doing",
-    "url": "https://www.eventbrite.com/e/how-daddy-is-doing-tickets-2002182501760",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-05",
-    "detail_time": "",
-    "startDateIso": "2026-11-05T00:00:00"
-  },
-  {
-    "title": "Jom and Terry",
-    "url": "https://www.eventbrite.com/e/jom-and-terry-tickets-2002168724552",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-05",
-    "detail_time": "",
-    "startDateIso": "2026-11-05T00:00:00"
-  },
-  {
-    "title": "Spiritline: if you get a dialtone you probably got the wrong number",
-    "url": "https://www.eventbrite.com/e/spiritline-if-you-get-a-dialtone-you-probably-got-the-wrong-number-tickets-2002170537976",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-06",
-    "detail_time": "",
-    "startDateIso": "2026-11-06T00:00:00"
-  },
-  {
-    "title": "Weapon of Mass Seduction",
-    "url": "https://www.eventbrite.com/e/weapon-of-mass-seduction-tickets-2002171599150",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-06",
-    "detail_time": "",
-    "startDateIso": "2026-11-06T00:00:00"
-  },
-  {
-    "title": "Take, Take, Take",
-    "url": "https://www.eventbrite.com/e/take-take-take-tickets-2002183189818",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-07",
-    "detail_time": "",
-    "startDateIso": "2026-11-07T00:00:00"
-  },
-  {
-    "title": "Cultural Center Tours!",
-    "url": "https://www.eventbrite.com/e/cultural-center-tours-tickets-1999724395498",
-    "location": "Da Gou Rou Louwi’ Cultural Center, 417 2nd Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-07",
-    "detail_time": "",
-    "startDateIso": "2026-11-07T00:00:00"
-  },
-  {
     "title": "Arts! Alive",
     "url": "https://lostcoastoutpost.com/lowdown/events/arts-alive-7/",
     "location": "Eureka",
@@ -374,33 +158,6 @@
     "location": "Downtown Eureka",
     "source": "Recurring local listing",
     "detail_time": "First Saturday of each month",
-    "startDateIso": "2026-11-07T00:00:00-07:00"
-  },
-  {
-    "title": "The Good Body",
-    "url": "https://www.eventbrite.com/e/the-good-body-tickets-1996768603645",
-    "location": "Eureka Woman's Club, 1531 J Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-08",
-    "detail_time": "",
-    "startDateIso": "2026-11-08T00:00:00"
-  },
-  {
-    "title": "Scattered",
-    "url": "https://www.eventbrite.com/e/scattered-tickets-2002182275082",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-08",
-    "detail_time": "",
-    "startDateIso": "2026-11-08T00:00:00"
-  },
-  {
-    "title": "Famous Comedian Sam Miller Headlines the Club!",
-    "url": "https://www.eventbrite.com/e/famous-comedian-sam-miller-headlines-the-club-tickets-2002182560937",
-    "location": "Savage Henry Comedy Club, 415 5th st, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-12-10",
-    "detail_time": "",
-    "startDateIso": "2026-12-10T00:00:00"
+    "startDateIso": "2026-11-07T00:00:00+00:00"
   }
 ]
