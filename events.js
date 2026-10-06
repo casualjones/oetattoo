@@ -110,7 +110,7 @@ function renderCalendar(events) {
       dayCard.appendChild(empty);
     } else {
       dayCard.classList.add('has-events');
-      dayEvents.slice(0, 2).forEach(event => {
+      dayEvents.slice(0, 4).forEach(event => {
         const eventItem = document.createElement('a');
         eventItem.href = event.url;
         eventItem.target = '_blank';
@@ -120,10 +120,10 @@ function renderCalendar(events) {
         dayCard.appendChild(eventItem);
       });
 
-      if (dayEvents.length > 2) {
+      if (dayEvents.length > 4) {
         const more = document.createElement('p');
         more.className = 'event-more';
-        more.textContent = `+${dayEvents.length - 2} more`;
+        more.textContent = `+${dayEvents.length - 4} more`;
         dayCard.appendChild(more);
       }
     }
@@ -197,16 +197,12 @@ function filterMonth(events) {
 
 function getNearestMonthStart(events, referenceDate) {
   if (!events.length) return null;
-
   const sorted = Array.from(events).sort((a, b) => a.date - b.date);
   const referenceTime = referenceDate.getTime();
-
-  // Prefer the next upcoming event month; if none remain, fall back to latest available month.
   const upcoming = sorted.find(event => event.date.getTime() >= referenceTime);
   if (upcoming) {
     return getMonthStart(upcoming.date);
   }
-
   return getMonthStart(sorted[sorted.length - 1].date);
 }
 
@@ -220,9 +216,7 @@ function addMonths(date, amount) {
 async function loadWeeklyEvents() {
   setStatus('Loading monthly events…');
   const events = await fetchEvents();
-
   let monthEvents = filterMonth(events);
-
   if (events.length > 0 && monthEvents.length === 0) {
     const nearestMonth = getNearestMonthStart(events, new Date());
     if (nearestMonth) {
@@ -231,7 +225,6 @@ async function loadWeeklyEvents() {
       setStatus('Showing nearest available month from the event feed.', true);
     }
   }
-
   updateWeekLabel();
   renderCalendar(monthEvents);
   renderEventList(monthEvents);
