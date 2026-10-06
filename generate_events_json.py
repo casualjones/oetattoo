@@ -8,9 +8,15 @@ from datetime import datetime, timedelta
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36'
 SEARCH_URL = 'https://www.northcoastjournal.com/community/'
 OUTPUT_FILE = 'events-data.json'
-MAX_EVENTS = 40
+MAX_EVENTS = 80
 EVENTBRITE_URL = 'https://www.eventbrite.com/d/ca--eureka/music--events/'
-EVENTBRITE_PAGES = 2
+EVENTBRITE_PAGES = 3
+EVENTBRITE_URLS = [
+    'https://www.eventbrite.com/d/ca--eureka/music--events/',
+    'https://www.eventbrite.com/d/ca--humboldt-county/events/',
+    'https://www.eventbrite.com/d/ca--arcata/events/',
+]
+# Facebook /events requires a logged-in session; it cannot be scraped from GitHub Actions.
 LOCO_LOOKAHEAD_URL = 'https://lostcoastoutpost.com/lowdown/lookahead/'
 SLEEP_SECONDS = 1.0
 
@@ -334,17 +340,19 @@ def main():
         time.sleep(SLEEP_SECONDS)
 
     eventbrite_events = []
-    for page in range(1, EVENTBRITE_PAGES + 1):
-        page_url = EVENTBRITE_URL if page == 1 else f'{EVENTBRITE_URL}?page={page}'
-        print('Fetching Eventbrite page:', page_url)
-        try:
-            page_html = fetch(page_url)
-            page_events = parse_eventbrite_events(page_html)
-            print(f'Found {len(page_events)} Eventbrite events on page {page}.')
-            eventbrite_events.extend(page_events)
-        except Exception as exc:
-            print('Failed to fetch Eventbrite page:', page_url, exc)
-        time.sleep(SLEEP_SECONDS)
+    for base in EVENTBRITE_URLS:
+        for page in range(1, EVENTBRITE_PAGES + 1):
+            page_url = base if page == 1 else f'{base}{"?" if "?" not in base else "&"}page={page}'.replace('?}page', '?page').replace('{base}', '')
+            page_url = base if page == 1 else (base + ('&' if '?' in base else '?') + f'page={page}')
+            print('Fetching Eventbrite page:', page_url)
+            try:
+                page_html = fetch(page_url)
+                page_events = parse_eventbrite_events(page_html)
+                print(f'Found {len(page_events)} Eventbrite events on page {page}.')
+                eventbrite_events.extend(page_events)
+            except Exception as exc:
+                print('Failed to fetch Eventbrite page:', page_url, exc)
+            time.sleep(SLEEP_SECONDS)
 
     loco_events = []
     print('Fetching Lowdown lookahead page:', LOCO_LOOKAHEAD_URL)
