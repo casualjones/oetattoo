@@ -10,7 +10,6 @@ VS Code: pull `origin/master` before editing. See `VSCODE.md`.
 
 - Landing: Eureka, CA sunrise, sunset, current temp, 3-day forecast (Open-Meteo, no API key).
 - Interesting: more Eventbrite coverage (Eureka music + Humboldt County + Arcata), cap 80 events, 4 items per calendar day.
-- Facebook Events (`facebook.com/events`) linked as a human source. Meta requires login; GitHub Actions cannot ingest that feed.
 
 ## 2026-10-03
 

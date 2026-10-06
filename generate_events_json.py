@@ -16,7 +16,6 @@ EVENTBRITE_URLS = [
     'https://www.eventbrite.com/d/ca--humboldt-county/events/',
     'https://www.eventbrite.com/d/ca--arcata/events/',
 ]
-# Facebook /events requires a logged-in session; it cannot be scraped from GitHub Actions.
 LOCO_LOOKAHEAD_URL = 'https://lostcoastoutpost.com/lowdown/lookahead/'
 SLEEP_SECONDS = 1.0
 
