@@ -4,7 +4,7 @@ Place reference PDFs and study materials in this directory to make them availabl
 
 ## Current Resources
 
-- `modern-professional-tattooing.pdf` — Main technical reference manual
+No downloadable reference files are currently installed. The Tools page and resource index intentionally report the technical PDF as unavailable until the licensed file is supplied.
 
 ## Adding New Resources
 
