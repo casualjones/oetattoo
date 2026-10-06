@@ -548,6 +548,25 @@ img {
     margin-top: 0.75rem;
 }
 
+.event-search-label {
+    display: block;
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.event-search {
+    width: min(100%, 32rem);
+    margin-top: 0.35rem;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.22);
+    color: var(--text);
+    font: inherit;
+}
+
 .event-summary p {
     margin: 0;
 }
@@ -561,6 +580,17 @@ img {
 .event-status {
     color: var(--muted);
     font-size: 0.8rem;
+}
+
+.event-updated {
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+}
+
+.site-version {
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
 }
 
 .event-calendar,
@@ -1109,10 +1139,25 @@ img {
 
     .event-calendar {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
     }
 
     .event-day-header {
         display: none;
+    }
+
+    .event-day-card {
+        min-height: 116px;
+        padding: 0.65rem;
+    }
+
+    .event-day-link {
+        font-size: 0.78rem;
+        padding: 0.45rem;
+    }
+
+    .event-day-link span {
+        font-size: 0.72rem;
     }
 
     .release-price {

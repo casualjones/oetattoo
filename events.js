@@ -1,15 +1,18 @@
 const DATA_FILE = 'events-data.json';
 const statusText = document.getElementById('statusText');
+const lastUpdated = document.getElementById('lastUpdated');
 const weekLabel = document.getElementById('weekLabel');
 const calendarGrid = document.getElementById('calendarGrid');
 const eventList = document.getElementById('eventList');
 const refreshButton = document.getElementById('refreshButton');
 const prevWeekButton = document.getElementById('prevWeek');
 const nextWeekButton = document.getElementById('nextWeek');
+const eventSearch = document.getElementById('eventSearch');
 let currentMonthStart = getMonthStart(new Date());
 let latestEvents = [];
 let refreshInFlight = false;
 let refreshTimer = null;
+let currentMonthEvents = [];
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, character => ({
@@ -90,6 +93,21 @@ function updateWeekLabel() {
 function setStatus(message, success = true) {
   statusText.textContent = message;
   statusText.style.color = success ? '#dfdfdf' : '#ff8b8b';
+}
+
+function setLastUpdated(date = new Date(), message = 'Live feed synced') {
+  if (!lastUpdated) return;
+  lastUpdated.textContent = `${message} · ${date.toLocaleString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  })}`;
+}
+
+function formatSyncTime(date) {
+  return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 }
 
 function renderCalendar(events) {
@@ -200,17 +218,16 @@ async function fetchEvents() {
     const items = await response.json();
     const events = items.map(normalizeEvent).filter(event => event.date instanceof Date && !Number.isNaN(event.date.getTime()));
     latestEvents = events;
+    setLastUpdated();
     setStatus(`Live feed synced · ${events.length} total listings · ${formatSyncTime(new Date())}`, true);
     return events;
   } catch (error) {
     console.error(error);
+    setLastUpdated(new Date(), 'Live feed unavailable; showing fallback');
     setStatus('Unable to load static event feed. Showing fallback events.', false);
     return fallbackEvents;
   }
 
-  function formatSyncTime(date) {
-    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-  }
 }
 
 function filterMonth(events) {
@@ -220,6 +237,12 @@ function filterMonth(events) {
       event.date.getMonth() === currentMonthStart.getMonth()
     );
   });
+}
+
+function filterSearch(events) {
+  const query = (eventSearch?.value || '').trim().toLowerCase();
+  if (!query) return events;
+  return events.filter(event => [event.title, event.location, event.source, event.time].join(' ').toLowerCase().includes(query));
 }
 
 function getNearestMonthStart(events, referenceDate) {
@@ -256,13 +279,15 @@ async function loadWeeklyEvents() {
       }
     }
     updateWeekLabel();
-    renderCalendar(monthEvents);
-    renderEventList(monthEvents);
-    const sourceCount = new Set(monthEvents.map(event => event.source)).size;
+    currentMonthEvents = monthEvents;
+    const visibleEvents = filterSearch(monthEvents);
+    renderCalendar(visibleEvents);
+    renderEventList(visibleEvents);
+    const sourceCount = new Set(visibleEvents.map(event => event.source)).size;
     setStatus(
-      monthEvents.length
-        ? `${monthEvents.length} event${monthEvents.length === 1 ? '' : 's'} this month · ${sourceCount} source${sourceCount === 1 ? '' : 's'} · synced ${formatSyncTime(new Date())}`
-        : `No events listed for this month · synced ${formatSyncTime(new Date())}`,
+      visibleEvents.length
+        ? `${visibleEvents.length} matching event${visibleEvents.length === 1 ? '' : 's'} · ${sourceCount} source${sourceCount === 1 ? '' : 's'} · synced ${formatSyncTime(new Date())}`
+        : `No matching events in this month · synced ${formatSyncTime(new Date())}`,
       true
     );
   } finally {
@@ -278,6 +303,12 @@ prevWeekButton?.addEventListener('click', () => {
 nextWeekButton?.addEventListener('click', () => {
   currentMonthStart = addMonths(currentMonthStart, 1);
   loadWeeklyEvents();
+});
+eventSearch?.addEventListener('input', () => {
+  const visibleEvents = filterSearch(currentMonthEvents);
+  renderCalendar(visibleEvents);
+  renderEventList(visibleEvents);
+  setStatus(visibleEvents.length ? `${visibleEvents.length} matching event${visibleEvents.length === 1 ? '' : 's'}` : 'No matching events in this month.', true);
 });
 
 document.addEventListener('DOMContentLoaded', loadWeeklyEvents);

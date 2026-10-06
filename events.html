@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interesting - OE Tattoo</title>
     <meta name="description" content="Local events and notes from the North Coast.">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20261005-3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -43,9 +43,12 @@
                     <button id="nextWeek" type="button" class="cta-button">Next month</button>
                     <button id="refreshButton" class="cta-button secondary">Refresh</button>
                 </div>
+                <label class="event-search-label" for="eventSearch">Find in this month</label>
+                <input id="eventSearch" class="event-search" type="search" placeholder="Search title, place, or source" autocomplete="off">
                 <div class="event-summary">
                     <p id="weekLabel">Loading month...</p>
                     <p class="event-status" id="statusText" aria-live="polite">Loading monthly events...</p>
+                    <p class="event-updated" id="lastUpdated">Live feed has not synced yet.</p>
                 </div>
             </article>
 
@@ -74,11 +77,11 @@
     <footer class="footer compact-footer">
         <div class="container footer-row">
             <p>OE Tattoo</p>
-            <p>Local notes and listings</p>
+            <p>Local notes and listings · <span class="site-version">v20261005-3</span></p>
         </div>
     </footer>
 
-    <script defer src="script.js"></script>
-    <script src="events.js"></script>
+    <script defer src="script.js?v=20261005-3"></script>
+    <script src="events.js?v=20261005-3"></script>
 </body>
 </html>
