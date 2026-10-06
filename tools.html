@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - OE Tattoo</title>
     <meta name="description" content="Studio tools and study utilities for tattoo design work.">
-    <link rel="stylesheet" href="style.css?v=20261005-3">
+    <link rel="stylesheet" href="style.css?v=20261005-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -37,28 +37,51 @@
             <div class="tool-legend" aria-label="Tool workflow">
                 <span>01 · Prepare</span><span>02 · Translate</span><span>03 · Study</span>
             </div>
+            <aside class="tool-tips" aria-label="Tool tips">
+                <strong>Quick studio notes</strong>
+                <span>Scaler: set the intended print percentage.</span>
+                <span>Grid: keep the reference and transfer proportions aligned.</span>
+                <span>Stencil: raise the threshold to simplify noisy edges.</span>
+                <span>Images stay in this browser tab and are never uploaded.</span>
+            </aside>
         </section>
 
         <section class="tool-grid">
             <article class="page-card tool-card">
                 <div class="tool-heading"><span class="tool-index">01</span><div><h3>Image Scaler</h3><p>Resize a reference before printing or comparing placement.</p></div></div>
                 <label class="file-label" for="scalerInput">Reference image</label>
-                <input type="file" id="scalerInput" accept=".jpg,.jpeg,.png,image/*">
+                <label class="drop-zone" for="scalerInput" data-drop-input="scalerInput">Drop an image here or choose a file<input type="file" id="scalerInput" accept=".jpg,.jpeg,.png,image/*"></label>
                 <p id="scalerStatus" class="tool-status" aria-live="polite">No image loaded yet.</p>
+                <div class="image-controls" aria-label="Image controls">
+                    <label for="scalerZoom">Zoom <output id="scalerZoomValue">100%</output></label><input type="range" id="scalerZoom" min="50" max="200" value="100">
+                    <label for="scalerRotation">Rotate</label><select id="scalerRotation"><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select>
+                    <label for="scalerCrop">Crop</label><select id="scalerCrop"><option value="1">Original frame</option><option value="0.9">90% centered</option><option value="0.75">75% centered</option><option value="0.5">50% centered</option></select>
+                </div>
                 <label for="scale">Scale (%)</label>
                 <input type="number" id="scale" value="100" min="10" max="200">
+                <p id="scalerPrintSize" class="page-note">Estimated print size: choose an image.</p>
                 <div class="page-actions">
                     <button type="button" class="cta-button" onclick="scaleImage()">Scale image</button>
                     <button type="button" class="cta-button secondary" onclick="downloadCanvas('scalerCanvas', 'scaledimage.png')">Download PNG</button>
+                    <button type="button" class="cta-button secondary" onclick="restoreImageTool('scaler')">Restore original</button>
+                    <button type="button" class="cta-button secondary" onclick="clearImageTool('scaler')">Clear</button>
                 </div>
-                <canvas id="scalerCanvas"></canvas>
+                <div class="tool-preview-grid">
+                    <figure><figcaption>Original</figcaption><canvas id="scalerSourceCanvas"></canvas></figure>
+                    <figure><figcaption>Scaled result</figcaption><canvas id="scalerCanvas"></canvas></figure>
+                </div>
             </article>
 
             <article class="page-card tool-card">
                 <div class="tool-heading"><span class="tool-index">02</span><div><h3>Grid Reference</h3><p>Overlay a measurable grid for freehand transfer and placement checks.</p></div></div>
                 <label class="file-label" for="gridInput">Reference image</label>
-                <input type="file" id="gridInput" accept="image/*">
+                <label class="drop-zone" for="gridInput" data-drop-input="gridInput">Drop an image here or choose a file<input type="file" id="gridInput" accept="image/*"></label>
                 <p id="gridStatus" class="tool-status" aria-live="polite">No image loaded yet.</p>
+                <div class="image-controls" aria-label="Image controls">
+                    <label for="gridZoom">Zoom <output id="gridZoomValue">100%</output></label><input type="range" id="gridZoom" min="50" max="200" value="100">
+                    <label for="gridRotation">Rotate</label><select id="gridRotation"><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select>
+                    <label for="gridCrop">Crop</label><select id="gridCrop"><option value="1">Original frame</option><option value="0.9">90% centered</option><option value="0.75">75% centered</option><option value="0.5">50% centered</option></select>
+                </div>
                 <label for="gridSize">Grid Size (px)</label>
                 <input type="number" id="gridSize" value="50" min="10" max="100">
                 <p>Size: <span id="gridSizeDisplay">50px</span> | <span id="gridInches">0.52in</span> | <span id="gridCm">1.32cm</span></p>
@@ -75,16 +98,26 @@
                 <div class="page-actions">
                     <button type="button" class="cta-button" onclick="addGrid()">Add grid</button>
                     <button type="button" class="cta-button secondary" onclick="downloadCanvas('gridCanvas', 'gridedimage.png')">Download PNG</button>
+                    <button type="button" class="cta-button secondary" onclick="restoreImageTool('grid')">Restore original</button>
+                    <button type="button" class="cta-button secondary" onclick="clearImageTool('grid')">Clear</button>
                 </div>
                 <p id="gridScaleInfo" class="page-note"></p>
-                <canvas id="gridCanvas"></canvas>
+                <div class="tool-preview-grid">
+                    <figure><figcaption>Original</figcaption><canvas id="gridSourceCanvas"></canvas></figure>
+                    <figure><figcaption>Grid result</figcaption><canvas id="gridCanvas"></canvas></figure>
+                </div>
             </article>
 
             <article class="page-card tool-card">
                 <div class="tool-heading"><span class="tool-index">03</span><div><h3>Stencil Maker</h3><p>Find high-contrast edges to create a starting stencil study.</p></div></div>
                 <label class="file-label" for="stencilInput">Reference image</label>
-                <input type="file" id="stencilInput" accept="image/*">
+                <label class="drop-zone" for="stencilInput" data-drop-input="stencilInput">Drop an image here or choose a file<input type="file" id="stencilInput" accept="image/*"></label>
                 <p id="stencilStatus" class="tool-status" aria-live="polite">No image loaded yet.</p>
+                <div class="image-controls" aria-label="Image controls">
+                    <label for="stencilZoom">Zoom <output id="stencilZoomValue">100%</output></label><input type="range" id="stencilZoom" min="50" max="200" value="100">
+                    <label for="stencilRotation">Rotate</label><select id="stencilRotation"><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select>
+                    <label for="stencilCrop">Crop</label><select id="stencilCrop"><option value="1">Original frame</option><option value="0.9">90% centered</option><option value="0.75">75% centered</option><option value="0.5">50% centered</option></select>
+                </div>
                 <label for="edgeMethod">Edge Detection Method</label>
                 <select id="edgeMethod">
                     <option value="sobel">Sobel</option>
@@ -97,8 +130,13 @@
                 <div class="page-actions">
                     <button type="button" class="cta-button" onclick="makeStencil()">Detect edges</button>
                     <button type="button" class="cta-button secondary" onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download PNG</button>
+                    <button type="button" class="cta-button secondary" onclick="restoreImageTool('stencil')">Restore original</button>
+                    <button type="button" class="cta-button secondary" onclick="clearImageTool('stencil')">Clear</button>
                 </div>
-                <canvas id="stencilCanvas"></canvas>
+                <div class="tool-preview-grid">
+                    <figure><figcaption>Original</figcaption><canvas id="stencilSourceCanvas"></canvas></figure>
+                    <figure><figcaption>Edge result</figcaption><canvas id="stencilCanvas"></canvas></figure>
+                </div>
             </article>
 
             <article class="page-card tool-card">
@@ -148,36 +186,28 @@
                 <a class="cta-button" href="https://www.photopea.com" target="_blank" rel="noopener">Open Photopea</a>
             </article>
 
-            <article class="page-card resource-card">
-                <h3>Learning Resources</h3>
-                <p>Study materials for safety, technique, and professional development.</p>
-                <div class="resource-cards">
-                    <div class="resource-card">
-                        <h3>Modern Professional Tattooing</h3>
-                        <p>Technical reference for safety, hardware, needles, sterilization, and execution.</p>
-                        <div class="resource-meta"><span class="tag">Safety</span><span class="tag">Technique</span><span class="tag">Professional</span></div>
-                        <span class="resource-unavailable">PDF reference not currently installed</span>
-                    </div>
-                    <div class="resource-card">
-                        <h3>Study Materials Archive</h3>
-                        <p>Reference collection for anatomy, drawing, and design theory.</p>
-                        <div class="resource-meta"><span class="tag">Study</span><span class="tag">Reference</span><span class="tag">Design</span></div>
-                        <a href="resources/index.html" class="cta-button secondary">Browse Resources</a>
-                    </div>
-                </div>
-                <p class="page-note">For study only. Keep mentorship and practice at the center.</p>
-            </article>
+        </section>
+        <section class="page-card preset-panel" aria-labelledby="preset-title">
+            <div class="tool-heading"><span class="tool-index">06</span><div><h2 id="preset-title">Studio preset</h2><p>Save the settings you use repeatedly. Presets stay on this device only.</p></div></div>
+            <div class="preset-actions">
+                <input id="presetName" type="text" placeholder="Preset name" maxlength="40">
+                <button type="button" class="cta-button" onclick="saveSettingsPreset()">Save current settings</button>
+                <select id="presetList" aria-label="Saved presets"><option value="">Choose a saved preset</option></select>
+                <button type="button" class="cta-button secondary" onclick="loadSettingsPreset()">Load preset</button>
+                <button type="button" class="cta-button secondary" onclick="deleteSettingsPreset()">Delete preset</button>
+            </div>
+            <p id="presetStatus" class="tool-status" aria-live="polite">No preset selected.</p>
         </section>
     </main>
 
     <footer class="footer compact-footer">
         <div class="container footer-row">
             <p>OE Tattoo</p>
-            <p>Tools and study · <span class="site-version">v20261005-3</span></p>
+            <p>Tools and study · <span class="site-version">v20261005-4</span></p>
         </div>
     </footer>
 
-    <script defer src="script.js?v=20261005-3"></script>
-    <script src="tools.js?v=20261005-3"></script>
+    <script defer src="script.js?v=20261005-4"></script>
+    <script src="tools.js?v=20261005-4"></script>
 </body>
 </html>

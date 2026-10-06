@@ -388,6 +388,22 @@ img {
     gap: 0.8rem;
 }
 
+:where(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 .page-note {
     color: var(--muted);
     font-size: 0.85rem;
@@ -442,8 +458,9 @@ img {
 
 .tool-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: minmax(0, 900px);
     gap: 1rem;
+    justify-content: center;
 }
 
 .tool-card {
@@ -503,6 +520,87 @@ img {
     text-transform: uppercase;
 }
 
+.drop-zone {
+    display: grid;
+    gap: 0.35rem;
+    border: 1px dashed rgba(209, 171, 91, 0.45);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.78rem;
+    padding: 0.8rem;
+    text-align: center;
+}
+
+.drop-zone:hover,
+.drop-zone.is-dragging {
+    border-color: var(--gold);
+    color: var(--text);
+    background: rgba(209, 171, 91, 0.08);
+}
+
+.drop-zone input {
+    display: none;
+}
+
+.image-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    align-items: center;
+    gap: 0.4rem 0.55rem;
+}
+
+.image-controls input,
+.image-controls select {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0.45rem 0.55rem;
+}
+
+.image-controls input[type='range'] {
+    padding: 0;
+}
+
+.image-controls label {
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.image-controls output {
+    color: var(--gold);
+}
+
+.tool-tips {
+    display: grid;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    padding: 0.8rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.tool-tips strong {
+    color: var(--text);
+}
+
+.preset-panel {
+    margin-top: 1rem;
+}
+
+.preset-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.preset-actions input,
+.preset-actions select {
+    flex: 1 1 160px;
+}
+
 .tool-status {
     min-height: 1.1rem;
     margin: 0;
@@ -520,6 +618,47 @@ img {
     max-height: 340px;
     border: 1px solid var(--line);
     background: rgba(0, 0, 0, 0.18);
+}
+
+.tool-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.tool-preview-grid figure {
+    min-width: 0;
+    margin: 0;
+}
+
+.tool-preview-grid figcaption {
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+}
+
+.tool-preview-grid canvas {
+    display: none;
+    min-height: 4rem;
+    object-fit: contain;
+}
+
+.tool-preview-grid canvas.has-preview {
+    display: block;
+}
+
+@media (max-width: 620px) {
+    .tool-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .preset-actions > * {
+        width: 100%;
+        flex-basis: 100%;
+    }
 }
 
 .tool-card .button-link {
@@ -960,8 +1099,7 @@ img {
 }
 
 .songs-list,
-.now-playing,
-.resource-cards {
+.now-playing {
     display: grid;
     gap: 1rem;
 }
@@ -1001,7 +1139,6 @@ img {
     width: min(220px, 45vw);
 }
 
-.resource-card,
 .contact-card,
 .event-card,
 .song-card {
@@ -1010,18 +1147,10 @@ img {
     padding: 1.1rem;
 }
 
-.resource-meta,
 .tag-row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-}
-
-.resource-unavailable {
-    display: inline-block;
-    color: var(--muted);
-    font-size: 0.76rem;
-    line-height: 1.4;
 }
 
 .tag {
@@ -1096,6 +1225,7 @@ img {
         position: absolute;
         top: 100%;
         right: 1rem;
+        z-index: 20;
         display: none;
         flex-direction: column;
         align-items: flex-start;
@@ -1111,6 +1241,8 @@ img {
 
     .hamburger {
         display: flex;
+        position: relative;
+        z-index: 21;
     }
 
     .hero-copy h1 {

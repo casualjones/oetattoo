@@ -8,6 +8,7 @@ const refreshButton = document.getElementById('refreshButton');
 const prevWeekButton = document.getElementById('prevWeek');
 const nextWeekButton = document.getElementById('nextWeek');
 const eventSearch = document.getElementById('eventSearch');
+const eventSource = document.getElementById('eventSource');
 let currentMonthStart = getMonthStart(new Date());
 let latestEvents = [];
 let refreshInFlight = false;
@@ -119,6 +120,12 @@ function renderCalendar(events) {
     header.textContent = label;
     calendarGrid.appendChild(header);
   });
+  eventSource?.addEventListener('change', () => {
+    const visibleEvents = filterSearch(currentMonthEvents);
+    renderCalendar(visibleEvents);
+    renderEventList(visibleEvents);
+    setStatus(visibleEvents.length ? `${visibleEvents.length} matching event${visibleEvents.length === 1 ? '' : 's'}` : 'No matching events in this month.', true);
+  });
 
   const monthStart = currentMonthStart;
   const monthStartWeekday = (monthStart.getDay() + 6) % 7;
@@ -150,7 +157,7 @@ function renderCalendar(events) {
       dayCard.appendChild(empty);
     } else {
       dayCard.classList.add('has-events');
-      dayEvents.slice(0, 4).forEach(event => {
+      dayEvents.slice(0, 6).forEach(event => {
         const eventItem = document.createElement('a');
         eventItem.href = safeEventUrl(event.url);
         eventItem.target = '_blank';
@@ -160,10 +167,10 @@ function renderCalendar(events) {
         dayCard.appendChild(eventItem);
       });
 
-      if (dayEvents.length > 4) {
+      if (dayEvents.length > 6) {
         const more = document.createElement('p');
         more.className = 'event-more';
-        more.textContent = `+${dayEvents.length - 4} more`;
+        more.textContent = `+${dayEvents.length - 6} more`;
         dayCard.appendChild(more);
       }
     }
@@ -218,6 +225,7 @@ async function fetchEvents() {
     const items = await response.json();
     const events = items.map(normalizeEvent).filter(event => event.date instanceof Date && !Number.isNaN(event.date.getTime()));
     latestEvents = events;
+    populateSources(events);
     setLastUpdated();
     setStatus(`Live feed synced · ${events.length} total listings · ${formatSyncTime(new Date())}`, true);
     return events;
@@ -241,8 +249,21 @@ function filterMonth(events) {
 
 function filterSearch(events) {
   const query = (eventSearch?.value || '').trim().toLowerCase();
-  if (!query) return events;
-  return events.filter(event => [event.title, event.location, event.source, event.time].join(' ').toLowerCase().includes(query));
+  const source = eventSource?.value || '';
+  return events.filter(event => {
+    const matchesSource = !source || event.source === source;
+    const matchesQuery = !query || [event.title, event.location, event.source, event.time].join(' ').toLowerCase().includes(query);
+    return matchesSource && matchesQuery;
+  });
+}
+
+function populateSources(events) {
+  if (!eventSource) return;
+  const selected = eventSource.value;
+  const sources = [...new Set(events.map(event => event.source).filter(Boolean))].sort();
+  eventSource.innerHTML = '<option value="">All sources</option>';
+  sources.forEach(source => eventSource.add(new Option(source, source)));
+  eventSource.value = sources.includes(selected) ? selected : '';
 }
 
 function getNearestMonthStart(events, referenceDate) {

@@ -51,6 +51,12 @@ function initNavigation() {
 
     if (!navMenu) return;
 
+    if (hamburger) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-controls', 'site-navigation');
+        navMenu.id = navMenu.id || 'site-navigation';
+    }
+
     navLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
@@ -72,7 +78,9 @@ function initNavigation() {
 
     if (hamburger) {
         hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
         });
     }
 }

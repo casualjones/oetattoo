@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interesting - OE Tattoo</title>
     <meta name="description" content="Local events and notes from the North Coast.">
-    <link rel="stylesheet" href="style.css?v=20261005-3">
+    <link rel="stylesheet" href="style.css?v=20261005-4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -32,8 +32,8 @@
     <main class="page-shell">
         <section class="page-hero">
             <span class="eyebrow">04 // INTERESTING</span>
-            <h1>Weekly notes.</h1>
-            <p>A practical North Coast calendar for finding something to see, hear, learn, or make. Browse the month, then follow the original listing for details.</p>
+            <h1>Monthly field guide.</h1>
+            <p>A broader North Coast calendar for finding something to see, hear, learn, or make. Browse by month, search the listings, filter by source, then follow the original listing for details.</p>
         </section>
 
         <section class="page-grid">
@@ -45,6 +45,10 @@
                 </div>
                 <label class="event-search-label" for="eventSearch">Find in this month</label>
                 <input id="eventSearch" class="event-search" type="search" placeholder="Search title, place, or source" autocomplete="off">
+                <label class="event-search-label" for="eventSource">Show source</label>
+                <select id="eventSource" class="event-search">
+                    <option value="">All sources</option>
+                </select>
                 <div class="event-summary">
                     <p id="weekLabel">Loading month...</p>
                     <p class="event-status" id="statusText" aria-live="polite">Loading monthly events...</p>
@@ -62,8 +66,15 @@
 
             <article class="page-card">
                 <h2>Sources</h2>
-                <p>North Coast Journal, Eventbrite (Eureka + Humboldt + Arcata), and Lost Coast Outpost Lowdown.</p>
+                <p>Listings are gathered from local calendars and public event pages. Coverage is broad but not exhaustive; organizers can suggest a listing by email.</p>
                 <div class="page-link-list">
+                    <a href="mailto:oetattoo888@gmail.com?subject=Humboldt%20event%20suggestion">Suggest an event</a>
+                    <a href="https://www.khsu.org/community-calendar" target="_blank" rel="noopener">KHSU Community Calendar</a>
+                    <a href="https://www.visitredwoods.com/events/" target="_blank" rel="noopener">Visit Humboldt Events</a>
+                    <a href="https://www.eurekamainstreet.org/events/" target="_blank" rel="noopener">Eureka Main Street</a>
+                    <a href="https://www.fortunachamber.com/events" target="_blank" rel="noopener">Fortuna Events</a>
+                    <a href="https://humboldtfolklife.com/whats-happening" target="_blank" rel="noopener">Humboldt Folklife</a>
+                    <a href="https://humboldtgov.org/m/Calendar" target="_blank" rel="noopener">County Calendar</a>
                     <a href="https://www.northcoastjournal.com/community/" target="_blank" rel="noopener">NCJ Community &amp; Events</a>
                     <a href="https://www.eventbrite.com/d/ca--eureka/music--events/" target="_blank" rel="noopener">Eventbrite Eureka Music</a>
                     <a href="https://www.eventbrite.com/d/ca--humboldt-county/events/" target="_blank" rel="noopener">Eventbrite Humboldt County</a>
@@ -77,11 +88,11 @@
     <footer class="footer compact-footer">
         <div class="container footer-row">
             <p>OE Tattoo</p>
-            <p>Local notes and listings · <span class="site-version">v20261005-3</span></p>
+            <p>Local notes and listings · <span class="site-version">v20261005-4</span></p>
         </div>
     </footer>
 
-    <script defer src="script.js?v=20261005-3"></script>
-    <script src="events.js?v=20261005-3"></script>
+    <script defer src="script.js?v=20261005-4"></script>
+    <script src="events.js?v=20261005-4"></script>
 </body>
 </html>

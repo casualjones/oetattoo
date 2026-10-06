@@ -6,6 +6,82 @@ function setToolStatus(id, message, type = '') {
     status.dataset.state = type;
 }
 
+function previewImage(input, canvasId) {
+    const file = input.files[0];
+    const canvas = document.getElementById(canvasId);
+    if (!file || !canvas) return;
+    loadPreparedCanvas(file, input.id.replace('Input', ''), prepared => {
+        const maxWidth = 900;
+        const scale = Math.min(1, maxWidth / prepared.width);
+        canvas.width = Math.max(1, Math.round(prepared.width * scale));
+        canvas.height = Math.max(1, Math.round(prepared.height * scale));
+        canvas.classList.add('has-preview');
+        canvas.getContext('2d').drawImage(prepared, 0, 0, canvas.width, canvas.height);
+    });
+}
+
+function loadPreparedCanvas(file, prefix, callback) {
+    const img = new Image();
+    img.onload = function() {
+        const zoom = Number(document.getElementById(`${prefix}Zoom`)?.value || 100) / 100;
+        const rotation = Number(document.getElementById(`${prefix}Rotation`)?.value || 0);
+        const crop = Number(document.getElementById(`${prefix}Crop`)?.value || 1);
+        const cropWidth = Math.max(1, Math.round(img.width * crop));
+        const cropHeight = Math.max(1, Math.round(img.height * crop));
+        const rotated = rotation % 180 !== 0;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(1, Math.round((rotated ? cropHeight : cropWidth) * zoom));
+        canvas.height = Math.max(1, Math.round((rotated ? cropWidth : cropHeight) * zoom));
+        const ctx = canvas.getContext('2d');
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(rotation * Math.PI / 180);
+        ctx.drawImage(img, (img.width - cropWidth) / -2 * zoom, (img.height - cropHeight) / -2 * zoom, cropWidth * zoom, cropHeight * zoom);
+        URL.revokeObjectURL(img.src);
+        callback(canvas);
+    };
+    img.onerror = function() {
+        setToolStatus(`${prefix}Status`, 'This image could not be read by the browser.', 'error');
+    };
+    img.src = URL.createObjectURL(file);
+}
+
+function restoreImageTool(prefix) {
+    const input = document.getElementById(`${prefix}Input`);
+    if (!input?.files[0]) {
+        setToolStatus(`${prefix}Status`, 'Choose an image before restoring it.', 'error');
+        return;
+    }
+    const output = document.getElementById(`${prefix}Canvas`);
+    const img = new Image();
+    img.onload = function() {
+        output.width = img.width;
+        output.height = img.height;
+        output.classList.add('has-preview');
+        output.getContext('2d').drawImage(img, 0, 0);
+        URL.revokeObjectURL(img.src);
+        setToolStatus(`${prefix}Status`, 'Restored the current reference to the result panel.', 'success');
+    };
+    img.src = URL.createObjectURL(input.files[0]);
+}
+
+function clearImageTool(prefix) {
+    const input = document.getElementById(`${prefix}Input`);
+    const source = document.getElementById(`${prefix}SourceCanvas`);
+    const output = document.getElementById(`${prefix}Canvas`);
+    const statusId = `${prefix}Status`;
+    if (input) input.value = '';
+    [source, output].forEach(canvas => {
+        if (canvas) {
+            canvas.width = 0;
+            canvas.height = 0;
+            canvas.classList.remove('has-preview');
+        }
+    });
+    if (prefix === 'grid') document.getElementById('gridScaleInfo').textContent = '';
+    if (prefix === 'scaler') document.getElementById('scalerPrintSize').textContent = 'Estimated print size: choose an image.';
+    setToolStatus(statusId, 'No image loaded yet.');
+}
+
 function scaleImage() {
     const input = document.getElementById('scalerInput');
     const scale = document.getElementById('scale').value / 100;
@@ -16,20 +92,14 @@ function scaleImage() {
         setToolStatus('scalerStatus', 'Choose an image before scaling.', 'error');
         return;
     }
-    if (file) {
-        const img = new Image();
-        img.onload = function() {
-            canvas.width = img.width * scale;
-            canvas.height = img.height * scale;
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            setToolStatus('scalerStatus', `${file.name} · ${img.width} × ${img.height}px → ${canvas.width} × ${canvas.height}px`, 'success');
-            URL.revokeObjectURL(img.src);
-        };
-        img.onerror = function() {
-            setToolStatus('scalerStatus', 'This image could not be read by the browser.', 'error');
-        };
-        img.src = URL.createObjectURL(file);
-    }
+    loadPreparedCanvas(file, 'scaler', prepared => {
+        canvas.width = Math.max(1, Math.round(prepared.width * scale));
+        canvas.height = Math.max(1, Math.round(prepared.height * scale));
+        canvas.classList.add('has-preview');
+        ctx.drawImage(prepared, 0, 0, canvas.width, canvas.height);
+        document.getElementById('scalerPrintSize').textContent = `Estimated print size at 96 PPI: ${(canvas.width / 96).toFixed(2)} × ${(canvas.height / 96).toFixed(2)} in`;
+        setToolStatus('scalerStatus', `${file.name} · ${prepared.width} × ${prepared.height}px → ${canvas.width} × ${canvas.height}px`, 'success');
+    });
 }
 
 // Grider
@@ -48,11 +118,11 @@ function addGrid() {
         return;
     }
     if (file) {
-        const img = new Image();
-        img.onload = function() {
+        loadPreparedCanvas(file, 'grid', img => {
             const squareSize = Math.max(img.width, img.height);
             canvas.width = squareSize;
             canvas.height = squareSize;
+            canvas.classList.add('has-preview');
             ctx.clearRect(0, 0, squareSize, squareSize);
             ctx.fillStyle = '#fff';
             ctx.fillRect(0, 0, squareSize, squareSize);
@@ -113,12 +183,7 @@ function addGrid() {
                 scaleInfo.textContent = '';
             }
             setToolStatus('gridStatus', `${file.name} · ${img.width} × ${img.height}px reference ready.`, 'success');
-            URL.revokeObjectURL(img.src);
-        };
-        img.onerror = function() {
-            setToolStatus('gridStatus', 'This image could not be read by the browser.', 'error');
-        };
-        img.src = URL.createObjectURL(file);
+        });
     }
 }
 
@@ -135,10 +200,10 @@ function makeStencil() {
         return;
     }
     if (file) {
-        const img = new Image();
-        img.onload = function() {
+        loadPreparedCanvas(file, 'stencil', img => {
             canvas.width = img.width;
             canvas.height = img.height;
+            canvas.classList.add('has-preview');
             ctx.drawImage(img, 0, 0);
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
@@ -202,12 +267,7 @@ function makeStencil() {
             
             ctx.putImageData(imageData, 0, 0);
             setToolStatus('stencilStatus', `${file.name} · ${method} edges at threshold ${edgeThreshold}.`, 'success');
-            URL.revokeObjectURL(img.src);
-        };
-        img.onerror = function() {
-            setToolStatus('stencilStatus', 'This image could not be read by the browser.', 'error');
-        };
-        img.src = URL.createObjectURL(file);
+        });
     }
 }
 
@@ -303,9 +363,85 @@ function updateGridConversions() {
     document.getElementById('gridCm').textContent = cm + 'cm';
 }
 
+const TOOL_SETTINGS_KEY = 'oe-tattoo-tool-settings';
+const PRESETS_KEY = 'oe-tattoo-tool-presets';
+const settingIds = ['scale', 'gridSize', 'transferWidth', 'transferHeight', 'transferUnit', 'edgeMethod', 'edgeThreshold', 'scalerZoom', 'scalerRotation', 'scalerCrop', 'gridZoom', 'gridRotation', 'gridCrop', 'stencilZoom', 'stencilRotation', 'stencilCrop'];
+
+function collectToolSettings() {
+    return Object.fromEntries(settingIds.map(id => [id, document.getElementById(id)?.value]).filter(([, value]) => value !== undefined));
+}
+
+function applyToolSettings(settings) {
+    Object.entries(settings || {}).forEach(([id, value]) => {
+        const field = document.getElementById(id);
+        if (field && value !== undefined) field.value = value;
+        if (id.endsWith('Zoom')) updateZoomLabel(id);
+    });
+    updateGridConversions();
+}
+
+function updateZoomLabel(id) {
+    const output = document.getElementById(`${id}Value`);
+    const input = document.getElementById(id);
+    if (output && input) output.textContent = `${input.value}%`;
+}
+
+function saveSettingsPreset() {
+    const name = document.getElementById('presetName').value.trim();
+    if (!name) {
+        document.getElementById('presetStatus').textContent = 'Enter a preset name first.';
+        return;
+    }
+    const presets = JSON.parse(localStorage.getItem(PRESETS_KEY) || '{}');
+    presets[name] = collectToolSettings();
+    localStorage.setItem(PRESETS_KEY, JSON.stringify(presets));
+    populatePresetList(name);
+    document.getElementById('presetStatus').textContent = `Saved “${name}” on this device.`;
+}
+
+function populatePresetList(selected = '') {
+    const select = document.getElementById('presetList');
+    if (!select) return;
+    const presets = JSON.parse(localStorage.getItem(PRESETS_KEY) || '{}');
+    select.innerHTML = '<option value="">Choose a saved preset</option>';
+    Object.keys(presets).sort().forEach(name => select.add(new Option(name, name, name === selected, name === selected)));
+}
+
+function loadSettingsPreset() {
+    const name = document.getElementById('presetList').value;
+    const presets = JSON.parse(localStorage.getItem(PRESETS_KEY) || '{}');
+    if (!name || !presets[name]) return;
+    applyToolSettings(presets[name]);
+    document.getElementById('presetStatus').textContent = `Loaded “${name}”.`;
+}
+
+function deleteSettingsPreset() {
+    const select = document.getElementById('presetList');
+    const name = select.value;
+    if (!name) return;
+    const presets = JSON.parse(localStorage.getItem(PRESETS_KEY) || '{}');
+    delete presets[name];
+    localStorage.setItem(PRESETS_KEY, JSON.stringify(presets));
+    populatePresetList();
+    document.getElementById('presetStatus').textContent = `Deleted “${name}”.`;
+}
+
 // Initialize conversions on load
 document.addEventListener('DOMContentLoaded', function() {
     updateGridConversions();
+    applyToolSettings(JSON.parse(localStorage.getItem(TOOL_SETTINGS_KEY) || '{}'));
+    populatePresetList();
+    settingIds.forEach(id => {
+        const field = document.getElementById(id);
+        field?.addEventListener('input', () => {
+            localStorage.setItem(TOOL_SETTINGS_KEY, JSON.stringify(collectToolSettings()));
+            if (id.endsWith('Zoom')) updateZoomLabel(id);
+            const prefix = id.startsWith('scaler') ? 'scaler' : id.startsWith('grid') ? 'grid' : id.startsWith('stencil') ? 'stencil' : '';
+            const input = prefix && document.getElementById(`${prefix}Input`);
+            if (input?.files[0]) previewImage(input, `${prefix}SourceCanvas`);
+        });
+        field?.addEventListener('change', () => localStorage.setItem(TOOL_SETTINGS_KEY, JSON.stringify(collectToolSettings())));
+    });
     document.getElementById('gridSize').addEventListener('input', updateGridConversions);
     [
         ['scalerInput', 'scalerStatus'],
@@ -316,6 +452,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (input) input.addEventListener('change', () => {
             const file = input.files[0];
             setToolStatus(statusId, file ? `${file.name} selected. Choose the tool action to create a preview.` : 'No image loaded yet.');
+            previewImage(input, `${inputId.replace('Input', '')}SourceCanvas`);
+        });
+    });
+    document.querySelectorAll('[data-drop-input]').forEach(zone => {
+        const input = document.getElementById(zone.dataset.dropInput);
+        ['dragenter', 'dragover'].forEach(type => zone.addEventListener(type, event => {
+            event.preventDefault();
+            zone.classList.add('is-dragging');
+        }));
+        ['dragleave', 'drop'].forEach(type => zone.addEventListener(type, event => {
+            event.preventDefault();
+            zone.classList.remove('is-dragging');
+        }));
+        zone.addEventListener('drop', event => {
+            const file = event.dataTransfer.files[0];
+            if (!file || !file.type.startsWith('image/')) return;
+            const transfer = new DataTransfer();
+            transfer.items.add(file);
+            input.files = transfer.files;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
         });
     });
 });

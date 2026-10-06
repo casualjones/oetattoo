@@ -8,16 +8,31 @@ from datetime import datetime, timedelta
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36'
 SEARCH_URL = 'https://www.northcoastjournal.com/community/'
 OUTPUT_FILE = 'events-data.json'
-MAX_EVENTS = 80
+MAX_EVENTS = 250
 EVENTBRITE_URL = 'https://www.eventbrite.com/d/ca--eureka/music--events/'
-EVENTBRITE_PAGES = 3
+EVENTBRITE_PAGES = 6
 EVENTBRITE_URLS = [
     'https://www.eventbrite.com/d/ca--eureka/music--events/',
+    'https://www.eventbrite.com/d/ca--eureka/arts--events/',
+    'https://www.eventbrite.com/d/ca--eureka/community--events/',
     'https://www.eventbrite.com/d/ca--humboldt-county/events/',
+    'https://www.eventbrite.com/d/ca--humboldt-county/music--events/',
+    'https://www.eventbrite.com/d/ca--humboldt-county/arts--events/',
     'https://www.eventbrite.com/d/ca--arcata/events/',
+    'https://www.eventbrite.com/d/ca--fortuna/events/',
 ]
 LOCO_LOOKAHEAD_URL = 'https://lostcoastoutpost.com/lowdown/lookahead/'
 SLEEP_SECONDS = 1.0
+LOCAL_CALENDAR_SOURCES = [
+    ('KHSU Community Calendar', 'https://www.khsu.org/community-calendar'),
+    ('Visit Humboldt Events', 'https://www.visitredwoods.com/events/'),
+    ('Eureka Main Street', 'https://www.eurekamainstreet.org/events/'),
+    ('Visit Fortuna Events', 'https://www.fortunachamber.com/events'),
+    ('Humboldt Folklife Society', 'https://humboldtfolklife.com/whats-happening'),
+    ('Humboldt County Calendar', 'https://humboldtgov.org/m/Calendar'),
+]
+SUPPLEMENTAL_FILE = 'events-supplemental.json'
+RECURRING_FILE = 'events-recurring.json'
 
 
 def clean_text(value):
@@ -256,6 +271,99 @@ def parse_json_ld(html_text):
     return None
 
 
+def parse_json_ld_events(html_text):
+    events = []
+    matches = re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', html_text, flags=re.S)
+    for raw in matches:
+        try:
+            data = json.loads(raw.strip())
+        except json.JSONDecodeError:
+            continue
+        items = data if isinstance(data, list) else [data]
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            if item.get('@type') == 'ItemList':
+                items_to_check = [entry.get('item') for entry in item.get('itemListElement', []) if isinstance(entry, dict)]
+            else:
+                items_to_check = [item]
+            for event in items_to_check:
+                if isinstance(event, dict) and 'Event' in str(event.get('@type', '')):
+                    events.append(event)
+    return events
+
+
+def parse_local_calendar_events(html_text, source, source_url):
+    parsed = []
+    for event_obj in parse_json_ld_events(html_text):
+        start_date = event_obj.get('startDate') or event_obj.get('start_date')
+        dt = parse_date(start_date)
+        if not dt:
+            continue
+        location = event_obj.get('location', {})
+        if isinstance(location, dict):
+            address = location.get('address', {})
+            parts = [
+                location.get('name', ''),
+                address.get('streetAddress', '') if isinstance(address, dict) else '',
+                address.get('addressLocality', '') if isinstance(address, dict) else '',
+            ]
+            location_text = ', '.join(part for part in parts if part)
+        else:
+            location_text = str(location or '')
+        parsed.append({
+            'title': clean_text(event_obj.get('name')) or 'Local event',
+            'url': event_obj.get('url') or source_url,
+            'location': clean_text(location_text),
+            'source': source,
+            'detail_time': dt.strftime('%-I:%M %p') if dt.hour or dt.minute else '',
+            'startDateIso': dt.isoformat(),
+        })
+    return parsed
+
+
+def load_json_events(path):
+    try:
+        with open(path, encoding='utf-8') as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        print(f'No usable {path}:', exc)
+        return []
+
+
+def expand_recurring_events(definitions, horizon_days=120):
+    now = datetime.now().astimezone()
+    end = now + timedelta(days=horizon_days)
+    expanded = []
+    for definition in definitions:
+        weekdays = definition.get('weekdays', [])
+        if not weekdays:
+            continue
+        cursor = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        while cursor <= end:
+            is_match = cursor.weekday() in weekdays
+            if definition.get('monthlyWeek') and cursor.day > 7:
+                is_match = False
+            if is_match:
+                time_text = definition.get('time', '')
+                event_date = cursor
+                start_time = definition.get('startTime')
+                if start_time:
+                    hour, minute = (int(part) for part in start_time.split(':', 1))
+                    event_date = cursor.replace(hour=hour, minute=minute)
+                expanded.append({
+                    'title': definition['title'],
+                    'url': definition['url'],
+                    'location': definition.get('location', ''),
+                    'source': definition.get('source', 'Recurring local listing'),
+                    'detail_time': time_text,
+                    'startDateIso': event_date.isoformat(),
+                })
+            cursor += timedelta(days=1)
+    return expanded
+
+
 def parse_date(value):
     if not value:
         return None
@@ -341,7 +449,6 @@ def main():
     eventbrite_events = []
     for base in EVENTBRITE_URLS:
         for page in range(1, EVENTBRITE_PAGES + 1):
-            page_url = base if page == 1 else f'{base}{"?" if "?" not in base else "&"}page={page}'.replace('?}page', '?page').replace('{base}', '')
             page_url = base if page == 1 else (base + ('&' if '?' in base else '?') + f'page={page}')
             print('Fetching Eventbrite page:', page_url)
             try:
@@ -363,11 +470,35 @@ def main():
         print('Failed to fetch Lowdown lookahead page:', LOCO_LOOKAHEAD_URL, exc)
     time.sleep(SLEEP_SECONDS)
 
-    print('Combining NCJ, Eventbrite, and Lowdown events...')
+    local_calendar_events = []
+    for source, source_url in LOCAL_CALENDAR_SOURCES:
+        print(f'Fetching {source}: {source_url}')
+        try:
+            source_html = fetch(source_url)
+            parsed = parse_local_calendar_events(source_html, source, source_url)
+            print(f'Found {len(parsed)} structured events from {source}.')
+            local_calendar_events.extend(parsed)
+        except Exception as exc:
+            print(f'Failed to fetch {source}:', exc)
+        time.sleep(SLEEP_SECONDS)
+
+    supplemental_events = load_json_events(SUPPLEMENTAL_FILE)
+    recurring_events = expand_recurring_events(load_json_events(RECURRING_FILE))
+    print(f'Loaded {len(supplemental_events)} reviewed supplemental events and {len(recurring_events)} recurring occurrences.')
+
+    print('Combining all event sources...')
     now = datetime.now().astimezone()
     combined = []
     seen_urls = set()
-    for event in enriched + eventbrite_events + loco_events:
+    seen_signatures = set()
+    for event in (
+        enriched
+        + eventbrite_events
+        + loco_events
+        + local_calendar_events
+        + supplemental_events
+        + recurring_events
+    ):
         url = event.get('url', '').strip()
         if not url or url in seen_urls:
             continue
@@ -380,10 +511,16 @@ def main():
         event['startDateIso'] = dt.isoformat()
         if 'detail_time' not in event:
             event['detail_time'] = ''
+        signature = (
+            re.sub(r'[^a-z0-9]+', ' ', event.get('title', '').lower()).strip(),
+            dt.date().isoformat(),
+            re.sub(r'[^a-z0-9]+', ' ', event.get('location', '').lower()).strip(),
+        )
+        if signature in seen_signatures:
+            continue
         combined.append(event)
         seen_urls.add(url)
-        if len(combined) >= MAX_EVENTS:
-            break
+        seen_signatures.add(signature)
 
     combined.sort(key=lambda e: e.get('startDateIso', ''))
 

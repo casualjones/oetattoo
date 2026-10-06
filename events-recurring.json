@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Eureka Friday Night Market",
+    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
+    "location": "Old Town Eureka",
+    "source": "Recurring local listing",
+    "weekdays": [4],
+    "time": "5:30-8:30 p.m."
+  },
+  {
+    "title": "Arts! Alive",
+    "url": "https://www.eurekamainstreet.org/events/",
+    "location": "Downtown Eureka",
+    "source": "Recurring local listing",
+    "weekdays": [5],
+    "monthlyWeek": 1,
+    "time": "First Saturday of each month"
+  },
+  {
+    "title": "Arcata Farmers' Market",
+    "url": "https://www.arcatafarmersmarket.com/",
+    "location": "Arcata Plaza",
+    "source": "Recurring local listing",
+    "weekdays": [6],
+    "time": "Saturday mornings"
+  }
+]
