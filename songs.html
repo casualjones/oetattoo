@@ -33,7 +33,7 @@
         <section class="page-hero music-hero">
             <span class="eyebrow">05 // MUSIC</span>
             <h1>Self release.</h1>
-            <p>Listening room for songs, demos, and rough cuts.</p>
+            <p>Listening room for songs, demos, and rough cuts. Audio plays locally in your browser; nothing is uploaded.</p>
         </section>
 
         <section class="bandcamp-layout">
@@ -55,14 +55,15 @@
                     <div class="album-tags">
                         <span class="tag">Self-released</span>
                         <span class="tag">Work in progress</span>
+                        <span class="tag">Local audio</span>
                     </div>
                 </div>
             </article>
 
             <article class="page-card song-card track-panel">
                 <div class="track-panel-head">
-                    <h2>Tracklist</h2>
-                    <span class="track-hint">Click any track to play</span>
+                    <h2>Tracklist <span id="trackCount" class="track-count"></span></h2>
+                    <span class="track-hint">Choose a track to begin</span>
                 </div>
                 <div id="songsList" class="songs-list"></div>
             </article>
@@ -72,6 +73,7 @@
             <div id="nowPlaying" class="now-playing-info">
                 <span class="label">Now playing</span>
                 <span id="currentSong" class="current-song">No song selected</span>
+                <span id="playerStatus" class="player-status" aria-live="polite">Select a track to start listening.</span>
             </div>
             <div id="progressContainer" class="progress-container" style="display: none;" aria-label="Song progress">
                 <button id="progressTrack" class="progress-track" type="button" aria-label="Seek in track">

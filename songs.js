@@ -21,6 +21,8 @@ const TRACKS = [
 document.addEventListener('DOMContentLoaded', function() {
     audioPlayer = document.getElementById('audioPlayer');
     setupEventListeners();
+    audioPlayer.volume = Number(localStorage.getItem('oe-music-volume') || 0.7);
+    document.getElementById('volumeSlider').value = audioPlayer.volume;
     loadDemoSongs();
 });
 
@@ -36,6 +38,14 @@ function setupEventListeners() {
     audioPlayer.addEventListener('timeupdate', updateProgress);
     audioPlayer.addEventListener('ended', playNext);
     audioPlayer.addEventListener('loadedmetadata', updateTotalTime);
+    audioPlayer.addEventListener('playing', () => setPlayerStatus('Playing locally'));
+    audioPlayer.addEventListener('pause', () => {
+        if (currentSongIndex >= 0 && !audioPlayer.error) setPlayerStatus('Paused');
+    });
+    audioPlayer.addEventListener('error', () => {
+        setPlayerStatus('This track could not be loaded. Try again or check the source file.', true);
+        document.getElementById('playPauseBtn').textContent = '▶';
+    });
 }
 
 function loadDemoSongs() {
@@ -52,6 +62,7 @@ function loadDemoSongs() {
 function displaySongs() {
     const songsListElement = document.getElementById('songsList');
 
+    document.getElementById('trackCount').textContent = songsList.length ? `(${songsList.length})` : '';
     if (songsList.length === 0) {
         songsListElement.innerHTML = `
             <div class="track-empty">
@@ -68,8 +79,9 @@ function displaySongs() {
         const trackNumber = String(index + 1).padStart(2, '0');
 
         html += `
-            <button class="track-row ${currentSongIndex === index ? 'playing' : ''}" data-index="${index}" type="button" aria-label="Play ${song.name}">
+            <button class="track-row ${currentSongIndex === index ? 'playing' : ''}" data-index="${index}" type="button" aria-label="Play ${song.name}" aria-pressed="${currentSongIndex === index}">
                 <span class="track-index">${trackNumber}</span>
+                <span class="track-play-mark" aria-hidden="true">${currentSongIndex === index ? 'Ⅱ' : '▶'}</span>
                 <span class="track-name">${song.name}</span>
                 <span class="track-duration">${duration}</span>
                 <span class="track-size">${fileSize}</span>
@@ -96,17 +108,23 @@ function playSong(index) {
 
     // Update UI
     document.getElementById('currentSong').textContent = song.name;
+    setPlayerStatus('Loading track…');
     document.getElementById('progressContainer').style.display = 'block';
 
     // Update playing class
-    document.querySelectorAll('.track-row').forEach(item => item.classList.remove('playing'));
-    document.querySelector(`[data-index="${index}"]`).classList.add('playing');
+    document.querySelectorAll('.track-row').forEach(item => {
+        const isCurrent = Number(item.dataset.index) === index;
+        item.classList.toggle('playing', isCurrent);
+        item.setAttribute('aria-pressed', String(isCurrent));
+        const mark = item.querySelector('.track-play-mark');
+        if (mark) mark.textContent = isCurrent ? 'Ⅱ' : '▶';
+    });
 
     // Load and play audio
     audioPlayer.src = song.webContentLink;
     audioPlayer.load();
     audioPlayer.play().catch(() => {
-        document.getElementById('currentSong').textContent = `${song.name} (open link if browser blocks autoplay)`;
+        setPlayerStatus('Press play to start this track.', true);
     });
 
     document.getElementById('playPauseBtn').textContent = '⏸';
@@ -143,6 +161,7 @@ function playNext() {
 
 function updateVolume() {
     audioPlayer.volume = this.value;
+    localStorage.setItem('oe-music-volume', this.value);
 }
 
 function seekTrack(event) {
@@ -182,6 +201,13 @@ function formatFileSize(sizeInBytes) {
     }
 
     return `${Math.round(sizeInBytes / 1024)} KB`;
+}
+
+function setPlayerStatus(message, isError = false) {
+    const status = document.getElementById('playerStatus');
+    if (!status) return;
+    status.textContent = message;
+    status.dataset.state = isError ? 'error' : '';
 }
 
 function buildLocalAudioUrl(fileName) {
