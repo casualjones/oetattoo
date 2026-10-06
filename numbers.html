@@ -42,14 +42,20 @@
         .nums-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
         .nums-card h3 { margin-top: 0; font-family: var(--serif); }
         .nums-card p { color: var(--muted); line-height: 1.55; }
-        .cycle-calendar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.4rem; }
+        .cycle-calendar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.45rem; }
         .cycle-day-head { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); text-align: center; padding: 0.25rem; }
-        .cycle-day { min-height: 64px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); padding: 0.35rem; font-size: 0.72rem; display: grid; align-content: start; gap: 0.15rem; cursor: pointer; width: 100%; color: inherit; font: inherit; text-align: left; }
+        .cycle-day { min-height: 108px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); padding: 0.45rem; font-size: 0.72rem; display: grid; align-content: start; gap: 0.22rem; cursor: pointer; width: 100%; color: inherit; font: inherit; text-align: left; }
         .cycle-day.outside { opacity: 0.35; }
         .cycle-day.today { border-color: rgba(209, 171, 91, 0.55); background: linear-gradient(180deg, rgba(209,171,91,0.1), rgba(255,255,255,0.02)); }
         .cycle-day.selected { border-color: rgba(209,171,91,0.7); background: rgba(209,171,91,0.14); }
+        .cycle-day .cycle-day-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.3rem; }
         .cycle-day .n { color: var(--muted); font-size: 0.68rem; }
         .cycle-day .pn { font-family: var(--serif); font-size: 0.95rem; color: var(--gold); }
+        .cycle-day .cycle-meaning { color: var(--text); font-family: var(--serif); font-size: 0.78rem; line-height: 1.12; }
+        .cycle-day .cycle-colors { display: flex; gap: 0.2rem; margin-top: 0.15rem; }
+        .cycle-day .cycle-color { width: 11px; height: 11px; border: 1px solid rgba(255,255,255,0.35); border-radius: 50%; }
+        .cycle-day .cycle-color-names { color: var(--muted); font-size: 0.61rem; line-height: 1.2; }
+        .cycle-day .cycle-hint { color: var(--muted); font-size: 0.61rem; line-height: 1.25; }
         .station-seq { font-family: var(--serif); font-size: 1.55rem; letter-spacing: 0.12em; color: var(--gold); margin: 0.15rem 0 0.75rem; }
         .station-layers { display: grid; gap: 0.7rem; }
         .station-layer { border-left: 2px solid rgba(209,171,91,0.4); padding-left: 0.75rem; }
@@ -83,7 +89,91 @@
         .natal-table th { color: var(--muted); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
         .rx { color: var(--red); font-size: 0.72rem; }
         .aspect-list { display: grid; gap: 0.35rem; margin: 0.6rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.82rem; }
-        @media (max-width: 800px) { .natal-layout { grid-template-columns: 1fr; } }
+        .protective-symbols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+        .symbol-result { display: grid; align-content: start; gap: 0.45rem; border: 1px solid rgba(255,255,255,0.12); padding: 0.85rem; background: rgba(255,255,255,0.025); }
+        .symbol-result h3 { margin: 0 0 0.25rem; font-family: var(--serif); color: var(--gold); }
+        .symbol-result p { margin: 0; color: var(--muted); line-height: 1.55; }
+        .symbol-result strong { color: var(--text); }
+        .symbol-path { font-family: var(--serif); color: var(--gold); letter-spacing: 0.12em; word-break: break-word; }
+        .symbol-art { width: min(100%, 180px); aspect-ratio: 1; margin: 0 auto 0.35rem; border: 1px solid rgba(209,171,91,0.25); border-radius: 2px; background: radial-gradient(circle, rgba(209,171,91,0.09), rgba(0,0,0,0.22) 68%); }
+        .symbol-art .symbol-ring, .symbol-art path, .symbol-art polygon { stroke: var(--gold); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .symbol-art .symbol-axis { stroke: rgba(209,171,91,0.35); stroke-width: 0.8; stroke-dasharray: 2 5; }
+        .symbol-art .symbol-frame { stroke: rgba(255,255,255,0.16); stroke-width: 0.8; fill: none; }
+        .symbol-art .symbol-dot { stroke: none; fill: var(--gold); }
+        .symbol-method { margin: 0; color: var(--muted); font-size: 0.78rem; line-height: 1.6; }
+        .symbol-reading { margin: 0; padding-top: 0.25rem; color: var(--muted); font-size: 0.78rem; line-height: 1.55; }
+        .symbol-reading strong { color: var(--gold); }
+        .symbol-library { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; }
+        .symbol-reference { display: grid; grid-template-columns: 64px 1fr; gap: 0.65rem; align-items: center; border: 1px solid rgba(255,255,255,0.1); padding: 0.65rem; background: rgba(255,255,255,0.02); }
+        .symbol-reference .symbol-art { width: 64px; margin: 0; }
+        .symbol-reference h3 { margin: 0; font-size: 0.9rem; }
+        .symbol-reference p { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.72rem; line-height: 1.4; }
+        .symbol-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem; }
+        .symbol-tag { padding: 0.2rem 0.4rem; border: 1px solid rgba(209,171,91,0.28); color: var(--gold); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
+        .natal-guide { display: grid; gap: 0.8rem; margin-top: 1rem; }
+        .natal-guide h5 { margin: 0 0 0.25rem; color: var(--gold); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+        .natal-guide p, .natal-guide li { color: var(--muted); font-size: 0.8rem; line-height: 1.55; }
+        .natal-guide p { margin: 0; }
+        .natal-guide ul { margin: 0; padding-left: 1.1rem; }
+        .house-key { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem 1rem; margin: 0; padding: 0; list-style: none; }
+        .house-key li strong { color: var(--text); }
+        .chart-summary { margin-top: 0.9rem; padding: 0.85rem 1rem; border-left: 2px solid rgba(209,171,91,0.5); background: rgba(209,171,91,0.05); }
+        .chart-summary h4 { margin: 0 0 0.3rem; color: var(--gold); font-family: var(--serif); }
+        .chart-summary p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.86rem; }
+        .chart-summary strong { color: var(--text); }
+        .rhythm-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+        .rhythm-card { padding: 0.8rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+        .rhythm-card h4 { margin: 0 0 0.35rem; color: var(--gold); font-family: var(--serif); }
+        .rhythm-card p { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
+        .rhythm-card strong { color: var(--text); }
+        .rhythm-support { margin-top: 0.55rem !important; padding-top: 0.55rem; border-top: 1px solid rgba(255,255,255,0.08); color: var(--gold) !important; }
+        .mission-block { margin-top: 0.8rem; padding: 0.8rem; border: 1px solid rgba(209,171,91,0.3); background: rgba(209,171,91,0.05); }
+        .mission-block h5 { margin: 0 0 0.3rem; color: var(--gold); font-family: var(--serif); font-size: 1rem; }
+        .mission-block p { margin: 0.25rem 0 0; color: var(--muted); line-height: 1.5; font-size: 0.84rem; }
+        @media (max-width: 600px) { .rhythm-grid { grid-template-columns: 1fr; } }
+        .core-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; margin-top: 0.8rem; }
+        .core-trio-item { padding: 0.65rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+        .core-trio-item strong { display: block; color: var(--gold); font-family: var(--serif); }
+        .core-trio-item span { display: block; margin-top: 0.2rem; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+        .aspect-list li strong { color: var(--text); }
+        .astro-rhythm { display: grid; gap: 0.9rem; }
+        .astro-turns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; }
+        .astro-turn { padding: 0.7rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+        .astro-turn strong { display: block; color: var(--gold); font-family: var(--serif); }
+        .astro-turn span { display: block; margin-top: 0.25rem; color: var(--muted); font-size: 0.76rem; line-height: 1.45; }
+        .astro-balance { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.86rem; }
+        .iching-result { display: grid; grid-template-columns: minmax(150px, 0.65fr) minmax(0, 1.35fr); gap: 1rem; align-items: start; }
+        .iching-lines { display: grid; gap: 0.4rem; max-width: 180px; margin: 0 auto; }
+        .iching-line { position: relative; height: 14px; display: flex; gap: 0.55rem; align-items: center; }
+        .iching-line::before, .iching-line::after { content: ''; display: block; height: 5px; flex: 1; background: var(--gold); }
+        .iching-line.broken::before, .iching-line.broken::after { flex: 0 0 calc(50% - 0.3rem); }
+        .iching-line.broken { justify-content: space-between; }
+        .iching-line.changing::before, .iching-line.changing::after { background: var(--text); }
+        .iching-line em { position: absolute; right: -1.25rem; color: var(--gold); font-size: 0.65rem; font-style: normal; }
+        .iching-line .line-number { position: absolute; left: -1.45rem; color: var(--muted); font-size: 0.62rem; }
+        .iching-copy h4 { margin: 0 0 0.35rem; font-family: var(--serif); color: var(--gold); }
+        .iching-copy p { margin: 0 0 0.55rem; color: var(--muted); line-height: 1.55; font-size: 0.86rem; }
+        .iching-synthesis { margin: 0.75rem 0; padding: 0.75rem 0.85rem; border-left: 2px solid rgba(209,171,91,0.5); background: rgba(209,171,91,0.06); }
+        .iching-synthesis strong, .iching-action strong { color: var(--gold); }
+        .iching-action { margin: 0.75rem 0; padding: 0.75rem 0.85rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.025); }
+        .iching-trigrams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin: 0.75rem 0; }
+        .iching-trigram { padding: 0.6rem; border: 1px solid rgba(209,171,91,0.25); }
+        .iching-trigram strong { display: block; color: var(--gold); font-family: var(--serif); }
+        .iching-trigram span { display: block; margin-top: 0.2rem; color: var(--muted); font-size: 0.76rem; line-height: 1.4; }
+        .trigram-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.6rem; }
+        .trigram-chip { padding: 0.35rem 0.5rem; border: 1px solid rgba(209,171,91,0.28); color: var(--text); font-size: 0.72rem; }
+        .iching-prompt { margin-top: 0.75rem; padding: 0.7rem 0.8rem; border-left: 2px solid rgba(209,171,91,0.45); background: rgba(209,171,91,0.05); color: var(--text); font-size: 0.86rem; line-height: 1.55; }
+        .iching-method { margin-top: 0.9rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.1); color: var(--muted); font-size: 0.76rem; line-height: 1.55; }
+        .iching-method strong { color: var(--text); }
+        .iching-questions { margin: 0.75rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
+        .iching-example { margin: 0.75rem 0 0; padding: 0.7rem 0.8rem; border: 1px solid rgba(255,255,255,0.1); color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
+        .iching-example strong { color: var(--gold); }
+        @media (max-width: 600px) { .iching-result { grid-template-columns: 1fr; } .iching-trigrams { grid-template-columns: 1fr; } }
+        @media (max-width: 700px) { .astro-turns { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 600px) { .core-trio { grid-template-columns: 1fr; } }
+        @media (max-width: 500px) { .house-key { grid-template-columns: 1fr; } }
+        @media (max-width: 800px) { .natal-layout { grid-template-columns: 1fr; } .protective-symbols { grid-template-columns: 1fr; } .symbol-art { width: min(100%, 230px); } }
+        @media (max-width: 800px) { .cycle-calendar { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cycle-day-head { display: none; } .cycle-day { min-height: 104px; } }
     </style>
 </head>
 <body class="nums-page">
@@ -135,6 +225,7 @@
                 <label for="n-birth">Birth date</label>
                 <input type="date" id="n-birth">
                 <label for="n-name">Full name (birth name preferred)</label>
+                <p class="page-note">Like Ada Lovelace, often described as the first computer programmer, your name can become a unique numeric pattern.</p>
                 <input type="text" id="n-name" placeholder="First Middle Last" autocomplete="name">
                 <label for="n-time">Birth time (local at birthplace)</label>
                 <input type="time" id="n-time" step="60">
@@ -148,12 +239,25 @@
                     <button type="button" class="cta-button" id="n-calc">Calculate all</button>
                 </div>
             </div>
-            <div id="n-core-results" class="result-block nums-hidden"></div>
+            <div id="n-core-results" class="result-block nums-hidden" aria-live="polite"></div>
+        </section>
+        <section class="page-card nums-section">
+            <h2>Protective symbols</h2>
+            <p class="page-note">A personal reading across numerology, birth-month talismans, and name-based sigil work. These are symbolic correspondences, not fixed rules.</p>
+            <div id="protective-symbols" class="protective-symbols" aria-live="polite">
+                <div class="result-block"><p class="page-note">Enter a birth date and name above, then Calculate all to reveal your combination.</p></div>
+            </div>
+            <p class="symbol-method">Method: your birthday number selects the planetary shield, your birth month selects the amulet layer, and the letters in your name become points in a unique line sigil. The result is an original visual study generated here, not a universal or historically fixed symbol.</p>
+        </section>
+        <section class="page-card nums-section">
+            <h2>Protective symbol key</h2>
+            <p class="page-note">These are the recognizable glyphs behind the reading. Each one has a different tradition and use; the calculator suggests a starting point, not a universal meaning.</p>
+            <div id="symbol-library" class="symbol-library"></div>
         </section>
         <section class="page-card nums-section">
             <h2>Natal chart</h2>
             <p class="page-note">Tropical zodiac, whole-sign houses. Date + time + place unlock Rising, Midheaven, and houses. Time is the clock on the wall where you were born.</p>
-            <div id="n-natal" class="result-block">Enter birth data above, then Calculate all.</div>
+            <div id="n-natal" class="result-block" aria-live="polite">Enter birth data above, then Calculate all.</div>
         </section>
         <section class="page-card nums-section">
             <h2>Number meanings</h2>
@@ -167,9 +271,9 @@
                 <label for="n-month">Month to view</label>
                 <input type="month" id="n-month">
             </div>
-            <div id="n-year-line" class="result-block" style="margin-bottom:1rem;"></div>
-            <div class="cycle-calendar" id="cycle-cal" aria-label="Personal day calendar"></div>
-            <div id="n-station" class="result-block" style="margin-top:1rem;">
+            <div id="n-year-line" class="result-block" style="margin-bottom:1rem;" aria-live="polite"></div>
+            <div class="cycle-calendar" id="cycle-cal" aria-label="Personal day calendar" aria-live="polite"></div>
+            <div id="n-station" class="result-block" style="margin-top:1rem;" aria-live="polite">
                 <h4>Explanation station</h4>
                 <p class="page-note">Set a birth date, calculate, then tap a calendar day for the stacked reading.</p>
             </div>
@@ -177,6 +281,20 @@
         <section class="page-card nums-section">
             <h2>Color chart by number</h2>
             <div id="color-chart"></div>
+        </section>
+        <section class="page-card nums-section">
+            <h2>Astro rhythm &amp; universal balance</h2>
+            <p class="page-note">The personal calendar moves inside a larger solar rhythm. These four seasonal gates are moments of approximate balance or turning: use them as reflection points, not predictions.</p>
+            <div id="astro-rhythm" class="astro-rhythm" aria-live="polite">
+                <p class="page-note">Calculate a birth date to compare your personal year with the universal cycle.</p>
+            </div>
+        </section>
+        <section class="page-card nums-section">
+            <h2>I Ching day study</h2>
+            <p class="page-note">Select a day in the rhythm calendar above. This creates a six-line hexagram from the date, personal cycle, and name pattern—a reflective prompt inspired by the I Ching, not a claim of certainty.</p>
+            <div id="iching-result" class="result-block" aria-live="polite">
+                <p class="page-note">Choose a calendar day after calculating your birth date.</p>
+            </div>
         </section>
         <section class="page-card nums-section">
             <h2>Crystal guide by number</h2>

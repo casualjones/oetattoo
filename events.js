@@ -7,6 +7,28 @@ const refreshButton = document.getElementById('refreshButton');
 const prevWeekButton = document.getElementById('prevWeek');
 const nextWeekButton = document.getElementById('nextWeek');
 let currentMonthStart = getMonthStart(new Date());
+let latestEvents = [];
+let refreshInFlight = false;
+let refreshTimer = null;
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, character => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[character]));
+}
+
+function safeEventUrl(value) {
+  try {
+    const url = new URL(value || '#', window.location.href);
+    return ['http:', 'https:'].includes(url.protocol) ? url.href : '#';
+  } catch {
+    return '#';
+  }
+}
 
 const fallbackEvents = [
   {
@@ -112,11 +134,11 @@ function renderCalendar(events) {
       dayCard.classList.add('has-events');
       dayEvents.slice(0, 4).forEach(event => {
         const eventItem = document.createElement('a');
-        eventItem.href = event.url;
+        eventItem.href = safeEventUrl(event.url);
         eventItem.target = '_blank';
         eventItem.rel = 'noopener';
         eventItem.className = 'event-day-link';
-        eventItem.innerHTML = `<strong>${event.title}</strong><span>${event.time || 'All day'}</span>`;
+        eventItem.innerHTML = `<strong>${escapeHtml(event.title)}</strong><span>${escapeHtml(event.time || 'All day')}</span>`;
         dayCard.appendChild(eventItem);
       });
 
@@ -133,7 +155,7 @@ function renderCalendar(events) {
 
 function renderEventList(events) {
   const sorted = Array.from(events).sort((a, b) => a.date - b.date);
-  eventList.innerHTML = '<h3>Monthly Event Details</h3>';
+  eventList.innerHTML = '<h3>Monthly event details</h3>';
   if (sorted.length === 0) {
     eventList.innerHTML += '<p>No events were available for this month.</p>';
     return;
@@ -142,10 +164,10 @@ function renderEventList(events) {
     const card = document.createElement('article');
     card.className = 'event-card';
     card.innerHTML = `
-      <h4><a href="${event.url}" target="_blank" rel="noopener">${event.title}</a></h4>
-      <p><strong>Date:</strong> ${formatDateLong(event.date)} ${event.time ? '• ' + event.time : ''}</p>
-      <p><strong>Location:</strong> ${event.location || 'TBD'}</p>
-      <p><strong>Source:</strong> ${event.source}</p>
+      <h4><a href="${escapeHtml(safeEventUrl(event.url))}" target="_blank" rel="noopener">${escapeHtml(event.title)}</a></h4>
+      <p><strong>Date:</strong> ${escapeHtml(formatDateLong(event.date))} ${event.time ? '• ' + escapeHtml(event.time) : ''}</p>
+      <p><strong>Location:</strong> ${escapeHtml(event.location || 'TBD')}</p>
+      <p><strong>Source:</strong> ${escapeHtml(event.source)}</p>
     `;
     eventList.appendChild(card);
   });
@@ -177,12 +199,17 @@ async function fetchEvents() {
     }
     const items = await response.json();
     const events = items.map(normalizeEvent).filter(event => event.date instanceof Date && !Number.isNaN(event.date.getTime()));
-    setStatus(`Loaded ${events.length} events from static feed.`, true);
+    latestEvents = events;
+    setStatus(`Live feed synced · ${events.length} total listings · ${formatSyncTime(new Date())}`, true);
     return events;
   } catch (error) {
     console.error(error);
     setStatus('Unable to load static event feed. Showing fallback events.', false);
     return fallbackEvents;
+  }
+
+  function formatSyncTime(date) {
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
   }
 }
 
@@ -214,20 +241,33 @@ function addMonths(date, amount) {
 }
 
 async function loadWeeklyEvents() {
+  if (refreshInFlight) return;
+  refreshInFlight = true;
   setStatus('Loading monthly events…');
-  const events = await fetchEvents();
-  let monthEvents = filterMonth(events);
-  if (events.length > 0 && monthEvents.length === 0) {
-    const nearestMonth = getNearestMonthStart(events, new Date());
-    if (nearestMonth) {
-      currentMonthStart = nearestMonth;
-      monthEvents = filterMonth(events);
-      setStatus('Showing nearest available month from the event feed.', true);
+  try {
+    const events = await fetchEvents();
+    let monthEvents = filterMonth(events);
+    if (events.length > 0 && monthEvents.length === 0) {
+      const nearestMonth = getNearestMonthStart(events, new Date());
+      if (nearestMonth) {
+        currentMonthStart = nearestMonth;
+        monthEvents = filterMonth(events);
+        setStatus(`Live feed synced · showing nearest available month · ${formatSyncTime(new Date())}`, true);
+      }
     }
+    updateWeekLabel();
+    renderCalendar(monthEvents);
+    renderEventList(monthEvents);
+    const sourceCount = new Set(monthEvents.map(event => event.source)).size;
+    setStatus(
+      monthEvents.length
+        ? `${monthEvents.length} event${monthEvents.length === 1 ? '' : 's'} this month · ${sourceCount} source${sourceCount === 1 ? '' : 's'} · synced ${formatSyncTime(new Date())}`
+        : `No events listed for this month · synced ${formatSyncTime(new Date())}`,
+      true
+    );
+  } finally {
+    refreshInFlight = false;
   }
-  updateWeekLabel();
-  renderCalendar(monthEvents);
-  renderEventList(monthEvents);
 }
 
 refreshButton?.addEventListener('click', loadWeeklyEvents);
@@ -241,3 +281,17 @@ nextWeekButton?.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', loadWeeklyEvents);
+
+function scheduleLiveRefresh() {
+  window.clearTimeout(refreshTimer);
+  refreshTimer = window.setTimeout(() => {
+    loadWeeklyEvents();
+    scheduleLiveRefresh();
+  }, 5 * 60 * 1000);
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) loadWeeklyEvents();
+});
+
+scheduleLiveRefresh();

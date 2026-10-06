@@ -33,25 +33,32 @@
         <section class="page-hero">
             <span class="eyebrow">03 // TOOLS</span>
             <h1>Working surfaces.</h1>
-            <p>Simple utilities for scaling, tracing, stenciling, numerology, and media conversion.</p>
+            <p>Prepare a reference, understand its scale, find usable edges, and carry an idea into the studio. Everything runs locally in your browser unless you choose the external editor.</p>
+            <div class="tool-legend" aria-label="Tool workflow">
+                <span>01 · Prepare</span><span>02 · Translate</span><span>03 · Study</span>
+            </div>
         </section>
 
         <section class="tool-grid">
             <article class="page-card tool-card">
-                <h3>Image Scaler</h3>
+                <div class="tool-heading"><span class="tool-index">01</span><div><h3>Image Scaler</h3><p>Resize a reference before printing or comparing placement.</p></div></div>
+                <label class="file-label" for="scalerInput">Reference image</label>
                 <input type="file" id="scalerInput" accept=".jpg,.jpeg,.png,image/*">
+                <p id="scalerStatus" class="tool-status" aria-live="polite">No image loaded yet.</p>
                 <label for="scale">Scale (%)</label>
                 <input type="number" id="scale" value="100" min="10" max="200">
                 <div class="page-actions">
-                    <button class="cta-button" onclick="scaleImage()">Scale</button>
-                    <button class="cta-button secondary" onclick="downloadCanvas('scalerCanvas', 'scaledimage.png')">Download</button>
+                    <button type="button" class="cta-button" onclick="scaleImage()">Scale image</button>
+                    <button type="button" class="cta-button secondary" onclick="downloadCanvas('scalerCanvas', 'scaledimage.png')">Download PNG</button>
                 </div>
                 <canvas id="scalerCanvas"></canvas>
             </article>
 
             <article class="page-card tool-card">
-                <h3>Grider</h3>
+                <div class="tool-heading"><span class="tool-index">02</span><div><h3>Grid Reference</h3><p>Overlay a measurable grid for freehand transfer and placement checks.</p></div></div>
+                <label class="file-label" for="gridInput">Reference image</label>
                 <input type="file" id="gridInput" accept="image/*">
+                <p id="gridStatus" class="tool-status" aria-live="polite">No image loaded yet.</p>
                 <label for="gridSize">Grid Size (px)</label>
                 <input type="number" id="gridSize" value="50" min="10" max="100">
                 <p>Size: <span id="gridSizeDisplay">50px</span> | <span id="gridInches">0.52in</span> | <span id="gridCm">1.32cm</span></p>
@@ -66,16 +73,18 @@
                 </select>
                 <p class="page-note">Use the planned stencil size for accurate reference scale.</p>
                 <div class="page-actions">
-                    <button class="cta-button" onclick="addGrid()">Add Grid</button>
-                    <button class="cta-button secondary" onclick="downloadCanvas('gridCanvas', 'gridedimage.png')">Download</button>
+                    <button type="button" class="cta-button" onclick="addGrid()">Add grid</button>
+                    <button type="button" class="cta-button secondary" onclick="downloadCanvas('gridCanvas', 'gridedimage.png')">Download PNG</button>
                 </div>
                 <p id="gridScaleInfo" class="page-note"></p>
                 <canvas id="gridCanvas"></canvas>
             </article>
 
             <article class="page-card tool-card">
-                <h3>Stencil Maker</h3>
+                <div class="tool-heading"><span class="tool-index">03</span><div><h3>Stencil Maker</h3><p>Find high-contrast edges to create a starting stencil study.</p></div></div>
+                <label class="file-label" for="stencilInput">Reference image</label>
                 <input type="file" id="stencilInput" accept="image/*">
+                <p id="stencilStatus" class="tool-status" aria-live="polite">No image loaded yet.</p>
                 <label for="edgeMethod">Edge Detection Method</label>
                 <select id="edgeMethod">
                     <option value="sobel">Sobel</option>
@@ -86,28 +95,31 @@
                 <label for="edgeThreshold">Edge Threshold (0-255)</label>
                 <input type="number" id="edgeThreshold" value="50" min="0" max="255">
                 <div class="page-actions">
-                    <button class="cta-button" onclick="makeStencil()">Detect Edges</button>
-                    <button class="cta-button secondary" onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download</button>
+                    <button type="button" class="cta-button" onclick="makeStencil()">Detect edges</button>
+                    <button type="button" class="cta-button secondary" onclick="downloadCanvas('stencilCanvas', 'stencilimage.png')">Download PNG</button>
                 </div>
                 <canvas id="stencilCanvas"></canvas>
             </article>
 
             <article class="page-card tool-card">
-                <h3>Numerology</h3>
+                <div class="tool-heading"><span class="tool-index">04</span><div><h3>Numerology</h3><p>A quick symbolic starting point for themes, motifs, and creative direction.</p></div></div>
+                <label class="file-label" for="birthDate">Birth date</label>
                 <input type="date" id="birthDate">
+                <label class="file-label" for="fullName">Name</label>
                 <input type="text" id="fullName" placeholder="First Last" autocomplete="name">
                 <div class="page-actions">
-                    <button class="cta-button" onclick="calculateNumerology()">Calculate</button>
-                    <button class="cta-button secondary" onclick="resetNumerology()">Reset</button>
+                    <button type="button" class="cta-button" onclick="calculateNumerology()">Calculate profile</button>
+                    <button type="button" class="cta-button secondary" onclick="resetNumerology()">Reset</button>
                 </div>
-                <div id="numerologyOutput" class="numerology-results"></div>
+                <div id="numerologyOutput" class="numerology-results" aria-live="polite"></div>
                 <p class="page-note" style="margin-top:1rem;">
                     <a class="cta-button secondary" href="numbers.html">For more info, click me → #<sub>s</sub></a>
                 </p>
             </article>
 
             <article class="page-card tool-card">
-                <h3>Media to Audio</h3>
+                <div class="tool-heading"><span class="tool-index">05</span><div><h3>Media to Audio</h3><p>Extract a WAV reference track from browser-compatible audio or video.</p></div></div>
+                <label class="file-label" for="mediaInput">Audio or video file</label>
                 <input type="file" id="mediaInput" accept="video/*,.mkv,.avi,.mp4,.mov,.flv,.wmv,.webm,audio/*">
                 <label for="outputFormat">Output Format</label>
                 <select id="outputFormat">
@@ -122,8 +134,8 @@
                     <option value="320">320 kbps</option>
                 </select>
                 <div class="page-actions">
-                    <button class="cta-button" onclick="convertMediaToAudio()">Convert</button>
-                    <button class="cta-button secondary" onclick="resetMediaConverter()">Reset</button>
+                    <button type="button" class="cta-button" onclick="convertMediaToAudio()">Convert to audio</button>
+                    <button type="button" class="cta-button secondary" onclick="resetMediaConverter()">Reset</button>
                 </div>
                 <div id="ffmpegStatus" class="ffmpeg-status"><span id="ffmpegStatusText">Web Audio API ready for conversion</span></div>
                 <div id="converterStatus" class="converter-status"></div>

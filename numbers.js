@@ -50,6 +50,44 @@
         22: { stones: 'Obsidian, Petrified Wood, Malachite', note: 'Build slow; protect the plan.' },
         33: { stones: 'Kunzite, Green Aventurine, Danburite', note: 'Service with softness, not drain.' }
     };
+    const PROTECTIVE_NUMBERS = {
+        1: { force: 'Sun', symbol: 'Solar Cross', glyph: 'solar-cross', note: 'Centering, balance, and banishing shadows.' },
+        2: { force: 'Moon', symbol: 'Hamsa', glyph: 'hamsa', note: 'A hand of blessing and protection from the Evil Eye.' },
+        3: { force: 'Jupiter', symbol: 'Pentacle', glyph: 'pentacle', note: 'Five elements held in balance inside an infinite circle.' },
+        4: { force: 'Rahu', symbol: 'Triquetra', glyph: 'triquetra', note: 'An unbroken knot used as a Celtic shield.' },
+        5: { force: 'Mercury', symbol: 'Eye of Horus', glyph: 'eye', note: 'A watchful amulet associated with divine protection and renewal.' },
+        6: { force: 'Venus', symbol: 'Hexagram of Solomon', glyph: 'hexagram', note: 'Interlocking opposites: as above, so below.' },
+        7: { force: 'Ketu / Neptune', symbol: 'Bindrune', glyph: 'bindrune', note: 'A custom joining of rune shapes whose meaning is chosen with intention.' },
+        8: { force: 'Saturn', symbol: 'Crossed Spears', glyph: 'spears', note: 'A direct boundary: do not pass.' },
+        9: { force: 'Mars', symbol: 'Mars Sign', glyph: 'mars', note: 'Warrior energy for assertive protection and banishing.' }
+    };
+    const SYMBOL_LIBRARY = [
+        { kind: 'pentacle', name: 'Pentacle', summary: 'Balance of body, elements, and spirit.', read: 'Start at the top point, then follow the continuous star: the circle gathers the five forces into one field.' },
+        { kind: 'solar-cross', name: 'Solar Cross', summary: 'Centering, sun-force, and the four directions.', read: 'Use the center as your still point; the four arms extend attention outward without losing the middle.' },
+        { kind: 'mars', name: 'Mars Sign', summary: 'Assertive, martial protection and banishing.', read: 'The circle holds your energy while the rising arrow gives it a clear direction and boundary.' },
+        { kind: 'hamsa', name: 'Hamsa', summary: 'Open-hand blessing and watchfulness.', read: 'Read the open palm as “stop” and the central eye as awareness: protection through presence, not fear.' },
+        { kind: 'eye', name: 'Eye of Horus', summary: 'A protective eye associated with renewal.', read: 'The outer almond is a field of attention; the pupil marks what you choose to see clearly.' },
+        { kind: 'triquetra', name: 'Triquetra', summary: 'An unbroken knot or Celtic shield.', read: 'Trace the three looping arms: there is no loose end, so the image suggests continuity and return.' },
+        { kind: 'algiz', name: 'Algiz', summary: 'A rune commonly used as a protection motif.', read: 'The upright stem is a spine; the raised branches resemble alert arms or antlers meeting the world.' },
+        { kind: 'bindrune', name: 'Protection bindrune', summary: 'A personal sigil made by joining rune forms.', read: 'Read the shared vertical stem first, then the crossing branches as combined intentions rather than separate letters.' },
+        { kind: 'hexagram', name: 'Hexagram', summary: 'Interlocking forces held in balance.', read: 'The upward and downward triangles meet in the center: action and receptivity are held together.' },
+        { kind: 'spears', name: 'Crossed Spears', summary: 'A simple psychic boundary: do not pass.', read: 'The crossing point is the decision point; the spearheads turn the simple X into an active guard.' }
+    ];
+    const SYMBOL_READINGS = Object.fromEntries(SYMBOL_LIBRARY.map((item) => [item.kind, item.read]));
+    const BIRTH_MONTHS = {
+        1: { name: 'January', motif: 'Guardian Knot', stone: 'Garnet', note: 'Grounding defense against negative intentions.' },
+        2: { name: 'February', motif: 'Birth-month talisman', stone: 'Amethyst', note: 'Spiritual security and mental clarity.' },
+        3: { name: 'March', motif: 'Birth-month talisman', stone: 'Aquamarine', note: 'Calm, clarity, and steady protection.' },
+        4: { name: 'April', motif: 'Sun Sigil', stone: 'Diamond', note: 'Clarity, resilience, and bright defensive energy.' },
+        5: { name: 'May', motif: 'Birth-month talisman', stone: 'Emerald', note: 'Heart-centered renewal and protection.' },
+        6: { name: 'June', motif: 'Birth-month talisman', stone: 'Pearl', note: 'Soft boundaries and emotional steadiness.' },
+        7: { name: 'July', motif: 'Birth-month talisman', stone: 'Ruby', note: 'Vitality, courage, and protective heat.' },
+        8: { name: 'August', motif: 'Birth-month talisman', stone: 'Peridot', note: 'Renewal and clearing of heavy energy.' },
+        9: { name: 'September', motif: 'Birth-month talisman', stone: 'Sapphire', note: 'Guards against envy and external harm.' },
+        10: { name: 'October', motif: 'Moon Eye', stone: 'Opal', note: 'Intuition, reflection, and personal boundaries.' },
+        11: { name: 'November', motif: 'Birth-month talisman', stone: 'Topaz', note: 'Warmth, confidence, and clear intention.' },
+        12: { name: 'December', motif: 'Birth-month talisman', stone: 'Turquoise', note: 'Traveling protection and honest expression.' }
+    };
 
     const SIGNS = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
     const SIGN_GLYPH = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
@@ -73,6 +111,183 @@
         { name: 'Square', angle: 90, orb: 6 },
         { name: 'Trine', angle: 120, orb: 6 },
         { name: 'Opposition', angle: 180, orb: 8 }
+    ];
+    const ASPECT_MEANINGS = {
+        Conjunction: 'Two forces blend and intensify each other.',
+        Sextile: 'Two forces cooperate when you choose to use the opening.',
+        Square: 'Two forces create friction that asks for practice and integration.',
+        Trine: 'Two forces flow easily and may feel natural or familiar.',
+        Opposition: 'Two forces pull across an axis and ask for balance.'
+    };
+    const HOUSE_MEANINGS = [
+        'Self, body, appearance, first impression',
+        'Money, possessions, values, self-worth',
+        'Communication, siblings, learning, local life',
+        'Home, family, roots, private foundation',
+        'Creativity, pleasure, romance, children, play',
+        'Work, health, routines, service, daily craft',
+        'Partnerships, contracts, mirrors, committed others',
+        'Intimacy, shared resources, grief, transformation',
+        'Belief, higher study, travel, meaning, pilgrimage',
+        'Career, public role, reputation, direction',
+        'Friends, community, networks, future hopes',
+        'Rest, dreams, solitude, endings, the unseen'
+    ];
+    const PLANET_MEANINGS = {
+        Sun: 'Identity, vitality, purpose, and the part of you that wants to be seen.',
+        Moon: 'Emotional needs, instinct, memory, and the conditions that feel like home.',
+        Mercury: 'Thinking, speaking, learning, naming, and making connections.',
+        Venus: 'Attraction, pleasure, taste, affection, and what you value.',
+        Mars: 'Drive, anger, courage, boundaries, desire, and how you act.',
+        Jupiter: 'Growth, faith, generosity, opportunity, and the search for meaning.',
+        Saturn: 'Limits, responsibility, patience, fear, mastery, and earned authority.',
+        Uranus: 'Breakthrough, disruption, independence, and refusal of stale rules.',
+        Neptune: 'Imagination, longing, spirituality, permeability, and uncertainty.',
+        Pluto: 'Power, compulsion, deep change, endings, and regeneration.',
+        'N. Node': 'A symbolic direction of growth: qualities that become more important with practice.'
+    };
+    const ELEMENT_MEANINGS = {
+        Fire: 'action, courage, expression',
+        Earth: 'practicality, steadiness, embodiment',
+        Air: 'thought, language, connection',
+        Water: 'feeling, intuition, imagination'
+    };
+    const MODALITY_MEANINGS = {
+        Cardinal: 'starting and initiating',
+        Fixed: 'stabilizing and sustaining',
+        Mutable: 'adapting and translating'
+    };
+    const DOMAIN_RHYTHMS = {
+        love: {
+            title: 'Love & connection',
+            signal: 'Venus, Moon, and the partnership axis',
+            rhythm: 'Move between honest expression and attentive listening. Let closeness grow through repeatable care rather than intensity alone.',
+            question: 'What would make connection feel safer, clearer, and more mutual this week?'
+        },
+        business: {
+            title: 'Business & resources',
+            signal: 'Saturn, Jupiter, Mercury, and the public axis',
+            rhythm: 'Pair expansion with structure: name the opportunity, define the next deliverable, and give the plan a date and boundary.',
+            question: 'What is the smallest concrete offer, decision, or system that would make momentum visible?'
+        },
+        creativity: {
+            title: 'Creativity & craft',
+            signal: 'Sun, Mercury, Venus, and the fifth-house themes',
+            rhythm: 'Protect a regular practice. Inspiration may open the door, but repetition is what gives the idea a body and a finished form.',
+            question: 'What wants to be made before it is judged, optimized, or explained?'
+        },
+        restoration: {
+            title: 'Restoration & inner life',
+            signal: 'Moon, Neptune, Saturn, and the twelfth-house themes',
+            rhythm: 'Treat recovery as part of the work. Alternate exposure and retreat so sensitivity becomes information instead of overload.',
+            question: 'What kind of quiet actually restores you: sleep, solitude, nature, movement, prayer, or making something?'
+        }
+    };
+    const TRIGRAMS = [
+        { name: 'Earth', quality: 'receptive, yielding, nourishing' },
+        { name: 'Mountain', quality: 'stillness, boundaries, stopping' },
+        { name: 'Water', quality: 'depth, danger, movement through difficulty' },
+        { name: 'Wind', quality: 'gentle influence, penetration, gradual change' },
+        { name: 'Thunder', quality: 'shock, awakening, decisive movement' },
+        { name: 'Fire', quality: 'clarity, visibility, attention' },
+        { name: 'Lake', quality: 'joy, exchange, openness' },
+        { name: 'Heaven', quality: 'creative force, strength, initiative' }
+    ];
+    const HEXAGRAM_NAMES = [
+        'The Creative','The Receptive','Difficulty at the Beginning','Youthful Folly','Waiting','Conflict','The Army','Holding Together',
+        'Small Taming','Treading','Peace','Standstill','Fellowship','Great Possession','Modesty','Enthusiasm',
+        'Following','Work on What Has Been Spoiled','Approach','Contemplation','噬嗑 · Biting Through','Grace','Splitting Apart','Return',
+        'Innocence','Great Taming','Nourishment','Great Excess','The Abysmal','The Clinging','Influence','Duration',
+        'Retreat','Great Power','Progress','Darkening of the Light','The Family','Opposition','Obstruction','Deliverance',
+        'Decrease','Increase','Breakthrough','Coming to Meet','Gathering Together','Pushing Upward','Oppression','The Well',
+        'Revolution','The Cauldron','The Gentle','The Joyous','Dispersion','Limitation','Inner Truth','Preponderance of the Small',
+        'After Completion','Before Completion','The Creative Return','The Receptive Return','The Seed','The Crossing','The Center','The Turning'
+    ];
+    const ICHING_PROMPTS = [
+        'What can you begin without forcing the whole path to be visible?',
+        'Where would receptivity be stronger than control today?',
+        'What first step would make a difficult beginning less tangled?',
+        'What are you ready to learn without pretending to already know?',
+        'What is worth waiting for, and how can you prepare while waiting?',
+        'Where are you arguing with a situation that needs a clearer boundary?',
+        'What responsibility is yours to carry, and what is not yours?',
+        'What relationship or practice helps you belong without disappearing?',
+        'What small discipline can contain your energy without shrinking it?',
+        'Where can you move carefully and still remain honest?',
+        'What would balance look like in one ordinary action?',
+        'What is paused because it needs rest, not more pressure?',
+        'Who could you meet with openness instead of performance?',
+        'What resource or gift are you underestimating?',
+        'Where could humility make your strength more usable?',
+        'What deserves celebration before the next task begins?',
+        'What useful guidance is already present in the situation?',
+        'What old pattern is asking to be repaired rather than blamed?',
+        'What small approach would make a larger change possible?',
+        'What are you seeing clearly, and what are you projecting?',
+        'What truth needs to be named directly?',
+        'What beauty could help you move through a difficult truth?',
+        'What needs to be released so the remaining structure can hold?',
+        'What return would restore you to your own center?',
+        'Where can innocence help you respond without naivety?',
+        'What strength needs patient containment?',
+        'What does your body or routine ask to be nourished?',
+        'Where is excess asking for simplification?',
+        'What depth can you cross one careful step at a time?',
+        'What needs your full attention rather than scattered effort?',
+        'What influence is present even though it is quiet?',
+        'What commitment can become a steady rhythm?'
+    ];
+    const ICHING_ACTIONS = [
+        'Make the smallest honest beginning: one message, one sketch, one appointment, or one cleared surface.',
+        'Leave one part of the day unfilled so information can arrive before you decide.',
+        'Name the difficulty precisely, then choose the next safe step instead of solving everything at once.',
+        'Ask one sincere question and let yourself be a beginner in the answer.',
+        'Prepare the materials, boundary, or conversation that will make waiting purposeful.',
+        'Choose a clean boundary and communicate it without adding a second argument.',
+        'Carry only the responsibility that is actually yours; ask for help with the rest.',
+        'Create a small exchange: listen, share credit, or let someone meet you without performance.',
+        'Repeat one stabilizing practice for ten minutes rather than making a dramatic reset.',
+        'Move through the challenge in stages and pause to check what has changed.',
+        'Match effort with recovery today; balance is something you practice, not a mood you wait for.',
+        'Protect the pause. Let rest, sleep, or silence become part of the solution.',
+        'Notice the person or resource already near you before searching farther away.',
+        'Use what you have in reach and make one practical improvement to it.',
+        'Mark a small win before converting it into another obligation.',
+        'Write down the signal, then ground it in a calendar entry or physical action.'
+    ];
+    const ICHING_EXAMPLES = [
+        'In ordinary life, this can look like sending the first email, making the first sketch, or taking one honest step before you feel completely ready.',
+        'This may look like listening before fixing, accepting help, or giving a situation room to reveal what it needs.',
+        'A difficult beginning might be a new job, a hard conversation, or a project with too many unknowns; choose the next small action.',
+        'You may be learning a new skill, asking for feedback, or noticing where certainty is keeping curiosity away.',
+        'Waiting can be active: gather information, rest your nervous system, prepare the materials, and do not confuse delay with failure.',
+        'A useful boundary might be a clear no, a time limit, or deciding which argument you are no longer required to win.',
+        'You could be carrying a family task, team responsibility, or emotional role that needs to be named before it can be shared.',
+        'Belonging does not require performing a version of yourself; notice which relationships let you arrive as you are.',
+        'A small routine—water, sleep, cleanup, practice, or one finished task—can hold more power than a dramatic reset.',
+        'Move carefully in a text message, purchase, commitment, or conversation where speed could create avoidable confusion.',
+        'Balance may be as simple as matching effort with rest, speaking and listening, or giving and receiving.',
+        'A pause may be your body asking for recovery, not proof that your purpose has disappeared.',
+        'Try replacing a polished performance with one sincere question; connection often starts there.',
+        'Look at the tool, friendship, skill, or opportunity already within reach before searching for a completely new answer.',
+        'Humility can be practical: ask for directions, credit another person, or admit what you still need to learn.',
+        'Mark a small win before immediately turning it into the next obligation.',
+        'The advice you need may already be present in a repeated detail, a trusted person, or the part of the situation you keep avoiding.',
+        'Repair can mean apologizing, updating a boundary, cleaning up a process, or changing a pattern one repetition at a time.',
+        'Instead of solving the entire year, choose the next conversation, appointment, or experiment.',
+        'Separate what you directly observed from the story your fear added afterward.',
+        'Say the true sentence kindly and plainly; ambiguity is not always compassion.',
+        'Beauty can be a lamp: music, art, nature, or a familiar ritual can help you stay present while something difficult moves through.',
+        'Release an outdated plan, object, role, or expectation that is taking more energy than it returns.',
+        'Returning to sleep, food, movement, prayer, art, or a trusted place may restore your center.',
+        'Curiosity can interrupt defensiveness; ask what else might be true before deciding what something means.',
+        'Containment may be a budget, a calendar, a boundary, or a promise to revisit the question tomorrow.',
+        'Nourishment is concrete: eat, hydrate, rest, repair the workspace, or ask what your body has been saying.',
+        'Simplify the list, the room, the explanation, or the commitment until the essential thing can breathe.',
+        'Cross difficulty in stages: name the risk, find support, take the next safe step, then reassess.',
+        'Give one task your full attention instead of giving ten tasks a fragment of you.',
+        'Quiet influence may be consistency, tone, example, or the way you make space for someone else.',
+        'A rhythm becomes trustworthy when it is small enough to repeat on an ordinary day.'
     ];
 
     let selectedPlace = null;
@@ -120,6 +335,12 @@
     function meaningBody(n) {
         return MEANINGS[n] ? MEANINGS[n].body : '';
     }
+    function calendarNumberData(number) {
+        const palette = COLORS[number] || COLORS[reduceNumber(number, false)] || [];
+        const meaning = MEANINGS[number] || MEANINGS[reduceNumber(number, false)];
+        const body = meaning ? meaning.body.split(' Shadow:')[0] : 'A day to notice your own rhythm.';
+        return { colors: palette, title: meaning ? meaning.title.replace(/^\d+\s+—\s*/, '') : 'Personal rhythm', body };
+    }
     function stackBlend(uy, py, pm, pd) {
         const bits = [];
         if (uy === 1 && py === 9) bits.push('The world is in a start year while your personal year is closing. Finish well so the next 1 year has a clear floor.');
@@ -149,6 +370,32 @@
         bits.push(dayHint[pd] || ('Today carries ' + meaningTitle(pd) + '.'));
         return bits.join(' ');
     }
+    const DAILY_MISSIONS = {
+        1: 'Choose one beginning and give it a visible first step.',
+        2: 'Strengthen one relationship by listening without rushing to solve.',
+        3: 'Make or say something honestly; let expression be useful before it is perfect.',
+        4: 'Complete one small piece of structure that your future self can rely on.',
+        5: 'Change one setting, route, or assumption to make room for fresh information.',
+        6: 'Tend something living: your body, your home, a relationship, or a creative practice.',
+        7: 'Create quiet long enough to notice the signal underneath the noise.',
+        8: 'Make one clean decision about time, money, power, or a boundary.',
+        9: 'Finish, release, or forgive one small thing that is already complete.',
+        11: 'Capture the high-signal idea, then ground it in one practical action.',
+        22: 'Lay one durable brick in a plan that deserves patience.',
+        33: 'Offer care without abandoning your own limits; rest after giving.'
+    };
+    function numberSupport(number) {
+        const key = CRYSTALS[number] ? number : reduceNumber(number, false);
+        return {
+            colors: (COLORS[key] || []).map((color) => color.name).join(', ') || 'Choose a grounding color',
+            crystal: CRYSTALS[key] ? CRYSTALS[key].stones : 'Choose a stone that supports your intention'
+        };
+    }
+    function renderDailyMission(number) {
+        const support = numberSupport(number);
+        const mission = DAILY_MISSIONS[number] || DAILY_MISSIONS[reduceNumber(number, false)];
+        return '<div class="mission-block"><h5>Daily mission · ' + escapeHtml(meaningTitle(number)) + '</h5><p><strong>Do:</strong> ' + escapeHtml(mission) + '</p><p><strong>Color support:</strong> ' + escapeHtml(support.colors) + '</p><p><strong>Crystal support:</strong> ' + escapeHtml(support.crystal) + '</p></div>';
+    }
     function renderStation(isoDate, y, m, d) {
         const el = document.getElementById('n-station');
         if (!el) return;
@@ -170,7 +417,7 @@
         ].map((L) => {
             return '<div class="station-layer"><div class="lbl">' + L.lbl + ' · ' + L.n + '</div><h5>' + escapeHtml(meaningTitle(L.n)) + '</h5><p>' + escapeHtml(meaningBody(L.n)) + ' ' + escapeHtml(L.note) + '</p></div>';
         }).join('');
-        el.innerHTML = '<h4>Explanation station</h4><p class="page-note">Read outside in: world → year → month → day.</p><div class="station-seq" aria-label="Number sequence">' + seq + '</div><div class="station-layers">' + layers + '</div><p class="station-blend">' + escapeHtml(stackBlend(uy, py, pm, pd)) + '</p>';
+        el.innerHTML = '<h4>Explanation station</h4><p class="page-note">Read outside in: world → year → month → day.</p><div class="station-seq" aria-label="Number sequence">' + seq + '</div><div class="station-layers">' + layers + '</div><p class="station-blend">' + escapeHtml(stackBlend(uy, py, pm, pd)) + '</p>' + renderDailyMission(pd);
     }
     function norm360(x) { x %= 360; return x < 0 ? x + 360 : x; }
     function lonToSign(lon) {
@@ -186,7 +433,18 @@
         return s.glyph + ' ' + s.sign + ' ' + d + '°' + String(m).padStart(2, '0') + "'";
     }
     function escapeHtml(str) {
-        return String(str).replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"');
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+    function parseIsoDate(isoDate) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(isoDate)) return null;
+        const [year, month, day] = isoDate.split('-').map(Number);
+        const date = new Date(Date.UTC(year, month - 1, day));
+        return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day ? { year, month, day } : null;
     }
     function zonedTimeToUtc(y, mo, d, hh, mm, timeZone) {
         const utcGuess = Date.UTC(y, mo - 1, d, hh, mm, 0);
@@ -295,7 +553,7 @@
     async function searchPlaces(q) {
         const url = 'https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(q) + '&count=6&language=en&format=json';
         const res = await fetch(url);
-        if (!res.ok) return [];
+        if (!res.ok) throw new Error('Place search returned ' + res.status + '.');
         const data = await res.json();
         return data.results || [];
     }
@@ -353,23 +611,51 @@
         const sun = chart.planets.find((p) => p.key === 'Sun');
         const moon = chart.planets.find((p) => p.key === 'Moon');
         const rising = chart.asc != null ? lonToSign(chart.asc) : null;
-        let bigThree = '<p><strong>Sun:</strong> ' + fmtPos(sun.lon) + '</p>';
-        bigThree += '<p><strong>Moon:</strong> ' + fmtPos(moon.lon) + '</p>';
-        bigThree += '<p><strong>Rising:</strong> ' + (rising ? fmtPos(chart.asc) : 'needs birth time + place') + '</p>';
-        if (chart.mc != null) bigThree += '<p><strong>Midheaven:</strong> ' + fmtPos(chart.mc) + '</p>';
+        let bigThree = '<div class="core-trio"><div class="core-trio-item"><strong>Sun · identity</strong><span>' + fmtPos(sun.lon) + '</span></div><div class="core-trio-item"><strong>Moon · inner weather</strong><span>' + fmtPos(moon.lon) + '</span></div><div class="core-trio-item"><strong>Rising · first impression</strong><span>' + (rising ? fmtPos(chart.asc) : 'needs birth time + place') + '</span></div></div>';
+        if (chart.mc != null) bigThree += '<p style="margin-top:0.7rem;"><strong>Midheaven:</strong> ' + fmtPos(chart.mc) + ' · public direction and reputation</p>';
         bigThree += '<p><strong>Life Path:</strong> ' + lp + '</p>';
         bigThree += '<p class="page-note" style="margin-top:0.6rem;">' + escapeHtml(chart.localNote);
         if (chart.place) bigThree += ' · ' + escapeHtml([chart.place.name, chart.place.admin1, chart.place.country].filter(Boolean).join(', '));
         bigThree += '</p>';
         const rows = chart.planets.filter((p) => !['ASC', 'MC'].includes(p.key)).map((p) =>
-            '<tr><td>' + p.glyph + ' ' + p.key + (p.rx ? ' <span class="rx">Rx</span>' : '') + '</td><td>' + fmtPos(p.lon) + '</td><td>' + (p.house != null ? p.house : '—') + '</td><td>' + p.pos.element + ' / ' + p.pos.modality + '</td></tr>'
+            '<tr><td>' + p.glyph + ' ' + p.key + (p.rx ? ' <span class="rx">Rx</span>' : '') + '</td><td>' + fmtPos(p.lon) + '</td><td>' + (p.house != null ? '<span title="' + escapeHtml(HOUSE_MEANINGS[p.house - 1]) + '">' + p.house + '</span>' : '—') + '</td><td title="' + escapeHtml(ELEMENT_MEANINGS[p.pos.element] + '; ' + MODALITY_MEANINGS[p.pos.modality]) + '">' + p.pos.element + ' / ' + p.pos.modality + '</td></tr>'
         ).join('');
         const table = '<table class="natal-table"><thead><tr><th>Body</th><th>Sign</th><th>House</th><th>Tone</th></tr></thead><tbody>' + rows + '</tbody></table>';
         const aspectHtml = chart.aspects.length
-            ? '<ul class="aspect-list">' + chart.aspects.map((a) => '<li>' + escapeHtml(a.a) + ' ' + escapeHtml(a.name.toLowerCase()) + ' ' + escapeHtml(a.b) + ' <span>(' + a.orb.toFixed(1) + '°)</span></li>').join('') + '</ul>'
+            ? '<ul class="aspect-list">' + chart.aspects.map((a) => '<li><strong>' + escapeHtml(a.a) + ' ' + escapeHtml(a.name.toLowerCase()) + ' ' + escapeHtml(a.b) + '</strong> <span>(' + a.orb.toFixed(1) + '°)</span> — ' + escapeHtml(ASPECT_MEANINGS[a.name]) + '</li>').join('') + '</ul>'
             : '<p class="page-note">No major aspects in orb.</p>';
         const wheel = drawWheel(chart.planets.filter((p) => !['ASC', 'MC'].includes(p.key)), chart.asc != null ? chart.asc : sun.lon);
-        natal.innerHTML = '<h4>Natal chart</h4>' + bigThree + '<div class="natal-layout" style="margin-top:1rem;"><div>' + wheel + '</div><div>' + table + '<h4 style="margin-top:1.1rem;">Major aspects</h4>' + aspectHtml + '<p class="page-note" style="margin-top:0.8rem;">Whole-sign houses. Positions from Astronomy Engine (tropical). Mean lunar node. Studio-grade sketch — not a Swiss-ephemeris studio print.</p></div></div>';
+        const counted = chart.planets.filter((p) => !['ASC', 'MC', 'N. Node'].includes(p.key));
+        const elementCounts = counted.reduce((acc, p) => { acc[p.pos.element] = (acc[p.pos.element] || 0) + 1; return acc; }, {});
+        const modalityCounts = counted.reduce((acc, p) => { acc[p.pos.modality] = (acc[p.pos.modality] || 0) + 1; return acc; }, {});
+        const dominantElement = Object.keys(elementCounts).sort((a, b) => elementCounts[b] - elementCounts[a])[0];
+        const dominantModality = Object.keys(modalityCounts).sort((a, b) => modalityCounts[b] - modalityCounts[a])[0];
+        const chartSummary = '<div class="chart-summary"><h4>Plain-language synthesis</h4><p>Your Sun describes the center of your identity, your Moon describes your emotional weather, and your Rising sign describes the way you enter a room. Across the chart, <strong>' + dominantElement + '</strong> is the loudest element (' + elementCounts[dominantElement] + ' placements): ' + ELEMENT_MEANINGS[dominantElement] + '. <strong>' + dominantModality + '</strong> is the loudest rhythm: ' + MODALITY_MEANINGS[dominantModality] + '.</p></div>';
+        const domainRhythms = renderDomainRhythms(chart, lp, dominantElement, dominantModality);
+        const guide = '<div class="natal-guide">' +
+            '<div><h5>How to read this</h5><p><strong>Planet = what.</strong> A planet describes the part of life or inner function being expressed. <strong>Sign = how.</strong> The zodiac sign gives it a style, tone, and element. <strong>House = where.</strong> The house points to the life area where that planet shows up. Read a placement as planet + sign + house, not as a prediction by itself.</p></div>' +
+            '<div><h5>What “Tone” means</h5><p>Tone combines <strong>element</strong> and <strong>modality</strong>. Fire is expressive and initiating; Earth is practical and steady; Air is mental and connective; Water is emotional and intuitive. Cardinal starts, Fixed sustains, and Mutable adapts. For example, “Water / Fixed” suggests a feeling-led style that holds its ground. This is descriptive shorthand, not a score.</p></div>' +
+            '<div><h5>What “House” means</h5><p>Houses begin at the Ascendant, or Rising sign. This chart uses whole-sign houses: the entire sign rising at the eastern horizon becomes House 1, the next sign becomes House 2, and so on. Without an accurate birth time and place, houses, Rising, and Midheaven are intentionally left unavailable.</p><ul class="house-key">' + HOUSE_MEANINGS.map((meaning, i) => '<li><strong>' + (i + 1) + '.</strong> ' + meaning + '</li>').join('') + '</ul></div>' +
+            '<div><h5>Planets, Rx, and aspects</h5><ul>' + chart.planets.filter((p) => PLANET_MEANINGS[p.key]).map((p) => '<li><strong>' + escapeHtml(p.key) + ':</strong> ' + PLANET_MEANINGS[p.key] + (p.rx ? ' <strong>Rx</strong> means its motion appears retrograde from Earth, often read as a more inward or reflective expression.' : '') + '</li>').join('') + '</ul><p><strong>Aspects</strong> are angular relationships between chart points. Conjunction blends; sextile opens an opportunity; square creates friction that demands work; trine flows easily; opposition creates a polarity to balance. The number in parentheses is the orb, or distance from the exact angle—the smaller it is, the tighter the aspect.</p></div>' +
+            '</div>';
+        natal.innerHTML = '<h4>Natal chart</h4>' + bigThree + chartSummary + domainRhythms + '<div class="natal-layout" style="margin-top:1rem;"><div>' + wheel + '</div><div>' + table + '<h4 style="margin-top:1.1rem;">Major aspects</h4>' + aspectHtml + '<p class="page-note" style="margin-top:0.8rem;">Whole-sign houses. Positions from Astronomy Engine (tropical). Mean lunar node. Studio-grade sketch — not a Swiss-ephemeris studio print.</p></div></div>' + guide;
+    }
+    function renderDomainRhythms(chart, lifePath, dominantElement, dominantModality) {
+        const currentYear = new Date().getFullYear();
+        const personal = chart.utcDate ? personalYear(document.getElementById('n-birth').value, currentYear) : lifePath;
+        const hasHouses = chart.asc != null;
+        const placement = (keys) => chart.planets.filter((p) => keys.includes(p.key)).map((p) => p.pos.sign + (p.house ? ' · H' + p.house : '')).join(', ') || 'not available';
+        const data = [
+            { key: 'love', placement: placement(['Venus', 'Moon']), extra: hasHouses ? ' Partnership houses are included.' : ' Add birth time and place for house context.' },
+            { key: 'business', placement: placement(['Jupiter', 'Saturn', 'Mercury', 'MC']), extra: hasHouses ? ' Midheaven and houses add public-direction context.' : ' Date and time are enough for planetary style; houses need birthplace.' },
+            { key: 'creativity', placement: placement(['Sun', 'Mercury', 'Venus']), extra: ' Life Path ' + lifePath + ' adds a numerology thread.' },
+            { key: 'restoration', placement: placement(['Moon', 'Neptune', 'Saturn']), extra: ' Personal year ' + personal + ' sets the current chapter.' }
+        ];
+        return '<section class="chart-summary"><h4>Profile rhythms</h4><p>These are areas to work with, not predictions. They combine the chart’s planetary signatures with your Life Path, dominant ' + dominantElement + ' element, and ' + dominantModality + ' rhythm.</p><div class="rhythm-grid">' + data.map((item) => {
+            const domain = DOMAIN_RHYTHMS[item.key];
+            const support = numberSupport(lifePath);
+            return '<article class="rhythm-card"><h4>' + domain.title + '</h4><p><strong>Chart signals:</strong> ' + escapeHtml(domain.signal) + '</p><p><strong>In this profile:</strong> ' + escapeHtml(item.placement) + '.' + escapeHtml(item.extra) + '</p><p><strong>Rhythm:</strong> ' + escapeHtml(domain.rhythm) + '</p><p><strong>Question:</strong> ' + escapeHtml(domain.question) + '</p><p class="rhythm-support"><strong>Profile supports:</strong> ' + escapeHtml(support.colors) + ' · ' + escapeHtml(support.crystal) + '</p></article>';
+        }).join('') + '</div></section>';
     }
     function unlock() {
         sessionStorage.setItem(GATE_KEY, '1');
@@ -415,6 +701,76 @@
             return '<div class="crystal-item"><h4>' + title + '</h4><p><strong>' + c.stones + '</strong> — ' + c.note + '</p></div>';
         }).join('');
     }
+    function symbolSvg(kind, values, seed) {
+        if (kind && kind !== 'generated') {
+            const shapes = {
+                pentacle: '<polygon points="100,24 118,78 176,78 129,112 147,168 100,135 53,168 71,112 24,78 82,78"></polygon><circle class="symbol-ring" cx="100" cy="100" r="76"></circle>',
+                'solar-cross': '<circle class="symbol-ring" cx="100" cy="100" r="74"></circle><path d="M100 25V175M25 100H175"></path>',
+                mars: '<circle class="symbol-ring" cx="83" cy="117" r="42"></circle><path d="M112 88L166 34M130 34H166V70"></path>',
+                hamsa: '<path d="M67 166C53 151 49 126 52 96V48C52 39 65 39 65 49V88V29C65 19 79 19 79 29V86V22C79 12 93 12 93 23V88V30C93 20 107 20 107 31V91C117 72 139 74 139 88C139 102 126 108 121 121C116 135 125 153 133 166Z"></path><circle class="symbol-dot" cx="91" cy="111" r="9"></circle>',
+                eye: '<path d="M28 100C60 58 140 58 172 100C140 142 60 142 28 100Z"></path><circle class="symbol-ring" cx="100" cy="100" r="22"></circle><circle class="symbol-dot" cx="100" cy="100" r="7"></circle>',
+                triquetra: '<path d="M100 30C77 30 68 58 82 75C52 61 28 79 38 105C47 128 77 125 89 105C76 135 95 157 119 148C141 140 136 109 115 99C145 110 165 91 155 67C146 45 117 52 108 72C119 43 109 30 100 30Z"></path><circle class="symbol-ring" cx="100" cy="100" r="76"></circle>',
+                algiz: '<path d="M100 174V42M100 76L58 38M100 76L142 38"></path>',
+                bindrune: '<path d="M100 25V175M53 55L147 145M147 55L53 145M68 100H132"></path>',
+                hexagram: '<polygon points="100,22 168,140 32,140"></polygon><polygon points="32,60 168,60 100,178"></polygon>',
+                spears: '<path d="M35 35L165 165M165 35L35 165"></path><path d="M35 35L48 38M35 35L38 48M165 35L152 38M165 35L162 48"></path>'
+            };
+            if (!shapes[kind]) return '<div class="symbol-art" role="img" aria-label="Protective symbol unavailable"></div>';
+            const guide = SYMBOL_LIBRARY.find((item) => item.kind === kind);
+            const title = guide ? guide.name : kind;
+            return '<svg class="symbol-art" viewBox="0 0 200 200" role="img" aria-label="' + escapeHtml(title) + ' protective symbol"><title>' + escapeHtml(title) + '</title><path class="symbol-frame" d="M18 100a82 82 0 1 0 164 0a82 82 0 1 0-164 0"></path>' + shapes[kind] + '</svg>';
+        }
+        const points = values.length ? values : [seed, seed + 3, seed + 6];
+        const coords = points.map((value, index) => {
+            const angle = (value * 40 + index * 37) * Math.PI / 180;
+            const radius = 28 + ((value + index) % 4) * 9;
+            return { x: 100 + Math.cos(angle) * radius, y: 100 + Math.sin(angle) * radius };
+        });
+        const path = coords.map((point, index) => (index ? 'L' : 'M') + point.x.toFixed(1) + ' ' + point.y.toFixed(1)).join(' ');
+        const dots = coords.map((point) => '<circle cx="' + point.x.toFixed(1) + '" cy="' + point.y.toFixed(1) + '" r="3"></circle>').join('');
+        return '<svg class="symbol-art" viewBox="0 0 200 200" role="img" aria-label="Generated protective sigil"><title>Generated protective sigil</title><circle class="symbol-ring" cx="100" cy="100" r="76"></circle><path class="symbol-axis" d="M100 16V184M16 100H184"></path><path d="' + path + '"></path>' + dots.replace(/<circle /g, '<circle class="symbol-dot" ') + '</svg>';
+    }
+    function nameBindrune(values) {
+        const unique = [...new Set(values)];
+        const branches = unique.slice(0, 5).map((value, index) => {
+            const side = index % 2 === 0 ? -1 : 1;
+            const y = 48 + (index * 22);
+            const length = 24 + (value % 4) * 9;
+            return '<path d="M100 ' + y + 'L' + (100 + side * length) + ' ' + (y - 14) + '"></path>';
+        }).join('');
+        return '<svg class="symbol-art" viewBox="0 0 200 200" role="img" aria-label="Name bindrune"><title>Name bindrune</title><circle class="symbol-ring" cx="100" cy="100" r="76"></circle><path class="symbol-axis" d="M100 18V182"></path><path d="M100 22V178"></path>' + branches + '<path d="M72 100H128"></path></svg>';
+    }
+    function renderProtectiveSymbols(isoDate, name, birthday, lifePath, destiny) {
+        const target = document.getElementById('protective-symbols');
+        if (!target) return;
+        if (!isoDate) {
+            target.innerHTML = '<div class="result-block"><p class="page-note">Enter a birth date above, then Calculate all to reveal your combination.</p></div>';
+            return;
+        }
+        const parsed = parseIsoDate(isoDate);
+        if (!parsed) {
+            target.innerHTML = '<div class="result-block"><p class="error-text">That birth date is not valid. Please choose a real calendar date.</p></div>';
+            return;
+        }
+        const month = BIRTH_MONTHS[parsed.month];
+        const number = PROTECTIVE_NUMBERS[birthday] || PROTECTIVE_NUMBERS[reduceNumber(birthday, false)] || PROTECTIVE_NUMBERS[reduceNumber(lifePath, false)];
+        const nameValues = name ? name.toUpperCase().replace(/[^A-Z]/g, '').split('').map(letterValue) : [];
+        const path = nameValues.length ? nameValues.join(' · ') : 'Add a full name to generate a custom path';
+        const nameSummary = name
+            ? '<strong>' + escapeHtml(name) + '</strong> becomes a continuous numeric path (' + path + ') for a Rose Cross-style sigil.'
+            : 'Your name layer is waiting. Add a full name to generate a unique numeric path for a Rose Cross-style sigil.';
+        const nameArt = nameBindrune(nameValues.length ? nameValues : [birthday, parsed.month]);
+        const monthKind = month.motif === 'Sun Sigil' ? 'solar-cross' : month.motif === 'Moon Eye' ? 'eye' : 'pentacle';
+        target.innerHTML =
+            '<div class="symbol-result"><h3>Birthdate shield · ' + birthday + '</h3>' + symbolSvg(number.glyph) + '<p><strong>' + escapeHtml(number.symbol) + '</strong> · ' + escapeHtml(number.force) + '</p><p>' + escapeHtml(number.note) + ' This uses your single-digit birthday number' + (birthday !== lifePath ? ' and sits alongside Life Path ' + lifePath : '') + '.</p><p class="symbol-reading"><strong>Read it:</strong> ' + escapeHtml(SYMBOL_READINGS[number.glyph] || 'Notice the main shape, its center, and the direction of its lines.') + '</p></div>' +
+            '<div class="symbol-result"><h3>Birth-month amulet · ' + escapeHtml(month.name) + '</h3>' + symbolSvg(monthKind) + '<p><strong>' + escapeHtml(month.motif) + '</strong> · ' + escapeHtml(month.stone) + '</p><p>' + escapeHtml(month.note) + ' Treat the stone as a physical reminder of the protection you want to practice.</p><p class="symbol-reading"><strong>Read it:</strong> ' + escapeHtml(SYMBOL_READINGS[monthKind]) + '</p></div>' +
+            '<div class="symbol-result"><h3>Name sigil · ' + (destiny != null ? 'Expression ' + destiny : 'custom') + '</h3>' + nameArt + '<p>' + nameSummary + '</p><p class="symbol-path" aria-label="Name numeric path">' + escapeHtml(path) + '</p><p>The Witch\'s Knot can frame the finished mark as a binding boundary around your name and birthdate.</p><p class="symbol-reading"><strong>Read it:</strong> Follow the central stem first, then notice which branches repeat or reach farther. The pattern is a personal mnemonic, not a fixed translation.</p></div>';
+    }
+    function renderSymbolLibrary() {
+        const target = document.getElementById('symbol-library');
+        if (!target) return;
+        target.innerHTML = SYMBOL_LIBRARY.map((item) => '<article class="symbol-reference">' + symbolSvg(item.kind) + '<div><h3>' + escapeHtml(item.name) + '</h3><p>' + escapeHtml(item.summary) + '</p><p class="symbol-reading"><strong>Look for:</strong> ' + escapeHtml(item.read) + '</p><div class="symbol-tags"><span class="symbol-tag">' + (item.kind === 'algiz' || item.kind === 'bindrune' ? 'rune family' : 'protective glyph') + '</span></div></div></article>').join('');
+    }
     function renderCalendar(isoDate, selectDay) {
         const monthInput = document.getElementById('n-month');
         const cal = document.getElementById('cycle-cal');
@@ -423,6 +779,17 @@
             cal.innerHTML = '<p class="page-note">Set a birth date and calculate to build the cycle grid.</p>';
             yearLine.innerHTML = '';
             renderStation(null);
+            renderAstroRhythm(null);
+            renderIChing(null);
+            return;
+        }
+        const parsed = parseIsoDate(isoDate);
+        if (!parsed) {
+            cal.innerHTML = '<p class="error-text">Choose a valid birth date before building the calendar.</p>';
+            yearLine.innerHTML = '';
+            renderStation(null);
+            renderAstroRhythm(null);
+            renderIChing(null);
             return;
         }
         let y, m;
@@ -450,15 +817,86 @@
         for (let i = 0; i < startPad; i++) cells += '<div class="cycle-day outside" aria-hidden="true"></div>';
         for (let d = 1; d <= daysInMonth; d++) {
             const pn = personalDay(isoDate, y, m, d);
+            const dayData = calendarNumberData(pn);
+            const colorNames = dayData.colors.map((color) => color.name).join(' · ');
+            const colorDots = dayData.colors.map((color) => '<span class="cycle-color" style="background:' + escapeHtml(color.hex) + '" aria-hidden="true"></span>').join('');
             const isToday = todayHere && today.getDate() === d;
             const isSel = d === picked;
-            cells += '<button type="button" class="cycle-day' + (isToday ? ' today' : '') + (isSel ? ' selected' : '') + '" data-day="' + d + '" aria-pressed="' + (isSel ? 'true' : 'false') + '" title="Personal day ' + pn + '"><span class="n">' + d + '</span><span class="pn">' + pn + '</span></button>';
+            cells += '<button type="button" class="cycle-day' + (isToday ? ' today' : '') + (isSel ? ' selected' : '') + '" data-day="' + d + '" aria-pressed="' + (isSel ? 'true' : 'false') + '" aria-label="' + escapeHtml('Day ' + d + ', personal day ' + pn + ', ' + dayData.title + '. Colors: ' + colorNames) + '" title="' + escapeHtml(dayData.title + ' · ' + colorNames) + '"><span class="cycle-day-top"><span class="n">Day ' + d + '</span><span class="pn">' + pn + '</span></span><span class="cycle-meaning">' + escapeHtml(dayData.title) + '</span><span class="cycle-colors" aria-label="Colors: ' + escapeHtml(colorNames) + '">' + colorDots + '</span><span class="cycle-color-names">' + escapeHtml(colorNames) + '</span><span class="cycle-hint">' + escapeHtml(dayData.body) + '</span></button>';
         }
         cal.innerHTML = heads + cells;
         cal.querySelectorAll('button.cycle-day').forEach((btn) => {
             btn.addEventListener('click', () => renderCalendar(isoDate, +btn.dataset.day));
         });
         renderStation(isoDate, y, m, picked);
+        renderAstroRhythm(isoDate, y);
+        renderIChing(isoDate, y, m, picked);
+    }
+    function renderIChing(isoDate, year, month, day) {
+        const target = document.getElementById('iching-result');
+        if (!target) return;
+        if (!isoDate || !year || !month || !day) {
+            target.innerHTML = '<p class="page-note">Choose a calendar day after calculating your birth date.</p>';
+            return;
+        }
+        const name = document.getElementById('n-name').value.trim();
+        const nameSeed = name.split('').reduce((sum, ch) => sum + letterValue(ch), 0);
+        const digits = (isoDate.replace(/\D/g, '') + year + month + day).split('').reduce((sum, digit) => sum + Number(digit), 0);
+        const seed = digits + nameSeed + personalDay(isoDate, year, month, day);
+        const lines = Array.from({ length: 6 }, (_, index) => ((seed + index * 7 + nameSeed) % 2));
+        const changing = lines.map((line, index) => ((seed + index * 11 + nameSeed) % 5 === 0));
+        const lowerIndex = lines.slice(0, 3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
+        const upperIndex = lines.slice(3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
+        const hexIndex = upperIndex * 8 + lowerIndex;
+        const hexName = HEXAGRAM_NAMES[hexIndex] || 'A changing pattern';
+        const changedLines = lines.map((line, index) => changing[index] ? 1 - line : line);
+        const changedLower = changedLines.slice(0, 3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
+        const changedUpper = changedLines.slice(3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
+        const changedIndex = changedUpper * 8 + changedLower;
+        const changedName = HEXAGRAM_NAMES[changedIndex] || 'A new pattern';
+        const lineHtml = lines.slice().reverse().map((line, reversedIndex) => {
+            const index = 5 - reversedIndex;
+            const position = index + 1;
+            const positionName = ['bottom / beginning', 'inner / response', 'threshold', 'outer / action', 'visible result', 'top / completion'][index];
+            return '<div class="iching-line ' + (line ? 'solid' : 'broken') + (changing[index] ? ' changing' : '') + '" title="Line ' + position + ': ' + positionName + '">' + '<span class="line-number">' + position + '</span>' + (changing[index] ? '<em>change</em>' : '') + '</div>';
+        }).join('');
+        const lower = TRIGRAMS[lowerIndex];
+        const upper = TRIGRAMS[upperIndex];
+        const changingText = changing.some(Boolean)
+            ? 'Changing lines mark where the image is moving today; read them as invitations to respond, not guarantees.'
+            : 'No changing lines were selected, so let the primary image describe the quality to practice today.';
+        const changingCount = changing.filter(Boolean).length;
+        const method = 'The six lines are a deterministic study pattern, not a traditional coin or yarrow-cast simulation. It combines the birth date, selected date, personal day, and name values so the same inputs return the same image. Solid lines are yang (active / outward); broken lines are yin (receptive / inward). ' + (changingCount ? changingCount + ' line' + (changingCount === 1 ? ' is' : 's are') + ' marked for movement.' : 'No lines are marked for movement today.');
+        const primaryQuestion = ICHING_PROMPTS[hexIndex % ICHING_PROMPTS.length];
+        const secondQuestion = ICHING_PROMPTS[(hexIndex + 8) % ICHING_PROMPTS.length];
+        const thirdQuestion = ICHING_PROMPTS[(hexIndex + 16) % ICHING_PROMPTS.length];
+        const synthesis = lower.name + ' below meets ' + upper.name + ' above: begin by ' + lower.quality.split(',')[0] + ', then let that quality shape how you ' + upper.quality.split(',')[0] + '.';
+        const action = ICHING_ACTIONS[hexIndex % ICHING_ACTIONS.length];
+        const changedSummary = changing.some(Boolean)
+            ? 'The moving line' + (changingCount === 1 ? '' : 's') + ' show where today’s pattern is not static. Read the primary hexagram as the situation, then the changed hexagram as the direction created by responding.'
+            : 'With no moving lines, stay with the primary image. The practice is depth and consistency rather than chasing a second answer.';
+        target.innerHTML = '<div class="iching-result"><div><div class="iching-lines" aria-label="Six-line hexagram">' + lineHtml + '</div><p class="page-note" style="margin-top:0.8rem;text-align:center;">Lines are read bottom to top. Solid = yang / outward action · broken = yin / receptive space · light line = changing.</p><p class="page-note" style="text-align:center;">Line 1 begins the situation; line 6 shows how it reaches the wider view.</p></div><div class="iching-copy"><h4>Hexagram ' + (hexIndex + 1) + ' · ' + escapeHtml(hexName) + '</h4><div class="iching-trigrams"><div class="iching-trigram"><strong>Below · ' + escapeHtml(lower.name) + '</strong><span>' + escapeHtml(lower.quality) + '</span></div><div class="iching-trigram"><strong>Above · ' + escapeHtml(upper.name) + '</strong><span>' + escapeHtml(upper.quality) + '</span></div></div><p class="iching-synthesis"><strong>Today’s pattern:</strong> ' + escapeHtml(synthesis) + '</p><p>' + escapeHtml(changingText) + '</p>' + (changing.some(Boolean) ? '<p><strong>With change:</strong> Hexagram ' + (changedIndex + 1) + ' · ' + escapeHtml(changedName) + '</p><p>' + escapeHtml(changedSummary) + '</p>' : '<p>' + escapeHtml(changedSummary) + '</p>') + '<p class="iching-action"><strong>Try this:</strong> ' + escapeHtml(action) + '</p><p class="iching-prompt"><strong>Reflection:</strong> ' + escapeHtml(primaryQuestion) + '</p><p class="iching-example"><strong>In real life:</strong> ' + escapeHtml(ICHING_EXAMPLES[hexIndex % ICHING_EXAMPLES.length]) + '</p><h5 style="margin:0.8rem 0 0;color:var(--gold);">Questions to carry</h5><ul class="iching-questions"><li>' + escapeHtml(primaryQuestion) + '</li><li>' + escapeHtml(secondQuestion) + '</li><li>' + escapeHtml(thirdQuestion) + '</li></ul><p class="iching-method"><strong>Method:</strong> ' + escapeHtml(method) + '</p><div class="trigram-row"><span class="trigram-chip">Personal day ' + personalDay(isoDate, year, month, day) + '</span><span class="trigram-chip">' + (name ? 'Name pattern included' : 'Date pattern only') + '</span></div></div></div>';
+    }
+    function renderAstroRhythm(isoDate, year) {
+        const target = document.getElementById('astro-rhythm');
+        if (!target) return;
+        if (!isoDate || !year) {
+            target.innerHTML = '<p class="page-note">Calculate a birth date to compare your personal year with the universal cycle.</p>';
+            return;
+        }
+        const universal = universalYear(year);
+        const personal = personalYear(isoDate, year);
+        const gates = [
+            { date: year + '-03-20', name: 'March equinox', sign: 'Aries', note: 'Balance point: equal day and night, then a turn toward outward growth.' },
+            { date: year + '-06-21', name: 'June solstice', sign: 'Cancer', note: 'Peak light: visibility, nourishment, and the question of what you want to sustain.' },
+            { date: year + '-09-22', name: 'September equinox', sign: 'Libra', note: 'Balance point: equal day and night, then a turn toward gathering and release.' },
+            { date: year + '-12-21', name: 'December solstice', sign: 'Capricorn', note: 'Deep reset: least light, long structure, and the seed of the next return.' }
+        ];
+        const gateHtml = gates.map((gate) => '<div class="astro-turn"><strong>' + gate.name + '</strong><span>' + gate.date + ' · Sun enters ' + gate.sign + '</span><span>' + gate.note + '</span></div>').join('');
+        const blend = universal === personal
+            ? 'Your personal year matches the universal year (' + universal + '). The outer rhythm and your inner chapter are speaking in the same number; notice where that alignment feels supportive and where it asks for more responsibility.'
+            : 'The universal year is ' + universal + ' (' + meaningTitle(universal) + '), while your personal year is ' + personal + ' (' + meaningTitle(personal) + '). The world is the weather; your personal year is how you move through it. Neither number cancels the other.';
+        target.innerHTML = '<div class="result-block"><h4>Universal ' + year + ' · ' + universal + ' · ' + escapeHtml(meaningTitle(universal)) + '</h4><p class="astro-balance">' + escapeHtml(blend) + '</p></div><div class="astro-turns">' + gateHtml + '</div><p class="astro-balance"><strong>How to use the gates:</strong> near an equinox, ask what needs rebalancing; near a solstice, ask what is peaking, quieting, or ready to change direction. Then compare that answer with your personal month and day in the calendar above.</p>';
     }
     function calculateAll() {
         const iso = document.getElementById('n-birth').value;
@@ -471,12 +909,18 @@
             core.innerHTML = '<p class="error-text">Birth date is required.</p>';
             return;
         }
+        if (!parseIsoDate(iso)) {
+            core.classList.remove('nums-hidden');
+            core.innerHTML = '<p class="error-text">Please choose a real calendar date.</p>';
+            return;
+        }
         const lp = lifePathFromDate(iso);
         const bd = birthdayNumber(iso);
         const destiny = name ? nameNumber(name) : null;
         const py = personalYear(iso, new Date().getFullYear());
         core.classList.remove('nums-hidden');
         core.innerHTML = '<h4>Core profile</h4><p><strong>Life Path:</strong> ' + lp + ' — ' + (MEANINGS[lp] ? MEANINGS[lp].title : '') + '</p><p><strong>Birthday number:</strong> ' + bd + '</p>' + (destiny != null ? '<p><strong>Destiny / Expression:</strong> ' + destiny + '</p>' : '<p><strong>Destiny:</strong> add a name to compute</p>') + '<p><strong>Personal year ' + new Date().getFullYear() + ':</strong> ' + py + '</p><p style="margin-top:0.75rem;color:var(--muted);font-size:0.9rem">' + (MEANINGS[lp] ? MEANINGS[lp].body : '') + '</p>';
+        renderProtectiveSymbols(iso, name, bd, lp, destiny);
         natal.innerHTML = '<p class="page-note">Casting chart…</p>';
         try { renderNatal(computeNatal(iso, time, selectedPlace), lp); }
         catch (err) { natal.innerHTML = '<p class="error-text">Could not cast the chart. ' + escapeHtml(err.message || String(err)) + '</p>'; }
@@ -492,14 +936,19 @@
             clearTimeout(placeTimer);
             if (q.length < 2) { list.classList.add('nums-hidden'); list.innerHTML = ''; return; }
             placeTimer = setTimeout(async () => {
-                try { renderPlaceSuggest(await searchPlaces(q)); }
-                catch { list.classList.add('nums-hidden'); }
+                try {
+                    renderPlaceSuggest(await searchPlaces(q));
+                } catch (err) {
+                    list.classList.add('nums-hidden');
+                    document.getElementById('n-place-meta').textContent = 'Place search unavailable. You can still calculate without a birthplace.';
+                    console.warn('Place search failed:', err);
+                }
             }, 350);
         });
         document.addEventListener('click', (e) => { if (!e.target.closest('.place-wrap')) list.classList.add('nums-hidden'); });
     }
     function initRoom() {
-        renderMeanings(); renderColors(); renderCrystals(); initPlaceSearch();
+        renderMeanings(); renderColors(); renderCrystals(); renderSymbolLibrary(); initPlaceSearch();
         const lockBtn = document.getElementById('nums-lock');
         if (lockBtn) lockBtn.onclick = lock;
         const calc = document.getElementById('n-calc');

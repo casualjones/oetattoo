@@ -33,18 +33,20 @@
         <section class="page-hero">
             <span class="eyebrow">04 // INTERESTING</span>
             <h1>Weekly notes.</h1>
-            <p>Local events and music listings, kept simple.</p>
+            <p>A practical North Coast calendar for finding something to see, hear, learn, or make. Browse the month, then follow the original listing for details.</p>
         </section>
 
         <section class="page-grid">
             <article class="page-card event-card">
                 <div class="event-controls">
-                    <button id="prevWeek" class="cta-button">Previous Month</button>
-                    <button id="nextWeek" class="cta-button">Next Month</button>
+                    <button id="prevWeek" type="button" class="cta-button">Previous month</button>
+                    <button id="nextWeek" type="button" class="cta-button">Next month</button>
                     <button id="refreshButton" class="cta-button secondary">Refresh</button>
                 </div>
-                <p id="weekLabel">Loading month...</p>
-                <p class="event-status" id="statusText">Loading monthly events...</p>
+                <div class="event-summary">
+                    <p id="weekLabel">Loading month...</p>
+                    <p class="event-status" id="statusText" aria-live="polite">Loading monthly events...</p>
+                </div>
             </article>
 
             <article class="page-card">
@@ -52,7 +54,7 @@
             </article>
 
             <article class="page-card">
-                <div class="event-list" id="eventList"></div>
+                <div class="event-list" id="eventList" aria-live="polite"></div>
             </article>
 
             <article class="page-card">

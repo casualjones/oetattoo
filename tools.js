@@ -1,16 +1,32 @@
 // Image Scaler
+function setToolStatus(id, message, type = '') {
+    const status = document.getElementById(id);
+    if (!status) return;
+    status.textContent = message;
+    status.dataset.state = type;
+}
+
 function scaleImage() {
     const input = document.getElementById('scalerInput');
     const scale = document.getElementById('scale').value / 100;
     const canvas = document.getElementById('scalerCanvas');
     const ctx = canvas.getContext('2d');
     const file = input.files[0];
+    if (!file) {
+        setToolStatus('scalerStatus', 'Choose an image before scaling.', 'error');
+        return;
+    }
     if (file) {
         const img = new Image();
         img.onload = function() {
             canvas.width = img.width * scale;
             canvas.height = img.height * scale;
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            setToolStatus('scalerStatus', `${file.name} · ${img.width} × ${img.height}px → ${canvas.width} × ${canvas.height}px`, 'success');
+            URL.revokeObjectURL(img.src);
+        };
+        img.onerror = function() {
+            setToolStatus('scalerStatus', 'This image could not be read by the browser.', 'error');
         };
         img.src = URL.createObjectURL(file);
     }
@@ -27,6 +43,10 @@ function addGrid() {
     const ctx = canvas.getContext('2d');
     const scaleInfo = document.getElementById('gridScaleInfo');
     const file = input.files[0];
+    if (!file) {
+        setToolStatus('gridStatus', 'Choose an image before adding a grid.', 'error');
+        return;
+    }
     if (file) {
         const img = new Image();
         img.onload = function() {
@@ -92,6 +112,11 @@ function addGrid() {
             } else {
                 scaleInfo.textContent = '';
             }
+            setToolStatus('gridStatus', `${file.name} · ${img.width} × ${img.height}px reference ready.`, 'success');
+            URL.revokeObjectURL(img.src);
+        };
+        img.onerror = function() {
+            setToolStatus('gridStatus', 'This image could not be read by the browser.', 'error');
         };
         img.src = URL.createObjectURL(file);
     }
@@ -105,6 +130,10 @@ function makeStencil() {
     const canvas = document.getElementById('stencilCanvas');
     const ctx = canvas.getContext('2d');
     const file = input.files[0];
+    if (!file) {
+        setToolStatus('stencilStatus', 'Choose an image before detecting edges.', 'error');
+        return;
+    }
     if (file) {
         const img = new Image();
         img.onload = function() {
@@ -172,6 +201,11 @@ function makeStencil() {
             }
             
             ctx.putImageData(imageData, 0, 0);
+            setToolStatus('stencilStatus', `${file.name} · ${method} edges at threshold ${edgeThreshold}.`, 'success');
+            URL.revokeObjectURL(img.src);
+        };
+        img.onerror = function() {
+            setToolStatus('stencilStatus', 'This image could not be read by the browser.', 'error');
         };
         img.src = URL.createObjectURL(file);
     }
@@ -248,6 +282,11 @@ function resetNumerology() {
 // Download function
 function downloadCanvas(canvasId, filename) {
     const canvas = document.getElementById(canvasId);
+    if (!canvas || !canvas.width || !canvas.height) {
+        const statusId = canvasId === 'scalerCanvas' ? 'scalerStatus' : canvasId === 'gridCanvas' ? 'gridStatus' : 'stencilStatus';
+        setToolStatus(statusId, 'Create a preview before downloading.', 'error');
+        return;
+    }
     const link = document.createElement('a');
     link.download = filename;
     link.href = canvas.toDataURL('image/png');
@@ -268,6 +307,17 @@ function updateGridConversions() {
 document.addEventListener('DOMContentLoaded', function() {
     updateGridConversions();
     document.getElementById('gridSize').addEventListener('input', updateGridConversions);
+    [
+        ['scalerInput', 'scalerStatus'],
+        ['gridInput', 'gridStatus'],
+        ['stencilInput', 'stencilStatus']
+    ].forEach(([inputId, statusId]) => {
+        const input = document.getElementById(inputId);
+        if (input) input.addEventListener('change', () => {
+            const file = input.files[0];
+            setToolStatus(statusId, file ? `${file.name} selected. Choose the tool action to create a preview.` : 'No image loaded yet.');
+        });
+    });
 });
 
 // Web Audio API for media conversion

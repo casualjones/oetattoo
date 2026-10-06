@@ -451,6 +451,65 @@ img {
     gap: 0.75rem;
 }
 
+.tool-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.7rem;
+    align-items: start;
+}
+
+.tool-heading h3 {
+    margin: 0;
+}
+
+.tool-heading p {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.tool-index {
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    line-height: 1.1;
+}
+
+.tool-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tool-legend span,
+.tool-status {
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tool-legend span {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid rgba(209, 171, 91, 0.28);
+}
+
+.file-label {
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.tool-status {
+    min-height: 1.1rem;
+    margin: 0;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
 .tool-card h3,
 .tool-card h2 {
     margin-bottom: 0;
@@ -479,6 +538,29 @@ img {
     flex-wrap: wrap;
     gap: 0.75rem;
     align-items: center;
+}
+
+.event-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+    align-items: baseline;
+    margin-top: 0.75rem;
+}
+
+.event-summary p {
+    margin: 0;
+}
+
+.event-summary #weekLabel {
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 1.2rem;
+}
+
+.event-status {
+    color: var(--muted);
+    font-size: 0.8rem;
 }
 
 .event-calendar,
@@ -516,6 +598,7 @@ img {
 
 .event-day-card.is-today {
     border-color: rgba(209, 171, 91, 0.55);
+    box-shadow: inset 0 2px 0 rgba(209, 171, 91, 0.65);
 }
 
 .event-day-card.has-events {
@@ -545,6 +628,10 @@ img {
 
 .event-day-link strong {
     line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .event-day-link span {
@@ -556,6 +643,23 @@ img {
     margin: 0;
     font-size: 0.7rem;
     color: var(--gold);
+}
+
+.event-card {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.event-card h4 {
+    margin: 0;
+    font-family: var(--serif);
+}
+
+.event-card p {
+    margin: 0.15rem 0 0;
+    color: var(--muted);
+    line-height: 1.45;
+    font-size: 0.84rem;
 }
 
 .song-library {
