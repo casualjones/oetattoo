@@ -14,6 +14,8 @@ VS Code: pull `origin/master` before editing. See `VSCODE.md`.
 - #ₛ profile rhythms: expanded each domain with definitions and interpretive meanings, and added an in-page explanation of calculation coverage, limits, and future-proofing.
 - #ₛ Human Design reference: added Type, Strategy, Signature, Not-self, and Profile-line definitions, including an explanation of 6/4 Generator, without presenting an unimplemented bodygraph calculation as fact.
 - #ₛ Human Design calculation: added versioned 64-gate wheel mapping, conscious/design activations, channels, centers, Type, Authority, and Profile output with exact-time/place safeguards.
+- #ₛ I Ching interpretation: added reusable hexagram guide content with overview, core meaning, contextual interpretations, cautions, practices, and reflection prompts for all 64 figures.
+- #ₛ I Ching generation: replaced the alternating-line seed with a varied deterministic hash so different inputs can produce the full range of six-line patterns.
 
 ## 2026-10-03
 

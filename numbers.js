@@ -271,6 +271,118 @@
         HEXAGRAM_NUMBERS[index] = entry[0];
         HEXAGRAM_NAMES[index] = entry[1];
     }));
+    const HEXAGRAM_GUIDES = {
+        63: {
+            overview: 'After Completion describes a major crossing that has reached a workable conclusion. The pieces are in the right relationship, but the finished state is not permanent: the next task is careful maintenance.',
+            core: [
+                'Equilibrium and success: the situation has reached a moment of order, balance, and functional alignment.',
+                'Latent danger: because the balance is delicate, complacency, over-expansion, or rushing into an unnecessary new challenge can reopen disorder.',
+                'Maintenance over ambition: preserve what works, notice small faults early, and let the next phase emerge instead of forcing a bigger victory.'
+            ],
+            daily: 'You may have crossed the finish line of a hard effort. Stabilize the result before immediately adding another demand.',
+            relationships: 'A relationship may be in a settled or repaired phase. Protect the small agreements and routines that made trust possible.',
+            work: 'Close the loop, document the process, test the weak points, and hand off or maintain what has been built before starting the next project.',
+            caution: 'Do not confuse completion with permanent safety. The image asks for vigilance without anxiety: small corrections are easier than dramatic rescue.',
+            practice: 'Choose one completed area and perform a quiet maintenance action: back up the work, repair the minor flaw, clarify the agreement, or restore the routine.',
+            reflection: 'What has been successfully crossed, and what small practice will keep that success intact?'
+        },
+        64: {
+            overview: 'Before Completion describes a crossing that is almost complete but not yet settled. The final steps require attention, flexibility, and respect for changing conditions.',
+            core: [
+                'Nearness without arrival: progress is real, but the result is not ready to be treated as finished.',
+                'Care at the threshold: haste near the end can undo work that was sound up to this point.',
+                'Disciplined transition: keep learning from the conditions instead of forcing a premature conclusion.'
+            ],
+            daily: 'Finish one small step cleanly, but leave enough attention available to respond if the situation changes.',
+            relationships: 'A conversation or repair may be close to resolution. Let consistency prove the change rather than demanding instant certainty.',
+            work: 'Check dependencies, test the final handoff, and name what remains open before announcing completion.',
+            caution: 'The danger is celebrating too early or crossing the last threshold without checking your footing.',
+            practice: 'Make a short final checklist and complete the next safe step without pretending it is the whole journey.',
+            reflection: 'What is genuinely complete, and what still needs one careful crossing?'
+        }
+    };
+    const HEXAGRAM_SUMMARIES = {
+        1: ['Creative force, initiative, and the power to begin from inner strength.', 'Force becomes brittle when it refuses timing, limits, or cooperation.', 'Start one meaningful thing and give it disciplined form.'],
+        2: ['Receptivity, support, and the strength of yielding to what is real.', 'Passivity is not receptivity; do not abandon discernment or direction.', 'Make space, listen closely, and support the next necessary step.'],
+        3: ['A difficult beginning where life is forming through uncertainty and friction.', 'Confusion grows when you demand a finished map before taking the first step.', 'Find help, name the immediate problem, and proceed in small stages.'],
+        4: ['Learning through humility, questions, and the willingness to be a beginner.', 'Advice cannot help when curiosity is being used to avoid responsibility.', 'Ask one sincere question and practice the answer.'],
+        5: ['Waiting with preparation, trust, and patience while conditions gather.', 'Delay becomes stagnation when preparation is replaced by worry.', 'Prepare the materials and let timing do part of the work.'],
+        6: ['Conflict that asks for a clean boundary, honest facts, and wise restraint.', 'Winning an argument may cost more than resolving the actual issue.', 'State your position once, then choose the safest constructive next step.'],
+        7: ['Shared effort, discipline, and coordinated action in service of a real task.', 'Leadership without responsibility turns a group into an instrument of ego.', 'Clarify roles, protect the vulnerable, and carry only your part.'],
+        8: ['Belonging, alliance, and the mutual support that creates cohesion.', 'Attachment to the wrong alliance can be more damaging than solitude.', 'Choose relationships that make honesty and reciprocity possible.'],
+        9: ['Small, consistent influence that gathers power through patience and detail.', 'Trying to force a breakthrough can scatter the progress already made.', 'Repeat the useful small action and let accumulation work.'],
+        10: ['Careful conduct: moving through power, risk, and social terrain with respect.', 'Confidence without attention to consequences becomes careless footing.', 'Take the next step deliberately and honor the boundary in front of you.'],
+        11: ['Peace, exchange, and a temporary harmony between inner and outer worlds.', 'Comfort can become complacency if the conditions creating peace are neglected.', 'Share resources and strengthen the bridge while it is open.'],
+        12: ['Standstill: a pause in exchange where integrity must be protected.', 'Do not mistake blocked movement for personal failure or force a dead channel open.', 'Keep your values intact and wait for a genuine change in conditions.'],
+        13: ['Fellowship through shared purpose, truth, and a wider sense of community.', 'Belonging built on performance or exclusion cannot remain healthy.', 'Find the honest common ground and invite clear participation.'],
+        14: ['Great possession: having resources, influence, or gifts that can serve a larger good.', 'Abundance becomes dangerous when it is treated as proof of superiority.', 'Use what you have generously, transparently, and with stewardship.'],
+        15: ['Modesty that makes strength usable, balanced, and sustainable.', 'Shrinking yourself is not the same as humility.', 'Remove excess, acknowledge limits, and let the work speak.'],
+        16: ['Enthusiasm, momentum, and the charge that helps a group move together.', 'Excitement without preparation can become noise or overcommitment.', 'Give the energy a rhythm, container, and next action.'],
+        17: ['Following what is alive and useful while staying responsive to evidence.', 'Following blindly trades discernment for belonging.', 'Notice what deserves your attention, then choose it consciously.'],
+        18: ['Repairing what has decayed by facing inherited patterns and neglected work.', 'Blame can keep you attached to the very pattern you want to change.', 'Name the origin, repair one repetition, and update the system.'],
+        19: ['Approach: moving toward people, opportunity, or understanding with generosity.', 'Expansion needs boundaries or it becomes overreach.', 'Approach with warmth while keeping your responsibilities visible.'],
+        20: ['Contemplation: seeing clearly by pausing long enough to observe the whole field.', 'Observation can become distance if it never becomes participation.', 'Look again before acting, then respond to what you actually see.'],
+        21: ['Biting through obstruction with directness, precision, and decisive judgment.', 'Force without fairness creates a new obstruction.', 'Identify the snag and address the specific point that holds everything up.'],
+        22: ['Grace: beauty, form, and care that reveal rather than conceal the truth.', 'Appearance cannot substitute for substance or repair.', 'Let beauty support clarity, then attend to what is underneath.'],
+        23: ['Splitting apart: releasing a structure that can no longer support life.', 'Clinging to the old form delays the return of what is essential.', 'Remove what is unstable and protect the smallest sound foundation.'],
+        24: ['Return: coming back to center through a simple, repeatable renewal.', 'A return is not a demand to recreate the past exactly.', 'Take the next honest step back toward what restores you.'],
+        25: ['Innocence: direct participation without manipulation, projection, or hidden agenda.', 'Good intentions do not remove the need for discernment.', 'Act simply, tell the truth, and let consequences teach you.'],
+        26: ['Great containment: storing power, knowledge, and resources for purposeful use.', 'Control becomes hoarding when nothing is ever released into action.', 'Strengthen the vessel, then invest your energy where it matters.'],
+        27: ['Nourishment: what you take in, give out, and use to sustain life.', 'Care becomes depletion when giving is disconnected from receiving.', 'Audit your inputs and choose one nourishing exchange.'],
+        28: ['Great excess: carrying a heavy load or standing in a structure under strain.', 'Pretending the beam is fine can endanger everyone relying on it.', 'Name the pressure, redistribute weight, and make the bold necessary adjustment.'],
+        29: ['The Abysmal: moving through repeated depth, risk, or uncertainty with continuity.', 'Fear multiplies when each difficult moment is treated as a final verdict.', 'Keep the rhythm simple: acknowledge danger, stay present, take the next step.'],
+        30: ['The Clinging: clarity, visibility, and the steady light that makes relationship possible.', 'Attachment to certainty can burn out the very clarity you need.', 'Stay close to what is true without turning it into a weapon.'],
+        31: ['Influence: leadership through presence, persuasion, and mutual responsiveness.', 'Influence loses integrity when it depends on pressure or seduction.', 'Let your example invite rather than compel.'],
+        32: ['Duration: continuity, commitment, and the patience to sustain what is worthwhile.', 'Persistence is not loyalty to a form that has already ended.', 'Ask what deserves a longer rhythm and renew that commitment.'],
+        33: ['Retreat: strategic withdrawal that protects energy and preserves future choice.', 'Avoidance disguises itself as retreat when no return is intended.', 'Step back cleanly, recover, and decide what deserves re-entry.'],
+        34: ['Great power: concentrated life-force capable of decisive movement.', 'Power without timing becomes aggression or waste.', 'Use strength precisely and stop when the useful work is done.'],
+        35: ['Progress: visibility, recognition, and gradual movement into a larger field.', 'Chasing recognition can displace the work that earned it.', 'Let progress be measured by what becomes more possible, not only by applause.'],
+        36: ['Darkening of the light: protecting inner truth while moving through a difficult outer climate.', 'Exposure is not always courage; some truths need shelter while they mature.', 'Keep the light alive privately and choose your disclosures carefully.'],
+        37: ['The Family: roles, belonging, daily agreements, and the culture created at home.', 'Unspoken roles become resentment when care and authority are unclear.', 'Make one household or team agreement explicit and mutual.'],
+        38: ['Opposition: difference that can clarify identity without requiring total separation.', 'Difference becomes division when curiosity disappears.', 'Name the disagreement and look for the practical point of cooperation.'],
+        39: ['Obstruction: a blocked route that redirects you toward help, patience, or a better approach.', 'Pushing harder against the same obstacle is not progress.', 'Turn toward support and change the route without abandoning the aim.'],
+        40: ['Deliverance: release from pressure through forgiveness, completion, and untangling.', 'Holding the crisis after it has passed recreates the burden.', 'Close the loop, release the debt, and make room for recovery.'],
+        41: ['Decrease: simplifying, reducing excess, and giving up something strategically.', 'Reduction becomes deprivation when the essential purpose is forgotten.', 'Remove one distraction and return the saved energy to what matters.'],
+        42: ['Increase: growth through generosity, investment, and support for what is becoming.', 'Expansion without capacity creates a larger version of the original problem.', 'Add resources where they will strengthen the whole system.'],
+        43: ['Breakthrough: naming a decisive truth and clearing what can no longer remain.', 'Public force without preparation can create backlash and isolation.', 'Be direct, document the reason, and leave a constructive path forward.'],
+        44: ['Coming to Meet: a powerful encounter, attraction, or influence arriving unexpectedly.', 'Not every compelling encounter deserves access to your life.', 'Notice the signal, set the boundary, and choose consciously.'],
+        45: ['Gathering Together: bringing people and resources into a shared center of purpose.', 'A gathering without values becomes a crowd rather than a community.', 'Name the purpose, welcome contribution, and keep stewardship visible.'],
+        46: ['Pushing Upward: gradual ascent through effort, humility, and support from others.', 'Impatience makes steady growth feel like failure.', 'Keep climbing by the next available step and accept useful help.'],
+        47: ['Oppression: pressure that reveals what is essential and where support is missing.', 'Isolation and silence intensify a burden that needs to be named.', 'Tell the truth about the constraint and protect the smallest source of vitality.'],
+        48: ['The Well: a deep, shared source that must be maintained so many can draw from it.', 'A neglected source cannot serve the community indefinitely.', 'Repair the infrastructure behind the visible work.'],
+        49: ['Revolution: necessary transformation when an old arrangement no longer fits reality.', 'Rebellion for its own sake replaces one rigid order with another.', 'Change the structure after clarifying what must be preserved.'],
+        50: ['The Cauldron: transforming raw material into nourishment, culture, and wisdom.', 'A beautiful container is useless if nothing is actually being transformed.', 'Tend the process and share what becomes nourishing.'],
+        51: ['The Arousing: shock, awakening, and the sudden energy that interrupts sleepwalking.', 'Reacting to the shock can spread fear beyond the original event.', 'Ground your body, then let the awakening clarify your next move.'],
+        52: ['Keeping Still: stopping, centering, and allowing action to arise from stillness.', 'Stillness becomes avoidance when it refuses the next necessary movement.', 'Pause the unnecessary motion and feel what is truly ready.'],
+        53: ['Development: gradual maturation through stages, patience, and natural timing.', 'Comparing your pace to someone else’s interrupts your own growth.', 'Honor the stage you are in and complete its lesson.'],
+        54: ['The Marrying Maiden: entering a secondary or imperfect role with clear expectations.', 'Self-abandonment in exchange for access creates lasting imbalance.', 'Know your position, preserve your dignity, and negotiate honestly.'],
+        55: ['Abundance: a peak of fullness, visibility, and activity that cannot last forever.', 'Trying to preserve the peak creates fear and obscures what it gave you.', 'Use the fullness well, record what matters, and prepare for the turn.'],
+        56: ['The Wanderer: moving through temporary places with humility, alertness, and light baggage.', 'Treating a temporary context as permanent can create needless attachment.', 'Be a respectful guest and keep your essentials close.'],
+        57: ['The Gentle: gradual penetration through repetition, listening, and quiet influence.', 'Indirectness becomes evasive when clarity is needed.', 'Return to the message calmly and let consistency carry it inward.'],
+        58: ['The Joyous: openness, exchange, pleasure, and truthful conversation.', 'Pleasure without depth becomes distraction or appeasement.', 'Share what is real and let joy strengthen, not replace, honesty.'],
+        59: ['Dispersion: dissolving barriers so feeling, information, or people can reconnect.', 'Dissolving every boundary leaves nothing safe enough to gather.', 'Soften the unnecessary wall while preserving a clear center.'],
+        60: ['Limitation: useful boundaries that give energy shape and make commitment possible.', 'A boundary that is too tight becomes punishment rather than structure.', 'Choose a limit that protects life and can actually be kept.'],
+        61: ['Inner Truth: quiet authenticity that can be felt before it is proven outwardly.', 'Conviction without humility turns inner truth into projection.', 'Listen beneath the noise and speak from what you can stand behind.'],
+        62: ['Preponderance of the Small: careful attention to modest actions and immediate details.', 'Grand gestures distract from the small correction the situation needs.', 'Be precise, humble, and faithful to the next small duty.']
+    };
+    function hexagramGuide(number, lower, upper) {
+        if (HEXAGRAM_GUIDES[number]) return HEXAGRAM_GUIDES[number];
+        const summary = HEXAGRAM_SUMMARIES[number];
+        return {
+            overview: summary ? summary[0] : 'This hexagram is a symbolic picture of ' + lower.name.toLowerCase() + ' below meeting ' + upper.name.toLowerCase() + ' above. Read it as a quality of attention, not a fixed prediction.',
+            core: [
+                summary ? summary[0] : 'The lower trigram describes the inner movement, beginning, or response.',
+                summary ? summary[1] : 'The upper trigram describes the outer field, visible action, or direction.',
+                'The whole figure asks how these two layers can cooperate without forcing certainty.'
+            ],
+            daily: summary ? summary[2] : 'Notice where the inner response and outer situation are asking for different speeds.',
+            relationships: 'Bring the inner truth of the situation into the relationship without turning the image into a verdict about another person.',
+            work: 'Translate the pattern into one observable decision, boundary, conversation, or repeatable practice.',
+            caution: summary ? summary[1] : 'This is a reflective study image, not a guarantee. Let direct evidence and lived consequences remain primary.',
+            practice: summary ? summary[2] : 'Choose one small action that expresses the figure without trying to control the entire outcome.',
+            reflection: 'What is this situation asking you to notice before you act?'
+        };
+    }
     const ICHING_PROMPTS = [
         'What can you begin without forcing the whole path to be visible?',
         'Where would receptivity be stronger than control today?',
@@ -962,10 +1074,17 @@
         }
         const name = document.getElementById('n-name').value.trim();
         const nameSeed = name.split('').reduce((sum, ch) => sum + letterValue(ch), 0);
-        const digits = (isoDate.replace(/\D/g, '') + year + month + day).split('').reduce((sum, digit) => sum + Number(digit), 0);
-        const seed = digits + nameSeed + personalDay(isoDate, year, month, day);
-        const lines = Array.from({ length: 6 }, (_, index) => ((seed + index * 7 + nameSeed) % 2));
-        const changing = lines.map((line, index) => ((seed + index * 11 + nameSeed) % 5 === 0));
+        const seedText = isoDate + '|' + year + '-' + month + '-' + day + '|' + name.toLowerCase();
+        const seed = Array.from(seedText).reduce((hash, character) => ((hash * 31) + character.charCodeAt(0)) >>> 0, 2166136261);
+        const lineSeed = (index, salt) => {
+            let value = (seed + Math.imul(index + 1, salt)) >>> 0;
+            value ^= value >>> 16;
+            value = Math.imul(value, 2246822507) >>> 0;
+            value ^= value >>> 13;
+            return value >>> 0;
+        };
+        const lines = Array.from({ length: 6 }, (_, index) => lineSeed(index, 2654435761) % 2);
+        const changing = lines.map((line, index) => lineSeed(index, 1597334677) % 7 === 0);
         const lowerIndex = lines.slice(0, 3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
         const upperIndex = lines.slice(3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
         const hexIndex = upperIndex * 8 + lowerIndex;
@@ -985,6 +1104,7 @@
         }).join('');
         const lower = TRIGRAMS[lowerIndex];
         const upper = TRIGRAMS[upperIndex];
+        const guide = hexagramGuide(hexNumber, lower, upper);
         const changingText = changing.some(Boolean)
             ? 'Changing lines mark where the image is moving today; read them as invitations to respond, not guarantees.'
             : 'No changing lines were selected, so let the primary image describe the quality to practice today.';
@@ -1000,7 +1120,8 @@
         const changedSummary = changing.some(Boolean)
             ? 'The moving line' + (changingCount === 1 ? '' : 's') + ' show where today’s pattern is not static. Read the primary hexagram as the situation, then the changed hexagram as the direction created by responding.'
             : 'With no moving lines, stay with the primary image. The practice is depth and consistency rather than chasing a second answer.';
-        target.innerHTML = '<div class="iching-result"><div><div class="iching-lines" aria-label="Six-line hexagram">' + lineHtml + '</div><p class="page-note" style="margin-top:0.8rem;text-align:center;">Lines are read bottom to top. Solid = yang / outward action · broken = yin / receptive space · light line = changing.</p><p class="page-note" style="text-align:center;">Line 1 begins the situation; line 6 shows how it reaches the wider view.</p><div class="iching-reading"><strong>Line pattern</strong><span>' + escapeHtml(pattern) + '</span><small>Changing lines flip in the transformed figure.</small><span>' + escapeHtml(changedPattern) + '</span></div></div><div class="iching-copy"><h4>Hexagram ' + hexNumber + ' · ' + escapeHtml(hexName) + '</h4><div class="iching-trigrams"><div class="iching-trigram"><strong>Below · ' + escapeHtml(lower.name) + '</strong><span>' + escapeHtml(lower.quality) + '</span></div><div class="iching-trigram"><strong>Above · ' + escapeHtml(upper.name) + '</strong><span>' + escapeHtml(upper.quality) + '</span></div></div><p class="iching-synthesis"><strong>Today’s pattern:</strong> ' + escapeHtml(synthesis) + '</p><p>' + escapeHtml(changingText) + '</p>' + (changing.some(Boolean) ? '<p><strong>With change:</strong> Hexagram ' + changedNumber + ' · ' + escapeHtml(changedName) + '</p><p>' + escapeHtml(changedSummary) + '</p>' : '<p>' + escapeHtml(changedSummary) + '</p>') + '<p class="iching-action"><strong>Try this:</strong> ' + escapeHtml(action) + '</p><p class="iching-prompt"><strong>Reflection:</strong> ' + escapeHtml(primaryQuestion) + '</p><p class="iching-example"><strong>In real life:</strong> ' + escapeHtml(ICHING_EXAMPLES[hexIndex % ICHING_EXAMPLES.length]) + '</p><h5 style="margin:0.8rem 0 0;color:var(--gold);">Questions to carry</h5><ul class="iching-questions"><li>' + escapeHtml(primaryQuestion) + '</li><li>' + escapeHtml(secondQuestion) + '</li><li>' + escapeHtml(thirdQuestion) + '</li></ul><p class="iching-method"><strong>Method:</strong> ' + escapeHtml(method) + '</p><div class="trigram-row"><span class="trigram-chip">Personal day ' + personalDay(isoDate, year, month, day) + '</span><span class="trigram-chip">' + (name ? 'Name pattern included' : 'Date pattern only') + '</span></div></div></div>';
+        const coreHtml = guide.core.map((item) => '<li>' + escapeHtml(item) + '</li>').join('');
+        target.innerHTML = '<div class="iching-result"><div><div class="iching-lines" aria-label="Six-line hexagram">' + lineHtml + '</div><p class="page-note" style="margin-top:0.8rem;text-align:center;">Lines are read bottom to top. Solid = yang / outward action · broken = yin / receptive space · light line = changing.</p><p class="page-note" style="text-align:center;">Line 1 begins the situation; line 6 shows how it reaches the wider view.</p><div class="iching-reading"><strong>Line pattern</strong><span>' + escapeHtml(pattern) + '</span><small>Changing lines flip in the transformed figure.</small><span>' + escapeHtml(changedPattern) + '</span></div></div><div class="iching-copy"><h4>Hexagram ' + hexNumber + ' · ' + escapeHtml(hexName) + '</h4><section class="hexagram-guide"><h5>Overview</h5><p>' + escapeHtml(guide.overview) + '</p><h5>Core meaning</h5><ul>' + coreHtml + '</ul><h5>Contextual interpretations</h5><p><strong>Daily life / projects:</strong> ' + escapeHtml(guide.daily) + '</p><p><strong>Relationships:</strong> ' + escapeHtml(guide.relationships) + '</p><p><strong>Work / craft:</strong> ' + escapeHtml(guide.work) + '</p><p><strong>Watch for:</strong> ' + escapeHtml(guide.caution) + '</p><p class="iching-action"><strong>Practice:</strong> ' + escapeHtml(guide.practice) + '</p><p class="iching-prompt"><strong>Reflection:</strong> ' + escapeHtml(guide.reflection) + '</p></section><div class="iching-trigrams"><div class="iching-trigram"><strong>Below · ' + escapeHtml(lower.name) + '</strong><span>' + escapeHtml(lower.quality) + '</span></div><div class="iching-trigram"><strong>Above · ' + escapeHtml(upper.name) + '</strong><span>' + escapeHtml(upper.quality) + '</span></div></div><p class="iching-synthesis"><strong>Today’s pattern:</strong> ' + escapeHtml(synthesis) + '</p><p>' + escapeHtml(changingText) + '</p>' + (changing.some(Boolean) ? '<p><strong>With change:</strong> Hexagram ' + changedNumber + ' · ' + escapeHtml(changedName) + '</p><p>' + escapeHtml(changedSummary) + '</p>' : '<p>' + escapeHtml(changedSummary) + '</p>') + '<p class="iching-action"><strong>Try this:</strong> ' + escapeHtml(action) + '</p><p class="iching-prompt"><strong>Reflection:</strong> ' + escapeHtml(primaryQuestion) + '</p><p class="iching-example"><strong>In real life:</strong> ' + escapeHtml(ICHING_EXAMPLES[hexIndex % ICHING_EXAMPLES.length]) + '</p><h5 style="margin:0.8rem 0 0;color:var(--gold);">Questions to carry</h5><ul class="iching-questions"><li>' + escapeHtml(primaryQuestion) + '</li><li>' + escapeHtml(secondQuestion) + '</li><li>' + escapeHtml(thirdQuestion) + '</li></ul><p class="iching-method"><strong>Method:</strong> ' + escapeHtml(method) + '</p><div class="trigram-row"><span class="trigram-chip">Personal day ' + personalDay(isoDate, year, month, day) + '</span><span class="trigram-chip">' + (name ? 'Name pattern included' : 'Date pattern only') + '</span></div></div></div>';
     }
     function renderAstroRhythm(isoDate, year) {
         const target = document.getElementById('astro-rhythm');
