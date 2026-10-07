@@ -1,11 +1,11 @@
 [
   {
-    "title": "Strange Meeting",
-    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
-    "location": "The Basement",
+    "title": "Ilyas Ahmed, somesurprises, Meg Baird",
+    "url": "https://lostcoastoutpost.com/lowdown/events/ilyas-ahmed-somesurprises-meg-baird/",
+    "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-06T14:45:19.847267"
+    "detail_time": "7-10 p.m.",
+    "startDateIso": "2026-10-07T15:05:16.708372"
   },
   {
     "title": "‘A Reason to Listen’ October Poetry Show",
@@ -13,7 +13,7 @@
     "location": "The Historic Eagle House",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-8:30 p.m.",
-    "startDateIso": "2026-10-08T14:45:19.847267"
+    "startDateIso": "2026-10-08T15:05:16.708372"
   },
   {
     "title": "The Minutes",
@@ -21,7 +21,7 @@
     "location": "North Coast Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8 p.m.",
-    "startDateIso": "2026-10-08T14:45:19.847267"
+    "startDateIso": "2026-10-08T15:05:16.708372"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -37,7 +37,15 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 p.m.",
-    "startDateIso": "2026-10-09T14:45:19.847267"
+    "startDateIso": "2026-10-09T15:05:16.708372"
+  },
+  {
+    "title": "BushFest III",
+    "url": "https://lostcoastoutpost.com/lowdown/events/bushfest-iii/",
+    "location": "RampArt Skatepark",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "1 p.m.-midnight",
+    "startDateIso": "2026-10-10T15:05:16.708372"
   },
   {
     "title": "OktoBEARfest",
@@ -45,7 +53,7 @@
     "location": "Sequoia Park Zoo",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "4-7 p.m.",
-    "startDateIso": "2026-10-10T14:45:19.847267"
+    "startDateIso": "2026-10-10T15:05:16.708372"
   },
   {
     "title": "David Ambrosio/Russ Meissner Sextet",
@@ -53,7 +61,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8-10:30 p.m.",
-    "startDateIso": "2026-10-10T14:45:19.847267"
+    "startDateIso": "2026-10-10T15:05:16.708372"
   },
   {
     "title": "SHCF: Eddie Pepitone",
@@ -61,7 +69,7 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 p.m.",
-    "startDateIso": "2026-10-10T14:45:19.847267"
+    "startDateIso": "2026-10-10T15:05:16.708372"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -70,6 +78,14 @@
     "source": "Recurring local listing",
     "detail_time": "Saturday mornings",
     "startDateIso": "2026-10-11T00:00:00+00:00"
+  },
+  {
+    "title": "Strange Meeting",
+    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
+    "location": "The Basement",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-13T15:05:16.708372"
   },
   {
     "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
