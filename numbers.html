@@ -121,6 +121,23 @@
         .chart-summary h4 { margin: 0 0 0.3rem; color: var(--gold); font-family: var(--serif); }
         .chart-summary p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.86rem; }
         .chart-summary strong { color: var(--text); }
+        .data-notes { margin-top: 0.8rem; padding-top: 0.65rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .data-notes summary { color: var(--gold); cursor: pointer; font-size: 0.8rem; }
+        .data-notes p { margin-top: 0.45rem; font-size: 0.78rem; }
+        .hd-subhead { margin: 1rem 0 0; color: var(--gold); font-family: var(--serif); }
+        .hd-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.65rem; }
+        .hd-card, .hd-line-card { padding: 0.8rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+        .hd-card h4, .hd-line-card h4 { margin: 0 0 0.35rem; color: var(--gold); font-family: var(--serif); }
+        .hd-card p, .hd-line-card p { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
+        .hd-note { margin-top: 0.8rem; padding: 0.8rem; border-left: 2px solid rgba(209,171,91,0.5); background: rgba(209,171,91,0.05); color: var(--muted); font-size: 0.84rem; line-height: 1.55; }
+        .hd-note strong { color: var(--text); }
+        .hd-result-head { padding: 0.8rem; border-left: 2px solid rgba(209,171,91,0.5); background: rgba(209,171,91,0.05); }
+        .hd-result-head h4 { margin: 0 0 0.3rem; color: var(--gold); font-family: var(--serif); }
+        .hd-result-head p { margin: 0.25rem 0 0; color: var(--muted); font-size: 0.84rem; line-height: 1.5; }
+        .hd-centers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.45rem; }
+        .hd-center { padding: 0.45rem; border: 1px solid rgba(255,255,255,0.1); color: var(--muted); font-size: 0.72rem; }
+        .hd-center.defined { border-color: rgba(209,171,91,0.55); color: var(--gold); background: rgba(209,171,91,0.08); }
+        .hd-channels { margin: 0.6rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.8rem; line-height: 1.55; }
         .rhythm-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 1rem; }
         .rhythm-card { padding: 0.8rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
         .rhythm-card h4 { margin: 0 0 0.35rem; color: var(--gold); font-family: var(--serif); }
@@ -151,6 +168,10 @@
         .iching-line.changing::before, .iching-line.changing::after { background: var(--text); }
         .iching-line em { position: absolute; right: -1.25rem; color: var(--gold); font-size: 0.65rem; font-style: normal; }
         .iching-line .line-number { position: absolute; left: -1.45rem; color: var(--muted); font-size: 0.62rem; }
+        .iching-reading { display: grid; gap: 0.2rem; margin: 1rem auto 0; max-width: 180px; padding: 0.6rem; border: 1px solid rgba(209,171,91,0.22); color: var(--muted); font-size: 0.7rem; line-height: 1.4; }
+        .iching-reading strong { color: var(--gold); font-family: var(--serif); font-size: 0.8rem; }
+        .iching-reading span { color: var(--text); word-spacing: 0.1rem; }
+        .iching-reading small { color: var(--muted); font-size: 0.65rem; }
         .iching-copy h4 { margin: 0 0 0.35rem; font-family: var(--serif); color: var(--gold); }
         .iching-copy p { margin: 0 0 0.55rem; color: var(--muted); line-height: 1.55; font-size: 0.86rem; }
         .iching-synthesis { margin: 0.75rem 0; padding: 0.75rem 0.85rem; border-left: 2px solid rgba(209,171,91,0.5); background: rgba(209,171,91,0.06); }
@@ -171,6 +192,8 @@
         @media (max-width: 600px) { .iching-result { grid-template-columns: 1fr; } .iching-trigrams { grid-template-columns: 1fr; } }
         @media (max-width: 700px) { .astro-turns { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
         @media (max-width: 600px) { .core-trio { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .hd-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .hd-centers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
         @media (max-width: 500px) { .house-key { grid-template-columns: 1fr; } }
         @media (max-width: 800px) { .natal-layout { grid-template-columns: 1fr; } .protective-symbols { grid-template-columns: 1fr; } .symbol-art { width: min(100%, 230px); } }
         @media (max-width: 800px) { .cycle-calendar { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cycle-day-head { display: none; } .cycle-day { min-height: 104px; } }
@@ -260,6 +283,11 @@
             <div id="n-natal" class="result-block" aria-live="polite">Enter birth data above, then Calculate all.</div>
         </section>
         <section class="page-card nums-section">
+            <h2>Human Design calculation &amp; reference</h2>
+            <div id="human-design-result" class="result-block" aria-live="polite"><p class="page-note">Enter birth date, time, and birthplace above, then Calculate all to generate the bodygraph data.</p></div>
+            <div id="human-design-guide"></div>
+        </section>
+        <section class="page-card nums-section">
             <h2>Number meanings</h2>
             <p class="page-note">Master numbers 11, 22, 33 are kept when they appear in life path / destiny reductions.</p>
             <div class="nums-grid" id="meaning-grid"></div>
@@ -291,7 +319,7 @@
         </section>
         <section class="page-card nums-section">
             <h2>I Ching day study</h2>
-            <p class="page-note">Select a day in the rhythm calendar above. This creates a six-line hexagram from the date, personal cycle, and name pattern—a reflective prompt inspired by the I Ching, not a claim of certainty.</p>
+            <p class="page-note">Select a day in the rhythm calendar above. This creates a six-line hexagram from the date, personal cycle, and name pattern—a reflective prompt inspired by the I Ching, not a claim of certainty. Read the graphic from the bottom line upward: the first three lines are the lower trigram and the top three are the upper trigram.</p>
             <div id="iching-result" class="result-block" aria-live="polite">
                 <p class="page-note">Choose a calendar day after calculating your birth date.</p>
             </div>

@@ -161,48 +161,116 @@
         love: {
             title: 'Love & connection',
             signal: 'Venus, Moon, and the partnership axis',
+            definition: 'This domain describes how affection, emotional safety, reciprocity, and committed connection may become visible in the chart.',
+            meaning: 'Venus speaks to attraction and values; the Moon speaks to needs and attachment; the partnership axis adds the mirror of one-to-one relationship.',
             rhythm: 'Move between honest expression and attentive listening. Let closeness grow through repeatable care rather than intensity alone.',
             question: 'What would make connection feel safer, clearer, and more mutual this week?'
         },
         business: {
             title: 'Business & resources',
             signal: 'Saturn, Jupiter, Mercury, and the public axis',
+            definition: 'This domain describes how growth, planning, communication, responsibility, money, and public direction can be worked with.',
+            meaning: 'Jupiter shows expansion and opportunity; Saturn shows structure and limits; Mercury shows decisions and exchange; the public axis adds vocation and reputation.',
             rhythm: 'Pair expansion with structure: name the opportunity, define the next deliverable, and give the plan a date and boundary.',
             question: 'What is the smallest concrete offer, decision, or system that would make momentum visible?'
         },
         creativity: {
             title: 'Creativity & craft',
             signal: 'Sun, Mercury, Venus, and the fifth-house themes',
+            definition: 'This domain describes the conditions that help an idea become an expressive, repeatable practice rather than a passing impulse.',
+            meaning: 'The Sun supplies vitality and authorship; Mercury gives language and technique; Venus gives taste and pleasure; the fifth house adds play and making.',
             rhythm: 'Protect a regular practice. Inspiration may open the door, but repetition is what gives the idea a body and a finished form.',
             question: 'What wants to be made before it is judged, optimized, or explained?'
         },
         restoration: {
             title: 'Restoration & inner life',
             signal: 'Moon, Neptune, Saturn, and the twelfth-house themes',
+            definition: 'This domain describes recovery, solitude, dream life, boundaries, and the unseen work that keeps the rest of life sustainable.',
+            meaning: 'The Moon tracks replenishment and belonging; Neptune adds permeability and imagination; Saturn gives rest a container; the twelfth house marks retreat and release.',
             rhythm: 'Treat recovery as part of the work. Alternate exposure and retreat so sensitivity becomes information instead of overload.',
             question: 'What kind of quiet actually restores you: sleep, solitude, nature, movement, prayer, or making something?'
         }
     };
+    const CHART_DATA_STATUS = {
+        engine: 'Astronomy Engine 2.1.19',
+        zodiac: '12 tropical signs',
+        houses: '12 whole-sign houses when birth time and place are available',
+        bodies: 'Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, and mean lunar node',
+        limits: 'Interpretive text is authored locally; it is not a live ephemeris, medical tool, or prediction engine.'
+    };
+    const HUMAN_DESIGN_TYPES = [
+        { name: 'Generator', strategy: 'Respond', signature: 'Satisfaction', notSelf: 'Frustration', purpose: 'Use sustainable life-force by responding to what is genuinely present instead of forcing a beginning from the mind.' },
+        { name: 'Manifesting Generator', strategy: 'Respond, then inform', signature: 'Satisfaction', notSelf: 'Frustration (with anger when blocked)', purpose: 'Respond quickly, test through action, and let an efficient multi-step path emerge; informing helps others follow your movement.' },
+        { name: 'Projector', strategy: 'Wait for recognition and the right invitation', signature: 'Success', notSelf: 'Bitterness', purpose: 'Guide, focus, and recognize systems or people without trying to sustain the constant work-force expected of a Generator.' },
+        { name: 'Manifestor', strategy: 'Inform before initiating', signature: 'Peace', notSelf: 'Anger', purpose: 'Initiate and set change in motion while reducing resistance through clear, timely communication.' },
+        { name: 'Reflector', strategy: 'Wait through a lunar cycle for major decisions', signature: 'Surprise', notSelf: 'Disappointment', purpose: 'Reflect the health and quality of the surrounding community; environment and timing are especially important.' }
+    ];
+    const HUMAN_DESIGN_LINES = [
+        { line: '1 — Investigator', purpose: 'Build a secure foundation through research, detail, and a subject you can understand deeply.' },
+        { line: '2 — Hermit', purpose: 'Develop natural gifts privately, then allow the right recognition or invitation to draw them outward.' },
+        { line: '3 — Experimenter', purpose: 'Learn through direct trial, error, repair, and embodied experience rather than borrowed certainty.' },
+        { line: '4 — Opportunist', purpose: 'Create influence through trusted relationships, community, and opportunities that arrive through your network.' },
+        { line: '5 — Heretic / Universalizer', purpose: 'Offer practical solutions that others can project onto; clarify expectations and boundaries before accepting the role.' },
+        { line: '6 — Role Model', purpose: 'Move through observation and lived perspective toward a mature example that others can see and learn from.' }
+    ];
+    const HD_DATA_VERSION = 'rave-mandala-64-gates-v1';
+    const HD_GATE_ORDER = [41, 19, 13, 49, 30, 55, 37, 63, 22, 36, 25, 17, 21, 51, 42, 3, 27, 24, 2, 23, 8, 20, 16, 35, 45, 12, 15, 52, 39, 53, 62, 56, 31, 33, 7, 4, 29, 59, 40, 64, 47, 6, 46, 18, 48, 57, 32, 50, 28, 44, 1, 43, 14, 34, 9, 5, 26, 11, 10, 58, 38, 54, 61, 60];
+    const HD_GATE_WIDTH = 360 / 64;
+    const HD_GATE_START = 302; // Gate 41 begins at 2° Aquarius in the tropical wheel.
+    const HD_CHANNELS = [
+        [1, 8, 'Inspiration'], [2, 14, 'The Beat'], [3, 60, 'Mutation'], [4, 63, 'Logic'],
+        [5, 15, 'Rhythm'], [6, 59, 'Mating'], [7, 31, 'The Alpha'], [9, 52, 'Concentration'],
+        [10, 20, 'Awakening'], [10, 34, 'Exploration'], [10, 57, 'Perfected Form'], [11, 56, 'Curiosity'],
+        [12, 22, 'Openness'], [13, 33, 'The Prodigal'], [16, 48, 'The Wavelength'], [17, 62, 'Acceptance'],
+        [18, 58, 'Judgment'], [19, 49, 'Synthesis'], [20, 34, 'Charisma'], [20, 57, 'The Brain Wave'],
+        [21, 45, 'Money'], [23, 43, 'Structuring'], [24, 61, 'Awareness'], [25, 51, 'Initiation'],
+        [26, 44, 'Surrender'], [27, 50, 'Preservation'], [28, 38, 'The Struggle'], [29, 46, 'Discovery'],
+        [30, 41, 'Recognition'], [32, 54, 'Transformation'], [35, 36, 'Transitoriness'], [37, 40, 'Community'],
+        [39, 55, 'Emoting'], [42, 53, 'Maturation'], [47, 64, 'Abstraction'], [48, 57, 'The Design of Depth']
+    ];
+    const HD_CENTERS = {
+        head: 'Head', ajna: 'Ajna', throat: 'Throat', g: 'G / Identity', heart: 'Heart / Ego',
+        spleen: 'Spleen', solar: 'Solar Plexus', sacral: 'Sacral', root: 'Root'
+    };
+    const HD_GATE_CENTERS = {
+        1: 'g', 2: 'g', 7: 'g', 10: 'g', 13: 'g', 15: 'g', 25: 'g', 46: 'g',
+        8: 'throat', 12: 'throat', 16: 'throat', 20: 'throat', 23: 'throat', 31: 'throat', 33: 'throat', 35: 'throat', 45: 'throat',
+        4: 'ajna', 11: 'ajna', 17: 'ajna', 24: 'ajna', 43: 'ajna', 47: 'ajna', 61: 'head',
+        21: 'heart', 26: 'heart', 40: 'heart', 51: 'heart',
+        18: 'spleen', 28: 'spleen', 32: 'spleen', 44: 'spleen', 48: 'spleen', 50: 'spleen', 57: 'spleen',
+        6: 'solar', 22: 'solar', 30: 'solar', 36: 'solar', 37: 'solar', 49: 'solar', 55: 'solar',
+        3: 'sacral', 5: 'sacral', 9: 'sacral', 14: 'sacral', 27: 'sacral', 29: 'sacral', 34: 'sacral', 42: 'sacral', 59: 'sacral',
+        19: 'root', 38: 'root', 39: 'root', 41: 'root', 52: 'root', 53: 'root', 54: 'root', 58: 'root', 60: 'root', 62: 'throat', 63: 'head', 64: 'head'
+    };
+    // The index is the three lines read bottom-to-top as binary: yin = 0, yang = 1.
     const TRIGRAMS = [
-        { name: 'Earth', quality: 'receptive, yielding, nourishing' },
-        { name: 'Mountain', quality: 'stillness, boundaries, stopping' },
-        { name: 'Water', quality: 'depth, danger, movement through difficulty' },
-        { name: 'Wind', quality: 'gentle influence, penetration, gradual change' },
-        { name: 'Thunder', quality: 'shock, awakening, decisive movement' },
-        { name: 'Fire', quality: 'clarity, visibility, attention' },
-        { name: 'Lake', quality: 'joy, exchange, openness' },
-        { name: 'Heaven', quality: 'creative force, strength, initiative' }
+        { name: 'Earth', quality: 'receptive, yielding, nourishing' }, // 000
+        { name: 'Mountain', quality: 'stillness, boundaries, stopping' }, // 001
+        { name: 'Water', quality: 'depth, danger, movement through difficulty' }, // 010
+        { name: 'Wind', quality: 'gentle influence, penetration, gradual change' }, // 011
+        { name: 'Thunder', quality: 'shock, awakening, decisive movement' }, // 100
+        { name: 'Fire', quality: 'clarity, visibility, attention' }, // 101
+        { name: 'Lake', quality: 'joy, exchange, openness' }, // 110
+        { name: 'Heaven', quality: 'creative force, strength, initiative' } // 111
     ];
-    const HEXAGRAM_NAMES = [
-        'The Creative','The Receptive','Difficulty at the Beginning','Youthful Folly','Waiting','Conflict','The Army','Holding Together',
-        'Small Taming','Treading','Peace','Standstill','Fellowship','Great Possession','Modesty','Enthusiasm',
-        'Following','Work on What Has Been Spoiled','Approach','Contemplation','噬嗑 · Biting Through','Grace','Splitting Apart','Return',
-        'Innocence','Great Taming','Nourishment','Great Excess','The Abysmal','The Clinging','Influence','Duration',
-        'Retreat','Great Power','Progress','Darkening of the Light','The Family','Opposition','Obstruction','Deliverance',
-        'Decrease','Increase','Breakthrough','Coming to Meet','Gathering Together','Pushing Upward','Oppression','The Well',
-        'Revolution','The Cauldron','The Gentle','The Joyous','Dispersion','Limitation','Inner Truth','Preponderance of the Small',
-        'After Completion','Before Completion','The Creative Return','The Receptive Return','The Seed','The Crossing','The Center','The Turning'
+    const HEXAGRAM_MATRIX = [
+        [[1, 'The Creative'], [10, 'Treading'], [13, 'Fellowship'], [25, 'Innocence'], [44, 'Coming to Meet'], [6, 'Conflict'], [33, 'Retreat'], [12, 'Standstill']],
+        [[43, 'Breakthrough'], [58, 'The Joyous'], [49, 'Revolution'], [17, 'Following'], [28, 'Great Excess'], [47, 'Oppression'], [31, 'Influence'], [45, 'Gathering Together']],
+        [[14, 'Great Possession'], [38, 'Opposition'], [30, 'The Clinging'], [21, 'Biting Through'], [50, 'The Cauldron'], [64, 'Before Completion'], [56, 'The Wanderer'], [35, 'Progress']],
+        [[34, 'Great Power'], [54, 'The Marrying Maiden'], [55, 'Abundance'], [51, 'The Arousing'], [32, 'Duration'], [40, 'Deliverance'], [62, 'Preponderance of the Small'], [16, 'Enthusiasm']],
+        [[9, 'The Taming Power of the Small'], [61, 'Inner Truth'], [37, 'The Family'], [42, 'Increase'], [57, 'The Gentle'], [59, 'Dispersion'], [53, 'Development'], [20, 'Contemplation']],
+        [[5, 'Waiting'], [60, 'Limitation'], [63, 'After Completion'], [3, 'Difficulty at the Beginning'], [48, 'The Well'], [29, 'The Abysmal'], [39, 'Obstruction'], [8, 'Holding Together']],
+        [[26, 'The Taming Power of the Great'], [41, 'Decrease'], [22, 'Grace'], [27, 'Nourishment'], [18, 'Work on What Has Been Spoiled'], [4, 'Youthful Folly'], [52, 'Keeping Still'], [23, 'Splitting Apart']],
+        [[11, 'Peace'], [19, 'Approach'], [36, 'Darkening of the Light'], [24, 'Return'], [46, 'Pushing Upward'], [7, 'The Army'], [15, 'Modesty'], [2, 'The Receptive']]
     ];
+    const HEXAGRAM_NAMES = Array(64);
+    const HEXAGRAM_NUMBERS = Array(64);
+    const TRIGRAM_ORDER = [7, 6, 5, 4, 3, 2, 1, 0]; // Heaven, Lake, Fire, Thunder, Wind, Water, Mountain, Earth
+    HEXAGRAM_MATRIX.forEach((row, upperPosition) => row.forEach((entry, lowerPosition) => {
+        const index = TRIGRAM_ORDER[upperPosition] * 8 + TRIGRAM_ORDER[lowerPosition];
+        HEXAGRAM_NUMBERS[index] = entry[0];
+        HEXAGRAM_NAMES[index] = entry[1];
+    }));
     const ICHING_PROMPTS = [
         'What can you begin without forcing the whole path to be visible?',
         'Where would receptivity be stronger than control today?',
@@ -630,7 +698,7 @@
         const modalityCounts = counted.reduce((acc, p) => { acc[p.pos.modality] = (acc[p.pos.modality] || 0) + 1; return acc; }, {});
         const dominantElement = Object.keys(elementCounts).sort((a, b) => elementCounts[b] - elementCounts[a])[0];
         const dominantModality = Object.keys(modalityCounts).sort((a, b) => modalityCounts[b] - modalityCounts[a])[0];
-        const chartSummary = '<div class="chart-summary"><h4>Plain-language synthesis</h4><p>Your Sun describes the center of your identity, your Moon describes your emotional weather, and your Rising sign describes the way you enter a room. Across the chart, <strong>' + dominantElement + '</strong> is the loudest element (' + elementCounts[dominantElement] + ' placements): ' + ELEMENT_MEANINGS[dominantElement] + '. <strong>' + dominantModality + '</strong> is the loudest rhythm: ' + MODALITY_MEANINGS[dominantModality] + '.</p></div>';
+        const chartSummary = '<div class="chart-summary"><h4>Plain-language synthesis</h4><p>Your Sun describes the center of your identity, your Moon describes your emotional weather, and your Rising sign describes the way you enter a room. Across the chart, <strong>' + dominantElement + '</strong> is the loudest element (' + elementCounts[dominantElement] + ' placements): ' + ELEMENT_MEANINGS[dominantElement] + '. <strong>' + dominantModality + '</strong> is the loudest rhythm: ' + MODALITY_MEANINGS[dominantModality] + '.</p><details class="data-notes"><summary>What this calculation includes</summary><p><strong>Computed layer:</strong> ' + escapeHtml(CHART_DATA_STATUS.engine) + ' calculates the astronomical positions for the selected date, time, and place.</p><p><strong>Coverage:</strong> ' + escapeHtml(CHART_DATA_STATUS.zodiac) + '; ' + escapeHtml(CHART_DATA_STATUS.houses) + '; ' + escapeHtml(CHART_DATA_STATUS.bodies) + '.</p><p><strong>Interpretive layer:</strong> ' + escapeHtml(CHART_DATA_STATUS.limits) + '</p><p><strong>Future-proofing:</strong> the calculation is extensible because signs, houses, bodies, and meanings are separate tables. Adding a body or interpretation should extend those tables rather than rewrite the renderer. Results can still change if the astronomy library, time-zone data, geocoder, or house system changes, so the engine version and input location should remain part of any saved reading.</p></details></div>';
         const domainRhythms = renderDomainRhythms(chart, lp, dominantElement, dominantModality);
         const guide = '<div class="natal-guide">' +
             '<div><h5>How to read this</h5><p><strong>Planet = what.</strong> A planet describes the part of life or inner function being expressed. <strong>Sign = how.</strong> The zodiac sign gives it a style, tone, and element. <strong>House = where.</strong> The house points to the life area where that planet shows up. Read a placement as planet + sign + house, not as a prediction by itself.</p></div>' +
@@ -639,6 +707,59 @@
             '<div><h5>Planets, Rx, and aspects</h5><ul>' + chart.planets.filter((p) => PLANET_MEANINGS[p.key]).map((p) => '<li><strong>' + escapeHtml(p.key) + ':</strong> ' + PLANET_MEANINGS[p.key] + (p.rx ? ' <strong>Rx</strong> means its motion appears retrograde from Earth, often read as a more inward or reflective expression.' : '') + '</li>').join('') + '</ul><p><strong>Aspects</strong> are angular relationships between chart points. Conjunction blends; sextile opens an opportunity; square creates friction that demands work; trine flows easily; opposition creates a polarity to balance. The number in parentheses is the orb, or distance from the exact angle—the smaller it is, the tighter the aspect.</p></div>' +
             '</div>';
         natal.innerHTML = '<h4>Natal chart</h4>' + bigThree + chartSummary + domainRhythms + '<div class="natal-layout" style="margin-top:1rem;"><div>' + wheel + '</div><div>' + table + '<h4 style="margin-top:1.1rem;">Major aspects</h4>' + aspectHtml + '<p class="page-note" style="margin-top:0.8rem;">Whole-sign houses. Positions from Astronomy Engine (tropical). Mean lunar node. Studio-grade sketch — not a Swiss-ephemeris studio print.</p></div></div>' + guide;
+    }
+    function renderHumanDesignGuide() {
+        const target = document.getElementById('human-design-guide');
+        if (!target) return;
+        const typeCards = HUMAN_DESIGN_TYPES.map((type) => '<article class="hd-card"><h4>' + escapeHtml(type.name) + '</h4><p><strong>Strategy:</strong> ' + escapeHtml(type.strategy) + '</p><p><strong>Signature:</strong> ' + escapeHtml(type.signature) + '</p><p><strong>Not-self theme:</strong> ' + escapeHtml(type.notSelf) + '</p><p><strong>Purpose in this system:</strong> ' + escapeHtml(type.purpose) + '</p></article>').join('');
+        const lineCards = HUMAN_DESIGN_LINES.map((line) => '<article class="hd-line-card"><h4>' + escapeHtml(line.line) + '</h4><p>' + escapeHtml(line.purpose) + '</p></article>').join('');
+        target.innerHTML = '<p class="page-note">Human Design is now calculated separately from the tropical natal chart. A designation such as <strong>6/4 Generator</strong> combines a Type (Generator) with a two-line Profile (6/4). The first profile line is commonly described as the conscious/personality side; the second as the unconscious/design side. The labels below are study definitions, not scientific or medical classifications.</p><h4 class="hd-subhead">Types: energy and interaction strategy</h4><div class="hd-grid">' + typeCards + '</div><h4 class="hd-subhead">Profile lines: learning and relationship pattern</h4><div class="hd-grid hd-lines">' + lineCards + '</div><div class="hd-note"><strong>What “6/4 Generator” means:</strong> the Generator layer describes a responsive, sustainable work-force strategy; the 6/4 layer adds a role-model arc shaped by observation and a relationship-based network. The Type answers “how do I engage energy?” and the Profile answers “how do I learn, mature, and move through relationships?”</div><details class="data-notes"><summary>Calculation scope and reproducibility</summary><p>The calculator maps birth-moment and design-date planetary positions to the 64-gate wheel, combines conscious and design activations, finds complete channels, derives defined centers, then applies the center hierarchy for Authority, Type, and Profile.</p><p>The lookup is versioned as ' + HD_DATA_VERSION + '. Exact chart parity with other Human Design software may differ if its ephemeris, node choice, gate boundary convention, or 88-day design interval differs. Save the selected place, timezone, input time, engine version, and lookup version with any reading you want to reproduce.</p></details>';
+    }
+    function humanDesignGate(lon) {
+        const offset = (norm360(lon) - HD_GATE_START + 360) % 360;
+        const index = Math.min(63, Math.floor(offset / HD_GATE_WIDTH));
+        const within = offset - index * HD_GATE_WIDTH;
+        return { gate: HD_GATE_ORDER[index], line: Math.min(6, Math.floor(within / (HD_GATE_WIDTH / 6)) + 1) };
+    }
+    function humanDesignActivations(utcDate) {
+        const time = Astronomy.MakeTime(utcDate);
+        const points = BODIES.map((body) => ({ body: body.key, lon: geoLon(body.body, time) }));
+        points.push({ body: 'N. Node', lon: meanNorthNode(utcDate) });
+        const activations = points.map((point) => ({ ...point, ...humanDesignGate(point.lon) }));
+        return activations;
+    }
+    function humanDesignChart(chart) {
+        if (!chart || chart.error || !chart.utcDate) return { error: 'Enter a valid birth date before calculating Human Design.' };
+        if (!chart.hasTime || !chart.hasPlace) return { error: 'Human Design requires an exact local birth time and a selected birthplace with timezone.' };
+        const conscious = humanDesignActivations(chart.utcDate);
+        const designDate = new Date(chart.utcDate.getTime() - 88 * 86400000);
+        const design = humanDesignActivations(designDate);
+        const all = conscious.concat(design.map((activation) => ({ ...activation, design: true })));
+        const gates = new Set(all.map((activation) => activation.gate));
+        const channels = HD_CHANNELS.filter((channel) => gates.has(channel[0]) && gates.has(channel[1]));
+        const defined = new Set();
+        channels.forEach((channel) => { defined.add(HD_GATE_CENTERS[channel[0]]); defined.add(HD_GATE_CENTERS[channel[1]]); });
+        const has = (center) => defined.has(center);
+        const motorCenters = ['sacral', 'heart', 'solar', 'root'];
+        const throatMotor = channels.some((channel) => channel.includes(20) && motorCenters.includes(HD_GATE_CENTERS[channel[0]]) || channel.includes(20) && motorCenters.includes(HD_GATE_CENTERS[channel[1]]));
+        const type = has('sacral')
+            ? (throatMotor ? 'Manifesting Generator' : 'Generator')
+            : (throatMotor ? 'Manifestor' : (defined.size ? 'Projector' : 'Reflector'));
+        const authority = has('solar') ? 'Emotional / Solar Plexus' : has('sacral') ? 'Sacral' : has('spleen') ? 'Splenic' : has('heart') ? 'Ego' : has('g') && has('throat') ? 'Self-projected' : defined.size ? 'Mental / Environmental' : 'Lunar';
+        const profile = (conscious.find((activation) => activation.body === 'Sun') || conscious[0]).line + '/' + (design.find((activation) => activation.body === 'Sun') || design[0]).line;
+        return { conscious, design, gates, channels, defined, type, authority, profile, designDate };
+    }
+    function renderHumanDesign(chart) {
+        const target = document.getElementById('human-design-result');
+        if (!target) return;
+        const result = humanDesignChart(chart);
+        if (result.error) { target.innerHTML = '<p class="page-note">' + escapeHtml(result.error) + '</p>'; return; }
+        const typeInfo = HUMAN_DESIGN_TYPES.find((type) => type.name === result.type);
+        const defined = Object.keys(HD_CENTERS).map((key) => '<span class="hd-center ' + (result.defined.has(key) ? 'defined' : '') + '">' + HD_CENTERS[key] + ' · ' + (result.defined.has(key) ? 'defined' : 'open') + '</span>').join('');
+        const channelList = result.channels.length ? result.channels.map((channel) => '<li>' + channel[0] + '–' + channel[1] + ' · ' + escapeHtml(channel[2]) + '</li>').join('') : '<li>No complete channels in this calculation.</li>';
+        const gates = result.conscious.map((activation) => activation.body + ' ' + activation.gate + '.' + activation.line).join(' · ');
+        const designGates = result.design.map((activation) => activation.body + ' ' + activation.gate + '.' + activation.line).join(' · ');
+        target.innerHTML = '<div class="hd-result-head"><h4>' + escapeHtml(result.profile + ' ' + result.type) + '</h4><p><strong>Authority:</strong> ' + escapeHtml(result.authority) + ' · <strong>Strategy:</strong> ' + escapeHtml(typeInfo ? typeInfo.strategy : '') + '</p><p><strong>Signature:</strong> ' + escapeHtml(typeInfo ? typeInfo.signature : '') + ' · <strong>Not-self:</strong> ' + escapeHtml(typeInfo ? typeInfo.notSelf : '') + '</p></div><p class="page-note">This bodygraph uses the birth-moment activations and a design snapshot ' + escapeHtml(result.designDate.toISOString()) + ' (88 days before birth). It is a Human Design calculation, separate from the tropical natal chart.</p><h4 class="hd-subhead">Centers</h4><div class="hd-centers">' + defined + '</div><h4 class="hd-subhead">Defined channels</h4><ul class="hd-channels">' + channelList + '</ul><details class="data-notes"><summary>Activation details and version</summary><p><strong>Personality / conscious:</strong> ' + escapeHtml(gates) + '</p><p><strong>Design / unconscious:</strong> ' + escapeHtml(designGates) + '</p><p><strong>Lookup version:</strong> ' + HD_DATA_VERSION + '. Gate wheel starts at 2° Aquarius and divides the zodiac into 64 equal 5°37′30″ segments.</p><p>This is a transparent study implementation. Exact chart parity with commercial Human Design software may differ if its ephemeris, node choice, gate boundary convention, or 88-day design interval differs.</p></details>';
     }
     function renderDomainRhythms(chart, lifePath, dominantElement, dominantModality) {
         const currentYear = new Date().getFullYear();
@@ -654,7 +775,7 @@
         return '<section class="chart-summary"><h4>Profile rhythms</h4><p>These are areas to work with, not predictions. They combine the chart’s planetary signatures with your Life Path, dominant ' + dominantElement + ' element, and ' + dominantModality + ' rhythm.</p><div class="rhythm-grid">' + data.map((item) => {
             const domain = DOMAIN_RHYTHMS[item.key];
             const support = numberSupport(lifePath);
-            return '<article class="rhythm-card"><h4>' + domain.title + '</h4><p><strong>Chart signals:</strong> ' + escapeHtml(domain.signal) + '</p><p><strong>In this profile:</strong> ' + escapeHtml(item.placement) + '.' + escapeHtml(item.extra) + '</p><p><strong>Rhythm:</strong> ' + escapeHtml(domain.rhythm) + '</p><p><strong>Question:</strong> ' + escapeHtml(domain.question) + '</p><p class="rhythm-support"><strong>Profile supports:</strong> ' + escapeHtml(support.colors) + ' · ' + escapeHtml(support.crystal) + '</p></article>';
+            return '<article class="rhythm-card"><h4>' + domain.title + '</h4><p><strong>Definition:</strong> ' + escapeHtml(domain.definition) + '</p><p><strong>Chart signals:</strong> ' + escapeHtml(domain.signal) + '</p><p><strong>Meaning:</strong> ' + escapeHtml(domain.meaning) + '</p><p><strong>In this profile:</strong> ' + escapeHtml(item.placement) + '.' + escapeHtml(item.extra) + '</p><p><strong>Practice:</strong> ' + escapeHtml(domain.rhythm) + '</p><p><strong>Question:</strong> ' + escapeHtml(domain.question) + '</p><p class="rhythm-support"><strong>Profile supports:</strong> ' + escapeHtml(support.colors) + ' · ' + escapeHtml(support.crystal) + '</p></article>';
         }).join('') + '</div></section>';
     }
     function unlock() {
@@ -849,11 +970,13 @@
         const upperIndex = lines.slice(3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
         const hexIndex = upperIndex * 8 + lowerIndex;
         const hexName = HEXAGRAM_NAMES[hexIndex] || 'A changing pattern';
+        const hexNumber = HEXAGRAM_NUMBERS[hexIndex] || 0;
         const changedLines = lines.map((line, index) => changing[index] ? 1 - line : line);
         const changedLower = changedLines.slice(0, 3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
         const changedUpper = changedLines.slice(3).reduce((sum, line, index) => sum + line * (2 ** index), 0);
         const changedIndex = changedUpper * 8 + changedLower;
         const changedName = HEXAGRAM_NAMES[changedIndex] || 'A new pattern';
+        const changedNumber = HEXAGRAM_NUMBERS[changedIndex] || 0;
         const lineHtml = lines.slice().reverse().map((line, reversedIndex) => {
             const index = 5 - reversedIndex;
             const position = index + 1;
@@ -866,16 +989,18 @@
             ? 'Changing lines mark where the image is moving today; read them as invitations to respond, not guarantees.'
             : 'No changing lines were selected, so let the primary image describe the quality to practice today.';
         const changingCount = changing.filter(Boolean).length;
-        const method = 'The six lines are a deterministic study pattern, not a traditional coin or yarrow-cast simulation. It combines the birth date, selected date, personal day, and name values so the same inputs return the same image. Solid lines are yang (active / outward); broken lines are yin (receptive / inward). ' + (changingCount ? changingCount + ' line' + (changingCount === 1 ? ' is' : 's are') + ' marked for movement.' : 'No lines are marked for movement today.');
+        const pattern = lines.map((line) => line ? 'yang' : 'yin').join(' · ');
+        const changedPattern = changedLines.map((line) => line ? 'yang' : 'yin').join(' · ');
+        const method = 'The six lines are a deterministic study pattern, not a traditional coin or yarrow-cast simulation. It combines the birth date, selected date, personal day, and name values so the same inputs return the same image. The graphic is read from the bottom upward: solid is yang (1), broken is yin (0), and the first three lines form the lower trigram while the last three form the upper trigram. ' + (changingCount ? changingCount + ' line' + (changingCount === 1 ? ' is' : 's are') + ' marked for movement.' : 'No lines are marked for movement today.');
         const primaryQuestion = ICHING_PROMPTS[hexIndex % ICHING_PROMPTS.length];
         const secondQuestion = ICHING_PROMPTS[(hexIndex + 8) % ICHING_PROMPTS.length];
         const thirdQuestion = ICHING_PROMPTS[(hexIndex + 16) % ICHING_PROMPTS.length];
-        const synthesis = lower.name + ' below meets ' + upper.name + ' above: begin by ' + lower.quality.split(',')[0] + ', then let that quality shape how you ' + upper.quality.split(',')[0] + '.';
+        const synthesis = lower.name + ' below meets ' + upper.name + ' above: begin with ' + lower.quality.split(',')[0] + ', then let that quality shape how you meet ' + upper.quality.split(',')[0] + '.';
         const action = ICHING_ACTIONS[hexIndex % ICHING_ACTIONS.length];
         const changedSummary = changing.some(Boolean)
             ? 'The moving line' + (changingCount === 1 ? '' : 's') + ' show where today’s pattern is not static. Read the primary hexagram as the situation, then the changed hexagram as the direction created by responding.'
             : 'With no moving lines, stay with the primary image. The practice is depth and consistency rather than chasing a second answer.';
-        target.innerHTML = '<div class="iching-result"><div><div class="iching-lines" aria-label="Six-line hexagram">' + lineHtml + '</div><p class="page-note" style="margin-top:0.8rem;text-align:center;">Lines are read bottom to top. Solid = yang / outward action · broken = yin / receptive space · light line = changing.</p><p class="page-note" style="text-align:center;">Line 1 begins the situation; line 6 shows how it reaches the wider view.</p></div><div class="iching-copy"><h4>Hexagram ' + (hexIndex + 1) + ' · ' + escapeHtml(hexName) + '</h4><div class="iching-trigrams"><div class="iching-trigram"><strong>Below · ' + escapeHtml(lower.name) + '</strong><span>' + escapeHtml(lower.quality) + '</span></div><div class="iching-trigram"><strong>Above · ' + escapeHtml(upper.name) + '</strong><span>' + escapeHtml(upper.quality) + '</span></div></div><p class="iching-synthesis"><strong>Today’s pattern:</strong> ' + escapeHtml(synthesis) + '</p><p>' + escapeHtml(changingText) + '</p>' + (changing.some(Boolean) ? '<p><strong>With change:</strong> Hexagram ' + (changedIndex + 1) + ' · ' + escapeHtml(changedName) + '</p><p>' + escapeHtml(changedSummary) + '</p>' : '<p>' + escapeHtml(changedSummary) + '</p>') + '<p class="iching-action"><strong>Try this:</strong> ' + escapeHtml(action) + '</p><p class="iching-prompt"><strong>Reflection:</strong> ' + escapeHtml(primaryQuestion) + '</p><p class="iching-example"><strong>In real life:</strong> ' + escapeHtml(ICHING_EXAMPLES[hexIndex % ICHING_EXAMPLES.length]) + '</p><h5 style="margin:0.8rem 0 0;color:var(--gold);">Questions to carry</h5><ul class="iching-questions"><li>' + escapeHtml(primaryQuestion) + '</li><li>' + escapeHtml(secondQuestion) + '</li><li>' + escapeHtml(thirdQuestion) + '</li></ul><p class="iching-method"><strong>Method:</strong> ' + escapeHtml(method) + '</p><div class="trigram-row"><span class="trigram-chip">Personal day ' + personalDay(isoDate, year, month, day) + '</span><span class="trigram-chip">' + (name ? 'Name pattern included' : 'Date pattern only') + '</span></div></div></div>';
+        target.innerHTML = '<div class="iching-result"><div><div class="iching-lines" aria-label="Six-line hexagram">' + lineHtml + '</div><p class="page-note" style="margin-top:0.8rem;text-align:center;">Lines are read bottom to top. Solid = yang / outward action · broken = yin / receptive space · light line = changing.</p><p class="page-note" style="text-align:center;">Line 1 begins the situation; line 6 shows how it reaches the wider view.</p><div class="iching-reading"><strong>Line pattern</strong><span>' + escapeHtml(pattern) + '</span><small>Changing lines flip in the transformed figure.</small><span>' + escapeHtml(changedPattern) + '</span></div></div><div class="iching-copy"><h4>Hexagram ' + hexNumber + ' · ' + escapeHtml(hexName) + '</h4><div class="iching-trigrams"><div class="iching-trigram"><strong>Below · ' + escapeHtml(lower.name) + '</strong><span>' + escapeHtml(lower.quality) + '</span></div><div class="iching-trigram"><strong>Above · ' + escapeHtml(upper.name) + '</strong><span>' + escapeHtml(upper.quality) + '</span></div></div><p class="iching-synthesis"><strong>Today’s pattern:</strong> ' + escapeHtml(synthesis) + '</p><p>' + escapeHtml(changingText) + '</p>' + (changing.some(Boolean) ? '<p><strong>With change:</strong> Hexagram ' + changedNumber + ' · ' + escapeHtml(changedName) + '</p><p>' + escapeHtml(changedSummary) + '</p>' : '<p>' + escapeHtml(changedSummary) + '</p>') + '<p class="iching-action"><strong>Try this:</strong> ' + escapeHtml(action) + '</p><p class="iching-prompt"><strong>Reflection:</strong> ' + escapeHtml(primaryQuestion) + '</p><p class="iching-example"><strong>In real life:</strong> ' + escapeHtml(ICHING_EXAMPLES[hexIndex % ICHING_EXAMPLES.length]) + '</p><h5 style="margin:0.8rem 0 0;color:var(--gold);">Questions to carry</h5><ul class="iching-questions"><li>' + escapeHtml(primaryQuestion) + '</li><li>' + escapeHtml(secondQuestion) + '</li><li>' + escapeHtml(thirdQuestion) + '</li></ul><p class="iching-method"><strong>Method:</strong> ' + escapeHtml(method) + '</p><div class="trigram-row"><span class="trigram-chip">Personal day ' + personalDay(isoDate, year, month, day) + '</span><span class="trigram-chip">' + (name ? 'Name pattern included' : 'Date pattern only') + '</span></div></div></div>';
     }
     function renderAstroRhythm(isoDate, year) {
         const target = document.getElementById('astro-rhythm');
@@ -922,7 +1047,11 @@
         core.innerHTML = '<h4>Core profile</h4><p><strong>Life Path:</strong> ' + lp + ' — ' + (MEANINGS[lp] ? MEANINGS[lp].title : '') + '</p><p><strong>Birthday number:</strong> ' + bd + '</p>' + (destiny != null ? '<p><strong>Destiny / Expression:</strong> ' + destiny + '</p>' : '<p><strong>Destiny:</strong> add a name to compute</p>') + '<p><strong>Personal year ' + new Date().getFullYear() + ':</strong> ' + py + '</p><p style="margin-top:0.75rem;color:var(--muted);font-size:0.9rem">' + (MEANINGS[lp] ? MEANINGS[lp].body : '') + '</p>';
         renderProtectiveSymbols(iso, name, bd, lp, destiny);
         natal.innerHTML = '<p class="page-note">Casting chart…</p>';
-        try { renderNatal(computeNatal(iso, time, selectedPlace), lp); }
+        try {
+            const natalChart = computeNatal(iso, time, selectedPlace);
+            renderNatal(natalChart, lp);
+            renderHumanDesign(natalChart);
+        }
         catch (err) { natal.innerHTML = '<p class="error-text">Could not cast the chart. ' + escapeHtml(err.message || String(err)) + '</p>'; }
         renderCalendar(iso);
     }
@@ -948,7 +1077,7 @@
         document.addEventListener('click', (e) => { if (!e.target.closest('.place-wrap')) list.classList.add('nums-hidden'); });
     }
     function initRoom() {
-        renderMeanings(); renderColors(); renderCrystals(); renderSymbolLibrary(); initPlaceSearch();
+        renderMeanings(); renderColors(); renderCrystals(); renderSymbolLibrary(); renderHumanDesignGuide(); initPlaceSearch();
         const lockBtn = document.getElementById('nums-lock');
         if (lockBtn) lockBtn.onclick = lock;
         const calc = document.getElementById('n-calc');

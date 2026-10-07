@@ -10,6 +10,10 @@ VS Code: pull `origin/master` before editing. See `VSCODE.md`.
 
 - Landing: Eureka, CA sunrise, sunset, current temp, 3-day forecast (Open-Meteo, no API key).
 - Interesting: expanded Humboldt event aggregation, daily regeneration, recurring local listings, reviewed submissions, six additional calendar adapters, source filtering, and up to 250 events.
+- #ₛ I Ching study: corrected the trigram/hexagram lookup to the standard bottom-to-top binary order, verified all 64 King Wen mappings, and expanded the line-pattern explanation.
+- #ₛ profile rhythms: expanded each domain with definitions and interpretive meanings, and added an in-page explanation of calculation coverage, limits, and future-proofing.
+- #ₛ Human Design reference: added Type, Strategy, Signature, Not-self, and Profile-line definitions, including an explanation of 6/4 Generator, without presenting an unimplemented bodygraph calculation as fact.
+- #ₛ Human Design calculation: added versioned 64-gate wheel mapping, conscious/design activations, channels, centers, Type, Authority, and Profile output with exact-time/place safeguards.
 
 ## 2026-10-03
 
