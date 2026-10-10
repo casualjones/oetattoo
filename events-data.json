@@ -1,59 +1,11 @@
 [
   {
-    "title": "Eureka Friday Night Market",
-    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
-    "location": "Old Town Eureka",
-    "source": "Recurring local listing",
-    "detail_time": "5:30-8:30 p.m.",
-    "startDateIso": "2026-10-09T00:00:00+00:00"
-  },
-  {
-    "title": "Ding Mao, WarMoth, Damen Tesch",
-    "url": "https://lostcoastoutpost.com/lowdown/events/ding-mao-warmoth-damen-tesch/",
-    "location": "The Siren’s Song Tavern",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-09T14:58:59.835143"
-  },
-  {
-    "title": "The Minutes",
-    "url": "https://lostcoastoutpost.com/lowdown/events/emthe-minutesem/",
-    "location": "North Coast Repertory Theatre",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8 p.m.",
-    "startDateIso": "2026-10-09T14:58:59.835143"
-  },
-  {
-    "title": "Welcome Space Brothers",
-    "url": "https://lostcoastoutpost.com/lowdown/events/welcome-space-brothers-dir-jodi-wille/",
-    "location": "The Miniplex at Richards’ Goat Tavern",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "9 p.m.",
-    "startDateIso": "2026-10-09T14:58:59.835143"
-  },
-  {
-    "title": "SHCF: Ron Lynch",
-    "url": "https://lostcoastoutpost.com/lowdown/events/stand-up-comedy-legend-ron-lynch-headlines-the-clu/",
-    "location": "Savage Henry Comedy Club",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "11 p.m.",
-    "startDateIso": "2026-10-09T14:58:59.835143"
-  },
-  {
     "title": "BushFest III",
     "url": "https://lostcoastoutpost.com/lowdown/events/bushfest-iii/",
     "location": "RampArt Skatepark",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "1 p.m.-midnight",
-    "startDateIso": "2026-10-10T14:58:59.835143"
-  },
-  {
-    "title": "Lumberjack Weekend Block Party",
-    "url": "https://lostcoastoutpost.com/lowdown/events/lumberjack-weekend-block-party/",
-    "location": "Cal Poly Humboldt",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "4-9 p.m.",
-    "startDateIso": "2026-10-10T14:58:59.835143"
+    "startDateIso": "2026-10-10T14:14:10.433543"
   },
   {
     "title": "OktoBEARfest",
@@ -61,7 +13,15 @@
     "location": "Sequoia Park Zoo",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "4-7 p.m.",
-    "startDateIso": "2026-10-10T14:58:59.835143"
+    "startDateIso": "2026-10-10T14:14:10.433543"
+  },
+  {
+    "title": "Lumberjack Weekend Block Party",
+    "url": "https://lostcoastoutpost.com/lowdown/events/lumberjack-weekend-block-party/",
+    "location": "Cal Poly Humboldt",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "4-9 p.m.",
+    "startDateIso": "2026-10-10T14:14:10.433543"
   },
   {
     "title": "Beafsteek, Bleater, Wynd",
@@ -69,7 +29,7 @@
     "location": "Moss Oak Commons",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-10T14:58:59.835143"
+    "startDateIso": "2026-10-10T14:14:10.433543"
   },
   {
     "title": "David Ambrosio/Russ Meissner Sextet",
@@ -77,7 +37,15 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8-10:30 p.m.",
-    "startDateIso": "2026-10-10T14:58:59.835143"
+    "startDateIso": "2026-10-10T14:14:10.433543"
+  },
+  {
+    "title": "The Minutes",
+    "url": "https://lostcoastoutpost.com/lowdown/events/emthe-minutesem/",
+    "location": "North Coast Repertory Theatre",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8 p.m.",
+    "startDateIso": "2026-10-10T14:14:10.433543"
   },
   {
     "title": "SHCF: Ron Lynch’s World Famous Crapshoot!",
@@ -85,7 +53,7 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11:59 p.m.",
-    "startDateIso": "2026-10-10T14:58:59.835143"
+    "startDateIso": "2026-10-10T14:14:10.433543"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -101,7 +69,7 @@
     "location": "Old Town Eureka",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "1-4 p.m.",
-    "startDateIso": "2026-10-11T14:58:59.835143"
+    "startDateIso": "2026-10-11T14:14:10.433543"
   },
   {
     "title": "The Love Witch (2016) 10th Anniversary",
@@ -109,7 +77,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "5-8 p.m.",
-    "startDateIso": "2026-10-11T14:58:59.835143"
+    "startDateIso": "2026-10-11T14:14:10.433543"
   },
   {
     "title": "Live Dead & Brothers",
@@ -117,7 +85,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-10-11T14:58:59.835143"
+    "startDateIso": "2026-10-11T14:14:10.433543"
   },
   {
     "title": "Blub, Sun Toy, The Comix Trip, Tiffany",
@@ -125,7 +93,7 @@
     "location": "Moss Oak Commons",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-12T14:58:59.835143"
+    "startDateIso": "2026-10-12T14:14:10.433543"
   },
   {
     "title": "Clark Engine Co, Eliza Thorn, Daniel Nickerson",
@@ -133,7 +101,15 @@
     "location": "The Siren’s Song Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8-11 p.m.",
-    "startDateIso": "2026-10-12T14:58:59.835143"
+    "startDateIso": "2026-10-12T14:14:10.433543"
+  },
+  {
+    "title": "Welcome Space Brothers",
+    "url": "https://lostcoastoutpost.com/lowdown/events/welcome-space-brothers-dir-jodi-wille/",
+    "location": "The Miniplex at Richards’ Goat Tavern",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-13T14:14:10.433543"
   },
   {
     "title": "Strange Meeting",
@@ -141,7 +117,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-13T14:58:59.835143"
+    "startDateIso": "2026-10-13T14:14:10.433543"
   },
   {
     "title": "Last Dinosaurs",
@@ -149,7 +125,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-10-14T14:58:59.835143"
+    "startDateIso": "2026-10-14T14:14:10.433543"
   },
   {
     "title": "Cruise Control, The Cowtown Sound",
@@ -157,7 +133,23 @@
     "location": "Logger Bar",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8-11 p.m.",
-    "startDateIso": "2026-10-14T14:58:59.835143"
+    "startDateIso": "2026-10-14T14:14:10.433543"
+  },
+  {
+    "title": "Beer and Ballot Measures! A LoCO/CalMatters Party and Study Session",
+    "url": "https://lostcoastoutpost.com/lowdown/events/beer-and-ballot-measures-a-lococalmatters-party-an/",
+    "location": "The Lounge at North of Fourth",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "6 p.m.",
+    "startDateIso": "2026-10-15T14:14:10.433543"
+  },
+  {
+    "title": "Eureka Friday Night Market",
+    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
+    "location": "Old Town Eureka",
+    "source": "Recurring local listing",
+    "detail_time": "5:30-8:30 p.m.",
+    "startDateIso": "2026-10-16T00:00:00+00:00"
   },
   {
     "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
@@ -165,7 +157,7 @@
     "location": "Humboldt County Fairgrounds",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-10 p.m.",
-    "startDateIso": "2026-10-16T00:00:00"
+    "startDateIso": "2026-10-16T14:14:10.433543"
   },
   {
     "title": "Three: The Evolution of the Piano Trio",
@@ -173,7 +165,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-9:30 p.m.",
-    "startDateIso": "2026-10-16T00:00:00"
+    "startDateIso": "2026-10-16T14:14:10.433543"
   },
   {
     "title": "Green Spiral Farm Haunted Corn Maze",
@@ -181,7 +173,7 @@
     "location": "See Event Description",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10:30 p.m.",
-    "startDateIso": "2026-10-16T00:00:00"
+    "startDateIso": "2026-10-16T14:14:10.433543"
   },
   {
     "title": "A Company of Voices Presents \"All Who Wander...,\" A musical journey across cultures and countries",
