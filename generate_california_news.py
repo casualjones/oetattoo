@@ -25,6 +25,7 @@ FEEDS = [
 TICKER_FEEDS = [
     ('weather', 'National Weather', 'https://news.google.com/rss/search?q=national%20weather%20forecast&hl=en-US&gl=US&ceid=US:en'),
     ('sports', 'Sports', 'https://www.espn.com/espn/rss/news'),
+    ('sports', 'Sports Scores', 'https://news.google.com/rss/search?q=sports%20scores%20stats&hl=en-US&gl=US&ceid=US:en'),
 ]
 
 
