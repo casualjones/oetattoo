@@ -1,4 +1,5 @@
 const DATA_FILE = 'events-data.json';
+const NEWS_FILE = 'california-news.json';
 const statusText = document.getElementById('statusText');
 const lastUpdated = document.getElementById('lastUpdated');
 const weekLabel = document.getElementById('weekLabel');
@@ -9,11 +10,77 @@ const prevWeekButton = document.getElementById('prevWeek');
 const nextWeekButton = document.getElementById('nextWeek');
 const eventSearch = document.getElementById('eventSearch');
 const eventSource = document.getElementById('eventSource');
+const californiaNews = document.getElementById('californiaNews');
+const newsUpdated = document.getElementById('newsUpdated');
+const newsTickerTrack = document.getElementById('newsTickerTrack');
 let currentMonthStart = getMonthStart(new Date());
 let latestEvents = [];
 let refreshInFlight = false;
 let refreshTimer = null;
 let currentMonthEvents = [];
+
+function renderCaliforniaNews(payload) {
+  if (!californiaNews) return;
+  const stories = Array.isArray(payload?.stories) ? payload.stories : [];
+  if (!stories.length) {
+    californiaNews.innerHTML = '<p class="page-note">The daily briefing is not available yet.</p>';
+    return;
+  }
+
+  californiaNews.innerHTML = stories.map(story => `
+    <article class="california-news-item">
+      <p class="california-news-meta">${escapeHtml(story.source)} · ${escapeHtml(formatNewsDate(story.published))}</p>
+      <h3><a href="${escapeHtml(safeEventUrl(story.url))}" target="_blank" rel="noopener">${escapeHtml(story.title)}</a></h3>
+      ${story.summary ? `<p>${escapeHtml(story.summary)}</p>` : ''}
+    </article>
+  `).join('');
+
+  if (newsUpdated) {
+    newsUpdated.textContent = payload.generatedAt
+      ? `Updated ${formatNewsDate(payload.generatedAt)}`
+      : 'Daily feed';
+  }
+
+  renderNewsTicker(payload?.ticker);
+}
+
+function renderNewsTicker(items) {
+  if (!newsTickerTrack) return;
+  const tickerItems = Array.isArray(items) ? items : [];
+  if (!tickerItems.length) {
+    newsTickerTrack.innerHTML = '<span class="news-ticker-empty">Weather and sports headlines are unavailable.</span>';
+    return;
+  }
+
+  const markup = tickerItems.map(item => `
+    <a class="news-ticker-item" href="${escapeHtml(safeEventUrl(item.url))}" target="_blank" rel="noopener">
+      <span class="news-ticker-kind">${escapeHtml(item.kind || 'headline')}</span>
+      <span>${escapeHtml(item.title)}</span>
+      <span class="news-ticker-source">${escapeHtml(item.source)}</span>
+    </a>
+  `).join('<span class="news-ticker-separator" aria-hidden="true">/</span>');
+
+  newsTickerTrack.innerHTML = `${markup}<span class="news-ticker-separator" aria-hidden="true">/</span>${markup}`;
+  newsTickerTrack.classList.add('is-moving');
+}
+
+function formatNewsDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'recently';
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+async function loadCaliforniaNews() {
+  if (!californiaNews) return;
+  try {
+    const response = await fetch(NEWS_FILE, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`Unable to load ${NEWS_FILE}: ${response.status}`);
+    renderCaliforniaNews(await response.json());
+  } catch (error) {
+    console.error(error);
+    californiaNews.innerHTML = '<p class="page-note">The daily briefing is temporarily unavailable.</p>';
+  }
+}
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, character => ({
@@ -332,7 +399,10 @@ eventSearch?.addEventListener('input', () => {
   setStatus(visibleEvents.length ? `${visibleEvents.length} matching event${visibleEvents.length === 1 ? '' : 's'}` : 'No matching events in this month.', true);
 });
 
-document.addEventListener('DOMContentLoaded', loadWeeklyEvents);
+document.addEventListener('DOMContentLoaded', () => {
+  loadWeeklyEvents();
+  loadCaliforniaNews();
+});
 
 function scheduleLiveRefresh() {
   window.clearTimeout(refreshTimer);

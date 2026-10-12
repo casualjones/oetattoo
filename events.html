@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interesting - OE Tattoo</title>
     <meta name="description" content="Local events and notes from the North Coast.">
-    <link rel="stylesheet" href="style.css?v=20261005-4">
+    <link rel="stylesheet" href="style.css?v=20261011-1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -37,6 +37,20 @@
         </section>
 
         <section class="page-grid">
+            <article class="page-card california-news-card">
+                <div class="california-news-heading">
+                    <div>
+                        <span class="eyebrow">DAILY BRIEFING</span>
+                        <h2>California Today</h2>
+                    </div>
+                    <p id="newsUpdated" class="event-updated">Loading news...</p>
+                </div>
+                <p class="page-note">A quick read from California reporting and regional coverage. Follow each headline for the original story.</p>
+                <div id="californiaNews" class="california-news-list" aria-live="polite">
+                    <p class="page-note">Loading California news...</p>
+                </div>
+            </article>
+
             <article class="page-card event-card">
                 <div class="event-controls">
                     <button id="prevWeek" type="button" class="cta-button">Previous month</button>
@@ -88,11 +102,20 @@
     <footer class="footer compact-footer">
         <div class="container footer-row">
             <p>OE Tattoo</p>
-            <p>Local notes and listings · <span class="site-version">v20261005-4</span></p>
+            <p>Local notes and listings · <span class="site-version">v20261011-1</span></p>
         </div>
     </footer>
 
-    <script defer src="script.js?v=20261005-4"></script>
-    <script src="events.js?v=20261005-4"></script>
+    <aside class="news-ticker" aria-label="National weather and sports headlines">
+        <div class="news-ticker-label">Now</div>
+        <div class="news-ticker-window">
+            <div id="newsTickerTrack" class="news-ticker-track">
+                <span class="news-ticker-empty">Loading weather and sports...</span>
+            </div>
+        </div>
+    </aside>
+
+    <script defer src="script.js?v=20261011-1"></script>
+    <script src="events.js?v=20261011-1"></script>
 </body>
 </html>
