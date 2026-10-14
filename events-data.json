@@ -1,19 +1,11 @@
 [
   {
-    "title": "Strange Meeting",
-    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
-    "location": "The Basement",
+    "title": "Last Dinosaurs",
+    "url": "https://lostcoastoutpost.com/lowdown/events/last-dinosaurs/",
+    "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-13T15:34:55.690330"
-  },
-  {
-    "title": "Welcome Space Brothers",
-    "url": "https://lostcoastoutpost.com/lowdown/events/welcome-space-brothers-dir-jodi-wille/",
-    "location": "The Miniplex at Richards’ Goat Tavern",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-13T15:34:55.690330"
+    "detail_time": "7-10 p.m.",
+    "startDateIso": "2026-10-14T13:19:50.914005"
   },
   {
     "title": "Spike Hellis, Normal Bias, The Redroom DJs",
@@ -21,15 +13,7 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-14T15:34:55.690330"
-  },
-  {
-    "title": "Last Dinosaurs",
-    "url": "https://lostcoastoutpost.com/lowdown/events/last-dinosaurs/",
-    "location": "Arcata Theatre Lounge",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-10-14T15:34:55.690330"
+    "startDateIso": "2026-10-14T13:19:50.914005"
   },
   {
     "title": "Cruise Control, The Cowtown Sound",
@@ -37,7 +21,7 @@
     "location": "Logger Bar",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8-11 p.m.",
-    "startDateIso": "2026-10-14T15:34:55.690330"
+    "startDateIso": "2026-10-14T13:19:50.914005"
   },
   {
     "title": "Beer and Ballot Measures! A LoCO/CalMatters Party and Study Session",
@@ -45,7 +29,7 @@
     "location": "The Lounge at North of Fourth",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6 p.m.",
-    "startDateIso": "2026-10-15T15:34:55.690330"
+    "startDateIso": "2026-10-15T13:19:50.914005"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -61,7 +45,7 @@
     "location": "Humboldt County Fairgrounds",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-10 p.m.",
-    "startDateIso": "2026-10-16T15:34:55.690330"
+    "startDateIso": "2026-10-16T13:19:50.914005"
   },
   {
     "title": "Three: The Evolution of the Piano Trio",
@@ -69,7 +53,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-9:30 p.m.",
-    "startDateIso": "2026-10-16T15:34:55.690330"
+    "startDateIso": "2026-10-16T13:19:50.914005"
   },
   {
     "title": "Green Spiral Farm Haunted Corn Maze",
@@ -77,7 +61,7 @@
     "location": "See Event Description",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10:30 p.m.",
-    "startDateIso": "2026-10-16T15:34:55.690330"
+    "startDateIso": "2026-10-16T13:19:50.914005"
   },
   {
     "title": "A Company of Voices Presents \"All Who Wander\"",
@@ -94,7 +78,7 @@
     "location": "Blue Lake Casino Hotel",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 a.m.-4 p.m.",
-    "startDateIso": "2026-10-17T15:34:55.690330"
+    "startDateIso": "2026-10-17T13:19:50.914005"
   },
   {
     "title": "Alborosie",
@@ -102,7 +86,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-17T15:34:55.690330"
+    "startDateIso": "2026-10-17T13:19:50.914005"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -118,7 +102,7 @@
     "location": "The Old Steeple",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10 p.m.",
-    "startDateIso": "2026-10-18T15:34:55.690330"
+    "startDateIso": "2026-10-18T13:19:50.914005"
   },
   {
     "title": "Imaad Wasif, Bleater",
@@ -126,7 +110,23 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-10-19T15:34:55.690330"
+    "startDateIso": "2026-10-19T13:19:50.914005"
+  },
+  {
+    "title": "Strange Meeting",
+    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
+    "location": "The Basement",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-20T13:19:50.914005"
+  },
+  {
+    "title": "Welcome Space Brothers",
+    "url": "https://lostcoastoutpost.com/lowdown/events/welcome-space-brothers-dir-jodi-wille/",
+    "location": "The Miniplex at Richards’ Goat Tavern",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-20T13:19:50.914005"
   },
   {
     "title": "Sci-Fi Night: Little Shop of Horrors (1986) 40th Anniversary",
