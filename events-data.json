@@ -1,21 +1,5 @@
 [
   {
-    "title": "Beer and Ballot Measures! A LoCO/CalMatters Party and Study Session",
-    "url": "https://lostcoastoutpost.com/lowdown/events/beer-and-ballot-measures-a-lococalmatters-party-an/",
-    "location": "The Lounge at North of Fourth",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "6 p.m.",
-    "startDateIso": "2026-10-15T13:04:57.428519"
-  },
-  {
-    "title": "Liana Gabel, Ponies of Harmony, Ella Ray Kondrat",
-    "url": "https://lostcoastoutpost.com/lowdown/events/liana-gabel-ponies-of-harmony-and-ella-ray-kondrat/",
-    "location": "Arcata Playhouse",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-9:30 p.m.",
-    "startDateIso": "2026-10-15T13:04:57.428519"
-  },
-  {
     "title": "Eureka Friday Night Market",
     "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
     "location": "Old Town Eureka",
@@ -24,12 +8,20 @@
     "startDateIso": "2026-10-16T00:00:00+00:00"
   },
   {
+    "title": "Science Night",
+    "url": "https://lostcoastoutpost.com/lowdown/events/science-night-7/",
+    "location": "College of the Redwoods",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "5-8 p.m.",
+    "startDateIso": "2026-10-16T13:02:06.272815"
+  },
+  {
     "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
     "url": "https://lostcoastoutpost.com/lowdown/events/2026-scaregrounds/",
     "location": "Humboldt County Fairgrounds",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-10 p.m.",
-    "startDateIso": "2026-10-16T13:04:57.428519"
+    "startDateIso": "2026-10-16T13:02:06.272815"
   },
   {
     "title": "Three: The Evolution of the Piano Trio",
@@ -37,7 +29,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-9:30 p.m.",
-    "startDateIso": "2026-10-16T13:04:57.428519"
+    "startDateIso": "2026-10-16T13:02:06.272815"
   },
   {
     "title": "Green Spiral Farm Haunted Corn Maze",
@@ -45,7 +37,15 @@
     "location": "See Event Description",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10:30 p.m.",
-    "startDateIso": "2026-10-16T13:04:57.428519"
+    "startDateIso": "2026-10-16T13:02:06.272815"
+  },
+  {
+    "title": "Stand Up Comedian Dick Dickerson",
+    "url": "https://lostcoastoutpost.com/lowdown/events/stand-up-comedian-dick-dickerson-headlines-the-clu/",
+    "location": "Savage Henry Comedy Club",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8 p.m.",
+    "startDateIso": "2026-10-16T13:02:06.272815"
   },
   {
     "title": "Nocheo: Latin Infusion",
@@ -53,7 +53,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "9 p.m.",
-    "startDateIso": "2026-10-16T13:04:57.428519"
+    "startDateIso": "2026-10-16T13:02:06.272815"
   },
   {
     "title": "A Company of Voices Presents \"All Who Wander\"",
@@ -70,7 +70,7 @@
     "location": "Blue Lake Casino Hotel",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 a.m.-4 p.m.",
-    "startDateIso": "2026-10-17T13:04:57.428519"
+    "startDateIso": "2026-10-17T13:02:06.272815"
   },
   {
     "title": "Alborosie",
@@ -78,7 +78,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-17T13:04:57.428519"
+    "startDateIso": "2026-10-17T13:02:06.272815"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -94,7 +94,7 @@
     "location": "The Old Steeple",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10 p.m.",
-    "startDateIso": "2026-10-18T13:04:57.428519"
+    "startDateIso": "2026-10-18T13:02:06.272815"
   },
   {
     "title": "Tom Hamilton Band, Piet Dalmolen",
@@ -102,7 +102,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8 p.m.",
-    "startDateIso": "2026-10-18T13:04:57.428519"
+    "startDateIso": "2026-10-18T13:02:06.272815"
   },
   {
     "title": "Imaad Wasif, Bleater",
@@ -110,7 +110,7 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-10-19T13:04:57.428519"
+    "startDateIso": "2026-10-19T13:02:06.272815"
   },
   {
     "title": "Welcome Space Brothers",
@@ -118,7 +118,7 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-20T13:04:57.428519"
+    "startDateIso": "2026-10-20T13:02:06.272815"
   },
   {
     "title": "Strange Meeting",
@@ -126,7 +126,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-20T13:04:57.428519"
+    "startDateIso": "2026-10-20T13:02:06.272815"
   },
   {
     "title": "Sci-Fi Night: Little Shop of Horrors (1986) 40th Anniversary",
@@ -134,7 +134,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-10-21T13:04:57.428519"
+    "startDateIso": "2026-10-21T13:02:06.272815"
   },
   {
     "title": "John Wilson’s The History of Concrete (2026)",
@@ -142,7 +142,7 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-8:45 p.m.",
-    "startDateIso": "2026-10-21T13:04:57.428519"
+    "startDateIso": "2026-10-21T13:02:06.272815"
   },
   {
     "title": "The Helltones, Western Extra",
@@ -150,7 +150,7 @@
     "location": "The Siren’s Song Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-21T13:04:57.428519"
+    "startDateIso": "2026-10-21T13:02:06.272815"
   },
   {
     "title": "Festival of the Sea",
@@ -169,7 +169,7 @@
     "startDateIso": "2026-10-23T00:00:00"
   },
   {
-    "title": "Etana, Irie Rockerz",
+    "title": "Etana",
     "url": "https://lostcoastoutpost.com/lowdown/events/etana-irie-rockerz-2/",
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
