@@ -1,67 +1,11 @@
 [
   {
-    "title": "Arcata Farmers' Market",
-    "url": "https://www.arcatafarmersmarket.com/",
-    "location": "Arcata Plaza",
-    "source": "Recurring local listing",
-    "detail_time": "Saturday mornings",
-    "startDateIso": "2026-10-18T00:00:00+00:00"
-  },
-  {
-    "title": "Ohana Comic Con",
-    "url": "https://lostcoastoutpost.com/lowdown/events/ohana-comic-con-5/",
-    "location": "Blue Lake Casino Hotel",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "11 a.m.-4 p.m.",
-    "startDateIso": "2026-10-18T12:27:26.725656"
-  },
-  {
-    "title": "Wusatoumuduk: We Make It Burn",
-    "url": "https://lostcoastoutpost.com/lowdown/events/wusatoumuduk-we-make-it-burn-10/",
-    "location": "Sequoia Park",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "6-6:45 p.m.",
-    "startDateIso": "2026-10-18T12:27:26.725656"
-  },
-  {
-    "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
-    "url": "https://lostcoastoutpost.com/lowdown/events/2026-scaregrounds/",
-    "location": "Humboldt County Fairgrounds",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "6-10 p.m.",
-    "startDateIso": "2026-10-18T12:27:26.725656"
-  },
-  {
-    "title": "Led Kaapana",
-    "url": "https://lostcoastoutpost.com/lowdown/events/led-kaapana-7/",
-    "location": "The Old Steeple",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-10 p.m.",
-    "startDateIso": "2026-10-18T12:27:26.725656"
-  },
-  {
-    "title": "Tom Hamilton Band, Piet Dalmolen",
-    "url": "https://lostcoastoutpost.com/lowdown/events/tom-hamilton-band-piet-dalmolen/",
-    "location": "Humboldt Brews",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8 p.m.",
-    "startDateIso": "2026-10-18T12:27:26.725656"
-  },
-  {
     "title": "Imaad Wasif, Bleater",
     "url": "https://lostcoastoutpost.com/lowdown/events/imaad-wasif-vancouver-bc-bleater/",
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-10-19T12:27:26.725656"
-  },
-  {
-    "title": "Welcome Space Brothers",
-    "url": "https://lostcoastoutpost.com/lowdown/events/welcome-space-brothers-dir-jodi-wille/",
-    "location": "The Miniplex at Richards’ Goat Tavern",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-20T12:27:26.725656"
+    "startDateIso": "2026-10-19T15:17:35.031837"
   },
   {
     "title": "Strange Meeting",
@@ -69,7 +13,15 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-20T12:27:26.725656"
+    "startDateIso": "2026-10-20T15:17:35.031837"
+  },
+  {
+    "title": "Welcome Space Brothers",
+    "url": "https://lostcoastoutpost.com/lowdown/events/welcome-space-brothers-dir-jodi-wille/",
+    "location": "The Miniplex at Richards’ Goat Tavern",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-20T15:17:35.031837"
   },
   {
     "title": "Sci-Fi Night: Little Shop of Horrors (1986) 40th Anniversary",
@@ -77,7 +29,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-10-21T12:27:26.725656"
+    "startDateIso": "2026-10-21T15:17:35.031837"
   },
   {
     "title": "John Wilson’s The History of Concrete (2026)",
@@ -85,7 +37,15 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-8:45 p.m.",
-    "startDateIso": "2026-10-21T12:27:26.725656"
+    "startDateIso": "2026-10-21T15:17:35.031837"
+  },
+  {
+    "title": "Izaak Opatz, Fry’d, Daniel Nickerson",
+    "url": "https://lostcoastoutpost.com/lowdown/events/concert/",
+    "location": "Moss Oak Commons",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-21T15:17:35.031837"
   },
   {
     "title": "The Helltones, Western Extra",
@@ -93,7 +53,7 @@
     "location": "The Siren’s Song Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-21T12:27:26.725656"
+    "startDateIso": "2026-10-21T15:17:35.031837"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -109,7 +69,15 @@
     "location": "Trinidad City Hall",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6 p.m.",
-    "startDateIso": "2026-10-23T12:27:26.725656"
+    "startDateIso": "2026-10-23T15:17:35.031837"
+  },
+  {
+    "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
+    "url": "https://lostcoastoutpost.com/lowdown/events/2026-scaregrounds/",
+    "location": "Humboldt County Fairgrounds",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "6-10 p.m.",
+    "startDateIso": "2026-10-23T15:17:35.031837"
   },
   {
     "title": "Kinetic Lab of Horrors",
@@ -117,7 +85,7 @@
     "location": "Kinetic Lab II",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.-midnight",
-    "startDateIso": "2026-10-23T12:27:26.725656"
+    "startDateIso": "2026-10-23T15:17:35.031837"
   },
   {
     "title": "Green Spiral Farm Haunted Corn Maze",
@@ -125,7 +93,7 @@
     "location": "See Event Description",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10:30 p.m.",
-    "startDateIso": "2026-10-23T12:27:26.725656"
+    "startDateIso": "2026-10-23T15:17:35.031837"
   },
   {
     "title": "Etana",
@@ -133,7 +101,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "9 p.m.",
-    "startDateIso": "2026-10-23T12:27:26.725656"
+    "startDateIso": "2026-10-23T15:17:35.031837"
   },
   {
     "title": "Beer and Peanuts 2026",
@@ -141,7 +109,7 @@
     "location": "Eureka Veterans Hall",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:59 p.m.",
-    "startDateIso": "2026-10-24T12:27:26.725656"
+    "startDateIso": "2026-10-24T15:17:35.031837"
   },
   {
     "title": "Chris Pierce",
@@ -149,7 +117,15 @@
     "location": "The Old Steeple",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10 p.m.",
-    "startDateIso": "2026-10-24T12:27:26.725656"
+    "startDateIso": "2026-10-24T15:17:35.031837"
+  },
+  {
+    "title": "Arcata Farmers' Market",
+    "url": "https://www.arcatafarmersmarket.com/",
+    "location": "Arcata Plaza",
+    "source": "Recurring local listing",
+    "detail_time": "Saturday mornings",
+    "startDateIso": "2026-10-25T00:00:00+00:00"
   },
   {
     "title": "Sci-Fi Night: Akira (1988)",
@@ -192,6 +168,14 @@
     "startDateIso": "2026-10-31T00:00:00"
   },
   {
+    "title": "Mdou Moctar",
+    "url": "https://lostcoastoutpost.com/lowdown/events/mdou-moctar-solo/",
+    "location": "The Miniplex at Richards’ Goat Tavern",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-31T00:00:00"
+  },
+  {
     "title": "The Dead Dance",
     "url": "https://lostcoastoutpost.com/lowdown/events/the-dead-dance/",
     "location": "Blue Lake Casino Hotel",
@@ -230,6 +214,22 @@
     "source": "Recurring local listing",
     "detail_time": "First Saturday of each month",
     "startDateIso": "2026-11-07T00:00:00+00:00"
+  },
+  {
+    "title": "Jeffrey Foucault",
+    "url": "https://lostcoastoutpost.com/lowdown/events/jeffrey-foucault-5/",
+    "location": "Arcata Playhouse",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-11-09T00:00:00"
+  },
+  {
+    "title": "Hildaland",
+    "url": "https://lostcoastoutpost.com/lowdown/events/hildaland/",
+    "location": "Arcata Playhouse",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-11-14T00:00:00"
   },
   {
     "title": "Berner",
