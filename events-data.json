@@ -1,32 +1,5 @@
 [
   {
-    "title": "Nonprofit Workshop: Manage What’s Next - Prepare for Succession and Transitions",
-    "url": "https://community.northcoastjournal.com/event/nonprofit-workshop-manage-whats-next-prepare-for-succession-and-transitions-34832011",
-    "location": ", ,",
-    "source": "North Coast Journal",
-    "detail_time": "Thu., Oct. 22, 1-4 p.m.",
-    "startDate": "2026-10-22T13:00:00-07:00",
-    "startDateIso": "2026-10-22T13:00:00-07:00"
-  },
-  {
-    "title": "Line Dancing for All  with Tom Schrader",
-    "url": "https://community.northcoastjournal.com/event/line-dancing-for-all-with-tom-schrader-34919130",
-    "location": "HLOC's Space",
-    "source": "North Coast Journal",
-    "detail_time": "Thu., Oct. 22, 1:30-2:30 p.m.",
-    "startDate": "2026-10-22T13:30:00-07:00",
-    "startDateIso": "2026-10-22T13:30:00-07:00"
-  },
-  {
-    "title": "The Temple Within: A Women’s Retreat for Reclaiming Self-Devotion & Sacred Desire",
-    "url": "https://community.northcoastjournal.com/event/the-temple-within-a-womens-retreat-for-reclaiming-self-devotion-and-sacred-desire-34876844",
-    "location": "Heartwood Institute",
-    "source": "North Coast Journal",
-    "detail_time": "Thu., Oct. 22, 4-10 p.m., Fri., Oct. 23, 8 a.m.-10 p.m., Sat., Oct. 24, 8 a.m.-10 p.m. and Sun., Oct. 25, 8 a.m.-2 p.m.",
-    "startDate": "2026-10-22T16:00:00-07:00",
-    "startDateIso": "2026-10-22T16:00:00-07:00"
-  },
-  {
     "title": "Eureka Friday Night Market",
     "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
     "location": "Old Town Eureka",
@@ -35,20 +8,20 @@
     "startDateIso": "2026-10-23T00:00:00+00:00"
   },
   {
-    "title": "Festival of the Sea",
-    "url": "https://lostcoastoutpost.com/lowdown/events/festival-of-the-sea/",
-    "location": "Trinidad City Hall",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "6 p.m.",
-    "startDateIso": "2026-10-23T13:27:44.319944"
-  },
-  {
     "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
     "url": "https://lostcoastoutpost.com/lowdown/events/2026-scaregrounds/",
     "location": "Humboldt County Fairgrounds",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-10 p.m.",
-    "startDateIso": "2026-10-23T13:27:44.319944"
+    "startDateIso": "2026-10-23T13:05:19.441131"
+  },
+  {
+    "title": "Festival of the Sea",
+    "url": "https://lostcoastoutpost.com/lowdown/events/festival-of-the-sea/",
+    "location": "Trinidad City Hall",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "6 p.m.",
+    "startDateIso": "2026-10-23T13:05:19.441131"
   },
   {
     "title": "Kinetic Lab of Horrors",
@@ -56,7 +29,7 @@
     "location": "Kinetic Lab II",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.-midnight",
-    "startDateIso": "2026-10-23T13:27:44.319944"
+    "startDateIso": "2026-10-23T13:05:19.441131"
   },
   {
     "title": "Green Spiral Farm Haunted Corn Maze",
@@ -64,7 +37,7 @@
     "location": "See Event Description",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10:30 p.m.",
-    "startDateIso": "2026-10-23T13:27:44.319944"
+    "startDateIso": "2026-10-23T13:05:19.441131"
   },
   {
     "title": "Etana",
@@ -72,7 +45,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "9 p.m.",
-    "startDateIso": "2026-10-23T13:27:44.319944"
+    "startDateIso": "2026-10-23T13:05:19.441131"
   },
   {
     "title": "Fusion in the Forest",
@@ -80,7 +53,7 @@
     "location": "Redwood Raks World Dance Studio",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "9 a.m.-10 p.m.",
-    "startDateIso": "2026-10-24T13:27:44.319944"
+    "startDateIso": "2026-10-24T13:05:19.441131"
   },
   {
     "title": "Beer and Peanuts 2026",
@@ -88,7 +61,7 @@
     "location": "Eureka Veterans Hall",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:59 p.m.",
-    "startDateIso": "2026-10-24T13:27:44.319944"
+    "startDateIso": "2026-10-24T13:05:19.441131"
   },
   {
     "title": "Chris Pierce",
@@ -96,7 +69,7 @@
     "location": "The Old Steeple",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10 p.m.",
-    "startDateIso": "2026-10-24T13:27:44.319944"
+    "startDateIso": "2026-10-24T13:05:19.441131"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -112,7 +85,7 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-8:45 p.m.",
-    "startDateIso": "2026-10-26T13:27:44.319944"
+    "startDateIso": "2026-10-26T13:05:19.441131"
   },
   {
     "title": "Strange Meeting",
@@ -120,7 +93,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-27T13:27:44.319944"
+    "startDateIso": "2026-10-27T13:05:19.441131"
   },
   {
     "title": "Sci-Fi Night: Akira (1988)",
@@ -128,7 +101,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-10-28T13:27:44.319944"
+    "startDateIso": "2026-10-28T13:05:19.441131"
   },
   {
     "title": "(SOLD OUT) The Rocky Horror Picture Show",
