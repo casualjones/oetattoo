@@ -1,19 +1,11 @@
 [
   {
-    "title": "John Wilson’s The History of Concrete (2026)",
-    "url": "https://lostcoastoutpost.com/lowdown/events/the-history-of-concrete-2026-dir-john-wilson/",
-    "location": "The Miniplex at Richards’ Goat Tavern",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "6:30-8:45 p.m.",
-    "startDateIso": "2026-10-26T14:51:33.621170"
-  },
-  {
     "title": "Strange Meeting",
     "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-27T14:51:33.621170"
+    "startDateIso": "2026-10-27T13:58:21.001134"
   },
   {
     "title": "Sci-Fi Night: Akira (1988)",
@@ -21,7 +13,7 @@
     "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-10-28T14:51:33.621170"
+    "startDateIso": "2026-10-28T13:58:21.001134"
   },
   {
     "title": "2026 Scaregrounds and Griffin Loch’s Scream-A-Torium",
@@ -29,7 +21,7 @@
     "location": "Humboldt County Fairgrounds",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-10 p.m.",
-    "startDateIso": "2026-10-29T14:51:33.621170"
+    "startDateIso": "2026-10-29T13:58:21.001134"
   },
   {
     "title": "Kinetic Lab of Horrors",
@@ -37,7 +29,15 @@
     "location": "Kinetic Lab II",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.-midnight",
-    "startDateIso": "2026-10-29T14:51:33.621170"
+    "startDateIso": "2026-10-29T13:58:21.001134"
+  },
+  {
+    "title": "The Cowtown Sound",
+    "url": "https://lostcoastoutpost.com/lowdown/events/honky-tonk-thursday-with-the-cowtown-sound-7/",
+    "location": "Logger Bar",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8:30-11 p.m.",
+    "startDateIso": "2026-10-29T13:58:21.001134"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -48,12 +48,12 @@
     "startDateIso": "2026-10-30T00:00:00+00:00"
   },
   {
-    "title": "(SOLD OUT) The Rocky Horror Picture Show",
-    "url": "https://lostcoastoutpost.com/lowdown/events/emsold-out-the-rocky-horror-picture-showem/",
-    "location": "Ferndale Repertory Theatre",
+    "title": "Rocky Horror Picture Show with Shadow Cast",
+    "url": "https://lostcoastoutpost.com/lowdown/events/rocky-horror-picture-show-wshadow-cast/",
+    "location": "Eureka Theater",
     "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-10-30T14:51:33.621170"
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-10-30T13:58:21.001134"
   },
   {
     "title": "Green Spiral Farm Haunted Corn Maze",
@@ -61,7 +61,15 @@
     "location": "See Event Description",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30-10:30 p.m.",
-    "startDateIso": "2026-10-30T14:51:33.621170"
+    "startDateIso": "2026-10-30T13:58:21.001134"
+  },
+  {
+    "title": "(SOLD OUT) The Rocky Horror Picture Show",
+    "url": "https://lostcoastoutpost.com/lowdown/events/emsold-out-the-rocky-horror-picture-showem/",
+    "location": "Ferndale Repertory Theatre",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30 p.m.",
+    "startDateIso": "2026-10-30T13:58:21.001134"
   },
   {
     "title": "Poor Man’s Whiskey: Darkside of the Moonshine",
@@ -69,7 +77,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-10-30T14:51:33.621170"
+    "startDateIso": "2026-10-30T13:58:21.001134"
   },
   {
     "title": "Eagle House Halloween Party 2026",
@@ -77,7 +85,15 @@
     "location": "The Historic Eagle House",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "9 p.m.-3 a.m.",
-    "startDateIso": "2026-10-30T14:51:33.621170"
+    "startDateIso": "2026-10-30T13:58:21.001134"
+  },
+  {
+    "title": "Los Lonely Stars, Psyop Victim",
+    "url": "https://lostcoastoutpost.com/lowdown/events/live-music-from-la-los-lonely-stars-los-saicos-tri/",
+    "location": "The Shanty",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "9 p.m.-midnight",
+    "startDateIso": "2026-10-30T13:58:21.001134"
   },
   {
     "title": "Halloween on the Plaza",
@@ -85,7 +101,15 @@
     "location": "Arcata Plaza",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "4-7 p.m.",
-    "startDateIso": "2026-10-31T14:51:33.621170"
+    "startDateIso": "2026-10-31T13:58:21.001134"
+  },
+  {
+    "title": "Mdou Moctar",
+    "url": "https://lostcoastoutpost.com/lowdown/events/mdou-moctar-solo/",
+    "location": "The Miniplex at Richards’ Goat Tavern",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "6 p.m.",
+    "startDateIso": "2026-10-31T13:58:21.001134"
   },
   {
     "title": "Monster Mashup: Haunting on the High Seas",
@@ -93,15 +117,7 @@
     "location": "Mateel Community Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-11 p.m.",
-    "startDateIso": "2026-10-31T14:51:33.621170"
-  },
-  {
-    "title": "Mdou Moctar",
-    "url": "https://lostcoastoutpost.com/lowdown/events/mdou-moctar-solo/",
-    "location": "The Miniplex at Richards’ Goat Tavern",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-10-31T14:51:33.621170"
+    "startDateIso": "2026-10-31T13:58:21.001134"
   },
   {
     "title": "The Rocky Horror Picture Show",
@@ -109,7 +125,15 @@
     "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-10-31T14:51:33.621170"
+    "startDateIso": "2026-10-31T13:58:21.001134"
+  },
+  {
+    "title": "Dead Man’s Party: An Evening with Rosewater & Friends",
+    "url": "https://lostcoastoutpost.com/lowdown/events/dead-mans-party-an-evening-with-rosewater-friends/",
+    "location": "Eureka Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8 p.m.",
+    "startDateIso": "2026-10-31T13:58:21.001134"
   },
   {
     "title": "The Dead Dance",
@@ -117,7 +141,7 @@
     "location": "Blue Lake Casino Hotel",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8 p.m.",
-    "startDateIso": "2026-10-31T14:51:33.621170"
+    "startDateIso": "2026-10-31T13:58:21.001134"
   },
   {
     "title": "Thriller! Halloween Dance Party",
@@ -125,7 +149,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.-12:30 a.m.",
-    "startDateIso": "2026-10-31T14:51:33.621170"
+    "startDateIso": "2026-10-31T13:58:21.001134"
   },
   {
     "title": "Arcane Artists: Fright Nite",
@@ -133,7 +157,7 @@
     "location": "RampArt Skatepark",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "9 p.m.-3 a.m.",
-    "startDateIso": "2026-10-31T14:51:33.621170"
+    "startDateIso": "2026-10-31T13:58:21.001134"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -168,6 +192,14 @@
     "startDateIso": "2026-11-09T00:00:00"
   },
   {
+    "title": "Veterans’ Day Program",
+    "url": "https://lostcoastoutpost.com/lowdown/events/veterans-day-program-7/",
+    "location": "Adorni Center",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "11 a.m.-noon",
+    "startDateIso": "2026-11-11T00:00:00"
+  },
+  {
     "title": "Hildaland",
     "url": "https://lostcoastoutpost.com/lowdown/events/hildaland/",
     "location": "Arcata Playhouse",
@@ -176,11 +208,35 @@
     "startDateIso": "2026-11-14T00:00:00"
   },
   {
+    "title": "Partnership in Music Orchestra Performances",
+    "url": "https://lostcoastoutpost.com/lowdown/events/partnership-in-music-orchestra-performances/",
+    "location": "Fulkerson Recital Hall",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "2-4 p.m.",
+    "startDateIso": "2026-11-15T00:00:00"
+  },
+  {
     "title": "Clan Dyken Beauty Way Benefit Concert",
     "url": "https://lostcoastoutpost.com/lowdown/events/clan-dyken-beauty-way-benefit-concert-for-big-moun/",
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-9:30 p.m.",
     "startDateIso": "2026-11-15T00:00:00"
+  },
+  {
+    "title": "Parasite Caste, Psyop, Ultramafic",
+    "url": "https://lostcoastoutpost.com/lowdown/events/parasite-caste-sludge-metal-from-bakersfield/",
+    "location": "Savage Henry Comedy Club",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-11-15T00:00:00"
+  },
+  {
+    "title": "Taste of the Holidays",
+    "url": "https://lostcoastoutpost.com/lowdown/events/taste-of-the-holidays-7/",
+    "location": "Arcata Community Center",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "5-8 p.m.",
+    "startDateIso": "2026-11-19T00:00:00"
   }
 ]
