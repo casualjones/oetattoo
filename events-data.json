@@ -1,55 +1,11 @@
 [
   {
-    "title": "Arcata Farmers' Market",
-    "url": "https://www.arcatafarmersmarket.com/",
-    "location": "Arcata Plaza",
-    "source": "Recurring local listing",
-    "detail_time": "Saturday mornings",
-    "startDateIso": "2026-11-01T00:00:00+00:00"
-  },
-  {
-    "title": "Pancake Breakfast",
-    "url": "https://community.northcoastjournal.com/event/pancake-breakfast-34937581",
-    "location": "Freshwater Grange",
-    "source": "North Coast Journal",
-    "detail_time": "Sun., Nov. 1, 8-11 a.m.",
-    "startDate": "2026-11-01T08:00:00-08:00",
-    "startDateIso": "2026-11-01T08:00:00-08:00"
-  },
-  {
-    "title": "November Dads Group Playgroup",
-    "url": "https://community.northcoastjournal.com/event/november-dads-group-playgroup-34967247",
-    "location": "Redwood Learners Preschool",
-    "source": "North Coast Journal",
-    "detail_time": "Sun., Nov. 1, 1:30-3:30 p.m.",
-    "startDate": "2026-11-01T13:30:00-08:00",
-    "startDateIso": "2026-11-01T13:30:00-08:00"
-  },
-  {
-    "title": "Chamber Players of the Redwoods",
-    "url": "https://community.northcoastjournal.com/event/chamber-players-of-the-redwoods-34926780",
-    "location": "Christ Episcopal Church",
-    "source": "North Coast Journal",
-    "detail_time": "Sun., Nov. 1, 4-6 p.m.",
-    "startDate": "2026-11-01T16:00:00-08:00",
-    "startDateIso": "2026-11-01T16:00:00-08:00"
-  },
-  {
-    "title": "Dia de Muertos Centro el Pueblo",
-    "url": "https://community.northcoastjournal.com/event/dia-de-muertos-centro-el-pueblo-34970704",
-    "location": "Eureka Theater",
-    "source": "North Coast Journal",
-    "detail_time": "Sun., Nov. 1, 4-7 p.m.",
-    "startDate": "2026-11-01T16:00:00-08:00",
-    "startDateIso": "2026-11-01T16:00:00-08:00"
-  },
-  {
     "title": "Strange Meeting",
     "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-03T14:44:55.645081"
+    "startDateIso": "2026-11-03T17:49:02.810800"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -65,7 +21,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-11-06T14:44:55.645081"
+    "startDateIso": "2026-11-06T17:49:02.810800"
   },
   {
     "title": "Arts! Alive",
@@ -81,7 +37,7 @@
     "location": "Eureka",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-11-07T14:44:55.645081"
+    "startDateIso": "2026-11-07T17:49:02.810800"
   },
   {
     "title": "Clay Street Unit, The Last Wild Buffalo",
@@ -89,7 +45,15 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-07T14:44:55.645081"
+    "startDateIso": "2026-11-07T17:49:02.810800"
+  },
+  {
+    "title": "Arcata Farmers' Market",
+    "url": "https://www.arcatafarmersmarket.com/",
+    "location": "Arcata Plaza",
+    "source": "Recurring local listing",
+    "detail_time": "Saturday mornings",
+    "startDateIso": "2026-11-08T00:00:00+00:00"
   },
   {
     "title": "Jeffrey Foucault",
