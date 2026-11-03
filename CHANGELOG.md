@@ -8,6 +8,7 @@ VS Code: pull `origin/master` before editing. See `VSCODE.md`.
 
 ## Unreleased / 2026-10-06
 
+- Landing: added Cairo, Egypt before Eureka with local time, current conditions, sunrise, sunset, and a 3-day forecast; all weather cards now show local time.
 - #ₛ profile matching: name-and-birthdate sigils now use a deterministic signature from the complete entered profile instead of collapsing to a small set of repeated letter values.
 - Landing: expanded the weather panel from Eureka to Seattle, Portland, Los Angeles, and Lima, Peru, with independent 3-day forecasts.
 - Landing: changed the doorway navigation from vertical columns to five linked radial slices, with a responsive grid fallback on mobile.

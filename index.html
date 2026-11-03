@@ -6,7 +6,7 @@
         <meta name="keywords" content="oe tattoo, tattoo portfolio, gallery, tools, social, music">
         <meta name="author" content="OE Tattoo">
         <title>OE Tattoo // Front Door</title>
-        <link rel="stylesheet" href="style.css?v=20261103-4">
+        <link rel="stylesheet" href="style.css?v=20261103-8">
         <style>
         .weather-grid {
             margin-top: 1.25rem;
@@ -36,6 +36,11 @@
             font-size: 1rem;
             margin: 0 0 0.25rem;
             color: var(--text, #f4f0e8);
+        }
+        .weather-card .wx-time {
+            font-size: 0.68rem;
+            color: var(--text, #f4f0e8);
+            margin: 0 0 0.25rem;
         }
         .weather-card .wx-sun {
             font-size: 0.68rem;
@@ -103,33 +108,45 @@
                         <a class="cta-button secondary" href="contact.html">Consult</a>
                     </div>
                     <aside class="weather-grid" aria-label="Weather forecasts">
+                        <div class="weather-card" data-weather-city="cairo">
+                            <p class="wx-kicker">Cairo · Egypt</p>
+                            <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-time"></p>
+                            <p class="wx-sun"></p>
+                            <div class="wx-days"></div>
+                        </div>
                         <div class="weather-card" data-weather-city="eureka">
                             <p class="wx-kicker">Eureka · Humboldt</p>
                             <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-time"></p>
                             <p class="wx-sun"></p>
                             <div class="wx-days"></div>
                         </div>
                         <div class="weather-card" data-weather-city="seattle">
                             <p class="wx-kicker">Seattle · Washington</p>
                             <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-time"></p>
                             <p class="wx-sun"></p>
                             <div class="wx-days"></div>
                         </div>
                         <div class="weather-card" data-weather-city="portland">
                             <p class="wx-kicker">Portland · Oregon</p>
                             <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-time"></p>
                             <p class="wx-sun"></p>
                             <div class="wx-days"></div>
                         </div>
                         <div class="weather-card" data-weather-city="los-angeles">
                             <p class="wx-kicker">Los Angeles · California</p>
                             <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-time"></p>
                             <p class="wx-sun"></p>
                             <div class="wx-days"></div>
                         </div>
                         <div class="weather-card" data-weather-city="lima">
                             <p class="wx-kicker">Lima · Peru</p>
                             <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-time"></p>
                             <p class="wx-sun"></p>
                             <div class="wx-days"></div>
                         </div>
@@ -165,11 +182,11 @@
         </main>
         <footer class="footer compact-footer">
             <div class="container footer-row">
-                <p>OE Tattoo · <span class="site-version">v20261103-4</span></p>
+                <p>OE Tattoo · <span class="site-version">v20261103-8</span></p>
                 <p>Gallery · Tools · Social · Interesting · Music · Links</p>
             </div>
         </footer>
-        <script defer src="script.js?v=20261103-4"></script>
-        <script defer src="weather.js?v=20261103-4"></script>
+        <script defer src="script.js?v=20261103-8"></script>
+        <script defer src="weather.js?v=20261103-8"></script>
     </body>
 </html>
