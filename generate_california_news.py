@@ -4,6 +4,8 @@
 import html
 import json
 import re
+import subprocess
+import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -38,10 +40,43 @@ def clean_text(value):
     return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', value)).strip()
 
 
-def fetch(url):
-    request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
-    with urllib.request.urlopen(request, timeout=20) as response:
-        return response.read()
+def fetch(url, attempts=4):
+    last_error = None
+    for attempt in range(attempts):
+        try:
+            time.sleep(1)
+            request = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
+            with urllib.request.urlopen(request, timeout=20) as response:
+                payload = response.read()
+                ET.fromstring(payload)
+                return payload
+        except (OSError, ET.ParseError) as error:
+            last_error = error
+            if attempt < attempts - 1:
+                time.sleep(2 ** attempt)
+    try:
+        result = subprocess.run(
+            [
+                'curl',
+                '--fail',
+                '--location',
+                '--silent',
+                '--show-error',
+                '--max-time',
+                '20',
+                '--user-agent',
+                USER_AGENT,
+                url,
+            ],
+            check=True,
+            capture_output=True,
+            timeout=30,
+        )
+        ET.fromstring(result.stdout)
+        return result.stdout
+    except (OSError, subprocess.SubprocessError, ET.ParseError) as error:
+        last_error = error
+    raise last_error
 
 
 def child_text(item, names):
@@ -102,12 +137,6 @@ def main():
     stories = []
     ticker = []
     errors = []
-    for source, url in FEEDS:
-        try:
-            stories.extend(parse_feed(source, url))
-        except Exception as error:  # Keep one unavailable source from breaking the feed.
-            errors.append(f'{source}: {error}')
-
     for kind, source, url in TICKER_FEEDS:
         try:
             ticker.extend(
@@ -116,6 +145,12 @@ def main():
                 if kind != 'sports' or not is_high_school_sports_story(story)
             )
         except Exception as error:
+            errors.append(f'{source}: {error}')
+
+    for source, url in FEEDS:
+        try:
+            stories.extend(parse_feed(source, url))
+        except Exception as error:  # Keep one unavailable source from breaking the feed.
             errors.append(f'{source}: {error}')
 
     unique = {}
@@ -132,12 +167,20 @@ def main():
             reverse=True,
         )[:MAX_TICKER_ITEMS // 2]
     ]
+    if not ticker:
+        try:
+            with open(OUTPUT_FILE, encoding='utf-8') as file:
+                previous_ticker = json.load(file).get('ticker', [])
+            if previous_ticker:
+                ticker = previous_ticker
+                errors.append('Ticker feeds unavailable; retained the previous ticker.')
+        except (OSError, json.JSONDecodeError):
+            pass
     payload = {
         'generatedAt': datetime.now(timezone.utc).isoformat(),
         'stories': output,
         'ticker': ticker,
         'sources': [source for source, _ in FEEDS],
-        'sourceErrors': errors,
         'sourceErrors': errors,
     }
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as file:
