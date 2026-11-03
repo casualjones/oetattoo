@@ -8,6 +8,10 @@ VS Code: pull `origin/master` before editing. See `VSCODE.md`.
 
 ## Unreleased / 2026-10-06
 
+- Landing: expanded the weather panel from Eureka to Seattle, Portland, Los Angeles, and Lima, Peru, with independent 3-day forecasts.
+- Landing: changed the doorway navigation from vertical columns to five linked radial slices, with a responsive grid fallback on mobile.
+- Landing: contained the multi-city weather cards beside the doorway and added distinct drifting-light/orbit motion with reduced-motion support.
+- Landing: added a sixth radial Links slice; Interesting and Links now use the same orbiting-light visual language without the Numbers animation.
 - Landing: Eureka, CA sunrise, sunset, current temp, 3-day forecast (Open-Meteo, no API key).
 - Interesting: expanded Humboldt event aggregation, daily regeneration, recurring local listings, reviewed submissions, six additional calendar adapters, source filtering, and up to 250 events.
 - #ₛ I Ching study: corrected the trigram/hexagram lookup to the standard bottom-to-top binary order, verified all 64 King Wen mappings, and expanded the line-pattern explanation.

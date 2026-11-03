@@ -6,45 +6,54 @@
         <meta name="keywords" content="oe tattoo, tattoo portfolio, gallery, tools, social, music">
         <meta name="author" content="OE Tattoo">
         <title>OE Tattoo // Front Door</title>
-        <link rel="stylesheet" href="style.css?v=20261005-4">
+        <link rel="stylesheet" href="style.css?v=20261103-4">
         <style>
-        .eureka-wx {
+        .weather-grid {
             margin-top: 1.25rem;
-            max-width: 28rem;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.65rem;
+        }
+        .weather-card {
+            min-width: 0;
+            overflow: hidden;
             border: 1px solid rgba(209,171,91,0.22);
             background: rgba(0,0,0,0.28);
-            padding: 0.75rem 0.9rem;
+            padding: 0.65rem 0.7rem;
         }
-        .eureka-wx .wx-kicker {
-            font-size: 0.62rem;
+        .weather-card .wx-kicker {
+            font-size: 0.58rem;
             letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--gold, #d1ab5b);
             margin: 0 0 0.35rem;
         }
-        .eureka-wx .wx-now {
+        .weather-card .wx-now {
             font-family: var(--serif, "Playfair Display", serif);
-            font-size: 1.15rem;
+            font-size: 1rem;
             margin: 0 0 0.25rem;
             color: var(--text, #f4f0e8);
         }
-        .eureka-wx .wx-sun {
-            font-size: 0.78rem;
+        .weather-card .wx-sun {
+            font-size: 0.68rem;
             color: var(--muted, #b2aba0);
             margin: 0 0 0.55rem;
         }
-        .eureka-wx .wx-days {
+        .weather-card .wx-days {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0.4rem;
+            gap: 0.25rem;
         }
-        .eureka-wx .wx-day {
-            font-size: 0.72rem;
+        .weather-card .wx-day {
+            font-size: 0.65rem;
             color: var(--muted, #b2aba0);
             border-top: 1px solid rgba(255,255,255,0.08);
             padding-top: 0.4rem;
         }
-        .eureka-wx .wx-day strong { display: block; color: var(--text, #f4f0e8); font-weight: 600; }
+        .weather-card .wx-day strong { display: block; color: var(--text, #f4f0e8); font-weight: 600; }
         </style>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,11 +102,37 @@
                         <a class="cta-button" href="portfolio.html">Gallery</a>
                         <a class="cta-button secondary" href="contact.html">Consult</a>
                     </div>
-                    <aside class="eureka-wx" id="eureka-wx" aria-label="Eureka California weather">
-                        <p class="wx-kicker">Eureka · Humboldt</p>
-                        <p class="wx-now" id="wx-now">Loading coast…</p>
-                        <p class="wx-sun" id="wx-sun"></p>
-                        <div class="wx-days" id="wx-days"></div>
+                    <aside class="weather-grid" aria-label="Weather forecasts">
+                        <div class="weather-card" data-weather-city="eureka">
+                            <p class="wx-kicker">Eureka · Humboldt</p>
+                            <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-sun"></p>
+                            <div class="wx-days"></div>
+                        </div>
+                        <div class="weather-card" data-weather-city="seattle">
+                            <p class="wx-kicker">Seattle · Washington</p>
+                            <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-sun"></p>
+                            <div class="wx-days"></div>
+                        </div>
+                        <div class="weather-card" data-weather-city="portland">
+                            <p class="wx-kicker">Portland · Oregon</p>
+                            <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-sun"></p>
+                            <div class="wx-days"></div>
+                        </div>
+                        <div class="weather-card" data-weather-city="los-angeles">
+                            <p class="wx-kicker">Los Angeles · California</p>
+                            <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-sun"></p>
+                            <div class="wx-days"></div>
+                        </div>
+                        <div class="weather-card" data-weather-city="lima">
+                            <p class="wx-kicker">Lima · Peru</p>
+                            <p class="wx-now">Loading forecast…</p>
+                            <p class="wx-sun"></p>
+                            <div class="wx-days"></div>
+                        </div>
                     </aside>
                 </div>
                 <div class="doorway-panel" aria-label="Front door navigation">
@@ -118,6 +153,9 @@
                         <a class="door-slice" href="songs.html">
                             <span>Music</span>
                         </a>
+                        <a class="door-slice" href="links.html">
+                            <span>Links</span>
+                        </a>
                     </div>
                 </div>
                 <div class="hero-footer">
@@ -127,11 +165,11 @@
         </main>
         <footer class="footer compact-footer">
             <div class="container footer-row">
-                <p>OE Tattoo · <span class="site-version">v20261005-4</span></p>
+                <p>OE Tattoo · <span class="site-version">v20261103-4</span></p>
                 <p>Gallery · Tools · Social · Interesting · Music · Links</p>
             </div>
         </footer>
-        <script defer src="script.js?v=20261005-4"></script>
-        <script defer src="weather.js?v=20261005-4"></script>
+        <script defer src="script.js?v=20261103-4"></script>
+        <script defer src="weather.js?v=20261103-4"></script>
     </body>
 </html>

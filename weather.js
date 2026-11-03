@@ -1,6 +1,12 @@
-/** Eureka, CA coast conditions — Open-Meteo, no API key. */
+/** Multi-city conditions — Open-Meteo, no API key. */
 (function () {
-    const EUREKA = { lat: 40.8021, lon: -124.1637, tz: 'America/Los_Angeles' };
+    const CITIES = {
+        eureka: { lat: 40.8021, lon: -124.1637, tz: 'America/Los_Angeles', fallback: 'Eureka, CA' },
+        seattle: { lat: 47.6062, lon: -122.3321, tz: 'America/Los_Angeles', fallback: 'Seattle, WA' },
+        portland: { lat: 45.5152, lon: -122.6784, tz: 'America/Los_Angeles', fallback: 'Portland, OR' },
+        'los-angeles': { lat: 34.0522, lon: -118.2437, tz: 'America/Los_Angeles', fallback: 'Los Angeles, CA' },
+        lima: { lat: -12.0464, lon: -77.0428, tz: 'America/Lima', fallback: 'Lima, Peru' }
+    };
 
     function wmoLabel(code) {
         const n = Number(code);
@@ -14,48 +20,54 @@
         if (n <= 99) return 'storms';
         return 'coast';
     }
-    function fmtClock(iso) {
+    function fmtClock(iso, timezone) {
         if (!iso) return '—';
         return new Date(iso).toLocaleTimeString('en-US', {
-            hour: 'numeric', minute: '2-digit', timeZone: EUREKA.tz
+            hour: 'numeric', minute: '2-digit', timeZone: timezone
         });
     }
-    function fmtDay(iso) {
+    function fmtDay(iso, timezone) {
         return new Date(iso + 'T12:00:00').toLocaleDateString('en-US', {
-            weekday: 'short', timeZone: EUREKA.tz
+            weekday: 'short', timeZone: timezone
         });
     }
-    function initEurekaWx() {
-        const root = document.getElementById('eureka-wx');
-        if (!root) return;
-        const nowEl = document.getElementById('wx-now');
-        const sunEl = document.getElementById('wx-sun');
-        const daysEl = document.getElementById('wx-days');
+    function loadCityWeather(root, city) {
+        const nowEl = root.querySelector('.wx-now');
+        const sunEl = root.querySelector('.wx-sun');
+        const daysEl = root.querySelector('.wx-days');
         const url = 'https://api.open-meteo.com/v1/forecast'
-            + '?latitude=' + EUREKA.lat
-            + '&longitude=' + EUREKA.lon
+            + '?latitude=' + city.lat
+            + '&longitude=' + city.lon
             + '&current=temperature_2m,weather_code'
             + '&daily=sunrise,sunset,temperature_2m_max,temperature_2m_min,weather_code'
-            + '&timezone=' + encodeURIComponent(EUREKA.tz)
+            + '&timezone=' + encodeURIComponent(city.tz)
             + '&forecast_days=3'
             + '&temperature_unit=fahrenheit';
         fetch(url)
-            .then((r) => (r.ok ? r.json() : Promise.reject()))
+            .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Weather feed returned ' + r.status))))
             .then((data) => {
                 const t = Math.round(data.current.temperature_2m);
                 nowEl.textContent = t + '°F · ' + wmoLabel(data.current.weather_code);
-                sunEl.textContent = 'Sunrise ' + fmtClock(data.daily.sunrise[0]) + ' · Sunset ' + fmtClock(data.daily.sunset[0]);
+                sunEl.textContent = 'Sunrise ' + fmtClock(data.daily.sunrise[0], city.tz)
+                    + ' · Sunset ' + fmtClock(data.daily.sunset[0], city.tz);
                 daysEl.innerHTML = data.daily.time.map((day, i) => {
                     const hi = Math.round(data.daily.temperature_2m_max[i]);
                     const lo = Math.round(data.daily.temperature_2m_min[i]);
-                    return '<div class="wx-day"><strong>' + fmtDay(day) + '</strong>'
+                    return '<div class="wx-day"><strong>' + fmtDay(day, city.tz) + '</strong>'
                         + hi + '° / ' + lo + '° · ' + wmoLabel(data.daily.weather_code[i]) + '</div>';
                 }).join('');
             })
-            .catch(() => {
-                nowEl.textContent = 'Coast feed offline';
-                sunEl.textContent = 'Eureka, CA';
+            .catch((error) => {
+                nowEl.textContent = 'Forecast unavailable';
+                sunEl.textContent = city.fallback;
+                console.warn('Weather unavailable for ' + city.fallback, error);
             });
     }
-    document.addEventListener('DOMContentLoaded', initEurekaWx);
+    function initWeather() {
+        document.querySelectorAll('[data-weather-city]').forEach((root) => {
+            const city = CITIES[root.dataset.weatherCity];
+            if (city) loadCityWeather(root, city);
+        });
+    }
+    document.addEventListener('DOMContentLoaded', initWeather);
 })();

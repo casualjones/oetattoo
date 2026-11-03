@@ -121,6 +121,8 @@ img {
 
 /* Hero */
 .hero-storytelling {
+    position: relative;
+    isolation: isolate;
     width: min(var(--max), calc(100% - 2rem));
     margin: 0 auto;
     min-height: 100vh;
@@ -131,7 +133,48 @@ img {
     align-items: center;
 }
 
+.hero-storytelling::before,
+.hero-storytelling::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero-storytelling::before {
+    width: 42rem;
+    height: 42rem;
+    top: 8%;
+    left: 34%;
+    border: 1px solid rgba(209, 171, 91, 0.08);
+    border-radius: 50%;
+    box-shadow: 0 0 90px rgba(209, 171, 91, 0.08);
+    animation: doorway-orbit 26s linear infinite;
+}
+
+.hero-storytelling::after {
+    inset: 12% 0 8%;
+    background:
+        radial-gradient(circle at 18% 32%, rgba(209, 171, 91, 0.15) 0 1px, transparent 2px),
+        radial-gradient(circle at 38% 74%, rgba(184, 58, 68, 0.14) 0 1px, transparent 2px),
+        radial-gradient(circle at 76% 18%, rgba(209, 171, 91, 0.12) 0 1px, transparent 2px);
+    background-size: 17rem 13rem, 23rem 19rem, 29rem 23rem;
+    animation: doorway-drift 19s ease-in-out infinite alternate;
+}
+
+@keyframes doorway-orbit {
+    from { transform: rotate(0deg) translateX(1.5rem) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(1.5rem) rotate(-360deg); }
+}
+
+@keyframes doorway-drift {
+    from { transform: translate3d(-1.5rem, 0, 0); opacity: 0.45; }
+    to { transform: translate3d(1.5rem, -1rem, 0); opacity: 0.9; }
+}
+
 .hero-copy {
+    position: relative;
+    z-index: 1;
     display: grid;
     gap: 1rem;
     align-content: start;
@@ -201,6 +244,7 @@ img {
 
 .doorway-panel {
     position: relative;
+    z-index: 1;
     min-height: clamp(560px, 78vh, 820px);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -229,40 +273,76 @@ img {
 .doorway-slices {
     position: absolute;
     inset: 0;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 1px;
     z-index: 2;
 }
 
 .door-slice {
+    position: absolute;
+    inset: 0;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding: 1.1rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.16);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.2));
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(0, 0, 0, 0.14);
+    transition: background var(--ease), transform var(--ease), border-color var(--ease);
 }
 
-.door-slice:first-child {
-    border-left: 0;
+.door-slice:nth-child(1) {
+    clip-path: polygon(25% 0, 75% 0, 50% 50%);
+}
+
+.door-slice:nth-child(2) {
+    clip-path: polygon(75% 0, 100% 50%, 50% 50%);
+}
+
+.door-slice:nth-child(3) {
+    clip-path: polygon(100% 50%, 75% 100%, 50% 50%);
+}
+
+.door-slice:nth-child(4) {
+    clip-path: polygon(75% 100%, 25% 100%, 50% 50%);
+}
+
+.door-slice:nth-child(5) {
+    clip-path: polygon(25% 100%, 0 50%, 50% 50%);
+}
+
+.door-slice:nth-child(6) {
+    clip-path: polygon(0 50%, 25% 0, 50% 50%);
 }
 
 .door-slice span {
+    position: absolute;
+    white-space: nowrap;
     font-family: var(--serif);
     text-transform: uppercase;
     letter-spacing: 0.24em;
     font-size: 0.68rem;
     color: var(--text);
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    transform-origin: center;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
+    transform: translate(-50%, -50%);
+}
+
+.door-slice:nth-child(1) span { top: 22%; left: 50%; }
+.door-slice:nth-child(2) span { top: 38%; left: 76%; }
+.door-slice:nth-child(3) span { top: 68%; left: 72%; }
+.door-slice:nth-child(4) span { top: 78%; left: 50%; }
+.door-slice:nth-child(5) span { top: 68%; left: 25%; }
+.door-slice:nth-child(6) span { top: 38%; left: 24%; }
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-storytelling::before,
+    .hero-storytelling::after {
+        animation: none;
+    }
 }
 
 .door-slice:hover,
 .door-slice:focus-visible {
-    background: linear-gradient(180deg, rgba(184, 58, 68, 0.08), rgba(0, 0, 0, 0.24));
+    background: rgba(184, 58, 68, 0.2);
+    border-color: rgba(209, 171, 91, 0.55);
     color: var(--gold);
+    transform: scale(1.015);
 }
 
 .hero-footer {
@@ -411,6 +491,57 @@ body:has(.news-ticker) .page-shell {
     padding: 7rem 0 4rem;
     display: grid;
     gap: 1.5rem;
+}
+
+.orbit-page-shell {
+    position: relative;
+    isolation: isolate;
+}
+
+.orbit-page-shell::before,
+.orbit-page-shell::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.orbit-page-shell::before {
+    width: 42rem;
+    height: 42rem;
+    top: 5rem;
+    right: -12rem;
+    border: 1px solid rgba(209, 171, 91, 0.08);
+    border-radius: 50%;
+    box-shadow: 0 0 90px rgba(209, 171, 91, 0.08);
+    animation: doorway-orbit 26s linear infinite;
+}
+
+.orbit-page-shell::after {
+    inset: 5rem 0 3rem;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(209, 171, 91, 0.15) 0 1px, transparent 2px),
+        radial-gradient(circle at 66% 64%, rgba(184, 58, 68, 0.14) 0 1px, transparent 2px),
+        radial-gradient(circle at 88% 28%, rgba(209, 171, 91, 0.12) 0 1px, transparent 2px);
+    background-size: 17rem 13rem, 23rem 19rem, 29rem 23rem;
+    animation: doorway-drift 19s ease-in-out infinite alternate;
+}
+
+.orbit-page-shell > * {
+    position: relative;
+    z-index: 1;
+}
+
+.orbit-page-shell .page-card {
+    background: rgba(18, 18, 18, 0.78);
+    backdrop-filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .orbit-page-shell::before,
+    .orbit-page-shell::after {
+        animation: none;
+    }
 }
 
 .page-hero {
@@ -1429,15 +1560,23 @@ body:has(.news-ticker) .page-shell {
 
     .doorway-slices {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: grid;
+        gap: 1px;
     }
 
     .door-slice {
+        position: relative;
+        inset: auto;
         min-height: 130px;
+        clip-path: none !important;
     }
 
     .door-slice span {
+        position: static;
+        white-space: normal;
         writing-mode: horizontal-tb;
         transform: none;
+        text-shadow: none;
         letter-spacing: 0.2em;
     }
 
@@ -1508,12 +1647,20 @@ body:has(.news-ticker) .page-shell {
         padding-top: 6rem;
     }
 
+    .weather-grid {
+        grid-template-columns: 1fr;
+    }
+
     .doorway-slices {
+        display: grid;
         grid-template-columns: 1fr;
     }
 
     .door-slice {
+        position: relative;
+        inset: auto;
         min-height: 86px;
+        clip-path: none !important;
     }
 
     .hero-footer {
