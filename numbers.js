@@ -489,6 +489,18 @@
     function nameNumber(name) {
         return reduceNumber(name.split('').reduce((s, ch) => s + letterValue(ch), 0), true);
     }
+    function profileSeed(name, isoDate) {
+        const key = (name || '').toUpperCase().replace(/[^A-Z]/g, '') + '|' + isoDate;
+        return Array.from(key).reduce((hash, character, index) => (
+            (hash * 31 + character.charCodeAt(0) + index) % 997
+        ), 17);
+    }
+    function profileValues(name, isoDate, destiny, lifePath) {
+        const seed = profileSeed(name, isoDate);
+        return Array.from({ length: 5 }, (_, index) => (
+            1 + ((seed + destiny * (index + 2) + lifePath * (index + 3) + index * 17) % 9)
+        ));
+    }
     function lifePathFromDate(isoDate) {
         const digits = isoDate.replace(/\D/g, '').split('').map(Number);
         return reduceNumber(digits.reduce((a, b) => a + b, 0), true);
@@ -988,16 +1000,18 @@
         const month = BIRTH_MONTHS[parsed.month];
         const number = PROTECTIVE_NUMBERS[birthday] || PROTECTIVE_NUMBERS[reduceNumber(birthday, false)] || PROTECTIVE_NUMBERS[reduceNumber(lifePath, false)];
         const nameValues = name ? name.toUpperCase().replace(/[^A-Z]/g, '').split('').map(letterValue) : [];
+        const signatureValues = profileValues(name, isoDate, destiny || 0, lifePath);
         const path = nameValues.length ? nameValues.join(' · ') : 'Add a full name to generate a custom path';
+        const signature = signatureValues.join(' · ');
         const nameSummary = name
-            ? '<strong>' + escapeHtml(name) + '</strong> becomes a continuous numeric path (' + path + ') for a Rose Cross-style sigil.'
-            : 'Your name layer is waiting. Add a full name to generate a unique numeric path for a Rose Cross-style sigil.';
-        const nameArt = nameBindrune(nameValues.length ? nameValues : [birthday, parsed.month]);
+            ? '<strong>' + escapeHtml(name) + '</strong> paired with ' + escapeHtml(isoDate) + ' creates a profile signature (' + signature + '). The name path remains ' + path + '.'
+            : 'Your name layer is waiting. Add a full name to generate a profile-specific signature for a Rose Cross-style sigil.';
+        const nameArt = nameBindrune(signatureValues);
         const monthKind = month.motif === 'Sun Sigil' ? 'solar-cross' : month.motif === 'Moon Eye' ? 'eye' : 'pentacle';
         target.innerHTML =
             '<div class="symbol-result"><h3>Birthdate shield · ' + birthday + '</h3>' + symbolSvg(number.glyph) + '<p><strong>' + escapeHtml(number.symbol) + '</strong> · ' + escapeHtml(number.force) + '</p><p>' + escapeHtml(number.note) + ' This uses your single-digit birthday number' + (birthday !== lifePath ? ' and sits alongside Life Path ' + lifePath : '') + '.</p><p class="symbol-reading"><strong>Read it:</strong> ' + escapeHtml(SYMBOL_READINGS[number.glyph] || 'Notice the main shape, its center, and the direction of its lines.') + '</p></div>' +
             '<div class="symbol-result"><h3>Birth-month amulet · ' + escapeHtml(month.name) + '</h3>' + symbolSvg(monthKind) + '<p><strong>' + escapeHtml(month.motif) + '</strong> · ' + escapeHtml(month.stone) + '</p><p>' + escapeHtml(month.note) + ' Treat the stone as a physical reminder of the protection you want to practice.</p><p class="symbol-reading"><strong>Read it:</strong> ' + escapeHtml(SYMBOL_READINGS[monthKind]) + '</p></div>' +
-            '<div class="symbol-result"><h3>Name sigil · ' + (destiny != null ? 'Expression ' + destiny : 'custom') + '</h3>' + nameArt + '<p>' + nameSummary + '</p><p class="symbol-path" aria-label="Name numeric path">' + escapeHtml(path) + '</p><p>The Witch\'s Knot can frame the finished mark as a binding boundary around your name and birthdate.</p><p class="symbol-reading"><strong>Read it:</strong> Follow the central stem first, then notice which branches repeat or reach farther. The pattern is a personal mnemonic, not a fixed translation.</p></div>';
+            '<div class="symbol-result"><h3>Name + date sigil · ' + (destiny != null ? 'Expression ' + destiny : 'custom') + '</h3>' + nameArt + '<p>' + nameSummary + '</p><p class="symbol-path" aria-label="Name numeric path">Name path: ' + escapeHtml(path) + '<br>Profile signature: ' + escapeHtml(signature) + '</p><p>The Witch\'s Knot can frame the finished mark as a binding boundary around this exact name and birthdate pairing.</p><p class="symbol-reading"><strong>Read it:</strong> Follow the central stem first, then notice which branches repeat or reach farther. This pattern is specific to the entered profile, not a universal translation.</p></div>';
     }
     function renderSymbolLibrary() {
         const target = document.getElementById('symbol-library');
