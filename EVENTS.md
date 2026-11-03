@@ -40,6 +40,6 @@ News California searches. Run `python generate_california_news.py` locally to
 refresh it. The GitHub Actions workflow regenerates both feeds once per day.
 
 The page links back to each original report rather than copying full articles.
-The footer ticker uses separate public RSS feeds for national weather and ESPN
-sports headlines; it links to the original item and pauses while hovered or
-focused.
+The footer ticker uses separate public RSS feeds for national weather and
+sports headlines; high-school sports stories are excluded before the ticker is
+generated. It links to the original item and pauses while hovered or focused.

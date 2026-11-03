@@ -14,6 +14,10 @@ OUTPUT_FILE = 'california-news.json'
 MAX_STORIES = 30
 MAX_TICKER_ITEMS = 8
 USER_AGENT = 'OE-Tattoo-California-News/1.0'
+HIGH_SCHOOL_SPORTS_PATTERN = re.compile(
+    r'\b(?:high[- ]school|junior varsity|jv|varsity|prep(?:s)?|cif|interscholastic|scholastic)\b',
+    re.IGNORECASE,
+)
 
 FEEDS = [
     ('CalMatters', 'https://calmatters.org/feed/'),
@@ -89,6 +93,11 @@ def story_key(story):
     return (parsed.netloc.lower(), parsed.path.rstrip('/').lower())
 
 
+def is_high_school_sports_story(story):
+    text = f"{story.get('title', '')} {story.get('summary', '')}"
+    return bool(HIGH_SCHOOL_SPORTS_PATTERN.search(text))
+
+
 def main():
     stories = []
     ticker = []
@@ -101,7 +110,11 @@ def main():
 
     for kind, source, url in TICKER_FEEDS:
         try:
-            ticker.extend({**story, 'kind': kind, 'source': source} for story in parse_feed(source, url)[:MAX_TICKER_ITEMS])
+            ticker.extend(
+                {**story, 'kind': kind, 'source': source}
+                for story in parse_feed(source, url)
+                if kind != 'sports' or not is_high_school_sports_story(story)
+            )
         except Exception as error:
             errors.append(f'{source}: {error}')
 
