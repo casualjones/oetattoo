@@ -1,11 +1,21 @@
 [
   {
-    "title": "Strange Meeting",
-    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
-    "location": "The Basement",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-03T15:49:42.206055"
+    "title": "Soroptimist Grab-n-Go Box Meal Fundraiser",
+    "url": "https://community.northcoastjournal.com/event/soroptimist-grab-n-go-box-meal-fundraiser-34930357",
+    "location": "St. Mary's Leavey Hall",
+    "source": "North Coast Journal",
+    "detail_time": "",
+    "startDate": "2026-11-04",
+    "startDateIso": "2026-11-04T00:00:00"
+  },
+  {
+    "title": "Pints 4 Non-Profits: Carson Park Playground",
+    "url": "https://community.northcoastjournal.com/event/pints-4-non-profits-carson-park-playground-34981494",
+    "location": "Humboldt Cider Co. New Tap Room",
+    "source": "North Coast Journal",
+    "detail_time": "Wed., Nov. 4, 12 p.m.",
+    "startDate": "2026-11-04T12:00:00-08:00",
+    "startDateIso": "2026-11-04T12:00:00-08:00"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -21,7 +31,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-11-06T15:49:42.206055"
+    "startDateIso": "2026-11-06T15:58:18.258803"
   },
   {
     "title": "Arts! Alive",
@@ -37,7 +47,7 @@
     "location": "Eureka",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-11-07T15:49:42.206055"
+    "startDateIso": "2026-11-07T15:58:18.258803"
   },
   {
     "title": "Clay Street Unit, The Last Wild Buffalo",
@@ -45,7 +55,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-07T15:49:42.206055"
+    "startDateIso": "2026-11-07T15:58:18.258803"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -61,7 +71,15 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-09T15:49:42.206055"
+    "startDateIso": "2026-11-09T15:58:18.258803"
+  },
+  {
+    "title": "Strange Meeting",
+    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
+    "location": "The Basement",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-11-10T15:58:18.258803"
   },
   {
     "title": "Veterans’ Day Program",
