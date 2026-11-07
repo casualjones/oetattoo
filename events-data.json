@@ -1,97 +1,5 @@
 [
   {
-    "title": "Karaoke with Mama Mia",
-    "url": "https://community.northcoastjournal.com/event/karaoke-with-mama-mia-34952558",
-    "location": "Phatsy Kline’s Parlor Lounge",
-    "source": "North Coast Journal",
-    "detail_time": "",
-    "startDate": "2026-11-06",
-    "startDateIso": "2026-11-06T00:00:00"
-  },
-  {
-    "title": "Eureka Friday Night Market",
-    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
-    "location": "Old Town Eureka",
-    "source": "Recurring local listing",
-    "detail_time": "5:30-8:30 p.m.",
-    "startDateIso": "2026-11-06T00:00:00+00:00"
-  },
-  {
-    "title": "\"Free Bike Valet\" at the \"2026 Humboldt County Free Healthcare Clinic\"",
-    "url": "https://community.northcoastjournal.com/event/free-bike-valet-at-the-2026-humboldt-county-free-healthcare-clinic-34984627",
-    "location": "Eureka Municipal Auditorium",
-    "source": "North Coast Journal",
-    "detail_time": "Fri., Nov. 6, 7 a.m.-5 p.m., Sat., Nov. 7, 7 a.m.-5 p.m. and Sun., Nov. 8, 7 a.m.-5 p.m.",
-    "startDate": "2026-11-06T07:00:00-08:00",
-    "startDateIso": "2026-11-06T07:00:00-08:00"
-  },
-  {
-    "title": "Free Medical, Dental and Vision Clinic",
-    "url": "https://community.northcoastjournal.com/event/free-medical-dental-and-vision-clinic-34966782",
-    "location": "Eureka Municipal Auditorium",
-    "source": "North Coast Journal",
-    "detail_time": "Fri., Nov. 6, 7 a.m.-5 p.m., Sat., Nov. 7, 7 a.m.-5 p.m. and Sun., Nov. 8, 7 a.m.-5 p.m.",
-    "startDate": "2026-11-06T07:00:00-08:00",
-    "startDateIso": "2026-11-06T07:00:00-08:00"
-  },
-  {
-    "title": "Humboldt Gem and Mineral Show",
-    "url": "https://community.northcoastjournal.com/event/humboldt-gem-and-mineral-show-34916767",
-    "location": "Redwood Acres Fairgrounds",
-    "source": "North Coast Journal",
-    "detail_time": "Fri., Nov. 6, 9 a.m.-6 p.m., Sat., Nov. 7, 9 a.m.-6 p.m. and Sun., Nov. 8, 10 a.m.-4 p.m.",
-    "startDate": "2026-11-06T09:00:00-08:00",
-    "startDateIso": "2026-11-06T09:00:00-08:00"
-  },
-  {
-    "title": "Free Medical, Dental & Vision Clinic",
-    "url": "https://lostcoastoutpost.com/lowdown/events/free-medical-dental-vision-clinic-2/",
-    "location": "Eureka Municipal Auditorium",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 a.m.-5 p.m.",
-    "startDateIso": "2026-11-06T15:40:11.558191"
-  },
-  {
-    "title": "Ruby Ruth George & Mike Frazier",
-    "url": "https://lostcoastoutpost.com/lowdown/events/ruby-ruth-george-mike-frazier/",
-    "location": "Arcata Playhouse",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7-10 p.m.",
-    "startDateIso": "2026-11-06T15:40:11.558191"
-  },
-  {
-    "title": "Rhinoceros by Eugene Ionesco",
-    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
-    "location": "Van Duzer Theater",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-10:15 p.m.",
-    "startDateIso": "2026-11-06T15:40:11.558191"
-  },
-  {
-    "title": "Every Brilliant Thing",
-    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
-    "location": "Synapsis",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-9:30 p.m.",
-    "startDateIso": "2026-11-06T15:40:11.558191"
-  },
-  {
-    "title": "THE DOSE: A Psychedelic Comedy Show",
-    "url": "https://lostcoastoutpost.com/lowdown/events/the-dose-a-psychedelic-comedy-show/",
-    "location": "Savage Henry Comedy Club",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8 p.m.",
-    "startDateIso": "2026-11-06T15:40:11.558191"
-  },
-  {
-    "title": "Templo",
-    "url": "https://lostcoastoutpost.com/lowdown/events/templo-tropical-latin-afro-beats/",
-    "location": "The Basement",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8:30 p.m.-12:30 a.m.",
-    "startDateIso": "2026-11-06T15:40:11.558191"
-  },
-  {
     "title": "Arts! Alive",
     "url": "https://www.eurekamainstreet.org/events/",
     "location": "Downtown Eureka",
@@ -100,12 +8,44 @@
     "startDateIso": "2026-11-07T00:00:00+00:00"
   },
   {
+    "title": "Free Medical, Dental & Vision Clinic",
+    "url": "https://lostcoastoutpost.com/lowdown/events/free-medical-dental-vision-clinic-2/",
+    "location": "Eureka Municipal Auditorium",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 a.m.-5 p.m.",
+    "startDateIso": "2026-11-07T14:41:00.488046"
+  },
+  {
+    "title": "(SOLD OUT) Logger Ladies Who Lunch (or 7 Karens Have a Highball) None / 4 p.m. / $20 “A jukebox musical about initiating a new person in the Medusas of the Mad, a long-standing club of “Karens” who meet once a year at the Logger Bar.” 0 (SOLD OUT) Candlelight Walk in the Redwoods",
+    "url": "https://lostcoastoutpost.com/lowdown/events/sold-out-emlogger-ladies-who-lunch-or-7-karens-hav/",
+    "location": "Prairie Creek Redwoods State Park",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "4-7:30 p.m.",
+    "startDateIso": "2026-11-07T14:41:00.488046"
+  },
+  {
     "title": "Arts! Alive",
     "url": "https://lostcoastoutpost.com/lowdown/events/arts-alive-7/",
     "location": "Eureka",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-11-07T15:40:11.558191"
+    "startDateIso": "2026-11-07T14:41:00.488046"
+  },
+  {
+    "title": "Every Brilliant Thing",
+    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
+    "location": "Synapsis",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30-9:30 p.m.",
+    "startDateIso": "2026-11-07T14:41:00.488046"
+  },
+  {
+    "title": "Rhinoceros by Eugene Ionesco",
+    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
+    "location": "Van Duzer Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30-10:15 p.m.",
+    "startDateIso": "2026-11-07T14:41:00.488046"
   },
   {
     "title": "Clay Street Unit, The Last Wild Buffalo",
@@ -113,7 +53,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-07T15:40:11.558191"
+    "startDateIso": "2026-11-07T14:41:00.488046"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -129,7 +69,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-09T15:40:11.558191"
+    "startDateIso": "2026-11-09T14:41:00.488046"
   },
   {
     "title": "Strange Meeting",
@@ -137,7 +77,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-10T15:40:11.558191"
+    "startDateIso": "2026-11-10T14:41:00.488046"
   },
   {
     "title": "Veterans’ Day Program",
@@ -145,7 +85,31 @@
     "location": "Adorni Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 a.m.-noon",
-    "startDateIso": "2026-11-11T15:40:11.558191"
+    "startDateIso": "2026-11-11T14:41:00.488046"
+  },
+  {
+    "title": "Jon Spencer",
+    "url": "https://lostcoastoutpost.com/lowdown/events/jon-spencer-of-blues-explosion-heavy-trash/",
+    "location": "The Miniplex at Richards’ Goat Tavern",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7-9 p.m.",
+    "startDateIso": "2026-11-12T14:41:00.488046"
+  },
+  {
+    "title": "Eureka Friday Night Market",
+    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
+    "location": "Old Town Eureka",
+    "source": "Recurring local listing",
+    "detail_time": "5:30-8:30 p.m.",
+    "startDateIso": "2026-11-13T00:00:00+00:00"
+  },
+  {
+    "title": "Elderberry Rust Stringband, The Cowtown Sound",
+    "url": "https://lostcoastoutpost.com/lowdown/events/elderberry-rust-stringband-the-cowtown-sound/",
+    "location": "Humboldt Brews",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8:30 p.m.",
+    "startDateIso": "2026-11-13T14:41:00.488046"
   },
   {
     "title": "Hildaland",
@@ -194,6 +158,14 @@
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "5-8 p.m.",
     "startDateIso": "2026-11-19T00:00:00"
+  },
+  {
+    "title": "Disney’s Frozen: The Broadway Musical",
+    "url": "https://lostcoastoutpost.com/lowdown/events/disneys-frozen-the-broadway-musical-live-at-fernda/",
+    "location": "Ferndale Repertory Theatre",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30 p.m.",
+    "startDateIso": "2026-11-20T00:00:00"
   },
   {
     "title": "Watkins Glen’s Super Deluxe Allstar Band",
