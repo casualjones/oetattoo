@@ -1,59 +1,11 @@
 [
   {
-    "title": "Arcata Farmers' Market",
-    "url": "https://www.arcatafarmersmarket.com/",
-    "location": "Arcata Plaza",
-    "source": "Recurring local listing",
-    "detail_time": "Saturday mornings",
-    "startDateIso": "2026-11-08T00:00:00+00:00"
-  },
-  {
-    "title": "Free Medical, Dental & Vision Clinic",
-    "url": "https://lostcoastoutpost.com/lowdown/events/free-medical-dental-vision-clinic-2/",
-    "location": "Eureka Municipal Auditorium",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 a.m.-5 p.m.",
-    "startDateIso": "2026-11-08T14:46:49.547607"
-  },
-  {
-    "title": "Every Brilliant Thing",
-    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
-    "location": "Synapsis",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-08T14:46:49.547607"
-  },
-  {
-    "title": "The Little Mermaid Jr.",
-    "url": "https://lostcoastoutpost.com/lowdown/events/the-little-mermaid-jr-2/",
-    "location": "Arkley Center For The Performing Arts",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-3:15 p.m.",
-    "startDateIso": "2026-11-08T14:46:49.547607"
-  },
-  {
-    "title": "Rhinoceros by Eugene Ionesco",
-    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
-    "location": "Van Duzer Theater",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-4:45 p.m.",
-    "startDateIso": "2026-11-08T14:46:49.547607"
-  },
-  {
-    "title": "(SOLD OUT) Logger Ladies Who Lunch (or 7 Karens Have a Highball)",
-    "url": "https://lostcoastoutpost.com/lowdown/events/sold-out-emlogger-ladies-who-lunch-or-7-karens-hav/",
-    "location": "Logger Bar",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "4 p.m.",
-    "startDateIso": "2026-11-08T14:46:49.547607"
-  },
-  {
     "title": "Jeffrey Foucault",
     "url": "https://lostcoastoutpost.com/lowdown/events/jeffrey-foucault-5/",
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-09T14:46:49.547607"
+    "startDateIso": "2026-11-09T18:19:30.743665"
   },
   {
     "title": "Strange Meeting",
@@ -61,7 +13,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-10T14:46:49.547607"
+    "startDateIso": "2026-11-10T18:19:30.743665"
   },
   {
     "title": "Veterans’ Day Program",
@@ -69,7 +21,7 @@
     "location": "Adorni Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 a.m.-noon",
-    "startDateIso": "2026-11-11T14:46:49.547607"
+    "startDateIso": "2026-11-11T18:19:30.743665"
   },
   {
     "title": "Jon Spencer",
@@ -77,7 +29,7 @@
     "location": "The Miniplex at Richards’ Goat Tavern",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7-9 p.m.",
-    "startDateIso": "2026-11-12T14:46:49.547607"
+    "startDateIso": "2026-11-12T18:19:30.743665"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -88,12 +40,28 @@
     "startDateIso": "2026-11-13T00:00:00+00:00"
   },
   {
+    "title": "Rhinoceros by Eugene Ionesco",
+    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
+    "location": "Van Duzer Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30-10:15 p.m.",
+    "startDateIso": "2026-11-13T18:19:30.743665"
+  },
+  {
+    "title": "Every Brilliant Thing",
+    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
+    "location": "Synapsis",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30-9:30 p.m.",
+    "startDateIso": "2026-11-13T18:19:30.743665"
+  },
+  {
     "title": "Elderberry Rust Stringband, The Cowtown Sound",
     "url": "https://lostcoastoutpost.com/lowdown/events/elderberry-rust-stringband-the-cowtown-sound/",
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-13T14:46:49.547607"
+    "startDateIso": "2026-11-13T18:19:30.743665"
   },
   {
     "title": "Hildaland",
@@ -101,7 +69,15 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-14T14:46:49.547607"
+    "startDateIso": "2026-11-14T18:19:30.743665"
+  },
+  {
+    "title": "Arcata Farmers' Market",
+    "url": "https://www.arcatafarmersmarket.com/",
+    "location": "Arcata Plaza",
+    "source": "Recurring local listing",
+    "detail_time": "Saturday mornings",
+    "startDateIso": "2026-11-15T00:00:00+00:00"
   },
   {
     "title": "Partnership in Music Orchestra Performances",
@@ -109,7 +85,7 @@
     "location": "Fulkerson Recital Hall",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-15T00:00:00"
+    "startDateIso": "2026-11-15T18:19:30.743665"
   },
   {
     "title": "How Daddy Is Doing",
@@ -117,7 +93,7 @@
     "location": "Exit Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "4-5 p.m.",
-    "startDateIso": "2026-11-15T00:00:00"
+    "startDateIso": "2026-11-15T18:19:30.743665"
   },
   {
     "title": "Clan Dyken Beauty Way Benefit Concert",
@@ -125,7 +101,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-9:30 p.m.",
-    "startDateIso": "2026-11-15T00:00:00"
+    "startDateIso": "2026-11-15T18:19:30.743665"
   },
   {
     "title": "Parasite Caste, Psyop, Ultramafic",
@@ -133,7 +109,7 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-15T00:00:00"
+    "startDateIso": "2026-11-15T18:19:30.743665"
   },
   {
     "title": "Taste of the Holidays",
