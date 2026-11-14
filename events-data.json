@@ -1,97 +1,5 @@
 [
   {
-    "title": "Winter Fair Ice Skating Rink",
-    "url": "https://community.northcoastjournal.com/event/winter-fair-ice-skating-rink-34964641",
-    "location": "Belotti Hall",
-    "source": "North Coast Journal",
-    "detail_time": "Through Jan. 10, 2027",
-    "startDate": "2026-11-13",
-    "startDateIso": "2026-11-13T00:00:00"
-  },
-  {
-    "title": "The Mike & Larry Show",
-    "url": "https://www.eventbrite.com/e/the-mike-larry-show-tickets-2002169194959",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-13",
-    "detail_time": "",
-    "startDateIso": "2026-11-13T00:00:00"
-  },
-  {
-    "title": "Eureka Friday Night Market",
-    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
-    "location": "Old Town Eureka",
-    "source": "Recurring local listing",
-    "detail_time": "5:30-8:30 p.m.",
-    "startDateIso": "2026-11-13T00:00:00+00:00"
-  },
-  {
-    "title": "Blues Lunch with Buddy Reed",
-    "url": "https://community.northcoastjournal.com/event/blues-lunch-with-buddy-reed-35007083",
-    "location": "Oak Deli & Brewery",
-    "source": "North Coast Journal",
-    "detail_time": "Fri., Nov. 13, 1-3 p.m.",
-    "startDate": "2026-11-13T13:00:00-08:00",
-    "startDateIso": "2026-11-13T13:00:00-08:00"
-  },
-  {
-    "title": "Camp Crafty Women's Retreat",
-    "url": "https://community.northcoastjournal.com/event/camp-crafty-womens-retreat-34924056",
-    "location": "Mattole Camp & Retreat Center",
-    "source": "North Coast Journal",
-    "detail_time": "Fri., Nov. 13, 2 p.m., Sat., Nov. 14 and Sun., Nov. 15",
-    "startDate": "2026-11-13T14:00:00-08:00",
-    "startDateIso": "2026-11-13T14:00:00-08:00"
-  },
-  {
-    "title": "Rhinoceros by Eugene Ionesco",
-    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
-    "location": "Van Duzer Theater",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-10:15 p.m.",
-    "startDateIso": "2026-11-13T15:56:56.602086"
-  },
-  {
-    "title": "Every Brilliant Thing",
-    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
-    "location": "Synapsis",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-9:30 p.m.",
-    "startDateIso": "2026-11-13T15:56:56.602086"
-  },
-  {
-    "title": "The Satan Show",
-    "url": "https://lostcoastoutpost.com/lowdown/events/the-satan-show/",
-    "location": "Carlo Theatre (Dell’Arte)",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8 p.m.",
-    "startDateIso": "2026-11-13T15:56:56.602086"
-  },
-  {
-    "title": "Jacki and The Jollies, Widdershins, Halfwing",
-    "url": "https://lostcoastoutpost.com/lowdown/events/jacki-and-the-jollies-widdershins-halfwing-at-the-/",
-    "location": "The Wild Hare Tavern",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8 p.m.",
-    "startDateIso": "2026-11-13T15:56:56.602086"
-  },
-  {
-    "title": "Joel Harrison’s In a Silent Way Reimagined",
-    "url": "https://lostcoastoutpost.com/lowdown/events/joel-harrisons-in-a-silent-way-reimagined/",
-    "location": "Arcata Playhouse",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8 p.m.",
-    "startDateIso": "2026-11-13T15:56:56.602086"
-  },
-  {
-    "title": "Elderberry Rust Stringband, The Cowtown Sound",
-    "url": "https://lostcoastoutpost.com/lowdown/events/elderberry-rust-stringband-the-cowtown-sound/",
-    "location": "Humboldt Brews",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-13T15:56:56.602086"
-  },
-  {
     "title": "Spiritline: if you get a dialtone you probably got the wrong number",
     "url": "https://www.eventbrite.com/e/spiritline-if-you-get-a-dialtone-you-probably-got-the-wrong-number-tickets-2002170592138",
     "location": "EXIT Theatre, 890 G Street, Arcata, CA",
@@ -128,12 +36,44 @@
     "startDateIso": "2026-11-14T00:00:00"
   },
   {
+    "title": "The Fig Twig Holiday Market",
+    "url": "https://lostcoastoutpost.com/lowdown/events/the-fig-twig-holiday-market/",
+    "location": "Redwood Acres Fairgrounds",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "10 a.m.-4 p.m.",
+    "startDateIso": "2026-11-14T14:47:07.110429"
+  },
+  {
     "title": "Hildaland",
     "url": "https://lostcoastoutpost.com/lowdown/events/hildaland/",
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-14T15:56:56.602086"
+    "startDateIso": "2026-11-14T14:47:07.110429"
+  },
+  {
+    "title": "Every Brilliant Thing",
+    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
+    "location": "Synapsis",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30-9:30 p.m.",
+    "startDateIso": "2026-11-14T14:47:07.110429"
+  },
+  {
+    "title": "Rhinoceros by Eugene Ionesco",
+    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
+    "location": "Van Duzer Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30-10:15 p.m.",
+    "startDateIso": "2026-11-14T14:47:07.110429"
+  },
+  {
+    "title": "The Satan Show",
+    "url": "https://lostcoastoutpost.com/lowdown/events/the-satan-show/",
+    "location": "Carlo Theatre (Dell’Arte)",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8 p.m.",
+    "startDateIso": "2026-11-14T14:47:07.110429"
   },
   {
     "title": "Arcane Artists: Pineo & Loeb",
@@ -141,7 +81,7 @@
     "location": "RampArt Skatepark",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "9:30 p.m.-3 a.m.",
-    "startDateIso": "2026-11-14T15:56:56.602086"
+    "startDateIso": "2026-11-14T14:47:07.110429"
   },
   {
     "title": "Parasite Caste (sludge metal from Bakersfield)",
@@ -155,6 +95,15 @@
   {
     "title": "I Blame the Moon by Alisha Solan",
     "url": "https://www.eventbrite.com/e/i-blame-the-moon-by-alisha-solan-tickets-2002167810819",
+    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-15",
+    "detail_time": "",
+    "startDateIso": "2026-11-15T00:00:00"
+  },
+  {
+    "title": "Jom and Terry",
+    "url": "https://www.eventbrite.com/e/jom-and-terry-tickets-2002168760660",
     "location": "EXIT Theatre, 890 G Street, Arcata, CA",
     "source": "Eventbrite",
     "startDate": "2026-11-15",
@@ -179,20 +128,20 @@
     "startDateIso": "2026-11-15T00:00:00+00:00"
   },
   {
-    "title": "Partnership in Music Orchestra Performances",
-    "url": "https://lostcoastoutpost.com/lowdown/events/partnership-in-music-orchestra-performances/",
-    "location": "Fulkerson Recital Hall",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-15T15:56:56.602086"
-  },
-  {
     "title": "I Blame the Moon",
     "url": "https://lostcoastoutpost.com/lowdown/events/i-blame-the-moon/",
     "location": "Exit Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "2-3 p.m.",
-    "startDateIso": "2026-11-15T15:56:56.602086"
+    "startDateIso": "2026-11-15T14:47:07.110429"
+  },
+  {
+    "title": "Partnership in Music Orchestra Performances",
+    "url": "https://lostcoastoutpost.com/lowdown/events/partnership-in-music-orchestra-performances/",
+    "location": "Fulkerson Recital Hall",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "2-4 p.m.",
+    "startDateIso": "2026-11-15T14:47:07.110429"
   },
   {
     "title": "How Daddy Is Doing",
@@ -200,7 +149,7 @@
     "location": "Exit Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "4-5 p.m.",
-    "startDateIso": "2026-11-15T15:56:56.602086"
+    "startDateIso": "2026-11-15T14:47:07.110429"
   },
   {
     "title": "Clan Dyken Beauty Way Benefit Concert",
@@ -208,7 +157,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-9:30 p.m.",
-    "startDateIso": "2026-11-15T15:56:56.602086"
+    "startDateIso": "2026-11-15T14:47:07.110429"
   },
   {
     "title": "Parasite Caste, Psyop, Ultramafic",
@@ -216,7 +165,7 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-15T15:56:56.602086"
+    "startDateIso": "2026-11-15T14:47:07.110429"
   },
   {
     "title": "Strange Meeting",
@@ -224,7 +173,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-17T15:56:56.602086"
+    "startDateIso": "2026-11-17T14:47:07.110429"
   },
   {
     "title": "Take, Take, Take",
@@ -250,7 +199,15 @@
     "location": "Arcata Community Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "5-8 p.m.",
-    "startDateIso": "2026-11-19T15:56:56.602086"
+    "startDateIso": "2026-11-19T14:47:07.110429"
+  },
+  {
+    "title": "Eureka Friday Night Market",
+    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
+    "location": "Old Town Eureka",
+    "source": "Recurring local listing",
+    "detail_time": "5:30-8:30 p.m.",
+    "startDateIso": "2026-11-20T00:00:00+00:00"
   },
   {
     "title": "Disney’s Frozen: The Broadway Musical",
@@ -258,7 +215,7 @@
     "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-11-20T00:00:00"
+    "startDateIso": "2026-11-20T14:47:07.110429"
   },
   {
     "title": "All That Glitters",
@@ -325,6 +282,15 @@
     "title": "The Connection Club: A Guided Speed Dating Experience [Ages 28-45ish]",
     "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-28-45ish-tickets-2003557272737",
     "location": "Humboldt Bay Provisions, 205 G Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-04",
+    "detail_time": "",
+    "startDateIso": "2026-12-04T00:00:00"
+  },
+  {
+    "title": "The Brothers Comatose Night 2",
+    "url": "https://www.eventbrite.com/e/the-brothers-comatose-night-2-tickets-1999561694856",
+    "location": "Big Room, Sierra Nevada Brewing Co., Chico, CA",
     "source": "Eventbrite",
     "startDate": "2026-12-04",
     "detail_time": "",
