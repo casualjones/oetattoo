@@ -1,109 +1,7 @@
 [
   {
-    "title": "Spiritline: if you get a dialtone you probably got the wrong number",
-    "url": "https://www.eventbrite.com/e/spiritline-if-you-get-a-dialtone-you-probably-got-the-wrong-number-tickets-2002170592138",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-14",
-    "detail_time": "",
-    "startDateIso": "2026-11-14T00:00:00"
-  },
-  {
-    "title": "Scattered",
-    "url": "https://www.eventbrite.com/e/scattered-tickets-2002182288121",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-14",
-    "detail_time": "",
-    "startDateIso": "2026-11-14T00:00:00"
-  },
-  {
-    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 38-55ish]",
-    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-38-55ish-tickets-2003557086179",
-    "location": "Phatsy Kline's Parlor Lounge, 129 2nd Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-14",
-    "detail_time": "",
-    "startDateIso": "2026-11-14T00:00:00"
-  },
-  {
-    "title": "Southern Humboldt Community Sacred Fire",
-    "url": "https://www.eventbrite.com/e/southern-humboldt-community-sacred-fire-tickets-2004548287890",
-    "location": "942 Redway Dr, 942 Redway Drive, Redway, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-14",
-    "detail_time": "",
-    "startDateIso": "2026-11-14T00:00:00"
-  },
-  {
-    "title": "The Fig Twig Holiday Market",
-    "url": "https://lostcoastoutpost.com/lowdown/events/the-fig-twig-holiday-market/",
-    "location": "Redwood Acres Fairgrounds",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "10 a.m.-4 p.m.",
-    "startDateIso": "2026-11-14T14:47:07.110429"
-  },
-  {
-    "title": "Hildaland",
-    "url": "https://lostcoastoutpost.com/lowdown/events/hildaland/",
-    "location": "Arcata Playhouse",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-14T14:47:07.110429"
-  },
-  {
-    "title": "Every Brilliant Thing",
-    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
-    "location": "Synapsis",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-9:30 p.m.",
-    "startDateIso": "2026-11-14T14:47:07.110429"
-  },
-  {
-    "title": "Rhinoceros by Eugene Ionesco",
-    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
-    "location": "Van Duzer Theater",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30-10:15 p.m.",
-    "startDateIso": "2026-11-14T14:47:07.110429"
-  },
-  {
-    "title": "The Satan Show",
-    "url": "https://lostcoastoutpost.com/lowdown/events/the-satan-show/",
-    "location": "Carlo Theatre (Dell’Arte)",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8 p.m.",
-    "startDateIso": "2026-11-14T14:47:07.110429"
-  },
-  {
-    "title": "Arcane Artists: Pineo & Loeb",
-    "url": "https://lostcoastoutpost.com/lowdown/events/pineo-loeb-arcane-sessions-v2/",
-    "location": "RampArt Skatepark",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "9:30 p.m.-3 a.m.",
-    "startDateIso": "2026-11-14T14:47:07.110429"
-  },
-  {
-    "title": "Parasite Caste (sludge metal from Bakersfield)",
-    "url": "https://www.eventbrite.com/e/parasite-caste-sludge-metal-from-bakersfield-tickets-2003473364766",
-    "location": "Savage Henry Comedy Club, 415 5th Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-15",
-    "detail_time": "",
-    "startDateIso": "2026-11-15T00:00:00"
-  },
-  {
     "title": "I Blame the Moon by Alisha Solan",
     "url": "https://www.eventbrite.com/e/i-blame-the-moon-by-alisha-solan-tickets-2002167810819",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-15",
-    "detail_time": "",
-    "startDateIso": "2026-11-15T00:00:00"
-  },
-  {
-    "title": "Jom and Terry",
-    "url": "https://www.eventbrite.com/e/jom-and-terry-tickets-2002168760660",
     "location": "EXIT Theatre, 890 G Street, Arcata, CA",
     "source": "Eventbrite",
     "startDate": "2026-11-15",
@@ -128,12 +26,36 @@
     "startDateIso": "2026-11-15T00:00:00+00:00"
   },
   {
+    "title": "The Satan Show",
+    "url": "https://lostcoastoutpost.com/lowdown/events/the-satan-show/",
+    "location": "Carlo Theatre (Dell’Arte)",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "2 p.m.",
+    "startDateIso": "2026-11-15T15:21:54.988628"
+  },
+  {
     "title": "I Blame the Moon",
     "url": "https://lostcoastoutpost.com/lowdown/events/i-blame-the-moon/",
     "location": "Exit Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "2-3 p.m.",
-    "startDateIso": "2026-11-15T14:47:07.110429"
+    "startDateIso": "2026-11-15T15:21:54.988628"
+  },
+  {
+    "title": "Rhinoceros by Eugene Ionesco",
+    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
+    "location": "Van Duzer Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "2-4:45 p.m.",
+    "startDateIso": "2026-11-15T15:21:54.988628"
+  },
+  {
+    "title": "Every Brilliant Thing",
+    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
+    "location": "Synapsis",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "2-4 p.m.",
+    "startDateIso": "2026-11-15T15:21:54.988628"
   },
   {
     "title": "Partnership in Music Orchestra Performances",
@@ -141,7 +63,7 @@
     "location": "Fulkerson Recital Hall",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-15T14:47:07.110429"
+    "startDateIso": "2026-11-15T15:21:54.988628"
   },
   {
     "title": "How Daddy Is Doing",
@@ -149,7 +71,7 @@
     "location": "Exit Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "4-5 p.m.",
-    "startDateIso": "2026-11-15T14:47:07.110429"
+    "startDateIso": "2026-11-15T15:21:54.988628"
   },
   {
     "title": "Clan Dyken Beauty Way Benefit Concert",
@@ -157,7 +79,7 @@
     "location": "Arcata Playhouse",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6:30-9:30 p.m.",
-    "startDateIso": "2026-11-15T14:47:07.110429"
+    "startDateIso": "2026-11-15T15:21:54.988628"
   },
   {
     "title": "Parasite Caste, Psyop, Ultramafic",
@@ -165,7 +87,7 @@
     "location": "Savage Henry Comedy Club",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-15T14:47:07.110429"
+    "startDateIso": "2026-11-15T15:21:54.988628"
   },
   {
     "title": "Strange Meeting",
@@ -173,7 +95,25 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-17T14:47:07.110429"
+    "startDateIso": "2026-11-17T15:21:54.988628"
+  },
+  {
+    "title": "Grammy winner Kabaka Pyramid & The Bebble Rockers/King I-Vier & Jah Yzer",
+    "url": "https://www.eventbrite.com/e/grammy-winner-kabaka-pyramid-the-bebble-rockersking-i-vier-jah-yzer-tickets-2004610711601",
+    "location": "Longboard Bar & Venue, 180 Eureka Sq, Pacifica, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-18",
+    "detail_time": "",
+    "startDateIso": "2026-11-18T00:00:00"
+  },
+  {
+    "title": "Spiritline: if you get a dialtone you probably got the wrong number",
+    "url": "https://www.eventbrite.com/e/spiritline-if-you-get-a-dialtone-you-probably-got-the-wrong-number-tickets-2002170606180",
+    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-19",
+    "detail_time": "",
+    "startDateIso": "2026-11-19T00:00:00"
   },
   {
     "title": "Take, Take, Take",
@@ -199,7 +139,25 @@
     "location": "Arcata Community Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "5-8 p.m.",
-    "startDateIso": "2026-11-19T14:47:07.110429"
+    "startDateIso": "2026-11-19T15:21:54.988628"
+  },
+  {
+    "title": "Now What?",
+    "url": "https://www.eventbrite.com/e/now-what-tickets-2002170064560",
+    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-20",
+    "detail_time": "",
+    "startDateIso": "2026-11-20T00:00:00"
+  },
+  {
+    "title": "Scattered",
+    "url": "https://www.eventbrite.com/e/scattered-tickets-2002182298151",
+    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-20",
+    "detail_time": "",
+    "startDateIso": "2026-11-20T00:00:00"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -215,7 +173,7 @@
     "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-11-20T14:47:07.110429"
+    "startDateIso": "2026-11-20T15:21:54.988628"
   },
   {
     "title": "All That Glitters",
@@ -241,7 +199,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-21T00:00:00"
+    "startDateIso": "2026-11-21T15:21:54.988628"
   },
   {
     "title": "Weapon of Mass Seduction",
@@ -270,6 +228,24 @@
     "startDateIso": "2026-11-27T00:00:00"
   },
   {
+    "title": "CURRENT presents: OSUNLADE & MARQUES WYATT, Nov 28, 2026",
+    "url": "https://www.eventbrite.com/e/current-presents-osunlade-marques-wyatt-nov-28-2026-tickets-2002840370463",
+    "location": "Life-Force Academy, Broad Street, Nevada City, CA, USA, 226 Broad Street, Nevada City, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-28",
+    "detail_time": "",
+    "startDateIso": "2026-11-28T00:00:00"
+  },
+  {
+    "title": "Afroman at the 7440",
+    "url": "https://www.eventbrite.com/e/afroman-at-the-7440-tickets-2002356080940",
+    "location": "Rocky's 7440 Club, 7440 Auburn Boulevard, Citrus Heights, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-01",
+    "detail_time": "",
+    "startDateIso": "2026-12-01T00:00:00"
+  },
+  {
     "title": "Soohan, Masta Shredda, Reflectic, Kings Milk, Porcspino at Humbrews",
     "url": "https://www.eventbrite.com/e/soohan-masta-shredda-reflectic-kings-milk-porcspino-at-humbrews-tickets-2004697973604",
     "location": "Humboldt Brews LLC *UNDER NEW OWNERSHIP*, 856 10th Street, Arcata, CA",
@@ -282,15 +258,6 @@
     "title": "The Connection Club: A Guided Speed Dating Experience [Ages 28-45ish]",
     "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-28-45ish-tickets-2003557272737",
     "location": "Humboldt Bay Provisions, 205 G Street, Eureka, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-12-04",
-    "detail_time": "",
-    "startDateIso": "2026-12-04T00:00:00"
-  },
-  {
-    "title": "The Brothers Comatose Night 2",
-    "url": "https://www.eventbrite.com/e/the-brothers-comatose-night-2-tickets-1999561694856",
-    "location": "Big Room, Sierra Nevada Brewing Co., Chico, CA",
     "source": "Eventbrite",
     "startDate": "2026-12-04",
     "detail_time": "",
@@ -331,6 +298,15 @@
     "startDateIso": "2026-12-05T00:00:00+00:00"
   },
   {
+    "title": "Christmas Relief Society Activity",
+    "url": "https://www.eventbrite.com/e/christmas-relief-society-activity-tickets-2004732615218",
+    "location": "The Church of Jesus Christ of Latter-day Saints, 1660 Heartwood Drive, Mckinleyville, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-10",
+    "detail_time": "",
+    "startDateIso": "2026-12-10T00:00:00"
+  },
+  {
     "title": "The Connection Club: A Guided Speed Dating Experience [Ages 38-55ish]",
     "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-38-55ish-tickets-2003721019508",
     "location": "Humboldt Bay Provisions, 205 G Street, Eureka, CA",
@@ -347,6 +323,15 @@
     "startDate": "2026-12-17",
     "detail_time": "",
     "startDateIso": "2026-12-17T00:00:00"
+  },
+  {
+    "title": "Southern Humboldt Community Sacred Fire",
+    "url": "https://www.eventbrite.com/e/southern-humboldt-community-sacred-fire-tickets-2004548473445",
+    "location": "942 Redway Dr, 942 Redway Drive, Redway, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-19",
+    "detail_time": "",
+    "startDateIso": "2026-12-19T00:00:00"
   },
   {
     "title": "RESET NYE Sober Rave",
@@ -392,5 +377,14 @@
     "startDate": "2027-02-05",
     "detail_time": "",
     "startDateIso": "2027-02-05T00:00:00"
+  },
+  {
+    "title": "The English Beat Night 2",
+    "url": "https://www.eventbrite.com/e/the-english-beat-night-2-tickets-2003668136333",
+    "location": "Big Room, Sierra Nevada Brewing Co., Chico, CA",
+    "source": "Eventbrite",
+    "startDate": "2027-02-12",
+    "detail_time": "",
+    "startDateIso": "2027-02-12T00:00:00"
   }
 ]
