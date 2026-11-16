@@ -1,110 +1,11 @@
 [
   {
-    "title": "I Blame the Moon by Alisha Solan",
-    "url": "https://www.eventbrite.com/e/i-blame-the-moon-by-alisha-solan-tickets-2002167810819",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-15",
-    "detail_time": "",
-    "startDateIso": "2026-11-15T00:00:00"
-  },
-  {
-    "title": "ASTIG Sound 8yr Anniversary w/ Manila Sound LA",
-    "url": "https://www.eventbrite.com/e/astig-sound-8yr-anniversary-w-manila-sound-la-tickets-2002596522106",
-    "location": "El Rio, 3158 Mission St., San Francisco, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-15",
-    "detail_time": "",
-    "startDateIso": "2026-11-15T00:00:00"
-  },
-  {
-    "title": "Arcata Farmers' Market",
-    "url": "https://www.arcatafarmersmarket.com/",
-    "location": "Arcata Plaza",
-    "source": "Recurring local listing",
-    "detail_time": "Saturday mornings",
-    "startDateIso": "2026-11-15T00:00:00+00:00"
-  },
-  {
-    "title": "The Satan Show",
-    "url": "https://lostcoastoutpost.com/lowdown/events/the-satan-show/",
-    "location": "Carlo Theatre (Dell’Arte)",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
-    "title": "I Blame the Moon",
-    "url": "https://lostcoastoutpost.com/lowdown/events/i-blame-the-moon/",
-    "location": "Exit Theatre",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-3 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
-    "title": "Rhinoceros by Eugene Ionesco",
-    "url": "https://lostcoastoutpost.com/lowdown/events/rhinoceros-by-eugene-ionesco/",
-    "location": "Van Duzer Theater",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-4:45 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
-    "title": "Every Brilliant Thing",
-    "url": "https://lostcoastoutpost.com/lowdown/events/every-brilliant-thing-2/",
-    "location": "Synapsis",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
-    "title": "Partnership in Music Orchestra Performances",
-    "url": "https://lostcoastoutpost.com/lowdown/events/partnership-in-music-orchestra-performances/",
-    "location": "Fulkerson Recital Hall",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
-    "title": "How Daddy Is Doing",
-    "url": "https://lostcoastoutpost.com/lowdown/events/how-daddy-is-doing/",
-    "location": "Exit Theatre",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "4-5 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
-    "title": "Clan Dyken Beauty Way Benefit Concert",
-    "url": "https://lostcoastoutpost.com/lowdown/events/clan-dyken-beauty-way-benefit-concert-for-big-moun/",
-    "location": "Arcata Playhouse",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "6:30-9:30 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
-    "title": "Parasite Caste, Psyop, Ultramafic",
-    "url": "https://lostcoastoutpost.com/lowdown/events/parasite-caste-sludge-metal-from-bakersfield/",
-    "location": "Savage Henry Comedy Club",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-15T15:21:54.988628"
-  },
-  {
     "title": "Strange Meeting",
     "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-17T15:21:54.988628"
-  },
-  {
-    "title": "Grammy winner Kabaka Pyramid & The Bebble Rockers/King I-Vier & Jah Yzer",
-    "url": "https://www.eventbrite.com/e/grammy-winner-kabaka-pyramid-the-bebble-rockersking-i-vier-jah-yzer-tickets-2004610711601",
-    "location": "Longboard Bar & Venue, 180 Eureka Sq, Pacifica, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-18",
-    "detail_time": "",
-    "startDateIso": "2026-11-18T00:00:00"
+    "startDateIso": "2026-11-17T17:57:55.603553"
   },
   {
     "title": "Spiritline: if you get a dialtone you probably got the wrong number",
@@ -139,7 +40,7 @@
     "location": "Arcata Community Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "5-8 p.m.",
-    "startDateIso": "2026-11-19T15:21:54.988628"
+    "startDateIso": "2026-11-19T17:57:55.603553"
   },
   {
     "title": "Now What?",
@@ -173,16 +74,7 @@
     "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-11-20T15:21:54.988628"
-  },
-  {
-    "title": "All That Glitters",
-    "url": "https://www.eventbrite.com/e/all-that-glitters-tickets-2002163805840",
-    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-21",
-    "detail_time": "",
-    "startDateIso": "2026-11-21T00:00:00"
+    "startDateIso": "2026-11-20T17:57:55.603553"
   },
   {
     "title": "How Daddy Is Doing",
@@ -194,12 +86,38 @@
     "startDateIso": "2026-11-21T00:00:00"
   },
   {
+    "title": "All That Glitters",
+    "url": "https://www.eventbrite.com/e/all-that-glitters-tickets-2002163805840",
+    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-21",
+    "detail_time": "",
+    "startDateIso": "2026-11-21T00:00:00"
+  },
+  {
+    "title": "I Blame the Moon by Alisha Solan",
+    "url": "https://www.eventbrite.com/e/i-blame-the-moon-by-alisha-solan-tickets-2002167840909",
+    "location": "EXIT Theatre, 890 G Street, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-21",
+    "detail_time": "",
+    "startDateIso": "2026-11-21T00:00:00"
+  },
+  {
+    "title": "Humboldt Roller Derby",
+    "url": "https://lostcoastoutpost.com/lowdown/events/humboldt-roller-derby-double-header-8/",
+    "location": "Bomber Field at Redwood Acres Fairgrounds",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "6-9 p.m.",
+    "startDateIso": "2026-11-21T17:57:55.603553"
+  },
+  {
     "title": "Watkins Glen’s Super Deluxe Allstar Band",
     "url": "https://lostcoastoutpost.com/lowdown/events/watkins-glens-super-deluxe-allstar-band/",
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-21T15:21:54.988628"
+    "startDateIso": "2026-11-21T17:57:55.603553"
   },
   {
     "title": "Weapon of Mass Seduction",
@@ -209,6 +127,14 @@
     "startDate": "2026-11-22",
     "detail_time": "",
     "startDateIso": "2026-11-22T00:00:00"
+  },
+  {
+    "title": "Arcata Farmers' Market",
+    "url": "https://www.arcatafarmersmarket.com/",
+    "location": "Arcata Plaza",
+    "source": "Recurring local listing",
+    "detail_time": "Saturday mornings",
+    "startDateIso": "2026-11-22T00:00:00+00:00"
   },
   {
     "title": "Threshold:UP -  Featuring Beats Antique",
@@ -226,15 +152,6 @@
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
     "startDateIso": "2026-11-27T00:00:00"
-  },
-  {
-    "title": "CURRENT presents: OSUNLADE & MARQUES WYATT, Nov 28, 2026",
-    "url": "https://www.eventbrite.com/e/current-presents-osunlade-marques-wyatt-nov-28-2026-tickets-2002840370463",
-    "location": "Life-Force Academy, Broad Street, Nevada City, CA, USA, 226 Broad Street, Nevada City, CA",
-    "source": "Eventbrite",
-    "startDate": "2026-11-28",
-    "detail_time": "",
-    "startDateIso": "2026-11-28T00:00:00"
   },
   {
     "title": "Afroman at the 7440",
