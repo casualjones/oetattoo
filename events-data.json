@@ -1,11 +1,11 @@
 [
   {
-    "title": "Strange Meeting",
-    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
-    "location": "The Basement",
+    "title": "Sci-Fi Night: Soylent Green (1973)",
+    "url": "https://lostcoastoutpost.com/lowdown/events/sci-fi-night-emsoylent-greenem-1973/",
+    "location": "Arcata Theatre Lounge",
     "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-17T17:23:29.274739"
+    "detail_time": "6 p.m.",
+    "startDateIso": "2026-11-18T16:57:15.406524"
   },
   {
     "title": "Taste of the Holidays",
@@ -13,7 +13,23 @@
     "location": "Arcata Community Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "5-8 p.m.",
-    "startDateIso": "2026-11-19T17:23:29.274739"
+    "startDateIso": "2026-11-19T16:57:15.406524"
+  },
+  {
+    "title": "The Land Returns",
+    "url": "https://lostcoastoutpost.com/lowdown/events/special-screening-of-the-documentary-film-the-land/",
+    "location": "Eureka Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7-9:30 p.m.",
+    "startDateIso": "2026-11-19T16:57:15.406524"
+  },
+  {
+    "title": "JuanConga",
+    "url": "https://lostcoastoutpost.com/lowdown/events/juanconga-at-the-basement-arcata/",
+    "location": "The Basement",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8-11 p.m.",
+    "startDateIso": "2026-11-19T16:57:15.406524"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -29,7 +45,7 @@
     "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-11-20T17:23:29.274739"
+    "startDateIso": "2026-11-20T16:57:15.406524"
   },
   {
     "title": "Humboldt Roller Derby",
@@ -37,7 +53,7 @@
     "location": "Bomber Field at Redwood Acres Fairgrounds",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-11-21T17:23:29.274739"
+    "startDateIso": "2026-11-21T16:57:15.406524"
   },
   {
     "title": "Watkins Glen’s Super Deluxe Allstar Band",
@@ -45,7 +61,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-21T17:23:29.274739"
+    "startDateIso": "2026-11-21T16:57:15.406524"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -54,6 +70,14 @@
     "source": "Recurring local listing",
     "detail_time": "Saturday mornings",
     "startDateIso": "2026-11-22T00:00:00+00:00"
+  },
+  {
+    "title": "Strange Meeting",
+    "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
+    "location": "The Basement",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-11-24T16:57:15.406524"
   },
   {
     "title": "Beats Antique",
