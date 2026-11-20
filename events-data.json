@@ -1,29 +1,5 @@
 [
   {
-    "title": "Taste of the Holidays",
-    "url": "https://lostcoastoutpost.com/lowdown/events/taste-of-the-holidays-7/",
-    "location": "Arcata Community Center",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "5-8 p.m.",
-    "startDateIso": "2026-11-19T17:03:35.293645"
-  },
-  {
-    "title": "The Land Returns",
-    "url": "https://lostcoastoutpost.com/lowdown/events/special-screening-of-the-documentary-film-the-land/",
-    "location": "Eureka Theater",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7-9:30 p.m.",
-    "startDateIso": "2026-11-19T17:03:35.293645"
-  },
-  {
-    "title": "JuanConga",
-    "url": "https://lostcoastoutpost.com/lowdown/events/juanconga-at-the-basement-arcata/",
-    "location": "The Basement",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8-11 p.m.",
-    "startDateIso": "2026-11-19T17:03:35.293645"
-  },
-  {
     "title": "Eureka Friday Night Market",
     "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
     "location": "Old Town Eureka",
@@ -32,12 +8,52 @@
     "startDateIso": "2026-11-20T00:00:00+00:00"
   },
   {
+    "title": "Lhatsik Harutkshi (Moving Stories) Wiyot Film Festival",
+    "url": "https://lostcoastoutpost.com/lowdown/events/lhatsik-harutkshi-moving-stories-wiyot-film-fest-2/",
+    "location": "Eureka Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "5-8:30 p.m.",
+    "startDateIso": "2026-11-20T16:42:48.930683"
+  },
+  {
+    "title": "Down in New Orleans: A Night of New Orleans Jazz",
+    "url": "https://lostcoastoutpost.com/lowdown/events/down-in-new-orleans-a-night-of-new-orleans-jazz/",
+    "location": "Arcata Playhouse",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7-9:30 p.m.",
+    "startDateIso": "2026-11-20T16:42:48.930683"
+  },
+  {
     "title": "Disney’s Frozen: The Broadway Musical",
     "url": "https://lostcoastoutpost.com/lowdown/events/disneys-frozen-the-broadway-musical-live-at-fernda/",
     "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-11-20T17:03:35.293645"
+    "startDateIso": "2026-11-20T16:42:48.930683"
+  },
+  {
+    "title": "Comedian Ben Rice",
+    "url": "https://lostcoastoutpost.com/lowdown/events/stand-up-comedian-ben-rice-headlines-the-club/",
+    "location": "Savage Henry Comedy Club",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8-10 p.m.",
+    "startDateIso": "2026-11-20T16:42:48.930683"
+  },
+  {
+    "title": "Blackplate, Glacier Dorm",
+    "url": "https://lostcoastoutpost.com/lowdown/events/blackplate-glacier-dorm/",
+    "location": "The Shanty",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "9-11:30 p.m.",
+    "startDateIso": "2026-11-20T16:42:48.930683"
+  },
+  {
+    "title": "‘Twas the Night Before Christmas",
+    "url": "https://lostcoastoutpost.com/lowdown/events/twas-the-night-before-christmas-3/",
+    "location": "Van Duzer Theater",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "6 p.m.",
+    "startDateIso": "2026-11-21T16:42:48.930683"
   },
   {
     "title": "Humboldt Roller Derby",
@@ -45,7 +61,7 @@
     "location": "Bomber Field at Redwood Acres Fairgrounds",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-9 p.m.",
-    "startDateIso": "2026-11-21T17:03:35.293645"
+    "startDateIso": "2026-11-21T16:42:48.930683"
   },
   {
     "title": "Watkins Glen’s Super Deluxe Allstar Band",
@@ -53,7 +69,7 @@
     "location": "Humboldt Brews",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "8:30 p.m.",
-    "startDateIso": "2026-11-21T17:03:35.293645"
+    "startDateIso": "2026-11-21T16:42:48.930683"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -64,12 +80,28 @@
     "startDateIso": "2026-11-22T00:00:00+00:00"
   },
   {
+    "title": "48th Annual Mushroom Fair",
+    "url": "https://lostcoastoutpost.com/lowdown/events/mushroom-fair-6/",
+    "location": "Arcata Community Center",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "11 a.m.-4 p.m.",
+    "startDateIso": "2026-11-22T16:42:48.930683"
+  },
+  {
+    "title": "Sylvia Black",
+    "url": "https://lostcoastoutpost.com/lowdown/events/special-sunday-live-bands-sylvia-black-and-more/",
+    "location": "The Shanty",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "8-10:30 p.m.",
+    "startDateIso": "2026-11-22T16:42:48.930683"
+  },
+  {
     "title": "Strange Meeting",
     "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-24T17:03:35.293645"
+    "startDateIso": "2026-11-24T16:42:48.930683"
   },
   {
     "title": "Beats Antique",
