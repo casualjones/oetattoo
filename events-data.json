@@ -1,51 +1,35 @@
 [
   {
-    "title": "Arcata Farmers' Market",
-    "url": "https://www.arcatafarmersmarket.com/",
-    "location": "Arcata Plaza",
-    "source": "Recurring local listing",
-    "detail_time": "Saturday mornings",
-    "startDateIso": "2026-11-22T00:00:00+00:00"
-  },
-  {
-    "title": "48th Annual Mushroom Fair",
-    "url": "https://lostcoastoutpost.com/lowdown/events/mushroom-fair-6/",
-    "location": "Arcata Community Center",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "11 a.m.-4 p.m.",
-    "startDateIso": "2026-11-22T15:55:56.055768"
-  },
-  {
-    "title": "‘Twas the Night Before Christmas",
-    "url": "https://lostcoastoutpost.com/lowdown/events/twas-the-night-before-christmas-3/",
-    "location": "Van Duzer Theater",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2 p.m.",
-    "startDateIso": "2026-11-22T15:55:56.055768"
-  },
-  {
-    "title": "Disney’s Frozen: The Broadway Musical",
-    "url": "https://lostcoastoutpost.com/lowdown/events/disneys-frozen-the-broadway-musical-live-at-fernda/",
-    "location": "Ferndale Repertory Theatre",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2 p.m.",
-    "startDateIso": "2026-11-22T15:55:56.055768"
-  },
-  {
-    "title": "Sylvia Black",
-    "url": "https://lostcoastoutpost.com/lowdown/events/special-sunday-live-bands-sylvia-black-and-more/",
-    "location": "The Shanty",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "8-10:30 p.m.",
-    "startDateIso": "2026-11-22T15:55:56.055768"
-  },
-  {
     "title": "Strange Meeting",
     "url": "https://lostcoastoutpost.com/lowdown/events/strange-meeting-5/",
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-24T15:55:56.055768"
+    "startDateIso": "2026-11-24T19:50:20.337062"
+  },
+  {
+    "title": "Thanksgiving Day Leg Stretcher",
+    "url": "https://lostcoastoutpost.com/lowdown/events/thanksgiving-day-leg-stretcher-at-the-arcata-marsh/",
+    "location": "Arcata Marsh Interpretive Center",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "10-11:30 a.m.",
+    "startDateIso": "2026-11-26T19:50:20.337062"
+  },
+  {
+    "title": "Trinidad Blessing of the Fleet",
+    "url": "https://lostcoastoutpost.com/lowdown/events/trinidad-blessing-of-the-fleet-8/",
+    "location": "Trinidad",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "10 a.m.-noon",
+    "startDateIso": "2026-11-26T19:50:20.337062"
+  },
+  {
+    "title": "Thanksgiving at the Zoo",
+    "url": "https://lostcoastoutpost.com/lowdown/events/thanksgiving-at-the-zoo/",
+    "location": "Sequoia Park Zoo",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "11 a.m.-3 p.m.",
+    "startDateIso": "2026-11-26T19:50:20.337062"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -56,12 +40,44 @@
     "startDateIso": "2026-11-27T00:00:00+00:00"
   },
   {
+    "title": "Santa’s Arrival in Old Town",
+    "url": "https://lostcoastoutpost.com/lowdown/events/santas-arrival-in-old-town-3/",
+    "location": "Downtown and Old Town Eureka",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "2-4 p.m.",
+    "startDateIso": "2026-11-27T19:50:20.337062"
+  },
+  {
     "title": "Beats Antique",
     "url": "https://lostcoastoutpost.com/lowdown/events/beats-antique/",
     "location": "Eureka Theater",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-27T15:55:56.055768"
+    "startDateIso": "2026-11-27T19:50:20.337062"
+  },
+  {
+    "title": "Disney’s Frozen: The Broadway Musical",
+    "url": "https://lostcoastoutpost.com/lowdown/events/disneys-frozen-the-broadway-musical-live-at-fernda/",
+    "location": "Ferndale Repertory Theatre",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7:30 p.m.",
+    "startDateIso": "2026-11-27T19:50:20.337062"
+  },
+  {
+    "title": "Arcata Farmers' Market",
+    "url": "https://www.arcatafarmersmarket.com/",
+    "location": "Arcata Plaza",
+    "source": "Recurring local listing",
+    "detail_time": "Saturday mornings",
+    "startDateIso": "2026-11-29T00:00:00+00:00"
+  },
+  {
+    "title": "Dick Taylor Chocolate Factory Annual Christmas Tree Lighting",
+    "url": "https://lostcoastoutpost.com/lowdown/events/dick-taylor-chocolate-factory-fourth-annual-christ/",
+    "location": "Dick Taylor Chocolate Factory",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "6-8 p.m.",
+    "startDateIso": "2026-12-02T00:00:00"
   },
   {
     "title": "Arts! Alive",
@@ -72,11 +88,27 @@
     "startDateIso": "2026-12-05T00:00:00"
   },
   {
+    "title": "The Brothers Comatose",
+    "url": "https://lostcoastoutpost.com/lowdown/events/the-brothers-comatose-4/",
+    "location": "Arcata Theatre Lounge",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "7 p.m.",
+    "startDateIso": "2026-12-05T00:00:00"
+  },
+  {
     "title": "Arts! Alive",
     "url": "https://www.eurekamainstreet.org/events/",
     "location": "Downtown Eureka",
     "source": "Recurring local listing",
     "detail_time": "First Saturday of each month",
     "startDateIso": "2026-12-05T00:00:00+00:00"
+  },
+  {
+    "title": "Annual Arcata Holiday Craft Market",
+    "url": "https://lostcoastoutpost.com/lowdown/events/annual-arcata-holiday-craft-market-2/",
+    "location": "Arcata Community Center",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "10 a.m.-5 p.m.",
+    "startDateIso": "2026-12-12T00:00:00"
   }
 ]
