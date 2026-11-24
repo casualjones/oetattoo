@@ -5,15 +5,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-24T19:50:20.337062"
-  },
-  {
-    "title": "Thanksgiving Day Leg Stretcher",
-    "url": "https://lostcoastoutpost.com/lowdown/events/thanksgiving-day-leg-stretcher-at-the-arcata-marsh/",
-    "location": "Arcata Marsh Interpretive Center",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "10-11:30 a.m.",
-    "startDateIso": "2026-11-26T19:50:20.337062"
+    "startDateIso": "2026-11-24T19:21:45.193178"
   },
   {
     "title": "Trinidad Blessing of the Fleet",
@@ -21,7 +13,15 @@
     "location": "Trinidad",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "10 a.m.-noon",
-    "startDateIso": "2026-11-26T19:50:20.337062"
+    "startDateIso": "2026-11-26T19:21:45.193178"
+  },
+  {
+    "title": "Thanksgiving Day Leg Stretcher",
+    "url": "https://lostcoastoutpost.com/lowdown/events/thanksgiving-day-leg-stretcher-at-the-arcata-marsh/",
+    "location": "Arcata Marsh Interpretive Center",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "10-11:30 a.m.",
+    "startDateIso": "2026-11-26T19:21:45.193178"
   },
   {
     "title": "Thanksgiving at the Zoo",
@@ -29,7 +29,16 @@
     "location": "Sequoia Park Zoo",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "11 a.m.-3 p.m.",
-    "startDateIso": "2026-11-26T19:50:20.337062"
+    "startDateIso": "2026-11-26T19:21:45.193178"
+  },
+  {
+    "title": "Threshold:UP -  Featuring Beats Antique",
+    "url": "https://www.eventbrite.com/e/thresholdup-featuring-beats-antique-tickets-1996029291342",
+    "location": "The Eureka Theater, 612 F Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-11-27",
+    "detail_time": "",
+    "startDateIso": "2026-11-27T00:00:00"
   },
   {
     "title": "Eureka Friday Night Market",
@@ -45,7 +54,7 @@
     "location": "Downtown and Old Town Eureka",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-27T19:50:20.337062"
+    "startDateIso": "2026-11-27T19:21:45.193178"
   },
   {
     "title": "Beats Antique",
@@ -53,7 +62,7 @@
     "location": "Eureka Theater",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-27T19:50:20.337062"
+    "startDateIso": "2026-11-27T19:21:45.193178"
   },
   {
     "title": "Disney’s Frozen: The Broadway Musical",
@@ -61,7 +70,7 @@
     "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-11-27T19:50:20.337062"
+    "startDateIso": "2026-11-27T19:21:45.193178"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -72,12 +81,93 @@
     "startDateIso": "2026-11-29T00:00:00+00:00"
   },
   {
+    "title": "Giant Quilted Bow Class at Lavender Rose in Eureka",
+    "url": "https://www.eventbrite.com/e/giant-quilted-bow-class-at-lavender-rose-in-eureka-tickets-2004854394463",
+    "location": "Lavender Rose Fabrics Quilt Shop, 301 West Harris Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-02",
+    "detail_time": "",
+    "startDateIso": "2026-12-02T00:00:00"
+  },
+  {
     "title": "Dick Taylor Chocolate Factory Annual Christmas Tree Lighting",
     "url": "https://lostcoastoutpost.com/lowdown/events/dick-taylor-chocolate-factory-fourth-annual-christ/",
     "location": "Dick Taylor Chocolate Factory",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-8 p.m.",
     "startDateIso": "2026-12-02T00:00:00"
+  },
+  {
+    "title": "Jumbo Quilted Christmas Stocking Class at Lavender Rose in Eureka",
+    "url": "https://www.eventbrite.com/e/jumbo-quilted-christmas-stocking-class-at-lavender-rose-in-eureka-tickets-2004854486739",
+    "location": "Lavender Rose Fabrics Quilt Shop, 301 West Harris Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-03",
+    "detail_time": "",
+    "startDateIso": "2026-12-03T00:00:00"
+  },
+  {
+    "title": "The Brothers Comatose Night 1 w/ Marin County Breakdown",
+    "url": "https://www.eventbrite.com/e/the-brothers-comatose-night-1-w-marin-county-breakdown-tickets-1999556364914",
+    "location": "Big Room, Sierra Nevada Brewing Co., Chico, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-03",
+    "detail_time": "",
+    "startDateIso": "2026-12-03T00:00:00"
+  },
+  {
+    "title": "Soohan, Masta Shredda, Reflectic, Kings Milk, Porcspino at Humbrews",
+    "url": "https://www.eventbrite.com/e/soohan-masta-shredda-reflectic-kings-milk-porcspino-at-humbrews-tickets-2004697973604",
+    "location": "Humboldt Brews LLC *UNDER NEW OWNERSHIP*, 856 10th Street, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-04",
+    "detail_time": "",
+    "startDateIso": "2026-12-04T00:00:00"
+  },
+  {
+    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 28-45ish]",
+    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-28-45ish-tickets-2003557272737",
+    "location": "Humboldt Bay Provisions, 205 G Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-04",
+    "detail_time": "",
+    "startDateIso": "2026-12-04T00:00:00"
+  },
+  {
+    "title": "The Brothers Comatose Night 2 w/ Winona",
+    "url": "https://www.eventbrite.com/e/the-brothers-comatose-night-2-w-winona-tickets-1999561694856",
+    "location": "Big Room, Sierra Nevada Brewing Co., Chico, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-04",
+    "detail_time": "",
+    "startDateIso": "2026-12-04T00:00:00"
+  },
+  {
+    "title": "Absurd Aquarium",
+    "url": "https://www.eventbrite.com/e/absurd-aquarium-tickets-2003870464502",
+    "location": "1675 Union St, 1675 Union Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-05",
+    "detail_time": "",
+    "startDateIso": "2026-12-05T00:00:00"
+  },
+  {
+    "title": "The Connection Club x Fuego: Speed Dating + Dance Party | Ages 21–35ish",
+    "url": "https://www.eventbrite.com/e/the-connection-club-x-fuego-speed-dating-dance-party-ages-2135ish-tickets-2003845512871",
+    "location": "The Eureka Theater, 612 F Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-05",
+    "detail_time": "",
+    "startDateIso": "2026-12-05T00:00:00"
+  },
+  {
+    "title": "Cultural Center Tours!",
+    "url": "https://www.eventbrite.com/e/cultural-center-tours-tickets-1999724397504",
+    "location": "Da Gou Rou Louwi’ Cultural Center, 417 2nd Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-05",
+    "detail_time": "",
+    "startDateIso": "2026-12-05T00:00:00"
   },
   {
     "title": "Arts! Alive",
@@ -104,11 +194,154 @@
     "startDateIso": "2026-12-05T00:00:00+00:00"
   },
   {
+    "title": "Jumbo Quilted Christmas Stocking Class at Lavender Rose in Eureka",
+    "url": "https://www.eventbrite.com/e/jumbo-quilted-christmas-stocking-class-at-lavender-rose-in-eureka-tickets-2004854636186",
+    "location": "Lavender Rose Fabrics Quilt Shop, 301 West Harris Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-09",
+    "detail_time": "",
+    "startDateIso": "2026-12-09T00:00:00"
+  },
+  {
+    "title": "Christmas Relief Society Activity",
+    "url": "https://www.eventbrite.com/e/christmas-relief-society-activity-tickets-2004732615218",
+    "location": "The Church of Jesus Christ of Latter-day Saints, 1660 Heartwood Drive, Mckinleyville, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-10",
+    "detail_time": "",
+    "startDateIso": "2026-12-10T00:00:00"
+  },
+  {
+    "title": "Famous Comedian Sam Miller Headlines the Club!",
+    "url": "https://www.eventbrite.com/e/famous-comedian-sam-miller-headlines-the-club-tickets-2002182560937",
+    "location": "Savage Henry Comedy Club, 415 5th st, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-10",
+    "detail_time": "",
+    "startDateIso": "2026-12-10T00:00:00"
+  },
+  {
+    "title": "Giant Quilted Bow Class at Lavender Rose in Eureka",
+    "url": "https://www.eventbrite.com/e/giant-quilted-bow-class-at-lavender-rose-in-eureka-tickets-2004854415526",
+    "location": "Lavender Rose Fabrics Quilt Shop, 301 West Harris Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-10",
+    "detail_time": "",
+    "startDateIso": "2026-12-10T00:00:00"
+  },
+  {
+    "title": "Arcata Season of Wonder and Light Celebration",
+    "url": "https://lostcoastoutpost.com/lowdown/events/arcata-chamber-season-of-wonder-and-light-celebrat/",
+    "location": "Arcata Plaza",
+    "source": "Lost Coast Outpost Lowdown",
+    "detail_time": "5-7 p.m.",
+    "startDateIso": "2026-12-11T00:00:00"
+  },
+  {
+    "title": "There's no business like show business! A drag and burlesque show!",
+    "url": "https://www.eventbrite.com/e/theres-no-business-like-show-business-a-drag-and-burlesque-show-tickets-2004868632048",
+    "location": "EXIT theater, 860 G ST, Arcata, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-12",
+    "detail_time": "",
+    "startDateIso": "2026-12-12T00:00:00"
+  },
+  {
+    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 38-55ish]",
+    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-38-55ish-tickets-2003721019508",
+    "location": "Humboldt Bay Provisions, 205 G Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-12",
+    "detail_time": "",
+    "startDateIso": "2026-12-12T00:00:00"
+  },
+  {
     "title": "Annual Arcata Holiday Craft Market",
     "url": "https://lostcoastoutpost.com/lowdown/events/annual-arcata-holiday-craft-market-2/",
     "location": "Arcata Community Center",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "10 a.m.-5 p.m.",
     "startDateIso": "2026-12-12T00:00:00"
+  },
+  {
+    "title": "The Connection Club: A Guided Speed Dating Experience [Ages 48-65ish]",
+    "url": "https://www.eventbrite.com/e/the-connection-club-a-guided-speed-dating-experience-ages-48-65ish-tickets-2003557350971",
+    "location": "Humboldt Bay Provisions, 205 G Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-17",
+    "detail_time": "",
+    "startDateIso": "2026-12-17T00:00:00"
+  },
+  {
+    "title": "Jackass’s Zach Holmes Headlines Savage Henry!",
+    "url": "https://www.eventbrite.com/e/jackasss-zach-holmes-headlines-savage-henry-tickets-2003473590441",
+    "location": "Savage Henry Comedy Club, 415 5th st, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-18",
+    "detail_time": "",
+    "startDateIso": "2026-12-18T00:00:00"
+  },
+  {
+    "title": "Southern Humboldt Community Sacred Fire",
+    "url": "https://www.eventbrite.com/e/southern-humboldt-community-sacred-fire-tickets-2004548473445",
+    "location": "942 Redway Dr, 942 Redway Drive, Redway, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-19",
+    "detail_time": "",
+    "startDateIso": "2026-12-19T00:00:00"
+  },
+  {
+    "title": "RESET NYE Sober Rave",
+    "url": "https://www.eventbrite.com/e/reset-nye-sober-rave-tickets-2002356867292",
+    "location": "Redwood Acres Raceway, 3750 Harris Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-31",
+    "detail_time": "",
+    "startDateIso": "2026-12-31T00:00:00"
+  },
+  {
+    "title": "A Funky Ass New Year: Starchild Jr. & The Groove Allegiance",
+    "url": "https://www.eventbrite.com/e/a-funky-ass-new-year-starchild-jr-the-groove-allegiance-tickets-2004502501943",
+    "location": "The Eureka Theater, 612 F Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2026-12-31",
+    "detail_time": "",
+    "startDateIso": "2026-12-31T00:00:00"
+  },
+  {
+    "title": "Stake Conference",
+    "url": "https://www.eventbrite.com/e/stake-conference-tickets-2003872931882",
+    "location": "The Church of Jesus Christ of Latter-day Saints, 1660 Heartwood Drive, Mckinleyville, CA",
+    "source": "Eventbrite",
+    "startDate": "2027-01-23",
+    "detail_time": "",
+    "startDateIso": "2027-01-23T00:00:00"
+  },
+  {
+    "title": "An evening with Steve Poltz",
+    "url": "https://www.eventbrite.com/e/an-evening-with-steve-poltz-tickets-1996159394484",
+    "location": "Trinidad Town Hall, 409 Trinity Street, Trinidad, CA",
+    "source": "Eventbrite",
+    "startDate": "2027-02-03",
+    "detail_time": "",
+    "startDateIso": "2027-02-03T00:00:00"
+  },
+  {
+    "title": "Dirty Cello at the Historic Eagle House in Eureka",
+    "url": "https://www.eventbrite.com/e/dirty-cello-at-the-historic-eagle-house-in-eureka-tickets-1990984412975",
+    "location": "Historic Eagle House, 139 2nd Street, Eureka, CA",
+    "source": "Eventbrite",
+    "startDate": "2027-02-05",
+    "detail_time": "",
+    "startDateIso": "2027-02-05T00:00:00"
+  },
+  {
+    "title": "The English Beat Night 2",
+    "url": "https://www.eventbrite.com/e/the-english-beat-night-2-tickets-2003668136333",
+    "location": "Big Room, Sierra Nevada Brewing Co., Chico, CA",
+    "source": "Eventbrite",
+    "startDate": "2027-02-12",
+    "detail_time": "",
+    "startDateIso": "2027-02-12T00:00:00"
   }
 ]
