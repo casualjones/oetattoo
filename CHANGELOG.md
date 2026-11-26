@@ -8,7 +8,7 @@ VS Code: pull `origin/master` before editing. See `VSCODE.md`.
 
 ## 2026-11-26
 
-- Tools · Grid Reference: photos were drawn from the center of the canvas, so the picture sat in the corner of a huge empty grid. The image now fills the frame, the file picker works on phones, large photos are capped so the canvas does not blank, and a chosen JPEG/PNG builds a labeled cell grid immediately. Adjusting transfer size no longer throws. Dropping a file on the page no longer tries to open `file:///`. HEIC is rejected with a clear note. The photo still never leaves the browser.
+- Tools · Grid Reference: the transfer size and cell measurements are printed in the white margin under the grid, so the downloaded PNG carries the same note as the page.
 
 ## Unreleased / 2026-10-06
 

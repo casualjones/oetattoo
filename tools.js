@@ -151,8 +151,26 @@ function addGrid() {
     loadPreparedCanvas(file, 'grid', img => {
         const cells = gridCellCount();
         const gutter = Math.max(36, Math.round(Math.min(img.width, img.height) * 0.07));
+        const unitLabel = transferUnit === 'cm' ? 'cm' : 'in';
+        const rows = Math.max(1, Math.round(img.height / (img.width / cells)));
+        let message;
+        if (transferWidth > 0 && transferHeight > 0) {
+            const cellX = transferWidth / cells;
+            const cellY = transferHeight / rows;
+            message = `Transfer ${transferWidth}${unitLabel} × ${transferHeight}${unitLabel}. Each cell is ${cellX.toFixed(2)}${unitLabel} wide × ${cellY.toFixed(2)}${unitLabel} tall (${cells} × ${rows}).`;
+            if (Math.abs((transferWidth / img.width) - (transferHeight / img.height)) / Math.max(transferWidth / img.width, transferHeight / img.height) > 0.05) {
+                message += ' Photo and transfer proportions differ — match the smaller side if the drawing must stay true.';
+            }
+        } else {
+            message = `${cells} × ${rows} cells. Add a transfer size to see real-world cell measurements.`;
+        }
+        const noteFont = Math.max(14, Math.min(22, Math.round(img.width / 48)));
+        ctx.font = `500 ${noteFont}px Inter, Arial, sans-serif`;
+        const noteLines = wrapCanvasText(ctx, message, Math.max(160, img.width - 8));
+        const lineH = Math.round(noteFont * 1.35);
+        const footer = noteLines.length * lineH + Math.round(noteFont * 1.1);
         canvas.width = img.width + gutter;
-        canvas.height = img.height + gutter;
+        canvas.height = img.height + gutter + footer;
         canvas.classList.add('has-preview');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = '#f6f1e7';
@@ -160,7 +178,6 @@ function addGrid() {
         ctx.drawImage(img, gutter, gutter);
 
         const cellW = img.width / cells;
-        const rows = Math.max(1, Math.round(img.height / cellW));
         const cellH = img.height / rows;
 
         const strokeGrid = (color, width) => {
@@ -195,19 +212,15 @@ function addGrid() {
             ctx.fillText(String(r + 1), gutter / 2, gutter + (r + 0.5) * cellH);
         }
 
-        const unitLabel = transferUnit === 'cm' ? 'cm' : 'in';
-        if (transferWidth > 0 && transferHeight > 0) {
-            const cellX = transferWidth / cells;
-            const cellY = transferHeight / rows;
-            let message = `Transfer ${transferWidth}${unitLabel} × ${transferHeight}${unitLabel}. `;
-            message += `Each cell is ${cellX.toFixed(2)}${unitLabel} wide × ${cellY.toFixed(2)}${unitLabel} tall (${cells} × ${rows}).`;
-            if (Math.abs((transferWidth / img.width) - (transferHeight / img.height)) / Math.max(transferWidth / img.width, transferHeight / img.height) > 0.05) {
-                message += ' Photo and transfer proportions differ — match the smaller side if the drawing must stay true.';
-            }
-            scaleInfo.textContent = message;
-        } else {
-            scaleInfo.textContent = `${cells} × ${rows} cells. Add a transfer size to see real-world cell measurements.`;
-        }
+        ctx.fillStyle = '#1c1712';
+        ctx.font = `500 ${noteFont}px Inter, Arial, sans-serif`;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        noteLines.forEach((line, index) => {
+            ctx.fillText(line, gutter, gutter + img.height + Math.round(noteFont * 0.55) + index * lineH);
+        });
+
+        scaleInfo.textContent = message;
         updateGridConversions();
         setToolStatus('gridStatus', `${file.name} · ${cells} × ${rows} grid ready. Download PNG to print.`, 'success');
     });
@@ -394,6 +407,23 @@ function imageFileKind(file) {
     if (type.includes('heic') || type.includes('heif') || /\.hei[cf]$/.test(name)) return 'heic';
     if (type.startsWith('image/') || /\.(jpe?g|png|gif|webp|bmp|avif)$/.test(name)) return 'ok';
     return 'no';
+}
+
+function wrapCanvasText(ctx, text, maxWidth) {
+    const words = String(text || '').split(/\s+/).filter(Boolean);
+    const lines = [];
+    let line = '';
+    words.forEach(word => {
+        const trial = line ? `${line} ${word}` : word;
+        if (line && ctx.measureText(trial).width > maxWidth) {
+            lines.push(line);
+            line = word;
+        } else {
+            line = trial;
+        }
+    });
+    if (line) lines.push(line);
+    return lines.length ? lines : [''];
 }
 
 function columnLabel(index) {
