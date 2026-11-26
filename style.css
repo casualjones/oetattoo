@@ -748,6 +748,7 @@ body:has(.news-ticker) .page-shell {
 }
 
 .drop-zone {
+    position: relative;
     display: grid;
     gap: 0.35rem;
     border: 1px dashed rgba(209, 171, 91, 0.45);
@@ -766,7 +767,14 @@ body:has(.news-ticker) .page-shell {
 }
 
 .drop-zone input {
-    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .image-controls {

@@ -35,9 +35,31 @@ function loadPreparedCanvas(file, prefix, callback) {
         const ctx = canvas.getContext('2d');
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.rotate(rotation * Math.PI / 180);
-        ctx.drawImage(img, (img.width - cropWidth) / -2 * zoom, (img.height - cropHeight) / -2 * zoom, cropWidth * zoom, cropHeight * zoom);
+        const sourceX = Math.max(0, Math.round((img.width - cropWidth) / 2));
+        const sourceY = Math.max(0, Math.round((img.height - cropHeight) / 2));
+        ctx.drawImage(
+            img,
+            sourceX,
+            sourceY,
+            cropWidth,
+            cropHeight,
+            -(cropWidth * zoom) / 2,
+            -(cropHeight * zoom) / 2,
+            cropWidth * zoom,
+            cropHeight * zoom
+        );
         URL.revokeObjectURL(img.src);
-        callback(canvas);
+        const maxEdge = 1600;
+        const edge = Math.max(canvas.width, canvas.height);
+        let prepared = canvas;
+        if (edge > maxEdge) {
+            const fit = maxEdge / edge;
+            prepared = document.createElement('canvas');
+            prepared.width = Math.max(1, Math.round(canvas.width * fit));
+            prepared.height = Math.max(1, Math.round(canvas.height * fit));
+            prepared.getContext('2d').drawImage(canvas, 0, 0, prepared.width, prepared.height);
+        }
+        callback(prepared);
     };
     img.onerror = function() {
         setToolStatus(`${prefix}Status`, 'This image could not be read by the browser.', 'error');
@@ -47,7 +69,7 @@ function loadPreparedCanvas(file, prefix, callback) {
 
 function restoreImageTool(prefix) {
     const input = document.getElementById(`${prefix}Input`);
-    if (!input?.files[0]) {
+    if (!input?.files?.[0]) {
         setToolStatus(`${prefix}Status`, 'Choose an image before restoring it.', 'error');
         return;
     }
@@ -105,7 +127,6 @@ function scaleImage() {
 // Grider
 function addGrid() {
     const input = document.getElementById('gridInput');
-    const gridSize = parseInt(document.getElementById('gridSize').value);
     const transferWidth = parseFloat(document.getElementById('transferWidth').value);
     const transferHeight = parseFloat(document.getElementById('transferHeight').value);
     const transferUnit = document.getElementById('transferUnit').value;
@@ -114,77 +135,82 @@ function addGrid() {
     const scaleInfo = document.getElementById('gridScaleInfo');
     const file = input.files[0];
     if (!file) {
-        setToolStatus('gridStatus', 'Choose an image before adding a grid.', 'error');
+        setToolStatus('gridStatus', 'Choose a JPEG or PNG before adding a grid.', 'error');
         return;
     }
-    if (file) {
-        loadPreparedCanvas(file, 'grid', img => {
-            const squareSize = Math.max(img.width, img.height);
-            canvas.width = squareSize;
-            canvas.height = squareSize;
-            canvas.classList.add('has-preview');
-            ctx.clearRect(0, 0, squareSize, squareSize);
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0, 0, squareSize, squareSize);
-
-            const offsetX = (squareSize - img.width) / 2;
-            const offsetY = (squareSize - img.height) / 2;
-            ctx.drawImage(img, offsetX, offsetY);
-
-            ctx.globalAlpha = 0.6;
-            ctx.strokeStyle = '#000000';
-            ctx.lineWidth = 2;
-            for (let x = 0; x <= squareSize; x += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, squareSize);
-                ctx.stroke();
-            }
-            for (let y = 0; y <= squareSize; y += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(squareSize, y);
-                ctx.stroke();
-            }
-
-            ctx.globalAlpha = 1.0;
-            ctx.fillStyle = '#000000';
-            ctx.font = '14px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-
-            let col = 0;
-            for (let x = gridSize; x < squareSize; x += gridSize) {
-                const label = String.fromCharCode(65 + col);
-                ctx.fillText(label, x, 15);
-                col++;
-            }
-
-            let row = 0;
-            for (let y = gridSize; y < squareSize; y += gridSize) {
-                const label = (row + 1).toString();
-                ctx.fillText(label, 15, y);
-                row++;
-            }
-
-            if (transferWidth > 0 && transferHeight > 0) {
-                const unitLabel = transferUnit === 'cm' ? 'cm' : 'in';
-                const unitsPerPixelX = transferWidth / img.width;
-                const unitsPerPixelY = transferHeight / img.height;
-                const gridUnitsX = (gridSize * unitsPerPixelX).toFixed(2);
-                const gridUnitsY = (gridSize * unitsPerPixelY).toFixed(2);
-                let message = `Transfer medium: ${transferWidth}${unitLabel} x ${transferHeight}${unitLabel}. `;
-                message += `Scale: ${gridSize}px grid = ${gridUnitsX}${unitLabel} x ${gridUnitsY}${unitLabel}. `;
-                if (Math.abs(unitsPerPixelX - unitsPerPixelY) / Math.max(unitsPerPixelX, unitsPerPixelY) > 0.05) {
-                    message += 'Aspect ratio differs from medium; use the smaller dimension to preserve proportions.';
-                }
-                scaleInfo.textContent = message;
-            } else {
-                scaleInfo.textContent = '';
-            }
-            setToolStatus('gridStatus', `${file.name} · ${img.width} × ${img.height}px reference ready.`, 'success');
-        });
+    const kind = imageFileKind(file);
+    if (kind === 'heic') {
+        setToolStatus('gridStatus', 'iPhone HEIC photos cannot be read here. Export as JPEG or PNG, then choose that file.', 'error');
+        return;
     }
+    if (kind !== 'ok') {
+        setToolStatus('gridStatus', 'Use a JPEG, PNG, WebP, or GIF. That file is not a readable image.', 'error');
+        return;
+    }
+    setToolStatus('gridStatus', `Reading ${file.name}…`);
+    loadPreparedCanvas(file, 'grid', img => {
+        const cells = gridCellCount();
+        const gutter = Math.max(36, Math.round(Math.min(img.width, img.height) * 0.07));
+        canvas.width = img.width + gutter;
+        canvas.height = img.height + gutter;
+        canvas.classList.add('has-preview');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#f6f1e7';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, gutter, gutter);
+
+        const cellW = img.width / cells;
+        const rows = Math.max(1, Math.round(img.height / cellW));
+        const cellH = img.height / rows;
+
+        const strokeGrid = (color, width) => {
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = width;
+            for (let c = 0; c <= cells; c++) {
+                const x = gutter + c * cellW;
+                ctx.moveTo(x, gutter);
+                ctx.lineTo(x, gutter + img.height);
+            }
+            for (let r = 0; r <= rows; r++) {
+                const y = gutter + r * cellH;
+                ctx.moveTo(gutter, y);
+                ctx.lineTo(gutter + img.width, y);
+            }
+            ctx.stroke();
+        };
+        strokeGrid('rgba(255,255,255,0.92)', Math.max(2, cellW * 0.02));
+        strokeGrid('rgba(18,14,10,0.88)', Math.max(1, cellW * 0.008));
+
+        const fontSize = Math.max(12, Math.min(22, Math.floor(Math.min(gutter, cellW) * 0.42)));
+        ctx.fillStyle = '#1c1712';
+        ctx.font = `600 ${fontSize}px Inter, Arial, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        for (let c = 0; c < cells; c++) {
+            ctx.fillText(columnLabel(c), gutter + (c + 0.5) * cellW, gutter / 2);
+        }
+        ctx.textAlign = 'center';
+        for (let r = 0; r < rows; r++) {
+            ctx.fillText(String(r + 1), gutter / 2, gutter + (r + 0.5) * cellH);
+        }
+
+        const unitLabel = transferUnit === 'cm' ? 'cm' : 'in';
+        if (transferWidth > 0 && transferHeight > 0) {
+            const cellX = transferWidth / cells;
+            const cellY = transferHeight / rows;
+            let message = `Transfer ${transferWidth}${unitLabel} × ${transferHeight}${unitLabel}. `;
+            message += `Each cell is ${cellX.toFixed(2)}${unitLabel} wide × ${cellY.toFixed(2)}${unitLabel} tall (${cells} × ${rows}).`;
+            if (Math.abs((transferWidth / img.width) - (transferHeight / img.height)) / Math.max(transferWidth / img.width, transferHeight / img.height) > 0.05) {
+                message += ' Photo and transfer proportions differ — match the smaller side if the drawing must stay true.';
+            }
+            scaleInfo.textContent = message;
+        } else {
+            scaleInfo.textContent = `${cells} × ${rows} cells. Add a transfer size to see real-world cell measurements.`;
+        }
+        updateGridConversions();
+        setToolStatus('gridStatus', `${file.name} · ${cells} × ${rows} grid ready. Download PNG to print.`, 'success');
+    });
 }
 
 // Stencil Maker - Edge Detection
@@ -354,13 +380,43 @@ function downloadCanvas(canvasId, filename) {
 }
 
 // Update grid size conversions
+function gridCellCount() {
+    let cells = parseInt(document.getElementById('gridSize')?.value, 10);
+    if (!Number.isFinite(cells)) cells = 10;
+    // Older presets stored a pixel size, often 50. That paints an unreadable mesh on a photo.
+    if (cells > 24) cells = 10;
+    return Math.min(24, Math.max(4, cells));
+}
+
+function imageFileKind(file) {
+    const name = (file?.name || '').toLowerCase();
+    const type = (file?.type || '').toLowerCase();
+    if (type.includes('heic') || type.includes('heif') || /\.hei[cf]$/.test(name)) return 'heic';
+    if (type.startsWith('image/') || /\.(jpe?g|png|gif|webp|bmp|avif)$/.test(name)) return 'ok';
+    return 'no';
+}
+
+function columnLabel(index) {
+    let n = index;
+    let label = '';
+    do {
+        label = String.fromCharCode(65 + (n % 26)) + label;
+        n = Math.floor(n / 26) - 1;
+    } while (n >= 0);
+    return label;
+}
+
 function updateGridConversions() {
-    const pixels = parseInt(document.getElementById('gridSize').value);
-    const inches = (pixels / 96).toFixed(2);
-    const cm = (pixels / 96 * 2.54).toFixed(2);
-    document.getElementById('gridSizeDisplay').textContent = pixels + 'px';
-    document.getElementById('gridInches').textContent = inches + 'in';
-    document.getElementById('gridCm').textContent = cm + 'cm';
+    const cells = gridCellCount();
+    const width = parseFloat(document.getElementById('transferWidth')?.value) || 0;
+    const height = parseFloat(document.getElementById('transferHeight')?.value) || 0;
+    const unit = document.getElementById('transferUnit')?.value === 'cm' ? 'cm' : 'in';
+    const display = document.getElementById('gridSizeDisplay');
+    const inches = document.getElementById('gridInches');
+    const cm = document.getElementById('gridCm');
+    if (display) display.textContent = cells + ' across';
+    if (inches) inches.textContent = width > 0 ? (width / cells).toFixed(2) + unit + ' wide' : '';
+    if (cm) cm.textContent = height > 0 ? (height / cells).toFixed(2) + unit + ' tall' : '';
 }
 
 const TOOL_SETTINGS_KEY = 'oe-tattoo-tool-settings';
@@ -377,6 +433,8 @@ function applyToolSettings(settings) {
         if (field && value !== undefined) field.value = value;
         if (id.endsWith('Zoom')) updateZoomLabel(id);
     });
+    const gridSize = document.getElementById('gridSize');
+    if (gridSize && parseInt(gridSize.value, 10) > 24) gridSize.value = '10';
     updateGridConversions();
 }
 
@@ -436,9 +494,13 @@ document.addEventListener('DOMContentLoaded', function() {
         field?.addEventListener('input', () => {
             localStorage.setItem(TOOL_SETTINGS_KEY, JSON.stringify(collectToolSettings()));
             if (id.endsWith('Zoom')) updateZoomLabel(id);
+            if (id === 'gridSize' || id === 'transferWidth' || id === 'transferHeight' || id === 'transferUnit') updateGridConversions();
             const prefix = id.startsWith('scaler') ? 'scaler' : id.startsWith('grid') ? 'grid' : id.startsWith('stencil') ? 'stencil' : '';
             const input = prefix && document.getElementById(`${prefix}Input`);
-            if (input?.files[0]) previewImage(input, `${prefix}SourceCanvas`);
+            if (input?.files?.[0]) {
+                previewImage(input, `${prefix}SourceCanvas`);
+                if (prefix === 'grid') addGrid();
+            }
         });
         field?.addEventListener('change', () => localStorage.setItem(TOOL_SETTINGS_KEY, JSON.stringify(collectToolSettings())));
     });
@@ -451,10 +513,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const input = document.getElementById(inputId);
         if (input) input.addEventListener('change', () => {
             const file = input.files[0];
-            setToolStatus(statusId, file ? `${file.name} selected. Choose the tool action to create a preview.` : 'No image loaded yet.');
-            previewImage(input, `${inputId.replace('Input', '')}SourceCanvas`);
+            const prefix = inputId.replace('Input', '');
+            if (!file) {
+                setToolStatus(statusId, 'No image loaded yet.');
+                return;
+            }
+            const kind = imageFileKind(file);
+            if (kind === 'heic') {
+                setToolStatus(statusId, 'iPhone HEIC photos cannot be read here. Export as JPEG or PNG, then choose that file.', 'error');
+                return;
+            }
+            if (kind !== 'ok') {
+                setToolStatus(statusId, 'Use a JPEG, PNG, WebP, or GIF.', 'error');
+                return;
+            }
+            setToolStatus(statusId, prefix === 'grid' ? `Reading ${file.name}…` : `${file.name} selected.`);
+            previewImage(input, `${prefix}SourceCanvas`);
+            if (prefix === 'grid') addGrid();
         });
     });
+    const blockFileNavigation = event => {
+        if ([...(event.dataTransfer?.types || [])].includes('Files')) event.preventDefault();
+    };
+    document.addEventListener('dragover', blockFileNavigation);
+    document.addEventListener('drop', blockFileNavigation);
     document.querySelectorAll('[data-drop-input]').forEach(zone => {
         const input = document.getElementById(zone.dataset.dropInput);
         ['dragenter', 'dragover'].forEach(type => zone.addEventListener(type, event => {
@@ -467,7 +549,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }));
         zone.addEventListener('drop', event => {
             const file = event.dataTransfer.files[0];
-            if (!file || !file.type.startsWith('image/')) return;
+            const statusId = `${(zone.dataset.dropInput || '').replace('Input', '')}Status`;
+            if (!file) return;
+            const kind = imageFileKind(file);
+            if (kind === 'heic') {
+                setToolStatus(statusId, 'iPhone HEIC photos cannot be read here. Export as JPEG or PNG, then choose that file.', 'error');
+                return;
+            }
+            if (kind !== 'ok') {
+                setToolStatus(statusId, 'Drop a JPEG, PNG, WebP, or GIF.', 'error');
+                return;
+            }
             const transfer = new DataTransfer();
             transfer.items.add(file);
             input.files = transfer.files;

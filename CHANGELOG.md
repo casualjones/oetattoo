@@ -6,6 +6,10 @@ Branch: `master` (GitHub Pages)
 
 VS Code: pull `origin/master` before editing. See `VSCODE.md`.
 
+## 2026-11-26
+
+- Tools · Grid Reference: photos were drawn from the center of the canvas, so the picture sat in the corner of a huge empty grid. The image now fills the frame, the file picker works on phones, large photos are capped so the canvas does not blank, and a chosen JPEG/PNG builds a labeled cell grid immediately. Adjusting transfer size no longer throws. Dropping a file on the page no longer tries to open `file:///`. HEIC is rejected with a clear note. The photo still never leaves the browser.
+
 ## Unreleased / 2026-10-06
 
 - Landing: added Cairo, Egypt before Eureka with local time, current conditions, sunrise, sunset, and a 3-day forecast; all weather cards now show local time.
