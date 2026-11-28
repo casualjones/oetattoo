@@ -1,19 +1,11 @@
 [
   {
-    "title": "Eureka Friday Night Market",
-    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
-    "location": "Old Town Eureka",
-    "source": "Recurring local listing",
-    "detail_time": "5:30-8:30 p.m.",
-    "startDateIso": "2026-11-27T00:00:00+00:00"
-  },
-  {
-    "title": "Santa’s Arrival in Old Town",
-    "url": "https://lostcoastoutpost.com/lowdown/events/santas-arrival-in-old-town-3/",
-    "location": "Downtown and Old Town Eureka",
+    "title": "Disney’s Frozen: The Broadway Musical",
+    "url": "https://lostcoastoutpost.com/lowdown/events/disneys-frozen-the-broadway-musical-live-at-fernda/",
+    "location": "Ferndale Repertory Theatre",
     "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "2-4 p.m.",
-    "startDateIso": "2026-11-27T17:51:08.786599"
+    "detail_time": "2 p.m.",
+    "startDateIso": "2026-11-28T16:38:15.205754"
   },
   {
     "title": "Beats Antique",
@@ -21,15 +13,7 @@
     "location": "Eureka Theater",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-11-27T17:51:08.786599"
-  },
-  {
-    "title": "Disney’s Frozen: The Broadway Musical",
-    "url": "https://lostcoastoutpost.com/lowdown/events/disneys-frozen-the-broadway-musical-live-at-fernda/",
-    "location": "Ferndale Repertory Theatre",
-    "source": "Lost Coast Outpost Lowdown",
-    "detail_time": "7:30 p.m.",
-    "startDateIso": "2026-11-27T17:51:08.786599"
+    "startDateIso": "2026-11-28T16:38:15.205754"
   },
   {
     "title": "Arcata Farmers' Market",
@@ -45,7 +29,7 @@
     "location": "The Basement",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "7 p.m.",
-    "startDateIso": "2026-12-01T17:51:08.786599"
+    "startDateIso": "2026-12-01T16:38:15.205754"
   },
   {
     "title": "Dick Taylor Chocolate Factory Annual Christmas Tree Lighting",
@@ -53,7 +37,15 @@
     "location": "Dick Taylor Chocolate Factory",
     "source": "Lost Coast Outpost Lowdown",
     "detail_time": "6-8 p.m.",
-    "startDateIso": "2026-12-02T17:51:08.786599"
+    "startDateIso": "2026-12-02T16:38:15.205754"
+  },
+  {
+    "title": "Eureka Friday Night Market",
+    "url": "https://lostcoastoutpost.com/lowdown/events/eureka-friday-night-market-16/",
+    "location": "Old Town Eureka",
+    "source": "Recurring local listing",
+    "detail_time": "5:30-8:30 p.m.",
+    "startDateIso": "2026-12-04T00:00:00+00:00"
   },
   {
     "title": "Arts! Alive",
